@@ -1,0 +1,288 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content" >
+	<div class="row crumb_row">
+		<big-breadcrumbs items="['访问控制', '提供PYD和ISCSI驱动的访问控制以及ISCSI的CHAP认证功能']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+		<alert-message  level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+	</div>
+	<state-breadcrumbs></state-breadcrumbs>
+	<section id="widget-grid" widget-grid>
+		<div class="row">
+			<div class="col-md-12 action_wrap" >
+				<button class="btn btn_green" data-toggle="modal" ng-show="apis.Access_Rule.createVolumeAccessRules" data-target="#new_modal" id="create_access_rule_btn" ng-click="doFocus();">创建</button>
+				<button id="deleteRules" class="btn btn_red" ng-show="apis.Access_Rule.deleteVolumeAccessRules" ng-click="getDeleteNames()" type="button" disabled="disabled" data-toggle="modal" data-target="#delete_modal" >删除</button>
+				<div class="btn-group  pull-right" >
+					<button class="btn btn_lightblue" ng-click="reloadDataAll()">刷新</button>
+				</div>
+			</div>
+			<article  class="col-sm-12 col-md-12 col-lg-12">
+				<div jarvis-widget id="live-feeds-widget" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" >
+						
+					<ul class="nav nav-tabs  list_wrap in" id="serverTab">
+						<li class="active">
+							<a data-toggle="tab" ng-click="showFlag=2;reloadDataF();permissionChange()" href="#s2"><span class="hidden-mobile hidden-tablet">ISCSI驱动</span></a>
+						</li>
+						<li >
+							<a data-toggle="tab" ng-click="showFlag=1;permissionChange()" href="#s1"><span class="hidden-mobile hidden-tablet">PYD驱动</span></a>
+						</li>
+					</ul>
+					<div class="no-padding" id="serverDetailInner">
+						<div class="widget-body serverDetail">
+							<div id="myTabContent" class="tab-content">
+								<div class="tab-pane fade" id="s1">
+									<div ng-if="showFlag==1" class="row no-space">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 show-stats">
+
+											<table id="ruleTab" datatable dt-options="datatables.dtOptions" dt-columns="datatables.dtColumns" class="table table-striped  table-hover" dt-instance="datatables.dtInstance"></table>
+										</div>
+									</div>
+									<div class="show-stat-microcharts" data-sparkline-container data-easy-pie-chart-container>
+									</div>
+								</div>
+								<div class="tab-pane fade active in" id="s2">
+									<div ng-if="showFlag==2" class="row no-space">
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 show-stats">
+											<table id="chapTab"  datatable dt-options="datatables.dtOptionsF" dt-columns="datatables.dtColumnsF" class="table table-striped  table-hover" dt-instance="datatables.dtInstanceF"></table>
+										</div>
+									</div>
+									<div class="show-stat-microcharts" data-sparkline-container data-easy-pie-chart-container>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+	</section>
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="new_modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" ng-click="reset()" >
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">创建客户机</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" id="create_access_rule_form" name="createForm" novalidate>
+						<span ng-if="showFlag==1">
+							<div class="form-group" ng-class="{'has-error':createForm.remoteHostName.$invalid && !createForm.remoteHostName.$pristine&&createForm.remoteHostName.$touched}">
+								<label for="remoteHostName" class="col-sm-3 control-label">客户机IP地址<span class="required">* </span></label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" name="remoteHostName" id="remoteHostName"  placeholder="客户机IP" ng-pattern="/^((?:(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d)))\.){3}(?:25[0-5]|2[0-4]\d|((1\d{2})|([1-9]?\d))))$/" data-required="1" ng-model="create.remoteHostName">
+									<p class="hoverTip " ng-if="!(createForm.remoteHostName.$invalid&&!createForm.remoteHostName.$pristine&&createForm.remoteHostName.$touched)"><i class="fa fa-exclamation-circle"></i>  IP格式(x.x.x.x),x为小于256的正整数</p>
+									<span class="help-block" ng-show="createForm.remoteHostName.$invalid&&!createForm.remoteHostName.$pristine&&createForm.remoteHostName.$touched "><i class="fa fa-exclamation-circle"></i>  格式不正确,正确格式(x.x.x.x),x为小于256的正整数</span>
+								</div>
+							</div>
+						</span>
+						<span ng-if="showFlag==2">
+							<div class="form-group" ng-class="{'has-error':createForm.ruleNotes.$invalid && !createForm.ruleNotes.$pristine&&createForm.ruleNotes.$touched}">
+								<label for="ruleNotes" class="col-sm-3 control-label">规则名称<span class="required">* </span></label>
+								<div class="col-sm-7">
+									<input type="text" id="ruleNotes" class="form-control" ng-model="create.ruleNotes" data-required="1"  placeholder="规则名称" ng-minlength="2" ng-maxlength="64" ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/"  name="ruleNotes" onfocus="hideSth(this)" onblur="showSth(this)"/>
+									<p class="hoverTip hideTip "  ng-show="!(createForm.ruleNotes.$invalid&&!createForm.ruleNotes.$error.maxlength&& !createForm.ruleNotes.$pristine&&createForm.ruleNotes.$touched)&&!(createForm.ruleNotes.$error.maxlength&&createForm.ruleNotes.$touched)"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</p>
+									<span ng-if="createForm.ruleNotes.$invalid&&!createForm.ruleNotes.$error.maxlength&& !createForm.ruleNotes.$pristine&&createForm.ruleNotes.$touched " class="help-block"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",长度2-64</span>
+									<span ng-if="createForm.ruleNotes.$error.maxlength&&createForm.ruleNotes.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",至多64位</span>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':createForm.remoteHostName.$invalid && !createForm.remoteHostName.$pristine&&createForm.remoteHostName.$touched}">
+								<label for="remoteHostName" class="col-sm-3 control-label">Initiator名称<span class="required">* </span>
+								&nbsp;<i class="fa  fa-question-circle" data-html="true" data-toggle="tooltip" title="iSCSI Initiator(客户端)的名称：iqn.xxx"></i></label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" name="remoteHostName" id="remoteHostName"  placeholder="Initiator名称"  ng-model="create.remoteHostName" ng-pattern="/^iqn/i"  onfocus="hideSth(this)" onblur="showSth(this)"/>
+									<p class="hoverTip hideTip" ng-show="!(createForm.remoteHostName.$invalid && !createForm.remoteHostName.$pristine&&createForm.remoteHostName.$touched)"><i class="fa fa-exclamation-circle"></i>  Initiator名称以iqn开头</p>
+									<span ng-if="createForm.remoteHostName.$invalid && !createForm.remoteHostName.$pristine&&createForm.remoteHostName.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i>  Initiator名称格式错误</span>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':!driverUsername&&driverOutUsername}">
+								<label for="username" class="col-sm-3 control-label">incoming用户</label>
+								<div class="col-sm-7">
+									<input type="text" id="username" class="form-control" ng-model="$parent.driverUsername" ng-minlength="1" placeholder="incoming用户"  onfocus="hideSth(this)" onblur="showSth(this)"/>
+									<p class="hoverTip  hideTip" ng-show="!(!driverUsername&&driverOutUsername)"><i class="fa fa-exclamation-circle"></i>  incoming用户名密码均填写方有效</p>
+									<span class="help-block" ng-show="!driverUsername&&driverOutUsername"><i class="fa fa-exclamation-circle"></i>  请先填写此项</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="password" class="col-sm-3 control-label">incoming密码</label>
+								<div class="col-sm-7">
+									<input type="password" id="password" class="form-control"  ng-model="$parent.driverPassword"  ng-minlength="1" placeholder="incoming密码"/>
+								</div>
+							</div>
+							<div class="form-group" ng-class="{'has-error':driverUsername==driverOutUsername&&driverUsername&&driverOutUsername}">
+								<label for="outgoingUser" class="col-sm-3 control-label">outgoing用户</label>
+								<div class="col-sm-7">
+									<input type="text" id="outgoingUser" class="form-control" ng-model="$parent.driverOutUsername" ng-minlength="1" placeholder="outgoing用户"  onfocus="hideSth(this)" onblur="showSth(this)"/>
+									<p class="hoverTip  hideTip" ng-show="!(driverUsername==driverOutUsername&&driverUsername&&driverOutUsername)"><i class="fa fa-exclamation-circle"></i>  outgoing用户名密码均填写且存在incoming用户方有效</p>
+									<span class="help-block" ng-show="driverUsername==driverOutUsername&&driverUsername&&driverOutUsername"><i class="fa fa-exclamation-circle"></i>  incoming用户占用此名称</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="outPassword" class="col-sm-3 control-label">outgoing密码</label>
+								<div class="col-sm-7">
+									<input type="password" id="outPassword" class="form-control"  ng-model="$parent.driverOutPassword"  ng-minlength="1" placeholder="outgoing密码"/>
+								</div>
+							</div>
+						</span>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button ng-disabled="((showFlag==1)&&(createForm.$invalid||!readWritePermission))||((showFlag==2)&&(createForm.$invalid||!readWritePermission||(driverUsername==driverOutUsername&&driverUsername&&driverOutUsername)))" ng-click="addAccessRule()" class="btn btn_blue">创建</button>
+					<button ng-click="reset()"  id="cancle_creating_access_rules_btn" class="btn btn_default" data-dismiss="modal">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" id="applyRule_modal" ng-if="applySwitch">
+		<div class="modal-dialog" style="width:800px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">授权:{{currentName}}</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" >
+						<div class="form-group">
+							<div class="col-sm-2">
+								<h6 style="font-weight:normal;">已授权卷</h6>
+							</div>
+							<div class="pull-right" style="margin-right:15px">
+								<button class="btn btn_lightblue btn-sm" style="margin-top:5px;"  ng-click="modelRefresh()">刷新</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="tableList" >
+									<table datatable id="cancelTab" dt-options="datatables.dtOptionsCancel" dt-columns="datatables.dtColumnsCancel" class="table_break_work updateTable  table-striped table-condensed flip-content" dt-instance="datatables.dtInstanceCancel"  ></table>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-6" >
+								<button class="btn pull-right btn_blue btn-sm" ng-show="apis.Access_Rule.applyVolumeAccessRuleOnVolumes" style="margin-top:5px" ng-disabled="datatables.applyPool" ng-click="applyBtn()"><i class="fa fa-arrow-up"></i>&nbsp;应用</button>
+							</div>
+							<div class="col-sm-6" >
+								<button class="btn pull-left btn_blue btn-sm" ng-show="apis.Access_Rule.cancelVolAccessRuleAllApplied" style="margin-top:5px" ng-disabled="datatables.cancelPool" ng-click="cancelBtn()"><i class="fa fa-arrow-down"></i>&nbsp;撤销</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2">
+								<h6 style="font-weight:normal;">未授权卷</h6>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="tableList"  >
+									 <table datatable id="applyTab" dt-options="datatables.dtOptionsApply" dt-columns="datatables.dtColumnsApply" class="table_break_work updateTable  table-striped table-condensed flip-content" dt-instance="datatables.dtInstanceApply"  ></table>
+								</div>
+							</div>
+						</div>
+					</form>
+					
+				</div>
+				<div class="modal-footer">
+					<input type="button" data-dismiss="modal" class="btn btn_lightblue" value="完成"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" id="delete_modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">删除客户机</h4>
+				</div>
+				<div class="modal-body">
+					<div>
+						确定删除下列项?
+					</div>
+					<div class="deleteNames">
+						{{deleteNames}}
+					</div>
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn_blue " ng-click="deleteRule()" data-dismiss="modal">删除</button>
+					<button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" id="applyDriver_modal" ng-if="applySwitchInitiator">
+		<div class="modal-dialog" style="width:800px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">授权:{{currentName}}</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" >
+						<div class="form-group">
+							<div class="col-sm-2">
+								<h6 style="font-weight:normal;">已授权驱动</h6>
+							</div>
+							<div class="pull-right" style="margin-right:15px">
+								<button class="btn btn_lightblue btn-sm" style="margin-top:5px;"  ng-click="modelRefresh()">刷新</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="tableList" >
+									<table id="cancelIOTab" datatable dt-options="datatables.dtOptionsCancelIO" dt-columns="datatables.dtColumnsCancelIO" class="table_break_work updateTable  table-striped table-condensed flip-content" dt-instance="datatables.dtInstanceCancelIO"  ></table>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-6" >
+								<button class="btn pull-right btn_blue btn-sm"  style="margin-top:5px" ng-disabled="datatables.applyDriver" ng-show="apis.Access_Rule.applyIscsiAccessRules" ng-click="applyBtn()"><i class="fa fa-arrow-up"></i>&nbsp;应用</button>
+							</div>
+							<div class="col-sm-6" >
+								<button class="btn pull-left btn_blue btn-sm"  style="margin-top:5px" ng-disabled="datatables.cancelDriver" ng-show="apis.Access_Rule.cancelIscsiAccessRules" ng-click="cancelBtn()"><i class="fa fa-arrow-down"></i>&nbsp;撤销</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2">
+								<h6 style="font-weight:normal;">未授权驱动</h6>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="tableList"  >
+									<table id="applyIOTab" datatable dt-options="datatables.dtOptionsApplyIO" dt-columns="datatables.dtColumnsApplyIO" class="table_break_work updateTable  table-striped table-condensed flip-content" dt-instance="datatables.dtInstanceApplyIO"  ></table>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<input type="button" data-dismiss="modal" class="btn btn_lightblue" value="完成"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

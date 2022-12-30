@@ -1,0 +1,80 @@
+<project name="pengyun-console" default="all" basedir=".">
+
+        <xmlproperty file="pom.xml" prefix="pom" />
+        <echo>The version is ${pom.project.parent.version}</echo>
+        <property name="project.version" value="${pom.project.parent.version}" />
+	<property name="console.target" value="${basedir}/target" />
+	<property name="console.target.res" value="${basedir}/target/pengyun-console-${project.version}" />
+	<property name="console.tomcat" value="${basedir}/resources" />
+	<property name="console.tomcat.res" value="${basedir}/console/tomcat/webapps/ROOT" />
+
+	<property name="console.target.tomcat" value="${basedir}/target/tomcat" />
+
+
+	<!-- target: init -->
+	<target name="init" description="Sets up the initial structure.">
+		<mkdir dir="${basedir}/console" />
+		<copy todir="${basedir}/console">
+			<fileset dir="${console.tomcat}">
+			</fileset>
+		</copy>
+		<chmod perm="755">
+			<fileset dir="${basedir}/console/tomcat/bin" includes="*.sh" />
+		</chmod>
+		<mkdir dir="${basedir}/console/tomcat/logs" />
+	</target>
+
+	<target name="build_bin" description="Sets up the initial structure." depends="init">
+		<mkdir dir="${basedir}/console/bin" />
+		<copy todir="${basedir}/console/bin">
+			<fileset dir="${basedir}/src/main/bin">
+			</fileset>
+		</copy>
+		<chmod perm="0744">
+			<fileset dir="${basedir}/console/bin" includes="*.sh" />
+		</chmod>
+	</target>
+
+	<target name="copy_to_tomcat" depends="build_bin" description="copy web pages to tomcat">
+		<copy todir="${console.tomcat.res}">
+			<fileset dir="${console.target.res}">
+			</fileset>
+		</copy>
+	</target>
+	<!--<target name="set_logo_and_info" depends="copy_to_tomcat" description="Changing logo and info, according to company name">-->
+		<!--<exec executable="python">-->
+			<!--<arg value="./logo_info_set.py" />-->
+		<!--</exec>-->
+	<!--</target>-->
+	<target name="copy_version_file" description="copy version.xml to console" depends="copy_to_tomcat">
+		<copy todir="${basedir}/pengyun-console-${project.version}" file="./version.xml">
+		</copy>
+	</target>
+
+	<target name="rename_package_for_tar" description="build a tar file" depends="copy_version_file">
+		<delete dir="${console.target.res}" />
+		<move todir="${basedir}/pengyun-console-${project.version}">
+			<fileset dir="${basedir}/console" />
+		</move>
+	</target>
+    <target name="manifest" description="build a manifest file" depends="rename_package_for_tar">
+        <exec executable="perl">
+            <arg value="../bin/manifest.pl"/>
+            <arg value="${project.version}"/>
+        </exec>
+    </target>
+
+	<target name="build_install_tar" description="build a tar file" depends="manifest">
+		<exec executable="tar">
+			<arg value="-czf" />
+			<arg value="target/pengyun-console-${project.version}-internal.tar.gz" />
+			<arg value="pengyun-console-${project.version}" />
+		</exec>
+		<delete dir="${basedir}/console" />
+		<delete dir="${basedir}/pengyun-console-${project.version}" />
+	</target>
+
+	<target name="all" depends="build_install_tar" />
+
+</project>
+

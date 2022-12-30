@@ -1,0 +1,233 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content">
+	<div class="row crumb_row">
+		 <big-breadcrumbs items="['用户','用户管理的常用操作以及权限、资源的设置']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+		<alert-message  level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+	</div>
+	<state-breadcrumbs></state-breadcrumbs>
+	<section id="widget-grid" widget-grid>
+		<div class="row">
+			 <div class="col-md-12 action_wrap">
+				  <button class="btn btn_green" data-toggle="modal" data-target="#create_modal" ng-show="apis.Account.createAccount" ng-click="getRole();doFocus('accountName')">
+					创建
+				  </button>
+				  <button class="btn  btn_red" data-toggle="modal" data-target="#delete_modal" ng-show="apis.Account.deleteAccounts" ng-click="deleteNames()" ng-disabled="showUser.del"> 删除</button>
+				  <button class="btn  btn_blue" data-toggle="modal" data-target="#resetpw_modal" ng-show="apis.Account.resetAccountPassword" ng-click="resetNames()" ng-disabled="showUser.disabled">重置密码</button> 
+				  <button class="btn btn_blue" ng-show="apis.Account.assignRoles"  ng-click="listRoles()" ng-disabled="showUser.update">更新角色</button>
+				  <button class="btn btn_blue" ng-show="apis.Account.assignResources"  ng-click="getResource()" data-toggle="modal" data-target="#updateResource_modal" ng-disabled="showUser.update">资源分配</button>
+				  <div class="pull-right">
+					<button class="btn btn_lightblue" ng-click="reloadData()"> 刷新
+				  </button>
+				   </div>
+			  </div>
+			<article class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+				<div class="widget-body">
+					<table datatable dt-options="showUser.dtOptions" dt-columns="showUser.dtColumns" class="table table-striped  table-hover row-border hover userTable" dt-instance="showUser.dtInstance" id="userTab"></table>
+				</div>
+			</article>
+		</div>
+	</section>
+	<div class="modal" tabindex="-1" role="dialog" 
+		  aria-labelledby="myLargeModalLabel" id="create_modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close"  data-dismiss="modal" ng-click="resetCreate()">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title">创建用户</h4>
+					</div>
+					<div class="modal-body">
+						<form class="form-horizontal" role="form" name="createForm" novalidate id="createForm">
+						  <div class="form-group" ng-class="{'has-error':createForm.account.$invalid &&createForm.account.$touched}">
+								<label for="account" class="col-sm-3 control-label">用户名
+									<span class="required" aria-required="true">* </span>
+								</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="accountName" name="account" required placeholder="用户名" ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/"  ng-minlength="2" ng-maxlength="64" ng-model="account" onfocus="hideSth(this)" onblur="showSth(this)">
+									<p class="hoverTip hideTip "  ng-show="!(createForm.account.$invalid&&!createForm.account.$error.maxlength&& !createForm.account.$pristine&&createForm.account.$touched)&&!(createForm.account.$error.maxlength&&createForm.account.$touched)"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",长度2-64</p>
+									<span ng-if="createForm.account.$invalid&&!createForm.account.$error.maxlength&& !createForm.account.$pristine&&createForm.account.$touched " class="help-block"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",长度2-64</span>
+									<span ng-if="createForm.account.$error.maxlength&&createForm.account.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",至多64位</span>
+								</div>
+						  </div>
+						  <div class="form-group" ng-class="{'has-error':createForm.pwd.$invalid &&createForm.pwd.$touched}">
+								<label class="col-sm-3 control-label">密码<span class="required" aria-required="true">* </span></label>
+								<div class="col-sm-7">
+									<input type="password" class="form-control" name="pwd" required placeholder="密码"   ng-model="pwd" ng-minlength="2" ng-maxlength="16" onfocus="hideSth(this)" onblur="showSth(this)">
+									<p class="hoverTip hideTip "  ng-show="!(createForm.pwd.$invalid&&!createForm.pwd.$error.maxlength&& !createForm.pwd.$pristine&&createForm.pwd.$touched)&&!(createForm.pwd.$error.maxlength&&createForm.pwd.$touched)"><i class="fa fa-exclamation-circle"></i>  可输入2-16个字符</p>
+									<span ng-if="createForm.pwd.$invalid&&!createForm.pwd.$error.maxlength&& !createForm.pwd.$pristine&&createForm.pwd.$touched " class="help-block"><i class="fa fa-exclamation-circle"></i>  至少两个字符</span>
+									<span ng-if="createForm.pwd.$error.maxlength&&createForm.pwd.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i>  至多十六个字符</span>
+								</div>
+						  </div>
+						  <div class="form-group" ng-class="{'has-error':createForm.rePassword.$invalid && !createForm.rePassword.$pristine}">
+								<label for="rePassword" class="col-sm-3 control-label">确认密码</label>
+								<div class="col-sm-7">
+									<input type="password" class="form-control" name="rePassword" placeholder="确认密码" compare="pwd" ng-model="rePassword" >
+									<span  ng-show="createForm.rePassword.$error.compare &&createForm.rePassword.$dirty" class="help-block">
+									  <i class="fa fa-exclamation-circle"></i>  两次密码输入不一致</span> 
+								</div>
+						  </div>
+						  <div class="form-group">
+								<label for="role" class="col-sm-3 control-label">角色分配</label>
+								<div class="col-sm-7">
+									<select class="form-control selectpicker" multiple id="createRole" title="给用户分配角色">
+									</select>
+								</div>
+						  </div>
+						</form>
+					</div>
+					<div class="modal-footer">
+					  <button type="button" class="btn btn_blue" ng-disabled="createForm.$invalid"  data-dismiss="modal" ng-click="create()">创建</button>
+					  <button type="button" class="btn btn_default"  data-dismiss="modal" ng-click="resetCreate()">取消</button> 
+					</div>
+				</div>
+			</div>
+	</div>
+			  
+	<div class="modal" tabindex="-1" role="dialog"
+		  aria-labelledby="myLargeModalLabel" id="delete_modal">
+		  <div class="modal-dialog">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">
+						  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					  </button>
+					  <h4 class="modal-title">删除用户</h4>
+				  </div>
+				  <div class="modal-body">
+					  <div>
+						  确定删除下面用户?
+					  </div>
+					  <div  class="deleteNames">{{deletenames}}</div>
+				  </div>
+				  <div class="modal-footer">
+					  <button type="button" class="btn btn_blue" data-dismiss="modal"    ng-click="deleteBtn()">删除</button>
+					  <button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+
+	  <div class="modal" tabindex="-1" role="dialog"
+		  aria-labelledby="myLargeModalLabel" id="detail_modal">
+		  <div class="modal-dialog">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">
+						  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					  </button>
+					  <h4 class="modal-title">操作详细信息</h4>
+				  </div>
+				  <div class="modal-body">
+					  <div>
+						  <h4>以下为操作的详细信息</h4>
+					  </div>
+					  <textarea type="textarea" class="form-control"  id="detail_message" disabled></textarea>
+				  </div>
+				  <div class="modal-footer">
+					  <button type="button" class="btn btn_lightblue" data-dismiss="modal">关闭</button>
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+	  <div class="modal" tabindex="-1" role="dialog"
+		  aria-labelledby="myLargeModalLabel" id="resetpw_modal">
+		  <div class="modal-dialog">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">
+						  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					  </button>
+					  <h4 class="modal-title">重置用户密码</h4>
+				  </div>
+				  <div class="modal-body">
+					  <div>
+						  <span >确定重置下列用户密码?</span>
+					  </div>
+					  <div name="resetnames" class="Names">{{resetnames}}</div>
+				  </div>
+				  <div class="modal-footer">
+					  <button type="button" class="btn btn_blue" data-dismiss="modal" ng-click="resetPwd()">重置</button>
+					  <button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+	  <div class="modal" tabindex="-1" role="dialog"
+		  aria-labelledby="myLargeModalLabel" id="role_modal">
+		  <div class="modal-dialog">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">
+						  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					  </button>
+					  <h4 class="modal-title">重新分配角色</h4>
+				  </div>
+				  <div class="modal-body">
+					  <section id="widget-grid" widget-grid>
+              <div class="row">
+                <article class="col-sm-12 col-md-12 col-lg-12">
+                  <div jarvis-widget  data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false"  class="col-sm-6 col-md-6 col-lg-6" style="padding:6px">
+                    <header>
+                      <h2>未分配角色</h2>
+                    </header>
+                    <div>
+                      <div class="widget-body no-padding" id="all_role" style="height:400px;overflow-x: hidden;overflow-y:auto;">
+                      </div>
+                    </div>
+                  </div>
+                  <div jarvis-widget data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false"  class="col-sm-6 col-md-6 col-lg-6" style="padding:6px">
+                    <header>
+                      <h2>已分配角色</h2>
+                    </header>
+                    <div>
+                      <div class="widget-body no-padding" id="used_role" style="height:400px;overflow-x: hidden;overflow-y:auto;">
+                      </div> 
+                    </div>
+                  </div>
+                </article>
+              </div>
+					  </section>
+				  </div>
+				  <div class="modal-footer">
+					  <button type="button" class="btn btn_blue" data-dismiss="modal" ng-click="resetRole()">更新</button>
+					  <button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+	  <div class="modal" tabindex="-1" role="dialog"
+		  aria-labelledby="myLargeModalLabel" id="updateResource_modal" ng-if="showResource">
+		  <div class="modal-dialog" style="width:720px">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">
+						  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					  </button>
+					  <h4 class="modal-title">资源分配</h4>
+				  </div>
+				  <div class="modal-body">
+					 <form class="smart-form " role="form"  id="update_resource">
+					 </form>
+				  </div>
+				  <div class="modal-footer">
+					  <button type="button" class="btn btn_lightblue" data-dismiss="modal"    ng-click="assignResourceBtn()">确定</button>
+					  <button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+</div>

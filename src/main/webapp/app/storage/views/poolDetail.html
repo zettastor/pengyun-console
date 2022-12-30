@@ -1,0 +1,129 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content">
+	<div class="row  crumb_row">
+		<big-breadcrumbs items="['存储池详情','查看与管理']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+		<alert-message  level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+	</div>
+	<state-breadcrumbs></state-breadcrumbs>
+	<section id="widget-grid" widget-grid style="width:100%">
+		<div class="row">
+			<article  class="col-sm-12 col-md-12 col-lg-12">
+				<div class="right" >
+					<div style="margin-bottom:9px;float:right;">
+						<button  class="btn btn_lightblue" ng-click="refresh()" >刷新</button>
+						<button  class="btn btn_lightblue" ng-click="jumpToPool()" >返回</button>
+					</div>
+					<div  class="row detail_right">
+						<div class="setTitle">
+							基本信息
+						</div>
+						<div class="setInner">
+							<div>
+								<span class="proName">存储池名称：</span>
+								<span class="proSize" ng-bind="poolName"></span>
+							</div>
+							<div>
+								<span class="proName">描述：</span>
+								<span class="proSize" id="description"></span>
+							</div>
+							<div>
+								<span class="proName">总容量：</span>
+								<span class="proSize" ng-bind="totalSpace"></span>
+							</div>
+							<div>
+								<span class="proName">类型：</span>
+								<span class="proSize" ng-bind="poolType"></span>
+							</div>
+							<div>
+								<span class="proName">状态：</span>
+								<span class="proSize"  id="status"></span>
+							</div>
+							<div>
+								<span class="proName">QoS策略：</span>
+								<span class="proSize"  id="qos"></span>
+							</div>
+							<div>
+								<span class="proName">存储池等级：</span>
+								<span class="proSize" id="level">
+									<span class="level_style level_warn level_default">低</span>
+									<span class="level_style level_danger level_default">中</span>
+									<span class="level_style level_success level_default">高</span>
+								</span>
+							</div>
+							<div>
+								<span class="proName">重构进度：</span>
+								<span class="proSize" id="migrationSpeed" style="display: inline-block;"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="margin-right:395px;">
+					<div jarvis-widget id="live-feeds-widget" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" >
+						<ul class="nav nav-tabs pull-left in" id="serverTab">
+							<li class="active" style="text-align:center">
+								<a data-toggle="tab" ng-click="showFlag=1;stopRefresh()" href="#s1"><strong class="hidden-mobile hidden-tablet">性能数据</strong></a>
+							</li>
+							<li>
+								<a data-toggle="tab" ng-click="showFlag=2;refresh()" href="#s2"><strong class="hidden-mobile hidden-tablet">磁盘信息</strong></a>
+							</li>
+						</ul>
+						<div class="no-padding" id="serverDetailInner">
+							<div class="widget-body detail_content">
+								<div id="myTabContent" class="tab-content">
+									<div class="tab-pane fade active in" id="s1" >
+										<div class="row no-space">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<hr>
+											</div>
+											<span>
+												<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" ng-show="noSpace">
+													<p style="margin:21px 0 40px;font-size: 14px;color: #313131;">
+														存储池使用情况
+													</p>
+													<img src="styles/img/disk/capacity0.png" height="127" width="223" style="margin-left:50%;position: relative;left: -111px;top: 40px;">
+												</div>
+
+												<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="border-right: 1px dashed #EBF0F4;" ng-show="!noSpace">
+													<div id='capacityChart' class='chart' style='height:225px'></div>
+													<p class="pool_chart_icon" >
+														<span class="text_right"><span class="pool_pot" style="border-color: #FF2073"></span>已使用 {{usedCapacity}}</span>
+														<span class="text_center"><span class="pool_pot" style="border-color: #F49300"></span>未使用 {{unusedCapacity}}</span>
+														<span class="text_left"><span class="pool_pot" style="border-color: #3095FF"></span>未分配 {{freeCapacity}}</span>
+													</p>
+												</div>
+												<div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" >
+													<div id='copeTypeChart' class='chart' style='height:265px'></div>
+												</div>
+											</span>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="s2">
+										<div class="row no-space">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<table datatable dt-options="showPoolDetail.dtOptionU" id="poolDetailTab" dt-columns="showPoolDetail.dtColumnU" class=" table table-striped  table-hover row-border hover second_page useDiskTable updateTable" dt-instance="showPoolDetail.dtInstanceU"  ></table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</article>
+		</div>
+	</section>
+</div>

@@ -1,0 +1,24 @@
+{
+    "draw": 1,
+    "recordsTotal": 57,
+    "recordsFiltered": 57,
+    "data": [
+        {
+            "DT_RowId": "row_3",
+            "DT_RowData": {
+                "pkey": 3
+            },
+            "id": 860,
+            "firstName": "Superman",
+            "lastName": "Yoda"
+        },
+        {
+            "DT_RowId": "row_17",
+            "DT_RowData": {
+                "pkey": 17
+            },
+            "id": 870,
+            "firstName": "Foo",
+            "lastName": "Whateveryournameis"
+        }    ]
+}

@@ -1,0 +1,51 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<header id="header" style="height:50px;background:#F0F7FF">
+	<div id="logo-group" class="logo_cut_off" ng-controller="messagesCtrl">
+		<span id="logo">
+      <img src="styles/img/logo_big.png" alt="">
+    </span>
+	</div>
+	<div class="pull-right" id="header-info" style="margin-right:11px">
+		<ul>
+			<li title="登出"><div class="header-img shut-down" ng-click="logout()"></div></li>
+			<li ng-click="versionInfo()" title="帮助"><div class="header-img view_version" ></div></li>
+			<li full-screen title="全屏" ng-click="changeStatus()">
+        <div class="header-img fullscreen"></div>
+      </li>
+			<li>
+				<div class="dropdown">
+					<div id="login-user" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+						<span title="" id="currentAccountName"></span>
+					</div>
+					<ul class="dropdown-menu pull-right" id="dropdown-pop" style="margin-top:10px;">
+						<li class="user-drop-li">
+							<a data-toggle="modal"  data-target="#update_pwd_modal" data-action="userLogout" style="margin-top:10px;font-size:12px;padding:0px;">修改密码</a>
+						</li>
+						<li class="divider"></li>
+						<li class="user-drop-li" >
+							<a href="javascript:void(0)" ng-click="logout()"  data-action="userLogout" style="margin-bottom:10px;font-size:12px;padding:0px">用户登出</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</div>
+  <div class="pull-left" id="header-info">
+		<ul>
+      <li style="margin-left: 10px" toggle-menu title="折叠菜单"><div class="header-img hide-menu" ></div></li>
+    </ul>
+  </div>
+</header>

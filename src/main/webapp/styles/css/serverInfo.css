@@ -1,0 +1,222 @@
+/*
+ * Copyright (c) 2022. PengYunNetWork
+ *
+ * This program is free software: you can use, redistribute, and/or modify it
+ * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ *  You should have received a copy of the GNU Affero General Public License along with
+ *  this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#serverTab>li{
+	height:46px;
+	margin-bottom: -2px;
+}
+#serverTab>li>a{
+	font-size: 16px;
+}
+#serverTab>li.active>a{
+	box-shadow:0 -2px 0 #3095FF !important;
+	font-weight:normal;
+}
+#myTab>li.active>a{
+	box-shadow:0 -2px 0 #3095FF !important;
+	font-weight:normal;
+}
+
+
+#serverTab > li.active > a, #serverTab > li.active > a:focus, #serverTab> li.active > a:hover{
+	border-left: 1px solid #EBF0F4 !important;
+	border-right: 1px solid #EBF0F4 !important;
+	border-bottom-color: transparent;
+}
+#serverTab.list_wrap > li.active:nth-child(1) > a, #serverTab.list_wrap > li.active:nth-child(1) > a:focus, #serverTab.list_wrap> li.active:nth-child(1) > a:hover{
+	border-left: none  !important;
+}
+#serverTab>li.active>a>span{
+	color: #313131 !important;
+}
+#serverTab>li:not(.active)>a>span{
+	color: #666666 !important;
+}
+#serverTab>li:not(.active){
+	background-color: #EBF0F4 !important;
+}
+#serverTab{
+border-bottom:none !important;
+}
+
+#serverDetailInner{
+	border: none;
+	background-color:#fff;
+}
+.proName{
+	font-size:14px;
+	color: #8997A5;
+}
+.proSize{
+	font-size:14px;
+	color: #313131;
+
+}
+.setInner{
+	margin:15px 20px;
+	border-top: 1px solid #EBF0F4;
+}
+.server_html_hr{
+	height:1px;
+	border:none;
+	border-top:1px solid #EBF0F4;
+	clear:both;
+}
+.setInner>div{
+	margin-top:20px;
+	word-break: break-all;
+}
+.setTitle{
+	padding-top:15px;
+	padding-left:20px;
+	font-size:16px;
+	color: #313131;
+}
+.dpop_td{
+	font-size:13px;
+	color:#8997A5;
+
+}
+.dpop_td_val{
+	font-size: 13px;
+	color: #313131;
+}
+.disk_type_title{
+	font-size: 16px;
+	color: #313131;
+	padding-bottom:20px;
+}
+.img-example{
+	padding-right:10px;
+	padding-left:10px
+}
+.circle_img{
+	font-size:10px;
+	display:line-block;
+	padding-right:10px;
+}
+#nodeInfoDiv>div{
+	padding-bottom:20px
+
+}
+.light-img{
+
+	width:16px;
+	height:16px;
+	display:inline-block;
+	background:url(../img/disk/Sprite.png) no-repeat;
+	margin-right:4px;
+	position: relative;
+	top: 2px;
+}
+.disk-img{
+	display:inline-block;
+	width:20px;
+	height:25px;
+	margin-right:10px;
+	background:url(../img/disk/Sprite.png) no-repeat;
+}
+.server-btn{
+	height:35px;
+	width:70px;
+	background-color:#3095FF;
+	border-radius: 2px;
+	color:#fff !important;
+	font-size:14px;
+}
+.server-btn:hover{
+	color:#fff !important;
+	background: #2E88E5;
+}
+.server-btn:active{
+	color:#fff !important;
+	 background-color:#3095FF;
+}
+.server-performance-btn-start{
+	background: #3095FF;
+	border-radius: 3px;
+	width:60px;
+	height:26px;
+	color:#fff !important;
+	font-size:13px;
+	padding:0px !important;
+}
+
+.server-performance-btn-start:hover{
+	background: #2E88E5;
+	padding:0px !important;
+}
+
+.server-performance-btn-end{
+	border: 1px solid #DCE5EE;
+	border-radius: 3px;
+	color:#313131 !important;
+	width:60px;
+	height:26px;
+	font-size:13px;
+	padding:0px !important;
+	background: #fff;
+}
+.server-performance-btn-end:not(:disabled):hover{
+	border: 1px solid #3095FF;
+	padding:0px !important;
+	color:#3095FF !important;
+	background: #fff;
+}
+
+
+.echart-title{
+	font-size: 14px;
+	color: #313131;
+	margin-bottom:20px;
+	margin-top:30px;
+}
+.echart-default{
+	text-align:center;
+	margin-top: 10px;
+	
+}
+.echart-default-center{
+	position: absolute;
+	top:calc(50% - 104px);
+	min-height: 250px;
+}
+
+.echart-default-center>p{
+	font-size: 14px;
+	color: #8997A5;
+}
+.echart-default span{
+	font-size: 14px;
+	color: #000000;
+}
+.server_hr{
+	height:10px;
+	border:none;
+	border-top:1px dashed #EBF0F4;
+	clear:both;
+	margin-bottom:10px !important;
+}
+.size-s{
+	font-size: 13px;
+	color: #313131;
+}
+/*
+img[src=""],img:not([src]){
+	opacity:0;
+}*/
+.img-info{
+	display:inline-block;
+	padding-bottom:8px;
+}

@@ -1,0 +1,114 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content" >
+	<div class="row  crumb_row">
+		<big-breadcrumbs items="['卷详细', '']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+		<alert-message  level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+	</div>
+	<state-breadcrumbs></state-breadcrumbs>
+	<section id="widget-grid" widget-grid>
+		<div class="row">
+			<div class="col-md-12">
+				<h4>卷ID:<span id="dtail_info_volume_id">{{volumeId}}</span></h4>
+				<h4>卷名:<span id="dtail_info_volume_name">{{volumeName}}</span></h4>
+			</div>
+			<div class="col-md-12" style="margin-bottom: 10px;">
+				<a data-ui-sref="app.storage.volume"><button class="btn btn_blue pull-right">返回</button></a>
+				<div class="col-md-2 pull-right"  >
+					<input type="text" class="form-control"  id="epochValue" placeholder="≥ Epoch" ng-keyup='timerViewDetail()'>
+				</div>
+				<div class="col-md-2 pull-right"  >
+					<input type="text" class="form-control"  id="generationValue" placeholder="≥ Generation" ng-keyup='timerViewDetail()'>
+				</div>
+				<button class="btn btn_blue pull-right"  data-toggle="modal" data-target="#compute_modal" ng-click="reloadDataNode()">统计</button>
+			</div>
+			<article class="col-sm-12 col-md-12 col-lg-12">
+				<div id="result_table_head">
+					<table id='volumeList' class="table   table-hover datatable" style="margin:0 !important;background: #fff;border-collapse: collapse !important;">
+						<thead>
+							<tr style="font-size: 14px">
+								<td width='15%' style="line-height: 34px;">Segment Index</td>
+								<td width='20%' style="line-height: 34px;">Primary/Secondary</td>
+								<td width='20%' style="line-height: 34px;">所在服务ID</td>
+								<td width='15%' style="line-height: 34px;">服务所在主机</td>
+								<td width='15%' style="line-height: 34px;">当前状态
+									<select id='segmentStatus' class="selectpicker" data-width="90px" size='1' ng-model="segmentStatus" ng-init="segmentStatus='ALL'" ng-change="timerViewDetail()">
+										<option value="ALL">ALL</option>
+										<option value="STABLE">STABLE</option>
+										<option value="AVAILABLE">AVAILABLE</option>
+										<option value="UNAVAILABLE">UNAVAILABLE</option>
+									</select>
+								</td>
+								<td width='15%' style="line-height: 34px;">磁盘名</td>
+							</tr>
+						</thead>
+					</table> 
+					<div id="result_table" style="background: #fff"></div>
+					<div id="page_go">
+						<div class="pull-right">
+							<div class='holder'></div>
+							<div class="details_wrap">
+								跳转到第<input id="jumpNum" type="text" onkeydown="keyDown(event)">页
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>
+		</div>
+	</section>
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="compute_modal">
+		<div class="modal-dialog" style="width:900px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" ng-click="reset()" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">Segment Unit </h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" >
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="tabbable-line">
+									<ul class="nav nav-tabs ">
+										<li class="active">
+											<a href="#tab_15_1" data-toggle="tab" ng-click="reloadDataNode()">
+											按节点统计</th></a>
+										</li>
+										<li>
+											<a href="#tab_15_2" data-toggle="tab" ng-click="reloadDataDisk()">
+											按磁盘统计</th></a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane active" id="tab_15_1">
+											<table datatable dt-options="datatables.dtOptionsNode" dt-columns="datatables.dtColumnsNode" class="updateTable  table-striped table-condensed flip-content" dt-instance="datatables.dtInstanceNode" style="width:100%" ></table>
+										</div>
+										<div class="tab-pane" id="tab_15_2">
+											<table datatable dt-options="datatables.dtOptionsDisk" dt-columns="datatables.dtColumnsDisk" class="updateTable  table-striped table-condensed flip-content" dt-instance="datatables.dtInstanceDisk"  style="width:100%"></table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn_lightblue"   ng-click="reset()"  data-dismiss="modal" >完成</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

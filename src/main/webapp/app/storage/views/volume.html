@@ -1,0 +1,679 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content">
+  <div class="row crumb_row">
+    <big-breadcrumbs
+      items="['卷', '提供给用户使用的逻辑存储资源，存储资源以卷的形式提供给上层应用进行使用']"
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+    ></big-breadcrumbs>
+    <alert-message
+      level="level"
+      message="message"
+      show="show"
+      class="col-xs-8 col-sm-5 col-md-5 col-lg-3"
+    ></alert-message>
+  </div>
+  <state-breadcrumbs></state-breadcrumbs>
+  <section id="widget-grid" widget-grid>
+    <div class="row">
+      <div class="col-md-12 action_wrap">
+        <button
+          class="btn btn_green yellow-crusta button-action button-box"
+          id="create_btn"
+          data-toggle="modal"
+          ng-click="resetCreate();getAllDomainName();doFocus('volumeName')"
+          ng-show="apis.Volume.createVolume"
+          data-target="#create_modal"
+        >
+          创建
+        </button>
+
+        <button
+          id="delete_btn"
+          class="btn btn_red"
+          type="button"
+          data-toggle="modal"
+          data-target="#delete_modal"
+          ng-click="showSelect()"
+          ng-show="apis.Volume.deleteVolume"
+          disabled="disabled"
+        >
+          删除
+        </button>
+        <button
+          id="extend_btn"
+          class="btn btn_blue"
+          ng-show="apis.Volume.extendVolume"
+          type="button"
+          data-toggle="modal"
+          data-target="#extend_modal"
+          ng-click="showSelect();doFocus('extendSize')"
+          disabled="disabled"
+        >
+          扩展
+        </button>
+        <div class="btn-group pull-right">
+          <input
+            id="refresh_btn"
+            ng-click="reload()"
+            value="刷新"
+            type="button"
+            class="btn btn_lightblue"
+          />
+        </div>
+      </div>
+      <article class="col-sm-12 col-md-12 col-lg-12">
+        <div
+          jarvis-widget
+          id="live-feeds-widget"
+          data-widget-editbutton="false"
+          data-widget-colorbutton="false"
+          data-widget-togglebutton="false"
+          data-widget-fullscreenbutton="false"
+          data-widget-deletebutton="false"
+        >
+          <ul class="nav nav-tabs list_wrap in" id="serverTab">
+            <li class="active">
+              <a
+                data-toggle="tab"
+                ng-click="showFlag=1;reloadData();"
+                href="#s1"
+                ><span class="hidden-mobile hidden-tablet">卷列表</span></a
+              >
+            </li>
+            <li>
+              <a data-toggle="tab" ng-click="showFlag=2" href="#s2"
+                ><span class="hidden-mobile hidden-tablet">卷回收站</span></a
+              >
+            </li>
+          </ul>
+          <div class="no-padding" id="serverDetailInner">
+            <div class="widget-body serverDetail">
+              <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in" id="s1">
+                  <div ng-if="showFlag==1" class="row no-space">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <table
+                        id="volumeTab"
+                        datatable
+                        dt-options="datatables.dtOptions"
+                        dt-columns="datatables.dtColumns"
+                        class="table table-striped table-hover"
+                        dt-instance="datatables.dtInstance"
+                      ></table>
+                    </div>
+                  </div>
+                  <div
+                    class="show-stat-microcharts"
+                    data-sparkline-container
+                    data-easy-pie-chart-container
+                  ></div>
+                </div>
+                <div class="tab-pane fade" id="s2">
+                  <div ng-if="showFlag==2" class="row no-space">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                      <table
+                        id="volumeTrashTab"
+                        datatable
+                        dt-options="datatables.dtOptionsTrash"
+                        dt-columns="datatables.dtColumnsTrash"
+                        class="table table-striped table-hover"
+                        dt-instance="datatables.dtInstanceTrash"
+                      ></table>
+                    </div>
+                  </div>
+
+                  <div
+                    class="show-stat-microcharts"
+                    data-sparkline-container
+                    data-easy-pie-chart-container
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    id="create_modal"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            ng-click="resetCreate()"
+            class="close"
+            data-dismiss="modal"
+          >
+            <span aria-hidden="true">&times;</span
+            ><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">创建卷</h4>
+        </div>
+        <div class="modal-body">
+          <form
+            name="createForm"
+            id="createForm"
+            class="form-horizontal"
+            novalidate
+          >
+            <div
+              class="form-group"
+              ng-class="{ 'has-error' : createForm.volumeName.$invalid && !createForm.volumeName.$pristine&&createForm.volumeName.$touched }"
+            >
+              <label for="volumeName" class="col-sm-3 control-label"
+                >卷名<span class="required">* </span></label
+              >
+              <div class="col-sm-7">
+                <input
+                  type="text"
+                  data-required="1"
+                  class="form-control"
+                  ng-model="create.volumeName"
+                  name="volumeName"
+                  id="volumeName"
+                  placeholder="卷名"
+                  ng-minlength="2"
+                  ng-maxlength="64"
+                  ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/"
+                  onfocus="hideSth(this)"
+                  onblur="showSth(this)"
+                />
+                <p
+                  class="hoverTip hideTip"
+                  ng-show="!(createForm.volumeName.$invalid&&!createForm.volumeName.$error.maxlength&& !createForm.volumeName.$pristine&&createForm.volumeName.$touched)&&!(createForm.volumeName.$error.maxlength&&createForm.volumeName.$touched)"
+                >
+                  <i class="fa fa-exclamation-circle"></i>
+                  只能输入中英文、数字、"_",长度2-64
+                </p>
+                <span
+                  ng-if="createForm.volumeName.$invalid&&!createForm.volumeName.$error.maxlength&& !createForm.volumeName.$pristine&&createForm.volumeName.$touched "
+                  class="help-block"
+                  ><i class="fa fa-exclamation-circle"></i>
+                  只能输入中英文、数字、"_",长度2-64</span
+                >
+                <span
+                  ng-if="createForm.volumeName.$error.maxlength&&createForm.volumeName.$touched"
+                  class="help-block"
+                  ><i class="fa fa-exclamation-circle"></i>
+                  只能输入中英文、数字、"_",至多64位</span
+                >
+              </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : desLong }">
+              <label class="col-sm-3 control-label">描述</label>
+              <div class="col-sm-7">
+                <textarea
+                  type="textarea"
+                  ng-model="createDes"
+                  class="form-control"
+                  placeholder="描述"
+                  id="description"
+                ></textarea>
+                <span ng-if="desLong" class="help-block"
+                  ><i class="fa fa-exclamation-circle"></i>
+                  输入长度最多128位字符</span
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="volumeSize" class="col-sm-3 control-label"
+                >卷容量<span class="required">* </span></label
+              >
+              <div class="col-sm-7">
+                <input
+                  type="text"
+                  data-required="1"
+                  class="form-control"
+                  name="volumeSize"
+                  id="volumeSize"
+                  ng-model="create.volumeSize"
+                  ng-change="showSpace()"
+                  placeholder="卷容量"
+                  style="padding-right: 60px"
+                  onfocus="hideSth(this)"
+                  onblur="showSth(this)"
+                  onkeyup="checkPositiveNumber(this)"
+                />
+                <span style="position: absolute; right: 20px; top: 7px"
+                  ><span id="segmentSize">G</span></span
+                >
+                <p class="hoverTip hideTip">
+                  <i class="fa fa-exclamation-circle"></i> 请输入正整数
+                </p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="copy_n" class="col-sm-3 control-label"
+                >副本数量&nbsp;<i
+                  class="fa fa-question-circle"
+                  data-html="true"
+                  data-toggle="tooltip"
+                  title="选择数据的副本数量"
+                ></i
+              ></label>
+
+              <div class="col-sm-7">
+                <select
+                  class="form-control selectpicker"
+                  id="volumeType"
+                  ng-model="create.volumeType"
+                  ng-change="showSpace()"
+                  name="volumeType"
+                  ng-init="create.volumeType='REGULAR'"
+                >
+                  <option value="SMALL">2副本</option>
+                  <option value="REGULAR">3副本</option>
+                  <option value="LARGE">3副本(高可靠)</option>
+                </select>
+              </div>
+            </div>
+
+            <div
+              class="form-group initColor"
+              ng-class="{ 'has-error' :!create.volumeDomain}"
+            >
+              <label for="volumeDomain" class="col-sm-3 control-label"
+                >所在域<span class="required">* </span></label
+              >
+
+              <div class="col-sm-7">
+                <select
+                  class="form-control selectpicker volumeDomainClass"
+                  id="volumeDomain"
+                  ng-change="domainChange()"
+                  data-required="1"
+                  name="volumeDomain"
+                  ng-model="create.volumeDomain"
+                  ng-init="create.volumeDomain=domainGroups[0].value"
+                >
+                  <option
+                    ng-repeat="option in domainGroups"
+                    value="{{option.value}}"
+                  >
+                    {{option.txt}}
+                  </option>
+                </select>
+                <span class="help-block initTip" ng-if="!create.volumeDomain"
+                  >域必选</span
+                >
+              </div>
+            </div>
+            <div
+              class="form-group initColor"
+              ng-class="{ 'has-error' :!create.volumeStoragepool}"
+            >
+              <label for="volumeStoragepool" class="col-sm-3 control-label"
+                >存储池<span class="required">* </span></label
+              >
+              <div class="col-sm-7">
+                <select
+                  class="form-control selectpicker volumeStoragepool"
+                  id="volumeStoragepool"
+                  data-required="1"
+                  name="volumeStoragepool"
+                  ng-model="create.volumeStoragepool"
+                  ng-init="create.volumeStoragepool=domainPools[0].value"
+                  ng-change="showSpace()"
+                >
+                  <option
+                    ng-repeat="option in domainPools"
+                    value="{{option.value}}"
+                  >
+                    {{option.txt}}
+                  </option>
+                </select>
+                <span
+                  class="help-block initTip"
+                  ng-if="!create.volumeStoragepool"
+                  >存储池必选</span
+                >
+              </div>
+            </div>
+            <div class="form-group" style="display: none">
+              <label for="copy_n" class="col-sm-3 control-label"
+                >存储池使用情况</label
+              >
+              <div class="col-sm-7">
+                <div class="form-label">
+                  <div class="progress" style="margin-top: 6px">
+                    <div class="progress-bar" id="progress_in" title=""></div>
+                    <div
+                      class="progress-bar progress-bar-success"
+                      id="progress_out"
+                      title=""
+                    ></div>
+                  </div>
+                </div>
+                <span ng-if="createForm.overflowShow" class="help-block"
+                  ><i class="fa fa-exclamation-circle"></i> 剩余空间不足</span
+                >
+              </div>
+            </div>
+            <div class="form-group" style="display: none">
+              <label class="col-sm-4 col-sm-offset-3">
+                <span class="btn" style="background: #eee"></span
+                >&nbsp;剩余容量{{totalSpace}}
+              </label>
+              <label class="col-sm-4">
+                <span class="btn" style="background: #739e73"></span
+                >&nbsp;已用容量{{usedSpace}}
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn_blue"
+            ng-click="createBtn()"
+            id="submit_btn"
+            ng-disabled="createForm.$invalid || desLong"
+          >
+            创建
+          </button>
+          <button
+            type="button"
+            class="btn btn_default"
+            ng-click="resetCreate()"
+            data-dismiss="modal"
+          >
+            取消
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    id="delete_modal"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span
+            ><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">删除卷</h4>
+        </div>
+        <div class="modal-body">
+          <div>确定要删除下面的卷?</div>
+          <div class="deleteNames">{{choosedName}}</div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn_blue"
+            ng-click="deleteRule()"
+            data-dismiss="modal"
+          >
+            删除
+          </button>
+          <button type="button" class="btn btn_default" data-dismiss="modal">
+            取消
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    id="move_trash_modal"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span
+            ><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">放入回收站</h4>
+        </div>
+        <div class="modal-body">
+          <div>确定要将卷 <b>{{choosedName}}</b> 放入回收站?</div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn_blue"
+            ng-click="moveToTrashBtn()"
+            data-dismiss="modal"
+          >
+            确定
+          </button>
+          <button type="button" class="btn btn_default" data-dismiss="modal">
+            取消
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    id="recovery_modal"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span
+            ><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">恢复卷</h4>
+        </div>
+        <div class="modal-body">
+          <div>确定要将卷 <b>{{choosedName}}</b> 恢复?</div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn_blue"
+            ng-click="volumeRecoveryBtn()"
+            data-dismiss="modal"
+          >
+            确定
+          </button>
+          <button type="button" class="btn btn_default" data-dismiss="modal">
+            取消
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    id="prompt_modal"
+  >
+    <div class="modal-dialog" style="width: 400px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span
+            ><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body">
+          <div style="margin-bottom: 20px">
+            <form class="form-horizontal" novalidate>
+              <div class="form-group" ng-show="!createOver">
+                <label class="col-sm-4 col-sm-offset-1 control-label"
+                  ><strong>当前卷状态</strong></label
+                >
+                <p class="col-sm-6 control-label" id="volume_status"></p>
+              </div>
+              <div class="form-group" ng-show="createOver">
+                <label
+                  style="text-align: center"
+                  class="col-sm-12 control-label"
+                >
+                  <h3 ng-show="createOver">
+                    <i class="fa fa-check" style="color: #46884e"></i>
+                    卷创建成功
+                  </h3>
+                </label>
+              </div>
+              <div class="form-group" ng-show="!createOver">
+                <label
+                  style="text-align: center"
+                  class="col-sm-12 control-label"
+                  >当卷创建成功，可以点击<span
+                    style="color: #337ab7; cursor: not-allowed"
+                  >
+                    挂载驱动</span
+                  ></label
+                >
+              </div>
+              <div class="form-group" ng-show="createOver">
+                <label
+                  style="text-align: center"
+                  class="col-sm-12 control-label"
+                  >当卷创建成功，可以点击<a
+                    ng-show="createOver"
+                    data-dismiss="modal"
+                    data-toggle="modal"
+                    ng-click="goDriver()"
+                  >
+                    挂载驱动</a
+                  ></label
+                >
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_lightblue" data-dismiss="modal">
+            完成
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myLargeModalLabel"
+    id="extend_modal"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            ng-click="resetExtend()"
+            data-dismiss="modal"
+          >
+            <span aria-hidden="true">&times;</span
+            ><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">扩展卷</h4>
+        </div>
+        <div class="modal-body">
+          <form
+            class="form-horizontal"
+            name="extendForm"
+            id="extendForm"
+            novalidate
+          >
+            <div class="form-group">
+              <label class="col-sm-3 control-label">卷名</label>
+              <p class="col-sm-7 control-label" style="text-align: left">
+                <span
+                  class="volumeNames"
+                  style="font-size: 14px; word-wrap: break-word"
+                  >{{choosedName}}</span
+                >
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="extendSize" class="col-sm-3 control-label"
+                >扩展大小<span class="required">* </span></label
+              >
+              <label class="col-sm-7">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="extendSize"
+                  id="extendSize"
+                  data-required="1"
+                  ng-model="extend.extendSize"
+                  placeholder="扩展大小"
+                  style="padding-right: 60px"
+                  onfocus="hideSth(this)"
+                  onblur="showSth(this)"
+                  onkeyup="checkPositiveNumber(this)"
+                />
+                <span style="position: absolute; right: 20px; top: 7px"
+                  ><span id="segmentSizeE">G</span></span
+                >
+                <p class="hoverTip hideTip">
+                  <i class="fa fa-exclamation-circle"></i> 请输入正整数
+                </p>
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn_blue"
+            ng-disabled="extendForm.$invalid"
+            id="submit_btnE"
+            ng-click="extendBtn()"
+            data-dismiss="modal"
+          >
+            扩展
+          </button>
+          <button
+            type="button"
+            class="btn btn_default"
+            ng-click="resetExtend()"
+            data-dismiss="modal"
+          >
+            取消
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

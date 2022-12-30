@@ -1,0 +1,52 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div class="ajax-dropdown" ng-controller="ActivitiesCtrl as activitiesDropdown" >
+
+   <!-- the ID links are fetched via AJAX to the ajax container "ajax-notifications" -->
+   <div class="btn-group btn-group-justified" data-toggle="buttons">
+      <label class="btn btn-default" ng-class="{active : isActive(type.name)}" \
+               ng-repeat="(key, type) in activities.types" ng-click="setTab(type.name,type.reflashflag);" id={{type.title}}>
+         <input type="radio" name="activity">
+        {{type.title|translate}}
+       
+      </label>
+   </div>
+
+   <!-- notification content -->
+   <div class="ajax-notifications custom-scroll" ng-switch="activeTab">
+    <!--   <div smart-include="app/dashboard/activities/tabs/tab-msgs.html" ng-switch-when="msgs"></div> -->
+      <div smart-include="app/dashboard/activities/tabs/tab-notify.html" ng-switch-when="notify"></div>
+      <div smart-include="app/dashboard/activities/tabs/tab-tasks.html" ng-switch-when="tasks"></div>
+      <!-- <div smart-include="app/dashboard/activities/tabs/tab-default.html" ng-switch-when="default"></div> -->
+   </div>
+   <!-- end notification content -->
+
+   <!-- footer: refresh area -->
+   <span ng-if="activeTab=='msgs'"> Last updated on: {{activities.last_update}}
+      <button type="button" data-loading-text="<i class='fa fa-refresh fa-spin'></i> Loading..." class="btn btn-xs btn-default pull-right">
+         <i class="fa fa-refresh"></i>
+      </button> 
+   </span>
+
+   <span ng-if="activeTab=='tasks'"> 
+      
+      <a class="pull-right margin-right-5"  ng-click="hideWindow(false)"><span>查看更多日志</span></a>
+   </span>
+   <span ng-if="activeTab=='notify'"> <!-- 未确认告警共{{alarmLength}}条 -->
+      <a class="pull-right margin-right-5"  ng-click="hideWindow(true)"><span>查看更多告警信息</span></a>
+   </span>
+   <!-- end footer -->
+
+</div>

@@ -1,0 +1,110 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<aside id="left-panel">
+  <nav style="overflow: hidden">
+    <ul data-smart-menu>
+      <li data-ui-sref-active="active">
+        <a data-ui-sref="app.dashboard" title="dashboard">
+          <i class="sidebar_icon dashboard"></i
+          ><span class="menu-item-parent"> Dashboard</span>
+        </a>
+      </li>
+      <li data-menu-collapse class="top-menu-invisible">
+        <a href="#" title="存储">
+          <i class="sidebar_icon storage"></i
+          ><span class="menu-item-parent">存储</span>
+        </a>
+        <ul>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.storage.domain"
+              >域 & 存储池</a
+            >
+          </li>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.storage.volume"> 卷</a>
+          </li>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.storage.allDriver">驱动</a>
+          </li>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.storage.accessRule"
+              >访问控制</a
+            >
+          </li>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.storage.qos">QoS策略</a>
+          </li>
+        </ul>
+      </li>
+      <li data-menu-collapse>
+        <a href="#" title="硬件">
+          <i class="sidebar_icon hardware"></i
+          ><span class="menu-item-parent">硬件</span>
+        </a>
+        <ul>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.hardware.disk">存储磁盘</a>
+          </li>
+        </ul>
+      </li>
+      <li data-menu-collapse>
+        <a href="#" title="系统">
+          <i class="sidebar_icon system"></i
+          ><span class="menu-item-parent">系统</span>
+        </a>
+        <ul>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.system.services">服务</a>
+          </li>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.system.component">组件</a>
+          </li>
+          <li data-ui-sref-active="active">
+            <a class="nav_items" data-ui-sref="app.system.operationLog"
+              >操作日志</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li
+        data-menu-collapse
+        ng-show="apis.Role.createRole||apis.Role.deleteRoles||apis.Role.updateRole||apis.Role.createRole||apis.Account.createAccount||apis.Account.assignResources||apis.Account.assignRoles||apis.Account.deleteAccounts||apis.Account.resetAccountPassword"
+      >
+        <a href="#" title="用户">
+          <i class="sidebar_icon user"></i
+          ><span class="menu-item-parent">用户</span>
+        </a>
+        <ul>
+          <li
+            data-ui-sref-active="active"
+            ng-show="apis.Role.createRole||apis.Role.deleteRoles||apis.Role.updateRole||apis.Role.createRole"
+          >
+            <a class="nav_items" data-ui-sref="app.user.roles">角色</a>
+          </li>
+          <li
+            data-ui-sref-active="active"
+            ng-show="apis.Account.createAccount||apis.Account.assignResources||apis.Account.assignRoles||apis.Account.deleteAccounts||apis.Account.resetAccountPassword"
+          >
+            <a class="nav_items" data-ui-sref="app.user.users">用户</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <span class="minifyme" data-action="minifyMenu" minify-menu>
+    <i class="fa fa-arrow-circle-left hit"></i>
+  </span>
+</aside>

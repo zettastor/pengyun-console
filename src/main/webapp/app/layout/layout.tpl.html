@@ -1,0 +1,45 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div data-smart-include="app/layout/partials/header.tpl.html" class="placeholder-header"></div>
+
+<div data-smart-include="app/layout/partials/navigation.tpl.html" class="placeholder-left-panel"></div>
+
+<div id="main" role="main">
+	<mask>
+		<div class="loader">
+			<div class="loader-inner ball-pulse">
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		</div>
+	</mask>
+	<demo-states></demo-states>
+	<div id="ribbon" >
+    <span class="ribbon-button-alignment">
+      <span id="refresh" class="btn btn-ribbon" reset-widgets
+          tooltip-placement="bottom"
+          smart-tooltip-html="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings.">
+        <i class="fa fa-refresh"></i>
+      </span>
+    </span>
+		<state-breadcrumbs></state-breadcrumbs>
+	</div>
+	<div data-smart-router-animation-wrap="content content@app" data-wrap-for="#content">
+		<div data-ui-view="content" data-autoscroll="false"></div>
+	</div>
+</div>
+
+<div data-smart-include="app/layout/partials/footer.tpl.html"></div>

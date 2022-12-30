@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<py.console.performance.customize.PerformanceItemNameStore>
+    <store-name>testing performance item name store</store-name>
+    <items-customized-names id="c2fa2bf5-4e3d-49e0-bc24-7b5047bc44d7" server-bean-name="pojo-agent-JVM:name=CPUTask.cpuUsage" client-custom-name="performance.item.jvm.cpu.usage"/>
+    <items-customized-names id="e8ebc2b3-65ea-4945-82c4-0c69b1c2e432" server-bean-name="pojo-agent-JVM:name=MemoryTask.used" client-custom-name="performance.item.jvm.memory.used"/>
+    <items-customized-names id="9ff3f8fc-f553-4191-ae65-33e484618302" server-bean-name="pojo-agent-JVM:name=MemoryTask.max" client-custom-name="performance.item.jvm.memory.max"/>
+    <items-customized-names id="2c5203e8-7138-4f51-a19a-02bb907c7f93" server-bean-name="pojo-agent-JVM:name=MemoryTask.init" client-custom-name="performance.item.jvm.memory.init"/>
+    <items-customized-names id="43a3754f-3c6d-4255-887d-0dc775b118b2" server-bean-name="pojo-agent-JVM:name=MemoryTask.committed" client-custom-name="performance.item.jvm.memory.committed"/>
+    <items-customized-names id="b2130f07-47da-4af5-9106-5f2dbbb8a889" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.memUsed" client-custom-name="performance.item.machine.memUsed"/>
+    <items-customized-names id="21f09600-4061-4116-aa8e-3e16b5beabe3" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.cpuIdle" client-custom-name="performance.item.machine.cpuIdle"/>
+    <items-customized-names id="841a1a40-a8ed-4e7b-9f04-f30ca70242a3" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.memFree" client-custom-name="performance.item.machine.memFree"/>
+    <items-customized-names id="f946eb8b-b9f8-44be-a8da-c95c7fb96562" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.memTotal" client-custom-name="performance.item.machine.memTotal"/>
+    <items-customized-names id="8a31dee9-4744-4b99-bcda-92c7e8b6d66c" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.rxPackets" client-custom-name="performance.item.net.rx.packets"/>
+    <items-customized-names id="4c94e476-ee16-4a17-94e8-f991acdae246" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.txPackets" client-custom-name="performance.item.net.tx.packets"/>
+    <items-customized-names id="13b0891f-ae56-4e79-9f53-bab374c0d075" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.rxBytes" client-custom-name="performance.item.net.rx.bytes"/>
+    <items-customized-names id="1e873490-51cc-4710-82da-33658435ae98" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.txBytes" client-custom-name="performance.item.net.tx.bytes"/>
+    <items-customized-names id="2e876939-20ea-4815-b37e-b41f7d68d44a" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.rxErrors" client-custom-name="performance.item.net.rx.errors"/>
+    <items-customized-names id="2cf561ed-220d-43e5-975d-ce3be8dee4a2" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.txErrors" client-custom-name="performance.item.net.tx.errors"/>
+    <items-customized-names id="8b98366d-c8a5-4dd2-8880-c0d3edf374bb" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.rxDropped" client-custom-name="performance.item.net.rx.dropped"/>
+    <items-customized-names id="218d5ce9-b4a8-4f44-96c2-9bceb7de43b4" server-bean-name="pojo-agent-MACHINE:name=RealMachineInfomation.txDropped" client-custom-name="performance.item.net.tx.dropped"/>
+</py.console.performance.customize.PerformanceItemNameStore>

@@ -1,0 +1,185 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content">
+  <div class="row crumb_row">
+    <big-breadcrumbs items="['驱动', '提供上层应用对卷进行读写操作的接口，支持PYD和ISCSI两种不同的协议']"
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+    <alert-message level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+  </div>
+  <state-breadcrumbs></state-breadcrumbs>
+  <section id="widget-grid" widget-grid>
+    <div class="row">
+      <div class="col-md-12 action_wrap">
+        <button class="btn btn_green" id="create_btn" data-toggle="modal" ng-show="apis.Driver.launchDriver"
+          data-target="#driver_modal" ng-click="mount()"></i>挂载</button>
+        <div class="btn-group  pull-right">
+          <button class="btn btn_lightblue" ng-click="reloadData();setDrop(true)">刷新</button>
+        </div>
+      </div>
+      <article class="col-sm-12">
+        <div class="widget-body">
+          <table id="driverTab" datatable dt-options="datatables.dtOptions" dt-columns="datatables.dtColumns"
+            class="table table-striped  table-hover" dt-instance="datatables.dtInstance"></table>
+        </div>
+      </article>
+    </div>
+  </section>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="force_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">移除驱动信息</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            确定要移除驱动 {{driverName}} 信息 ?
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_blue " ng-click="forceUmount()" data-dismiss="modal">确定</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="force_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">强制卸载</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            确定要强制卸载驱动 {{driverName}}?
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_blue " ng-click="forceUmount()" data-dismiss="modal">确定</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="driver_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">挂载驱动</h4>
+        </div>
+        <div class="modal-body">
+          <form name="createForm" id="createForm" class="form-horizontal" novalidate>
+            <div class="form-group"
+              ng-class="{ 'has-error' : createForm.driverName.$touched  &&createForm.driverName.$invalid  && !createForm.driverName.$pristine }">
+              <label for="" class="col-sm-3 control-label">驱动名称<span class="required">* </span></label>
+              <div class="col-sm-7">
+                <input type="text" name="driverName" data-required="1" class="form-control "
+                  ng-model="create.driverName" id="driverName" placeholder="驱动名称" ng-minlength="2" ng-maxlength="64"
+                  ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/" title="DriverName" onfocus="hideSth(this)"
+                  onblur="showSth(this)" />
+                <p class="hoverTip hideTip "
+                  ng-show="!(createForm.driverName.$invalid&&!createForm.driverName.$error.maxlength&& !createForm.driverName.$pristine&&createForm.driverName.$touched)&&!(createForm.driverName.$error.maxlength&&createForm.driverName.$touched)">
+                  <i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64
+                </p>
+                <span
+                  ng-if="createForm.driverName.$invalid&&!createForm.driverName.$error.maxlength&& !createForm.driverName.$pristine&&createForm.driverName.$touched "
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</span>
+                <span ng-if="createForm.driverName.$error.maxlength&&createForm.driverName.$touched"
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",至多64位</span>
+              </div>
+            </div>
+            <span ng-show="topFilter">
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">所在域</label>
+                <div class="col-sm-7">
+                  <select class="form-control selectpicker volumeDomainClass" id="volumeDomain"
+                    ng-change="getStoragePool('true')" data-required="1" name="volumeDomain" ng-model="volumeDomain"
+                    ng-init="volumeDomain=domainGroups[0].value">
+                    <option ng-repeat="option in domainGroups" value="{{option.value}}">{{option.txt}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="" class="col-sm-3 control-label">存储池</label>
+                <div class="col-sm-7">
+                  <select class="form-control selectpicker volumeStoragepool" id="volumeStoragePool" data-required="1"
+                    ng-change="getVolume('true')" name="volumeStoragePool" ng-model="volumeStoragePool"
+                    ng-init="volumeStoragePool=domainPools[0].value">
+                    <option ng-repeat="option in domainPools" value="{{option.value}}">{{option.txt}}</option>
+                  </select>
+                </div>
+              </div>
+            </span>
+            <div class="form-group initColor" ng-class="{ 'has-error' :!volumeTarget}">
+              <label for="" class="col-sm-3 control-label">目标卷<span class="required">* </span></label>
+              <div class="col-sm-7">
+                <select class="selectpicker form-control" id="volumeTarget" size="5" ng-model="volumeTarget"
+                  ng-change="changeVolume()" data-live-search="true" ng-init="volumeTarget=''">
+                  <option ng-repeat="option in volumeArray" value="{{option.value}}">{{option.txt}}</option>
+                </select>
+              </div>
+              <div class="col-sm-2 control-label" style="text-align:left">
+                <a ng-show="!topFilter" ng-click="topFilter=true">高级筛选</a>
+                <a ng-show="topFilter" ng-click="closeFilter()">隐藏筛选</a>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-3 control-label">驱动类型<span class="required">* </span>
+                &nbsp;<i class="fa  fa-question-circle" data-html="true" data-toggle="tooltip"
+                  title="选择将要挂载的驱动类型"></i></label>
+              <div class="col-sm-7">
+                <select id="driver" size="1" class="selectpicker form-control" ng-model="driverType"
+                  ng-init="driverType='ISCSI'">
+                  <option value="ISCSI">ISCSI</option>
+                  <option value="NBD">PYD</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="" class="col-sm-3 control-label">驱动数量<span class="required">* </span></label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control " ng-model="driverAmount" id="driverAmount" placeholder="数字"
+                  title="DriverAmount" onfocus="hideSth(this)" onblur="showSth(this)"
+                  onkeyup="checkPositiveNumber(this)" />
+                <p class="hoverTip hideTip "><i class="fa fa-exclamation-circle"></i> 请输入正整数</p>
+              </div>
+            </div>
+            <div class="form-group" ng-show="driverAmount=='1'">
+              <label for="" class="col-sm-3 control-label">选择驱动容器</label>
+              <div class="col-sm-7">
+                <select id="driverContainer" class="selectpicker form-control">
+                  <option ng-repeat="option in driverContainerArray" value="{{option.value}}">{{option.txt}}</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn  btn_blue" ng-disabled="!driverAmount||!volumeTarget||!create.driverName"
+            data-dismiss="modal" ng-click="launchDriver()" id="launch_btn" value="挂载" />
+          <input type="button" class="btn btn_default" data-dismiss="modal" value="取消" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

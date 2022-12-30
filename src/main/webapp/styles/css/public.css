@@ -1,0 +1,559 @@
+/*
+ * Copyright (c) 2022. PengYunNetWork
+ *
+ * This program is free software: you can use, redistribute, and/or modify it
+ * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ *  You should have received a copy of the GNU Affero General Public License along with
+ *  this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
+ * It is advised not to edit the smartadmin_production.css
+ * as this will override any changes you make in the 
+ * later versions of this theme. 
+ * 
+ * We advise that you use use this CSS to override 
+ * SmartAdmin styles. 
+ * 
+ * Rename the stylesheet to whatever your liking so it will stay
+ * unique to you with each update of SmartAdmin.
+ */
+
+/*
+ * INDEX
+ * 
+ * - HTML
+ * - BODY
+ * - CUSTOM STYLES
+ */
+ html {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+body {
+  width: 100vw;
+}
+@media screen and (min-width:1366px){
+	html{
+		overflow-x: hidden;
+	}
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+	width: 382px;
+}
+.clear{
+	clear:both;
+}
+.inlineform .checkbox{
+	padding-top: 0px;
+	width: 100%;
+}
+/* .IOBS_action_list{
+	display: none
+}
+.IOBS_action:hover .IOBS_action_list{
+	display: inline-block
+} */
+.status-static{
+	height:20px;
+	line-height:18px;
+	display:inline-block
+}
+.radio-position{
+	position: relative;
+	top: 3px;
+}
+.choosedPerformanceWarp,.choosedPerformanceWarpExport{
+	display: inline-block;
+	border: 1px solid #ccc;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	padding: 0 5px 0 10px;
+}
+.choosedPerformanceWarp,.choosedPerformanceWarpExport{
+	display: inline-block;
+	border: 1px solid #ccc;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	padding: 0 5px 0 10px;
+}
+.red-border{
+	border: 1px solid red;
+}
+.x-icon{
+		color: #d9534f !important;
+}
+.down{
+	position: absolute;
+	top: 100%;
+	left: 100%;
+	z-index: 1000;
+	display: none;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 2px 0 0 -110px;
+	font-size: 14px;
+	text-align: left;
+	list-style: none;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0,0,0,.15);
+	border-radius: 4px;
+	-webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	box-shadow: 0 6px 12px rgba(0,0,0,.175);
+	-webkit-animation-name: flipInX;
+	-moz-animation-name: flipInX;
+	-o-animation-name: flipInX;
+	animation-name: flipInX;
+	-webkit-animation-duration: .4s;
+	-moz-animation-duration: .4s;
+	-o-animation-duration: .4s;
+	animation-duration: .4s;
+	-webkit-animation-fill-mode: both;
+	-moz-animation-fill-mode: both;
+	-o-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
+#searchText > div {
+	margin-bottom: 30px;
+}
+.down > li > a {
+	display: block;
+	padding: 3px 20px;
+	clear: both;
+	font-weight: 400;
+	line-height: 1.42857143;
+	color: #333;
+	white-space: nowrap;
+}
+.down > li > a.disable_btn{
+	cursor: not-allowed;
+	color: #999;
+	text-decoration: none;
+}
+.down > li:hover{
+	background: #ccc;
+}
+.checkbox_col{
+	width:2% !important;
+	text-align: center
+ }
+table.alarmConfigTable td{ 
+	border-top: none !important; 
+}
+.help-block{
+	color:#a94442;
+	margin-bottom: 0;
+}
+.hoverTip{
+	margin-top: 5px;
+	margin-bottom: 0;
+	color: #666;
+}
+a,span.row-details{
+	cursor: pointer;
+}
+textarea {
+	resize: none;
+}
+
+.deleteNames{
+	word-wrap : break-word;
+}
+.required{
+	color: red
+}
+.table{
+	width: 100% !important ;
+}
+
+.table-select{
+	padding: 0 5px;
+}
+.bootstrap-switch-on .bootstrap-switch-container{
+	margin-left: 0px !important;
+}
+.bootstrap-switch-off .bootstrap-switch-container{
+	margin-left:-52px !important;
+}
+datetimepicker>input{
+	padding: 0 10px;
+}
+
+.updateTable  td{
+	padding:5px !important;
+	padding-left: 9px !important;
+	font-size:12px !important;
+}
+.updateTable tr>th{
+	padding:5px !important;
+	font-size:12px !important;
+
+}
+.checkboxTab tr>th{
+	font-size:14px !important;
+}
+.echartTitle{
+	/*color:#2D8CCB;*/
+	font-weight:bold;
+	color:#4DB3A2;
+}
+/* tip.treeTip>i{
+	margin-left: 10px;
+	border: 1px solid #ccc;
+	display: inline-block;
+	width: 19px;
+	height: 20px;
+	text-align: center;
+	line-height: 18px;
+	padding: 0 1px 0 0 ;
+	cursor: pointer;
+}
+tip.treeTip>i:hover{
+	border-color: #337ab7;
+	background: #bbb;
+} */
+.input_search{
+	float:left;
+	margin-left:8px;
+	margin-bottom:10px;
+  position: relative;
+}
+.input_search>input{
+	width: 118px;
+	height: 34px;
+	padding: 0 10px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	border-radius: 2px;
+}
+
+.operationClass>button{
+    padding-left:5px;
+}
+
+.alarm-append .bootstrap-select{
+	width: 100% !important;
+}
+.title-style{
+	height: 32px;
+		position: relative;
+		float: left;
+		font-size: 100%;
+		line-height: 32px;
+		text-align: center;
+		margin-left: 10px;
+}
+
+i.fa:hover{
+	color: #337ab7;
+		}
+.error_text:hover {
+	color: #337ab7;
+	
+}
+.error_text{
+	cursor: pointer;
+}
+
+.pop_menu{
+	width:500px;
+	/*height:100px;*/
+	border: 4px #000 solid;
+	background-color:#fff;
+	border-radius:10px !important;
+	position:absolute;
+	display: none;
+}
+.pop_menu:before, .pop_menu:after{
+	width:0px;
+	height:0px;
+	border:transparent solid;
+	position:absolute;
+	right:100%;
+	content:""
+}
+.pop_menu:before{
+	border-width:10px;
+	border-right-color: #000;
+	top:120px;
+}
+.pop_menu:after{
+	border-width:6px;
+	border-right-color: #fff;
+	top:122px;
+}
+
+.omit{
+	display:block;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.findImg{
+	 border:2px solid #c6852b;
+	 border-radius:4px;
+
+}
+
+i.diskopen{
+	color:red;
+}
+
+i.diskclose{
+	color:#f39536;
+}
+
+.disk_info{
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+
+.tableList .dt-toolbar-footer{
+	border-style:none !important;
+	background-color:#fff !important;
+}
+
+.label-orange{
+	 background-color:#FF8000;
+	 color:#fff;
+
+}
+.sourceName{
+
+	 overflow:hidden;
+	 white-space:nowrap;
+	 text-overflow:ellipsis;
+	 width:165px;
+}
+.license-detail-td{
+	border-left: none !important;
+	border-top: none !important;
+}
+.popover.clockpicker-popover{
+	z-index:9999;
+}
+.input-group-addon{
+	border-left: none;
+	border-right: none;
+}
+.clockpicker-popover>.popover-title{
+	display: none;
+}
+.breadcrumb li{
+    cursor: pointer;
+    font-size: 16px;
+    color:#8997a5;
+}
+.breadcrumb li:hover{
+     color:#3095ff;
+}
+.breadcrumb > li + li:before {
+  content: ">";
+  padding: 0 5px;
+  color: #ccc;
+}
+
+.hideTip{
+	display: none;
+}
+.item-error-style{
+	margin-left:-21px;
+	margin-right: 9px;
+	line-height: 33px;
+}
+.item-error-style2{
+	margin-right: -14px;
+	margin-left: 0px;
+  position: absolute;
+	right: 20px;
+	line-height: 33px;
+}
+.filter_input{
+	float: left;
+	padding-right: 34px;
+	height: 34px
+}
+/*checkbox style begin */
+ span.check_span {
+	position: relative;
+}
+
+.input_check {
+	position: absolute;
+	visibility: hidden;
+}
+
+.input_check+label {
+	padding: 0px;
+	margin: 0px !important;
+	display: inline-block;
+	position: relative;
+	vertical-align:middle;
+	border: 1px solid #dcdfe6;
+	border-radius: 2px;
+	box-sizing: border-box;
+	width: 14px;
+	height: 14px;
+	background-color: #fff;
+	z-index: 1;
+	transition: border-color .25s cubic-bezier(.71,-.46,.29,1.46),background-color .25s cubic-bezier(.71,-.46,.29,1.46);
+}
+.input_check+label:hover {
+	border-color: #409eff;
+}
+
+.input_check:checked+label {
+	background-color: #409eff;
+	border-color: #409eff;
+}
+.input_check+label:after{
+	box-sizing: content-box;
+	content: "";
+	border: 1px solid #fff;
+	border-left: 0;
+	border-top: 0;
+	height: 7px;
+	left: 4px;
+	position: absolute;
+	top: 1px;
+	transform: rotate(45deg) scaleY(0);
+	width: 3px;
+	transition: transform .15s ease-in .05s;
+	transform-origin: center;
+
+}
+.input_check:checked+label:after{
+	transform: rotate(45deg) scaleY(1);
+
+}
+/*checkbox style end*/
+
+/*status type begin*/
+.status_green{
+	color: #00A25B;
+}
+.status_blue{
+	color: #147CEC;
+}
+.status_red{
+	color: #DD0E40;
+}
+.status_yellow{
+	color: #FFD100;
+}
+.status_orange{
+	color: #FF8B00;
+}
+/*status type end*/
+/*role span*/
+.roleSpan{
+	/*color: #8997A5;*/
+	display: inline-block;
+	padding: 1px 5px;
+	border-radius: 2px;
+	border: 1px solid #8997A5;
+}
+.sub_title{
+	font-size: 14px;
+	padding-left: 10px;
+}
+/*alert message style*/
+.alert_message{
+	background: #FFFFFF;
+	border: 1px solid #EBF0F4;
+	box-shadow: 0px 0px 4px 2px rgba(195,206,218,0.20);
+	border-radius: 10px;
+	padding: 14px;
+	position: absolute;
+	right: 0px;
+	z-index: 9999999999;
+}
+.alert_message .content{
+	vertical-align:center;
+}
+
+.alert_message .icon{
+	display: inline-block;
+	height: 24px;
+    width: 24px;
+	background: url("../img/dashboard/Sprite.png" ) no-repeat;
+	vertical-align: middle;
+}
+.alert_message .warn{
+	background-position: -87px -669px;
+}
+.alert_message .danger{
+	background-position: -121px -669px;
+}
+.alert_message .success{
+	background-position: -53px -669px;
+}
+.alert_message .info{
+	background-position: -155px -669px;
+}
+.alert_message .content .title{
+	display: inline-block;
+	font-size: 16px;
+	color: #313131;
+	height: 24px;
+}
+.alert_message .content .title p{
+	line-height: 24px;
+	display:inline-block;
+	padding-left: 11px;
+	margin: 0px;
+	vertical-align: middle;
+}
+.alert_message .content .message{
+	padding-left: 35px;
+	padding-top: 5px;
+	font-size: 14px;
+	line-height: 19px;
+	color: #666666;
+}
+.detail_right{
+	background-color:#fff;
+	margin: 0px;
+	width: 382px;
+	float: right;
+	border: 1px solid #EBF0F4;
+	min-height: calc(100vh - 258px);
+
+}
+
+.input-sm.filter_input{
+	font-size: 14px;
+}
+.logo_cut_off{
+	border-bottom: 1px solid #141B31;
+}
+.label-success {
+	background-color:#00A25B;
+}
+.label-danger {
+    background-color: #DD0E40;
+}
+.networkCardInfowidth{
+	min-width: 140px;
+}
+.performanceSelect{
+  word-break: break-word;
+}
+
+
+

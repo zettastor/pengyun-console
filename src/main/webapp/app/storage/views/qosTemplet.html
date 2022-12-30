@@ -1,0 +1,717 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content">
+  <div class="row  crumb_row">
+    <big-breadcrumbs items="['QoS策略', '根据规划对卷的外部流量或者内部流量进行控制的策略']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    </big-breadcrumbs>
+    <alert-message level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+  </div>
+  <state-breadcrumbs></state-breadcrumbs>
+  <section id="widget-grid" widget-grid>
+    <div class="row">
+      <div class="col-md-12 action_wrap" ng-show="showFlag==2">
+        <div class="btn-group  pull-right">
+          <button class="btn btn_lightblue" ng-click="reloadData();">刷新</button>
+        </div>
+      </div>
+      <div class="col-md-12 action_wrap" ng-show="showFlag==1">
+        <button class="btn btn_green" data-toggle="modal" ng-show="apis.Qos.createIoLimitations"
+          data-target="#addIO_modal" ng-click="resetCreate();doFocus('limitationName')">创建</button>
+        <button id="deleteIO" class="btn btn_red" ng-show="apis.Qos.deleteIoLimitations" ng-click="getDeleteNames()"
+          type="button" disabled="disabled" data-toggle="modal" data-target="#deleteIO_modal">删除</button>
+        <div class="btn-group  pull-right">
+          <button class="btn btn_lightblue" ng-click="reloadDataIO();">刷新</button>
+        </div>
+      </div>
+      <div class="col-md-12 action_wrap" ng-show="showFlag==3">
+        <button ng-show="apis.Rebalance.addRebalanceRule" class="btn btn_green" data-toggle="modal" data-target="#addRB_modal"
+          ng-click="resetCreateRB();doFocus('RBruleName')">创建</button>
+        <button ng-show="apis.Rebalance.deleteRebalanceRule" id="deleteRB" class="btn btn_red" ng-click="getDeleteNames()" type="button" disabled="disabled"
+          data-toggle="modal" data-target="#deleteRB_modal">删除</button>
+        <div class="btn-group  pull-right">
+          <button class="btn btn_lightblue" ng-click="reloadBalance();">刷新</button>
+        </div>
+        <div
+          ng-show="showSwitch"
+          class="pull-right bootstrap-switch bootstrap-switch-wrapper bootstrap-switch-id-switch-animate bootstrap-switch-animate"
+          style="width: 74px; height: 34px;margin-right: 10px;border-radius: 0" ng-click="switchChange()">
+          <div class="bootstrap-switch-container" style="width: 126px; ">
+            <span class="bootstrap-switch-handle-on bootstrap-switch-primary btn_lightblue"
+              style="background-color: #3095FF;">开</span>
+            <span class="bootstrap-switch-label" style="border: none; padding:0 22px;">&nbsp;</span>
+            <span class="bootstrap-switch-handle-off bootstrap-switch-default">关</span>
+            <input id="switch-animate" type="checkbox" checked="">
+          </div>
+        </div>
+      </div>
+      <article class="col-sm-12 col-md-12 col-lg-12">
+        <div jarvis-widget id="live-feeds-widget" data-widget-editbutton="false" data-widget-colorbutton="false"
+          data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false">
+
+          <ul class="nav nav-tabs in list_wrap" id="serverTab">
+            <li class="active">
+              <a data-toggle="tab" ng-click="showFlag=1;reloadDataIO();" href="#s1"><span
+                  class="hidden-mobile hidden-tablet">数据访问</span></a>
+            </li>
+            <li>
+              <a data-toggle="tab" ng-click="showFlag=2" href="#s2"><span
+                  class="hidden-mobile hidden-tablet">数据重构</span></a>
+            </li>
+
+            <li>
+              <a data-toggle="tab" ng-click="showFlag=3" href="#s3"><span
+                  class="hidden-mobile hidden-tablet">负载均衡</span></a>
+            </li>
+          </ul>
+
+          <div class="no-padding" id="serverDetailInner">
+            <div class="widget-body serverDetail" style="padding-top: 15px">
+              <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade active in volumeDetail_table" id="s1">
+                  <div ng-if="showFlag==1" class="row no-space">
+                    <table id="IOTab" datatable dt-options="datatables.dtOptionsIO" dt-columns="datatables.dtColumnsIO"
+                      class="table table-striped  table-hover table-two" dt-instance="datatables.dtInstanceIO"></table>
+                  </div>
+                </div>
+                <div class="tab-pane fade  volumeDetail_table" id="s2">
+                  <div ng-if="showFlag==2" class="row no-space">
+                    <table id="qosTab" datatable dt-options="datatables.dtOptions" dt-columns="datatables.dtColumns"
+                      class="table table-striped  table-hover table-one" dt-instance="datatables.dtInstance"></table>
+                  </div>
+                </div>
+                <div class="tab-pane fade volumeDetail_table" id="s3">
+                  <div ng-if="showFlag==3" class="row no-space">
+                    <table id="RBTab" datatable dt-options="datatables.dtOptionsRB" dt-columns="datatables.dtColumnsRB"
+                      class="table table-striped  table-hover table-three" dt-instance="datatables.dtInstanceRB">
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="deleteIO_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">删除数据访问策略</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            确定删除下列项?
+          </div>
+          <div class="deleteNames">
+            {{deleteNames}}
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_blue " ng-click="deleteRule()" data-dismiss="modal">删除</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="addRB_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">创建负载均衡策略</h4>
+        </div>
+        <div class="modal-body">
+          <form name="createRBForm" id="createRBForm" class="form-horizontal" novalidate>
+            <div class="form-group"
+              ng-class="{ 'has-error':createRBForm.RBruleName.$invalid && !createRBForm.RBruleName.$pristine&&createRBForm.RBruleName.$touched}">
+              <label class="col-sm-3 control-label" style="padding-right:0">策略名称<span class="required">* </span></label>
+              <div class="col-sm-7">
+                <input type="text" data-required="1" ng-model="createRB.RBruleName" name="RBruleName"
+                  class="form-control" id="RBruleName" ng-minlength="2" ng-maxlength="64"
+                  ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/" onfocus="hideSth(this)" onblur="showSth(this)">
+                <p class="hoverTip hideTip "
+                  ng-show="!(createRBForm.RBruleName.$invalid&&!createRBForm.RBruleName.$error.maxlength&& !createRBForm.RBruleName.$pristine&&createRBForm.RBruleName.$touched)&&!(createRBForm.RBruleName.$error.maxlength&&createRBForm.RBruleName.$touched)">
+                  <i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64
+                </p>
+                <span
+                  ng-if="createRBForm.RBruleName.$invalid&&!createRBForm.RBruleName.$error.maxlength&& !createRBForm.RBruleName.$pristine&&createRBForm.RBruleName.$touched "
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</span>
+                <span ng-if="createRBForm.RBruleName.$error.maxlength&&createRBForm.RBruleName.$touched"
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",至多64位</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">相对时间
+                &nbsp;<i class="fa  fa-question-circle" data-html="true" data-toggle="tooltip"
+                  title="卷可用且稳定之后至少一分钟才可执行负载均衡 "></i></label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" name="waitHourRB" id="waitHourRB" ng-model="waitHourRB"
+                  style="padding-right: 60px;" ng-keyup="checkNonnegativeNumber ($event,true)">
+                <span style="position: absolute; right: 20px; top: 7px;">小时</span>
+              </div>
+              <div class="col-sm-3 col-sm-offset-1">
+                <input type="text" class="form-control" name="waitMinRB" id="waitMinRB" ng-model="waitMinRB"
+                  style="padding-right: 60px;" ng-keyup="checkNonnegativeNumber ($event,false)">
+                <span style="position: absolute; right: 20px; top: 7px;">分钟</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">绝对时间</label>
+              <div class="col-sm-7">
+                <button class=" btn btn-sm btn-default" ng-click="addAbsoluteTime()"><i class="fa "></i> 添加时间</button>
+              </div>
+            </div>
+            <div id="rbContainer">
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <input type="button" data-dismiss="modal" class="btn btn_blue" ng-click="addRB()"
+            ng-disabled="createRBForm.$invalid||((waitHourRB<1||!waitHourRB)&&waitMinRB<1)" value="创建" />
+          <input type="button" data-dismiss="modal" class="btn btn_default" value="取消" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modifyRB_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">修改负载均衡策略</h4>
+        </div>
+        <div class="modal-body">
+          <form name="modifyRBForm" id="modifyRBForm" class="form-horizontal" novalidate>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">ID</label>
+              <div class="col-sm-7">
+                <input type="text" ng-model="RBIdModify" id="RBIdModify" disabled="" class="form-control" />
+              </div>
+            </div>
+
+            <div class="form-group"
+              ng-class="{ 'has-error':modifyRBForm.RBruleNameModify.$invalid && !modifyRBForm.RBruleNameModify.$pristine&&modifyRBForm.RBruleNameModify.$touched}">
+              <label class="col-sm-3 control-label" style="padding-right:0">策略名称<span class="required">* </span></label>
+              <div class="col-sm-7">
+                <input type="text" data-required="1" ng-model="modifyRB.RBruleNameModify" name="RBruleNameModify"
+                  class="form-control" ng-minlength="2" ng-maxlength="64" ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/"
+                  id="RBruleNameModify" onfocus="hideSth(this)" onblur="showSth(this)">
+                <p class="hoverTip hideTip "
+                  ng-show="!(modifyRBForm.RBruleNameModify.$invalid&&!modifyRBForm.RBruleNameModify.$error.maxlength&& !modifyRBForm.RBruleNameModify.$pristine&&modifyRBForm.RBruleNameModify.$touched)&&!(modifyRBForm.RBruleNameModify.$error.maxlength&&modifyRBForm.RBruleNameModify.$touched)">
+                  <i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64
+                </p>
+                <span
+                  ng-if="modifyRBForm.RBruleNameModify.$invalid&&!modifyRBForm.RBruleNameModify.$error.maxlength&& !modifyRBForm.RBruleNameModify.$pristine&&modifyRBForm.RBruleNameModify.$touched "
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</span>
+                <span ng-if="modifyRBForm.RBruleNameModify.$error.maxlength&&modifyRBForm.RBruleNameModify.$touched"
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",至多64位</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">相对时间&nbsp;<i class="fa  fa-question-circle" data-html="true"
+                  data-toggle="tooltip" title="卷可用且稳定之后至少一分钟才可执行负载均衡 "></i></label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" name="waitHourRBModify" id="waitHourRBModify"
+                  ng-model="waitHourRBModify" style="padding-right: 60px;"
+                  ng-keyup="checkNonnegativeNumber ($event,true)">
+                <span style="position: absolute; right: 20px; top: 7px;">小时</span>
+              </div>
+              <div class="col-sm-3 col-sm-offset-1">
+                <input type="text" class="form-control" name="waitMinRBModify" id="waitMinRBModify"
+                  ng-model="waitMinRBModify" style="padding-right: 60px;"
+                  ng-keyup="checkNonnegativeNumber ($event,false)">
+                <span style="position: absolute; right: 20px; top: 7px;">分钟</span>
+              </div>
+            </div>
+            <div id="rbContainerModify">
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <input type="button" data-dismiss="modal" class="btn btn_blue" ng-click="doModfiyRB()"
+            ng-disabled="modifyRBForm.$invalid||((waitHourRBModify<1||!waitHourRBModify)&&waitMinRBModify<1)"
+            value="修改" />
+          <input type="button" data-dismiss="modal" class="btn btn_default" value="取消" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="deleteRB_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">删除负载均衡策略</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            确定删除下列项?
+          </div>
+          <div class="deleteNames">
+            {{deleteNames}}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_blue " ng-click="doDeleteRB()" data-dismiss="modal">删除</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="applyRBPool_modal"
+    ng-if="applyRBSwitch">
+    <div class="modal-dialog" style="width:800px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">关联设置:{{currentName}}</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <h6 style="font-weight:normal;">已关联存储池</h6>
+              </div>
+              <div class="pull-right" style="margin-right:15px">
+                <button class="btn btn_lightblue btn-sm" style="margin-top:5px;" ng-click="modelRefresh()">刷新</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="tableList">
+                  <table id="cancelRBTab" datatable dt-options="datatables.dtOptionsCancelRB"
+                    dt-columns="datatables.dtColumnsCancelRB"
+                    class="table_break_work updateTable  table-striped table-condensed flip-content"
+                    dt-instance="datatables.dtInstanceCancelRB"></table>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-6">
+                <button class="btn btn_blue btn-sm pull-right" style="margin-top:5px" ng-disabled="datatables.applyRB" ng-show="apis.Rebalance.applyRebalanceRule"
+                  ng-click="doApplyRB()"><i class="fa fa-arrow-up"></i>&nbsp;应用</button>
+              </div>
+              <div class="col-sm-6">
+                <button class="btn btn_blue btn-sm pull-left" style="margin-top:5px" ng-disabled="datatables.cancelRB" ng-show="apis.Rebalance.unApplyRebalanceRule"
+                  ng-click="doCancelRB()"><i class="fa fa-arrow-down"></i>&nbsp;撤销</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <h6 style="font-weight:normal;">未关联存储池</h6>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="tableList">
+                  <table datatable id="applyRBTab" dt-options="datatables.dtOptionsApplyRB"
+                    dt-columns="datatables.dtColumnsApplyRB"
+                    class="table_break_work updateTable  table-striped table-condensed flip-content"
+                    dt-instance="datatables.dtInstanceApplyRB"></table>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <input type="button" data-dismiss="modal" class="btn btn_lightblue" value="完成" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="applyPool_modal"
+    ng-if="applySwitch">
+    <div class="modal-dialog" style="width:800px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">关联设置:{{currentName}}</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <h6 style="font-weight:normal;">已关联存储池</h6>
+              </div>
+              <div class="pull-right" style="margin-right:15px">
+                <button class="btn btn_lightblue btn-sm" style="margin-top:5px;" ng-click="modelRefresh()">刷新</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="tableList">
+                  <table id="cancelTab" datatable dt-options="datatables.dtOptionsCancel"
+                    dt-columns="datatables.dtColumnsCancel"
+                    class="table_break_work updateTable  table-striped table-condensed flip-content"
+                    dt-instance="datatables.dtInstanceCancel"></table>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-6">
+                <button class="btn btn_blue btn-sm pull-right" ng-show="apis.Qos.applyMigrationRules"
+                  style="margin-top:5px" ng-disabled="datatables.applyQOS" ng-click="applyBtn()"><i
+                    class="fa fa-arrow-up"></i>&nbsp;应用</button>
+              </div>
+              <div class="col-sm-6">
+                <button class="btn btn_blue btn-sm pull-left" ng-show="apis.Qos.cancelMigrationRules"
+                  style="margin-top:5px" ng-disabled="datatables.cancelQOS" ng-click="cancelBtn()"><i
+                    class="fa fa-arrow-down"></i>&nbsp;撤销</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <h6 style="font-weight:normal;">未关联存储池</h6>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="tableList">
+                  <table datatable id="applyTab" dt-options="datatables.dtOptionsApply"
+                    dt-columns="datatables.dtColumnsApply"
+                    class="table_break_work updateTable  table-striped table-condensed flip-content"
+                    dt-instance="datatables.dtInstanceApply"></table>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <input type="button" data-dismiss="modal" class="btn btn_lightblue" value="完成" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="applyIO_modal"
+    ng-if="applySwitchIO">
+    <div class="modal-dialog" style="width:800px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">关联设置:{{currentName}}</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <h6 style="font-weight:normal;">已关联驱动</h6>
+              </div>
+              <div class="pull-right" style="margin-right:15px">
+                <button class="btn btn_lightblue btn-sm" style="margin-top:5px;" ng-click="modelRefresh()">刷新</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="tableList">
+                  <table id="cancelIOTab" datatable dt-options="datatables.dtOptionsCancelIO"
+                    dt-columns="datatables.dtColumnsCancelIO"
+                    class="table_break_work updateTable  table-striped table-condensed flip-content"
+                    dt-instance="datatables.dtInstanceCancelIO"></table>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-6">
+                <button class="btn pull-right btn_blue btn-sm" ng-show="apis.Qos.applyIoLimitations"
+                  style="margin-top:5px" ng-disabled="datatables.applyIO" ng-click="applyBtn()"><i
+                    class="fa fa-arrow-up"></i>&nbsp;应用</button>
+              </div>
+              <div class="col-sm-6">
+                <button class="btn pull-left btn_blue btn-sm" ng-show="apis.Qos.cancelIoLimitations"
+                  style="margin-top:5px" ng-disabled="datatables.cancelIO" ng-click="cancelBtn()"><i
+                    class="fa fa-arrow-down"></i>&nbsp;撤销</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <h6 style="font-weight:normal;">未关联驱动</h6>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="tableList">
+                  <table datatable id="applyIOTab" dt-options="datatables.dtOptionsApplyIO"
+                    dt-columns="datatables.dtColumnsApplyIO"
+                    class="table_break_work updateTable  table-striped table-condensed flip-content"
+                    dt-instance="datatables.dtInstanceApplyIO"></table>
+                </div>
+              </div>
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <span style="position: relative;top: 5px;" ng-if="staticQOSTips" class="pull-left"><i
+              class="fa fa-exclamation-circle"></i>&nbsp;<span>提示:</span>添加静态类型的限制项之后，已经添加的动态限制项将失效。</span>
+          <input type="button" data-dismiss="modal" class="btn btn_lightblue" value="完成" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="addIO_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">创建数据访问策略</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" name="iopsForm" role="form" id="iops_modal_form">
+            <div class="form-group"
+              ng-class="{ 'has-error':iopsForm.limitationName.$invalid && !iopsForm.limitationName.$pristine&&iopsForm.limitationName.$touched}">
+              <label for="limitationName" class="col-sm-3 control-label">策略名称<span class="required">* </span></label>
+              <div class="col-sm-7">
+                <input type="text" data-required="1" ng-model="iops.limitationName" name="limitationName"
+                  class="form-control" ng-minlength="2" ng-maxlength="64" ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/"
+                  id="limitationName" onfocus="hideSth(this)" onblur="showSth(this)">
+                <p class="hoverTip hideTip "
+                  ng-show="!(iopsForm.limitationName.$invalid&&!iopsForm.limitationName.$error.maxlength&& !iopsForm.limitationName.$pristine&&iopsForm.limitationName.$touched)&&!(iopsForm.limitationName.$error.maxlength&&iopsForm.limitationName.$touched)">
+                  <i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64
+                </p>
+                <span
+                  ng-if="iopsForm.limitationName.$invalid&&!iopsForm.limitationName.$error.maxlength&& !iopsForm.limitationName.$pristine&&iopsForm.limitationName.$touched "
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</span>
+                <span ng-if="iopsForm.limitationName.$error.maxlength&&iopsForm.limitationName.$touched"
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",至多64位</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="addType" class="col-sm-3 control-label">类型
+                &nbsp;<i class="fa  fa-question-circle" data-html="true" data-toggle="tooltip"
+                  title="选择数据访问QoS策略配置类型。静态策&#10;略永久生效；动态策略允许指定时间区间生效。"></i></label>
+              <div class="col-sm-7">
+                <select id="limitType" ng-model='hideEditSelect' ng-init="hideEditSelect='Static'"
+                  class="selectpicker form-control" ng-change="typeSwitch()">
+                  <option value="Static">静态</option>
+                  <option value="Dynamic">动态</option>
+                </select>
+
+              </div>
+            </div>
+            <div class="form-group" ng-if="hideEditSelect=='Dynamic'">
+              <label for="" class="col-sm-3 control-label">规则</label>
+              <div class="col-sm-7">
+                <button class=" btn btn-sm btn-default" ng-click="addIOModel()"><i class="fa "></i> 添加规则</button>
+              </div>
+            </div>
+            <div id="ruleContainer">
+
+            </div>
+          </form>
+          <span class="iomodel1" style="display:none">
+            <span class="iomark">
+              <hr>
+              <div class="form-group addSelect">
+                <label class="col-sm-3 control-label">时间跨度</label>
+                <div class="col-sm-7">
+                  <div class="input-group input-large">
+                    <div class="input-append">
+                      <input class="form-control addST dynamicTime" data-smart-clockpicker type="text"
+                        placeholder="开始时间" data-autoclose="true">
+                    </div>
+                    <span class="input-group-addon">
+                      to </span>
+                    <div class="input-append">
+                      <input class="form-control addET dynamicTime" data-smart-clockpicker type="text"
+                        placeholder="结束时间" data-autoclose="true">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <button class="btn btn-sm btn-default pull-right" onclick="removeIOModel(this)"><i
+                      class="fa fa-times"></i></button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">IOPS限制</label>
+                <div class="col-sm-7">
+                  <div class="input-group input-large">
+                    <div class="input-append">
+                      <input type="text" class="form-control iopsLower" name="iopsLower" placeholder="无限制"
+                        onkeyup="checkNonnegativeNumber (this)" />
+                    </div>
+                    <span class="input-group-addon">
+                      to </span>
+                    <div class="input-append">
+                      <input type="text" class="form-control iopsUpper" name="iopsUpper" placeholder="无限制"
+                        onkeyup="checkNonnegativeNumber (this)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">吞吐量(KB/s)</label>
+                <div class="col-sm-7">
+                  <div class="input-group input-large">
+                    <div class="input-append">
+                      <input type="text" class="form-control throughputLower" name="throughputLower" placeholder="无限制"
+                        onkeyup="checkNonnegativeNumber (this)" />
+                    </div>
+                    <span class="input-group-addon">
+                      to </span>
+                    <div class="input-append">
+                      <input type="text" class="form-control throughputUpper" name="throughputUpper" placeholder="无限制"
+                        onkeyup="checkNonnegativeNumber (this)" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </span>
+          <span class="iomodel2" style="display:none">
+            <span class="iomark">
+              <hr>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">IOPS限制</label>
+                <div class="col-sm-7">
+                  <div class="input-group input-large">
+                    <div class="input-append">
+                      <input type="text" class="form-control iopsLower" name="iopsLower" placeholder="无限制"
+                        onkeyup="checkNonnegativeNumber (this)" />
+                    </div>
+                    <span class="input-group-addon">
+                      to </span>
+                    <div class="input-append">
+                      <input type="text" class="form-control iopsUpper" name="iopsUpper" placeholder="无限制"
+                        onkeyup="checkNonnegativeNumber (this)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label">吞吐量(KB/s)</label>
+                <div class="col-sm-7">
+                  <div class="input-group input-large">
+                    <div class="input-append">
+                      <input type="text" class="form-control throughputLower" name="throughputLower" placeholder="无限制"
+                        onkeyup="checkNonnegativeNumber (this)" />
+                    </div>
+                    <span class="input-group-addon">
+                      to </span>
+                    <div class="input-append">
+                      <input type="text" class="form-control throughputUpper" name="throughputUpper" placeholder="无限制"
+                        onkeyup="checkNonnegativeNumber (this)" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </span>
+          </span>
+        </div>
+        <div class="modal-footer">
+          <span id="searchErr" style="line-height: 34px;color: #c9302c;margin-right: 30px;"></span>
+          <input type="button" id="addIO_btn" ng-click="addIOBtn()" class="btn btn_blue"
+            ng-disabled="iopsForm.$invalid" value="添加" />
+          <input type="button" id="cancelIO_btn" data-dismiss="modal" class="btn btn_default" value="取消" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modifyIO_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">修改数据访问策略</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form" id="iops_modal_modify_form" name="iopsModifyForm">
+            <div class="form-group">
+              <label for="limitationName" class="col-sm-3 control-label">ID</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" disabled id="limitationID" />
+              </div>
+            </div>
+            <div class="form-group"
+              ng-class="{ 'has-error':iopsModifyForm.limitationNameModify.$invalid && !iopsModifyForm.limitationNameModify.$pristine&&iopsModifyForm.limitationNameModify.$touched}">
+              <label for="limitationNameModify" class="col-sm-3 control-label">策略名称<span class="required">*
+                </span></label>
+              <div class="col-sm-7">
+                <input type="text" data-required="1" ng-model="iopsModify.limitationNameModify"
+                  name="limitationNameModify" class="form-control" ng-minlength="2" ng-maxlength="64"
+                  ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/" id="limitationNameModify" onfocus="hideSth(this)"
+                  onblur="showSth(this)">
+                <p class="hoverTip hideTip "
+                  ng-show="!(iopsModifyForm.limitationNameModify.$invalid&&!iopsModifyForm.limitationNameModify.$error.maxlength&& !iopsModifyForm.limitationNameModify.$pristine&&iopsModifyForm.limitationNameModify.$touched)&&!(iopsModifyForm.limitationNameModify.$error.maxlength&&iopsModifyForm.limitationNameModify.$touched)">
+                  <i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64
+                </p>
+                <span
+                  ng-if="iopsModifyForm.limitationNameModify.$invalid&&!iopsModifyForm.limitationNameModify.$error.maxlength&& !iopsModifyForm.limitationNameModify.$pristine&&iopsModifyForm.limitationNameModify.$touched "
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</span>
+                <span
+                  ng-if="iopsModifyForm.limitationNameModify.$error.maxlength&&iopsModifyForm.limitationNameModify.$touched"
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",至多64位</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="addType" class="col-sm-3 control-label">类型
+                &nbsp;<i class="fa  fa-question-circle" data-html="true" data-toggle="tooltip"
+                  title="选择数据访问QoS策略配置类型。静态策&#10;略永久生效；动态策略允许指定时间区间生效。"></i></label>
+              <div class="col-sm-7">
+                <input type="text" disabled class="form-control" id="limitTypeModify" />
+              </div>
+            </div>
+            <div class="form-group" ng-if="modifyType=='Dynamic'">
+              <label for="" class="col-sm-3 control-label">规则</label>
+              <div class="col-sm-7">
+                <button class=" btn btn-sm btn-default" ng-click="modifyIOModel()"><i
+                    class="fa "></i> 添加规则</button>
+              </div>
+            </div>
+            <div id="ruleContainerModify">
+
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <span id="searchErrModify" style="line-height: 34px;color: #c9302c;margin-right: 30px;"></span>
+          <input type="button" ng-click="modifyIOBtn()" ng-disabled="iopsModifyForm.$invalid" class="btn btn_blue" value="修改" />
+          <input type="button" data-dismiss="modal" class="btn btn_default" value="取消" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

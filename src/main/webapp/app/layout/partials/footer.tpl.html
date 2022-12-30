@@ -1,0 +1,180 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div class="page-footer" ng-controller="footCtrl">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+    </div>
+  </div>
+  <div style="display:none">
+    <alert-message level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+  </div><!-- 有用别删除 -->
+
+
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="version_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">当前版本</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form" novalidate>
+            <div class="form-group">
+              <div class="col-sm-3 col-sm-offset-4 control-label">
+                <img src="styles/img/logo_version.png" alt="Zhi Zhen" style="width:135px">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 col-sm-offset-1 control-label">软件名称</label>
+              <div class="col-sm-8" style="padding-top:7px">
+                <span>{{name}}</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 col-sm-offset-1 control-label">当前版本</label>
+              <div class="col-sm-8" style="padding-top:7px">
+                <span>{{version}}</span>
+              </div>
+            </div>
+            <!--    <div class="form-group">
+						   <label  class="col-sm-3 col-sm-offset-1 control-label">时间</label>
+						   <div class="col-sm-8" style="padding-top:7px">
+							   <span>{{time}}</span>
+						   </div>
+					   </div> -->
+            <div class="form-group">
+              <label class="col-sm-3 col-sm-offset-1 control-label">公司名称</label>
+              <div class="col-sm-8" style="padding-top:7px">
+                <span>{{corporation}}</span>
+              </div>
+            </div>
+            <div class="form-group" style="display: none;">
+              <label class="col-sm-3 col-sm-offset-1 control-label">邮箱</label>
+              <div class="col-sm-8" style="padding-top:7px">
+                <span>{{email}}</span>
+              </div>
+            </div>
+
+            <div class="form-group" style="display: none;">
+              <label class="col-sm-3 col-sm-offset-1 control-label">电话</label>
+              <div class="col-sm-8" style="padding-top:7px">
+                <span>{{tel}}</span>
+              </div>
+            </div>
+
+            <div class="form-group" ng-show="fixBug" style="display: none">
+              <label class="col-sm-3 col-sm-offset-1 control-label">修复问题
+
+              </label>
+              <div class="col-sm-8" style="padding-top:7px;color:#337AB7">
+                <span ng-click="expand('fix')" style="cursor: pointer;">展开</span>
+                <span class="glyphicon glyphicon-chevron-down fixSpan" style="cursor: pointer;" aria-hidden="true"
+                  ng-click="expand('fix')"></span>
+              </div>
+              <div class="fixList col-sm-8 col-sm-offset-4" ng-show="fixDiv">
+
+              </div>
+            </div>
+            <div class="form-group" ng-show="newIsu" style="display: none">
+              <label class="col-sm-3 col-sm-offset-1 control-label">新增功能
+
+              </label>
+              <div class="col-sm-8" style="padding-top:7px;color:#337AB7">
+                <span ng-click="expand('new')" style="cursor: pointer;">展开</span>
+                <span class="glyphicon glyphicon-chevron-down newSpan" style="cursor: pointer;" aria-hidden="true"
+                  ng-click="expand('new')"></span>
+              </div>
+              <div class="newList col-sm-8 col-sm-offset-4" ng-show="newDiv">
+
+              </div>
+            </div>
+
+          </form>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_lightblue" data-dismiss="modal">确定</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--  begin update pwd modal -->
+  <div class="modal" tabindex="-1" id="update_pwd_modal" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" ng-click="resetUpdate()">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">修改密码</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form" name="updateForm" id="updateForm" novalidate>
+            <div class="form-group"
+              ng-class="{'has-error':updateForm.oldPassword.$invalid &&updateForm.oldPassword.$touched}">
+              <label for="oldPassword" class="col-sm-3 control-label">旧密码<span class="required" aria-required="true">*
+                </span></label>
+              <div class="col-sm-7">
+                <input type="password" class="form-control" name="oldPassword" placeholder="旧密码" ng-minlength="2"
+                  ng-maxlength="64" required ng-model="oldPwd">
+                <span ng-show="updateForm.oldPassword.$error.minlength&& updateForm.oldPassword.$touched"
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 至少两个字符</span>
+                <span ng-show="updateForm.oldPassword.$error.maxlength&& updateForm.oldPassword.$touched"
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 至多十六个字符</span>
+              </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':updateForm.newPwd.$invalid &&updateForm.newPwd.$touched}">
+              <label class="col-sm-3 control-label">新密码<span class="required" aria-required="true">* </span></label>
+              <div class="col-sm-7">
+                <input type="password" class="form-control" name="newPwd" placeholder="新密码" required ng-minlength="2"
+                  ng-maxlength="64" ng-model="newPwd">
+
+                <span ng-show="updateForm.newPwd.$error.minlength&& updateForm.newPwd.$touched" class="help-block"><i
+                    class="fa fa-exclamation-circle"></i> 至少两个字符</span>
+                <span ng-show="updateForm.newPwd.$error.maxlength&& updateForm.newPwd.$touched" class="help-block"><i
+                    class="fa fa-exclamation-circle"></i> 至多十六个字符</span>
+              </div>
+            </div>
+            <div class="form-group"
+              ng-class="{'has-error':updateForm.reNewPassword.$invalid && !updateForm.reNewPassword.$pristine&&updateForm.reNewPassword.$touched}">
+              <label for="reNewPassword" class="col-sm-3 control-label">确认密码<span class="required"
+                  aria-required="true">* </span></label>
+              <div class="col-sm-7">
+                <input type="password" class="form-control" name="reNewPassword" placeholder="确认密码"
+                  ng-model="reNewPassword" compare="newPwd">
+                <span
+                  ng-show="updateForm.reNewPassword.$error.compare &&updateForm.reNewPassword.$dirty&&updateForm.reNewPassword.$touched"
+                  class="help-block"><i class="fa fa-exclamation-circle"></i> 两次密码输入不一致</span>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_blue" ng-disabled="updateForm.$invalid" ng-click="updatePwd()"
+            data-dismiss="modal">修改</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal" ng-click="resetUpdate()">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- end update pwd modal-->
+</div>

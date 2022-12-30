@@ -1,0 +1,134 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content">
+  <div class="row  crumb_row">
+    <big-breadcrumbs items="['卷详情', '查看与管理']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+    <alert-message level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+  </div>
+  <state-breadcrumbs></state-breadcrumbs>
+  <section id="widget-grid" widget-grid style="width:100%">
+    <div class="row">
+      <article class="col-sm-12 col-md-12 col-lg-12">
+        <div class="right">
+          <div style="margin-bottom:9px;float:right;">
+            <button class="btn btn_lightblue" ng-click="testStatus();reloadData()">刷新</button>
+            <button class="btn btn_lightblue" data-ui-sref="app.storage.volume">返回</button>
+          </div>
+          <div class="row detail_right">
+            <div class="setTitle">
+              基本信息
+            </div>
+            <div class="setInner">
+              <div>
+                <span class="proName">卷名称：</span>
+                <span class="proSize" ng-bind="volumeName"></span>
+              </div>
+              <div>
+                <span class="proName">描述：</span>
+                <span class="proSize" id="description"></span>
+              </div>
+              <div>
+                <span class="proName">占用物理空间(GB)：</span>
+                <span class="proSize" ng-bind="totalPhysicalSpace"></span>
+              </div>
+              <div>
+                <span class="proName">总容量(GB)：</span>
+                <span class="proSize" ng-bind="volumeSize"></span>
+              </div>
+              <div>
+                <span class="proName">剩余容量(GB)：</span>
+                <span class="proSize" ng-bind="availableSize"></span>
+              </div>
+              <div>
+                <span class="proName">已用容量(GB)：</span>
+                <span class="proSize" ng-bind="usedSize"></span>
+              </div>
+              <div>
+                <span class="proName">卷状态：</span>
+                <span class="proSize" id="volumeStatus" style="display: inline-block;"></span>
+              </div>
+              <div>
+                <span class="proName">所属域：</span>
+                <span class="proSize" ng-bind="volumeDomain"></span>
+              </div>
+              <div>
+                <span class="proName">所属存储池：</span>
+                <span class="proSize" ng-bind="storagePoolName"></span>
+              </div>
+              <div>
+                <span class="proName">副本数量：</span>
+                <span class="proSize" ng-bind-html="volumeType"></span>
+              </div>
+              <div>
+                <span class="proName">创建时间：</span>
+                <span class="proSize" ng-bind="createTime"></span>
+              </div>
+              <div>
+                <span class="proName">重构进度：</span>
+                <span class="proSize" id="migrationSpeed" style="display: inline-block;"></span>
+              </div>
+              <div>
+                <span class="proName">Rebalance进度：</span>
+                <span class="proSize" id="rebalanceSpeed" style="display: inline-block;"></span>
+              </div>
+              <div>
+                <span class="proName">创建类型：</span>
+                <span class="proSize" ng-bind="volumeBuildType"></span>
+              </div>
+              <div ng-if="srcVolumeNameWithClone">
+                <span class="proName">源卷名：</span>
+                <span class="proSize" ng-bind="srcVolumeNameWithClone"></span>
+              </div>
+              <div ng-if="srcSnapshotNameWithClone">
+                <span class="proName">源快照名：</span>
+                <span class="proSize" ng-bind="srcSnapshotNameWithClone"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-right:395px;">
+          <div jarvis-widget id="live-feeds-widget" data-widget-editbutton="false" data-widget-colorbutton="false"
+            data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false">
+            <ul class="nav nav-tabs pull-left in" id="serverTab">
+              <li class="active" style="text-align:center">
+                <a data-toggle="tab" href="#s1"><strong
+                    class="hidden-mobile hidden-tablet">映射关系</strong></a>
+              </li>
+            </ul>
+            <div class="no-padding" id="serverDetailInner">
+              <div class="widget-body detail_content">
+                <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade active in volumeDetail_table" id="s1">
+                    <div class="row no-space">
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <p class="table_title">映射驱动列表</p>
+                      </div>
+                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom: 45px !important; ">
+                        <table datatable dt-options="datatables.dtOptiond" dt-columns="datatables.dtColumnd"
+                          class="table table-striped second_page  table-hover row-border hover driverTable"
+                          dt-instance="datatables.dtInstanced"></table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </article>
+    </div>
+  </section>
+</div>

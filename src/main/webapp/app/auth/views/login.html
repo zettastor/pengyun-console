@@ -1,0 +1,67 @@
+
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="main" class="login_page" role="main"  class="animated fadeInDown" style="width: 100%;min-height: 780px; height:100vh;margin: 0;padding: 0;position: relative; ">
+	<div id="login_head_wrap">
+		<div id="login_head" >
+			<img src="styles/img/logo_login.png" alt="">
+		</div>	
+	</div>
+
+	<div id="login_content_wrap" style="position: absolute;left: 50%;top: 50%;margin-left: -545px;margin-top: -280px;">
+		<div class="pull-left login_pic">
+			
+		</div>
+		<div class="pull-right" id="login_content">
+			<form ng-submit="login(account)" id="login-form" class="smart-form client-form" style=""  data-smart-validate-form >
+						
+				<fieldset >
+					<h2 class="form-title" style="color:#313131;letter-spacing: 0.03em;text-align: center;margin: 0 auto;">ZettaStor自助维护平台</h2>
+					
+					<section style="margin-top: 60px;margin-bottom: 5px;">
+						<div class="login_info">
+							<p class="login_input_p">用户名</p>
+							<label class="input login_input">
+								<input name="username" class="login_border" id="username" ng-model="account.name" ng-minlength="1" placeholder="请输入您的用户名"  autocomplete="off"> 
+							</label>
+							<i style="position: absolute;" ng-show="account.name" class="fa fa-times-circle item-error-style qosClearItem" ng-click="clearUserInput()"></i>
+						</div>
+						
+					</section>
+					<section style="margin-top: 40px;margin-bottom: 5px;">
+						<div class="login_info">
+							<p class="login_input_p">密码</p>
+							<label class="input login_input">
+								<input type="password"  class="login_border" name="password" ng-model="account.password"  placeholder="请输入您的密码" autocomplete="off">
+							</label>
+						</div>
+					</section>
+					<div class="login_tip">
+						<p ng-if="resultMessage">
+							<span style="color: #e21532;font-size: 12px" ng-bind="resultMessage"></span>
+						</p>
+					</div>
+				</fieldset>
+				<button type="submit" class="btn btn_lightblue btn-login" >
+					立即登录
+				</button>
+			</form>
+		</div>
+	</div>
+	
+</div>
+<p class="page-footer" id="login_foot_wrap">
+<!-- 	2017 © PengYun Network -->
+</p>

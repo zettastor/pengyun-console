@@ -1,0 +1,88 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content">
+	<div class="row crumb_row">
+		<big-breadcrumbs items="['域详情','查看与管理']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+		<alert-message  level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+	</div>
+	<state-breadcrumbs></state-breadcrumbs>
+	<section id="widget-grid" widget-grid style="width:100%">
+		<div class="row">
+			<article  class="col-sm-12 col-md-12 col-lg-12">
+				<div class="right" >
+					<div style="margin-bottom:14px;float:right;">
+						<button  class="btn btn_lightblue" ng-click="refresh()" >刷新</button>
+						<a type="button" class="btn btn_lightblue" ng-href="/#!/domain" > 返回
+						</a>
+					</div>
+					<div class="row detail_right">
+						<div class="setTitle">
+							基本信息 
+						</div>
+						<div class="setInner">
+							<div>
+								<span class="proName">域名称：</span>
+								<span class="proSize"  ng-bind="domainName"></span>
+							</div>
+							<div>
+								<span class="proName">描述：</span>
+								<span class="proSize"  id="description"></span>
+							</div>
+							<div>
+								<span class="proName">状态：</span>
+								<span class="proSize"    id="status"></span>
+							</div>
+							<div>
+								<span class="proName">总容量(GB)：</span>
+								<span class="proSize"  ng-bind="logicalSpace"></span>
+							</div>
+							<div>
+								<span class="proName">剩余容量(GB)：</span>
+								<span class="proSize"  ng-bind="freeSpace"></span>
+							</div>
+							<div>
+								<span class="proName">已分配容量(GB)：</span>
+								<span class="proSize"  ng-bind="useSpace"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div style="margin-right:395px;">
+					<div jarvis-widget id="live-feeds-widget" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" >
+
+						<p class="page_detail_title">
+							已使用节点
+						</p>
+						<div class="no-padding" id="serverDetailInner">
+							<div class="widget-body detail_content">
+								<div id="myTabContent" class="tab-content">
+									<div class="tab-pane fade active in" id="s1" >
+										<div class="row no-space">
+											<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+												<table datatable id="domainDetailTab" dt-options="showDomainDetail.dtOptions" dt-columns="showDomainDetail.dtColumns" class=" table table-striped  table-hover second_page useDatanodeTable " dt-instance="showDomainDetail.dtInstance"  ></table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</article>
+		</div>
+	</section>
+</div>

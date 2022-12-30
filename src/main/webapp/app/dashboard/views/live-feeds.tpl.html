@@ -1,0 +1,83 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div jarvis-widget id="live-feeds-widget" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-deletebutton="false" >
+<header>
+    <span class="widget-icon"> <i class="glyphicon glyphicon-stats txt-color-darken"></i> </span>
+
+    <h2>性能数据</h2>
+
+    <ul class="nav nav-tabs pull-right in" id="serverTab">
+        <li class="active">
+            <a data-toggle="tab" href="#s1"><i class="fa fa-cog"></i> <span class="hidden-mobile hidden-tablet">系统</span></a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#s2"><i class="fa fa-database"></i> <span class="hidden-mobile hidden-tablet">卷</span></a>
+        </li>
+
+        <li>
+            <a data-toggle="tab" href="#s3"><i class="fa fa-wrench"></i> <span class="hidden-mobile hidden-tablet">机器</span></a>
+        </li>
+    </ul>
+
+</header>
+
+<!-- widget div-->
+<div class="no-padding">
+
+    <div class="widget-body">
+        <!-- content -->
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade active in padding-10 no-padding-bottom" id="s1">
+                <div class="row">
+                    
+                    <div class="col-sm-6 col-lg-6">
+
+                        <!-- your contents here -->
+                        <div class="panel panel-default">
+                            <div class="panel-body status">
+                                <div class="who clearfix">
+                                    <span class="name"><b>Karrigan Mean</b> shared a photo</span>
+                                </div>
+                                
+                                <e-chart  option="systemCapacityTrendencyOption"></e-chart> 
+                            </div>
+                        </div>
+                    </div>   
+
+                </div>
+
+            </div>
+            <!-- end s1 tab pane -->
+
+            <div class="tab-pane fade" id="s2">
+
+
+            </div>
+            <!-- end s2 tab pane -->
+
+            <div class="tab-pane fade" id="s3">
+
+
+            </div>
+            <!-- end s3 tab pane -->
+        </div>
+
+        <!-- end content -->
+    </div>
+
+</div>
+<!-- end widget div -->
+</div>

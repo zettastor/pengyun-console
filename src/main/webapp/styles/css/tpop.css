@@ -1,0 +1,237 @@
+/*
+ * Copyright (c) 2022. PengYunNetWork
+ *
+ * This program is free software: you can use, redistribute, and/or modify it
+ * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ *  You should have received a copy of the GNU Affero General Public License along with
+ *  this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/* bubbleInfo */
+.bubbleInfo{
+	margin:0px 65px 15px 0px;
+	position:relative;
+
+}
+.bubbleInfoT{
+	margin:0px 65px 15px 0px;
+	position:relative;
+
+}
+.diskInfo{
+position:relative;
+}
+/* popup */
+.popup{
+	position:absolute;
+	display:none;
+	z-index:9998;
+	border-collapse:collapse;
+}
+.popup td.corner{
+	height:15px;
+	width:19px;
+}
+
+
+
+.popup table.popup-contents{
+	line-height:1.2em;
+   /* background-color:#fff;*/
+	margin-left:5px;
+	margin-right:5px;
+	margin-top:9px;
+	background-color: transparent;
+	
+}
+
+
+table.popup-contents td{
+	text-align:left;
+	padding:5px;
+}
+
+
+
+table.popup-contents th{
+	text-align:right;
+	text-transform:lowercase;
+	padding:5px;
+	padding-right: 0;
+}
+
+
+.single_disk_img:hover{
+	-webkit-box-shadow:0 0 4px rgba(49,49,49, .5);
+	-moz-box-shadow:0 0 4px rgba(49,49,49, .5);
+	box-shadow:0 0 4px rgba(49,49,49, .5);
+	border-radius:0px !important;
+   /* -moz-box-shadow:0px 4px 12px #0CB0A0;
+	-webkit-box-shadow:0px 4px 12px #0CB0A0;
+	box-shadow:0px 4px 12px #0CB0A0;
+	cursor:move;*/
+	/*width:30px !important;
+	height:38px !important;*/
+
+}
+
+.serverImg:hover{
+	border-radius:5px;
+	width:56px !important;
+	height:23px !important;
+
+}
+
+.flaw{
+  
+	-webkit-box-shadow:0 0 4px rgba(49,49,49, .5);
+	-moz-box-shadow:0 0 4px rgba(49,49,49, .5);
+	box-shadow:0 0 4px rgba(49,49,49, .5);
+	/*width:30px !important;
+	height:38px !important;*/
+}
+.serverflaw{
+
+	border-radius:5px;
+	width:56px !important;
+	height:23px !important;
+}
+.expand{
+
+	border-radius:5px;
+	width:40px !important;
+	height:45px !important;
+}
+.table-scrollable{
+		overflow: visible;
+	}
+.table{
+		word-wrap: break-word;
+		word-break: break-all;
+ }
+ .light{
+	background-color: #FFF;
+	padding: 5px;
+}
+ .single_disk_img{
+	width:40px;
+	height:53px;
+ }
+
+ .modal{
+	z-index: 9999;
+ }
+
+#dpop,#leftpop{
+	border: 1px solid #EBF0F4;
+	-webkit-border-radius:2px;
+	-moz-border-radius:2px;
+	border-radius:2px;
+	/*-moz-box-shadow:0px 1px 2px #EBF0F4;;
+	-webkit-box-shadow:0px 1px 2px #EBF0F4;;
+	box-shadow:0px 1px 2px #EBF0F4;;*/
+	cursor:move;
+	background: rgba(255,255,255,0.95);
+	margin-top:48px;
+ 
+}
+
+
+#dpop:after, #dpop:before {
+	content:"";
+	display:block;
+	border-width:10px;
+	position:absolute; 
+	/*bottom:-20px;
+	left:18px;
+	border-style:solid dashed dashed;
+	border-color:#A0C7FF transparent transparent;*/
+	font-size:0;
+	line-height:0;
+	top:-19px;
+	left:85px;
+	border-style: dashed dashed solid;
+	border-color: transparent transparent #EBF0F4;
+
+}
+
+#dpop:after {
+ /* bottom:-18px;
+  border-color:#FFF transparent transparent;*/
+	top:-17px;
+	border-color: transparent transparent #fff;
+}
+
+
+#leftpop:after, #leftpop:before {
+	content:"";
+	display:block;
+	border-width:10px;
+	position:absolute;
+	top:-20px;
+	left:70px;
+	border-style: dashed dashed solid;
+	border-color: transparent transparent #A0C7FF;
+	font-size:0;
+	line-height:0;
+
+}
+
+#leftpop:after {
+	top:-18px;
+	border-color: transparent transparent #fff;
+
+}
+.hoverwork{
+	position:absolute;
+	z-index:2;
+	top:12px;
+	font-size:14px;
+	color: #313131;
+	width: 40px;
+	text-align: center;
+
+}
+.hoverwork_s{
+	position:absolute;
+	z-index:2;
+	top:12px;
+	font-size:14px;
+	color: #313131;
+	width: 40px;
+	text-align: center;
+
+}
+.bottomwork{
+	position:absolute;
+	z-index:3;
+	left:-8px;
+	top:58px;
+
+}
+.showDiskName{
+	width:90px;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	cursor:pointer
+}
+
+.bottomwork .bulb_disk_name{
+	font-size:14px;
+	color:#313131;
+}
+.trigger{
+	background:url(../img/disk/Sprite.png) no-repeat;
+}
+.bottomwork .bulb-img{
+	display:inline-block;
+	width:16px;
+	height:16px;
+	background:url(../img/disk/Sprite.png) no-repeat;
+}

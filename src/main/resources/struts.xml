@@ -1,0 +1,1814 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+    <package name="console" extends="json-default" namespace="/">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+        <action name="loginSys" class="py.console.action.LoginAction"
+                method="login">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+                <param name="callbackParameter">callback</param>
+            </result>
+        </action>
+        <action name="loadVolume" class="py.console.action.LoginAction"
+                method="loadVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="judgeLogin" class="py.console.action.LoginAction"
+                method="judgeLogin">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="obtainSnapshotShowFlag" class="py.console.action.AccountAction"
+                method="obtainSnapshotShowFlag">
+            <result name="dataMap" type="json">
+
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAccount" class="py.console.action.AccountAction"
+                method="listAccount">
+            <result name="dataMap" type="json">
+
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAccountDT" class="py.console.action.AccountAction"
+                method="listAccountDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="resetPassword" class="py.console.action.AccountAction"
+                method="resetPassword">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createAccount" class="py.console.action.AccountAction"
+                method="create">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updatePassword" class="py.console.action.AccountAction"
+                method="updatePassword">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteAccount" class="py.console.action.AccountAction"
+                method="deleteAccount">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createRole" class="py.console.action.AccountAction"
+                method="createRole">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateRole" class="py.console.action.AccountAction"
+                method="updateRole">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listRoles" class="py.console.action.AccountAction"
+                method="listRoles">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteRoles" class="py.console.action.AccountAction"
+                method="deleteRoles">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="assignRoles" class="py.console.action.AccountAction"
+                method="assignRoles">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="assignResource" class="py.console.action.AccountAction"
+                method="assignResource">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listResource" class="py.console.action.AccountAction"
+                method="listResource">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listApi" class="py.console.action.AccountAction"
+                method="listApi">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listInstance" class="py.console.action.InstanceAction"
+                method="list">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listInstanceByIp" class="py.console.action.InstanceAction"
+                method="listInstanceByIp">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listDriverContainer" class="py.console.action.InstanceAction"
+                method="listDriverContainer">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listInstanceDT" class="py.console.action.InstanceAction"
+                method="listDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="killInstance" class="py.console.action.InstanceAction"
+                method="kill">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="startInstance" class="py.console.action.InstanceAction"
+                method="start">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="stopInstance" class="py.console.action.InstanceAction"
+                method="stop">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getIp2serviceInfo" class="py.console.action.InstanceAction"
+                method="getIp2serviceInfo">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteVolume" class="py.console.action.VolumeAction"
+                method="deleteVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="markVolumesReadWrite" class="py.console.action.VolumeAction"
+                method="markVolumesReadWrite">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateCsiLaunchCount" class="py.console.action.VolumeAction"
+                method="updateCsiLaunchCount">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteVolumeDelay" class="py.console.action.VolumeAction"
+                method="deleteVolumeDelay">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="stopDeleteVolumeDelay" class="py.console.action.VolumeAction"
+                method="stopDeleteVolumeDelay">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="startDeleteVolumeDelay" class="py.console.action.VolumeAction"
+                method="startDeleteVolumeDelay">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancelDeleteVolumeDelay" class="py.console.action.VolumeAction"
+                method="cancelDeleteVolumeDelay">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="moveVolumeToRecycle" class="py.console.action.VolumeAction"
+                method="moveVolumeToRecycle">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listRecycleVolumeInfo" class="py.console.action.VolumeAction"
+                method="listRecycleVolumeInfo">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="recycleVolumeToNormal" class="py.console.action.VolumeAction"
+                method="recycleVolumeToNormal">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="moveVolume" class="py.console.action.VolumeAction"
+                method="moveVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="moveVolumeOnline" class="py.console.action.VolumeAction"
+                method="moveVolumeOnline">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="modifiedCatcheType" class="py.console.action.VolumeAction"
+                method="modifiedCatcheType">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="recycleVolume" class="py.console.action.VolumeAction"
+                method="recycleVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="confirmFixVolume" class="py.console.action.VolumeAction"
+                method="confirmFixVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="fixVolume" class="py.console.action.VolumeAction"
+                method="fixVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listVolume" class="py.console.action.VolumeAction"
+                method="listVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listVolumeDT" class="py.console.action.VolumeAction"
+                method="listVolumeDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listOrphanVolumeDT" class="py.console.action.VolumeAction"
+                method="listOrphanVolumeDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getCsiVolumePodInfo" class="py.console.action.VolumeAction"
+                method="getCsiVolumePodInfo">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createSnapshot" class="py.console.action.VolumeAction"
+                method="createSnapshot">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="deleteSnapshot" class="py.console.action.VolumeAction"
+                method="deleteSnapshot">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="rollbackFromSnapshot" class="py.console.action.VolumeAction"
+                method="rollbackFromSnapshot">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createVolume" class="py.console.action.VolumeAction"
+                method="createVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createSnapshotVolume" class="py.console.action.VolumeAction"
+                method="createSnapshotVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="viewVolume" class="py.console.action.VolumeAction"
+                method="viewVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="computeSegmentUnit" class="py.console.action.VolumeAction"
+                method="computeSegmentUnit">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="viewVolumeForSearch" class="py.console.action.VolumeAction"
+                method="viewVolumeForSearch">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getVolumeDetail" class="py.console.action.VolumeAction"
+                method="getVolumeDetail">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="obtainVolumeDetailShowFlag" class="py.console.action.VolumeAction"
+                method="obtainVolumeDetailShowFlag">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="viewSegmentList" class="py.console.action.VolumeAction"
+                method="viewSegmentList">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getSegmentSize" class="py.console.action.VolumeAction"
+                method="pullSegmentSize">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createVolume" class="py.console.action.VolumeAction"
+                method="createVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cloneVolume" class="py.console.action.VolumeAction"
+                method="cloneVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="launchVolume" class="py.console.action.VolumeAction"
+                method="launchVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="umountVolume" class="py.console.action.VolumeAction"
+                method="umountVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="markUmountDriverForCsi" class="py.console.action.VolumeAction"
+                method="markUmountDriverForCsi">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="addOrModifyIOLimit" class="py.console.action.VolumeAction"
+                method="addOrModifyIoLimit">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listIOLimit" class="py.console.action.VolumeAction"
+                method="listIoLimit">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteIOLimit" class="py.console.action.VolumeAction"
+                method="deleteIoLimit">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="extendVolume" class="py.console.action.VolumeAction"
+                method="extendVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="copyVolumeToExistVolume" class="py.console.action.VolumeAction"
+                method="copyVolumeToExistVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAllSnapshots" class="py.console.action.VolumeAction"
+                method="listAllSnapshots">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteRebalanceRule" class="py.console.action.CapacityAction"
+                method="deleteRebalanceRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listRebalanceRule" class="py.console.action.CapacityAction"
+                method="listRebalanceRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="addRebalanceRule" class="py.console.action.CapacityAction"
+                method="addRebalanceRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateRebalanceRule" class="py.console.action.CapacityAction"
+                method="updateRebalanceRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getAppliedRebalanceRulePool" class="py.console.action.CapacityAction"
+                method="getAppliedRebalanceRulePool">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="applyRebalanceRule" class="py.console.action.CapacityAction"
+                method="applyRebalanceRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="unApplyRebalanceRule" class="py.console.action.CapacityAction"
+                method="unApplyRebalanceRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getUnAppliedRebalanceRulePool" class="py.console.action.CapacityAction"
+                method="getUnAppliedRebalanceRulePool">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getCapacity" class="py.console.action.CapacityAction"
+                method="retrieveSystemCapacity">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="rebalanceStarted" class="py.console.action.CapacityAction"
+                method="rebalanceStarted">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="pauseAutoRebalance" class="py.console.action.CapacityAction"
+                method="pauseAutoRebalance">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="startAutoRebalance" class="py.console.action.CapacityAction"
+                method="startAutoRebalance">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="retrieveCapacityRecord" class="py.console.action.CapacityAction"
+                method="retrieveCapacityRecord">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getNodeCounts" class="py.console.action.CapacityAction"
+                method="retrieveNodeCounts">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getVolumeCounts" class="py.console.action.CapacityAction"
+                method="retrieveVolumeCounts">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getTotalIOPSAndThroughput" class="py.console.action.CapacityAction"
+                method="retrieveTotalIoPsAndThroughput">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getDashboardInfo" class="py.console.action.CapacityAction"
+                method="getDashboardInfo">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getSystemInfo" class="py.console.action.CapacityAction"
+                method="getSystemInfo">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="setDrop" class="py.console.action.CapacityAction"
+                method="setDrop">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="queryState" class="py.console.action.CapacityAction"
+                method="queryState">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="listAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="listVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getAccessRule" class="py.console.action.VolumeAccessRuleAction"
+                method="getAccessRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAccessRulesDT" class="py.console.action.VolumeAccessRuleAction"
+                method="listVolumeAccessRulesDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="queryVolumeAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="queryVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createVolumeAccessRule" class="py.console.action.VolumeAccessRuleAction"
+                method="createVolumeAccessRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="applyVolumeAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="applyVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancleVolumeAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="cancleVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listVolume2AccessRulesRelationship"
+                class="py.console.action.VolumeAccessRuleAction"
+                method="listVolume2AccessRulesRelationship">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteVolumeAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="deleteVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createIscsiAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="createIscsiAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listIscsiAccessRulesDT" class="py.console.action.VolumeAccessRuleAction"
+                method="listIscsiAccessRulesDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteIscsiAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="deleteIscsiAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancelIscsiAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="cancelIscsiAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="applyIscsiAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="applyIscsiAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAllIscsiAccessRulesOnDriver" class="py.console.action.VolumeAccessRuleAction"
+                method="listAllIscsiAccessRulesOnDriver">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getUnappliedVolumes" class="py.console.action.VolumeAccessRuleAction"
+                method="getUnappliedVolumes">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getAppliedVolumes" class="py.console.action.VolumeAccessRuleAction"
+                method="getAppliedVolumes">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="applyVolumeAccessRuleOnVolumes" class="py.console.action.VolumeAccessRuleAction"
+                method="applyVolumeAccessRuleOnVolumes">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancelVolAccessRuleAllApplied" class="py.console.action.VolumeAccessRuleAction"
+                method="cancelVolAccessRuleAllApplied">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getDriversBeAppliedOneIscsisRule" class="py.console.action.VolumeAccessRuleAction"
+                method="getDriversBeAppliedOneIscsisRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getDriversBeUnappliedOneIscsisRule"
+                class="py.console.action.VolumeAccessRuleAction"
+                method="getDriversBeUnappliedOneIscsisRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="applyIscsiAccessRuleOnIscsis" class="py.console.action.VolumeAccessRuleAction"
+                method="applyIscsiAccessRuleOnIscsis">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancelIscsiAccessRuleAllApplied" class="py.console.action.VolumeAccessRuleAction"
+                method="cancelIscsiAccessRuleAllApplied">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="listServices" class="py.console.action.ServiceAction"
+                method="listServices">
+            <result name="servicesList" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listService" class="py.console.action.ServiceAction"
+                method="listService">
+            <result name="serviceList" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deactivate" class="py.console.action.ServiceAction"
+                method="deactivate">
+            <result name="success" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="activate" class="py.console.action.ServiceAction"
+                method="activate">
+            <result name="success" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="startup" class="py.console.action.ServiceAction"
+                method="startup">
+            <result name="success" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="shutdown" class="py.console.action.ServiceAction"
+                method="shutdown">
+            <result name="success" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listPerformance" class="py.console.action.PerformanceAction"
+                method="list">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="pullPerformances" class="py.console.action.PerformanceAction"
+                method="pullPerformances">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="pullPerformanceRealTime" class="py.console.action.PerformanceAction"
+                method="pullPerformanceRealTime">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="getCapacity" class="py.console.action.CapacityAction"
+                method="retrieveSystemCapacity">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="rebalanceStarted" class="py.console.action.CapacityAction"
+                method="rebalanceStarted">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="pauseAutoRebalance" class="py.console.action.CapacityAction"
+                method="pauseAutoRebalance">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="startAutoRebalance" class="py.console.action.CapacityAction"
+                method="startAutoRebalance">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="retrieveCapacityRecord" class="py.console.action.CapacityAction"
+                method="retrieveCapacityRecord">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getNodeCounts" class="py.console.action.CapacityAction"
+                method="retrieveNodeCounts">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getVolumeCounts" class="py.console.action.CapacityAction"
+                method="retrieveVolumeCounts">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getTotalIOPSAndThroughput" class="py.console.action.CapacityAction"
+                method="retrieveTotalIoPsAndThroughput">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="listVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAccessRulesDT" class="py.console.action.VolumeAccessRuleAction"
+                method="listVolumeAccessRulesDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="queryVolumeAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="queryVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createVolumeAccessRule" class="py.console.action.VolumeAccessRuleAction"
+                method="createVolumeAccessRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="applyVolumeAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="applyVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancleVolumeAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="cancleVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listVolume2AccessRulesRelationship"
+                class="py.console.action.VolumeAccessRuleAction"
+                method="listVolume2AccessRulesRelationship">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteVolumeAccessRules" class="py.console.action.VolumeAccessRuleAction"
+                method="deleteVolumeAccessRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listServices" class="py.console.action.ServiceAction"
+                method="listServices">
+            <result name="servicesList" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listService" class="py.console.action.ServiceAction"
+                method="listService">
+            <result name="serviceList" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deactivate" class="py.console.action.ServiceAction"
+                method="deactivate">
+            <result name="success" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="activate" class="py.console.action.ServiceAction"
+                method="activate">
+            <result name="success" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="startup" class="py.console.action.ServiceAction"
+                method="startup">
+            <result name="success" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="shutdown" class="py.console.action.ServiceAction"
+                method="shutdown">
+            <result name="success" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listPerformance" class="py.console.action.PerformanceAction"
+                method="list">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="pullPerformances" class="py.console.action.PerformanceAction"
+                method="pullPerformances">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="pullPerformanceRealTime" class="py.console.action.PerformanceAction"
+                method="pullPerformanceRealTime">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <!-- LICENSE FUNCTION -->
+        <action name="obtainLicenseString" class="py.console.action.LicenseAction"
+                method="obtainLicenseString">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="installLicense" class="py.console.action.LicenseAction"
+                method="installLicense">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateLicense" class="py.console.action.LicenseAction"
+                method="updateLicense">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="genericSequenceNumber" class="py.console.action.LicenseAction"
+                method="genericUserSequenceNumber">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <!-- DISK MANAGE FUNCTION -->
+        <action name="listInstanceMetaData" class="py.console.action.DiskAction"
+                method="listInstanceMetaData">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listInstanceMetaDataDT" class="py.console.action.DiskAction"
+                method="listInstanceMetaDataDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="restoreCurrentDatanodeInstanceID" class="py.console.action.DiskAction"
+                method="restoreCurrentDatanodeInstanceId">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listArchiveMetaData" class="py.console.action.DiskAction"
+                method="listArchiveMetaData">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listDisk" class="py.console.action.DiskAction"
+                method="listDisk">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getDiskCount" class="py.console.action.DiskAction"
+                method="getDiskCount">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getDisk" class="py.console.action.DiskAction"
+                method="getDisk">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="onlineDisk" class="py.console.action.DiskAction"
+                method="onlineDisk">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="offlineDisk" class="py.console.action.DiskAction"
+                method="offlineDisk">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="fixBrokenDisk" class="py.console.action.DiskAction"
+                method="fixBrokenDisk">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="fixConfigMismatchDisk" class="py.console.action.DiskAction"
+                method="fixConfigMismatchDisk">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listServernodes" class="py.console.action.DiskAction"
+                method="listServernodes">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="makeRandom" class="py.console.action.DiskAction"
+                method="makeRandom">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getServernodeById" class="py.console.action.DiskAction"
+                method="getServernodeById">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateServernode" class="py.console.action.DiskAction"
+                method="updateServernode">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteServerNodes" class="py.console.action.DiskAction"
+                method="deleteServerNodes">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listServerNodesFormatLayer" class="py.console.action.DiskAction"
+                method="listServerNodesFormatLayer">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="changeDiskLightStatus" class="py.console.action.DiskAction"
+                method="changeDiskLightStatus">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAllDisk" class="py.console.action.DiskAction"
+                method="listAllDisk">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="markInstanceMaintenance" class="py.console.action.DiskAction"
+                method="markInstanceMaintenance">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancelInstanceMaintenance" class="py.console.action.DiskAction"
+                method="cancelInstanceMaintenance">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="onlineDiskWithSettleArchiveType" class="py.console.action.DiskAction"
+                method="onlineDiskWithSettleArchiveType">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="obtainDiskSmartInfo" class="py.console.action.DiskAction"
+                method="obtainDiskSmartInfo">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+
+        <!-- DOMAIN FUNCTION -->
+        <action name="createDomain" class="py.console.action.DomainAction"
+                method="createDomain">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateDomain" class="py.console.action.DomainAction"
+                method="updateDomain">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteDomain" class="py.console.action.DomainAction"
+                method="deleteDomain">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listDomains" class="py.console.action.DomainAction"
+                method="listDomains">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listDomainsDT" class="py.console.action.DomainAction"
+                method="listDomainsDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listInstances" class="py.console.action.DomainAction"
+                method="listInstances">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listUsedDatanodesByDomainId" class="py.console.action.DomainAction"
+                method="listUsedDatanodesByDomainId">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listUnusedDatanodesByDomainId" class="py.console.action.DomainAction"
+                method="listUnusedDatanodesByDomainId">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="removeDatanodeFromDomain" class="py.console.action.DomainAction"
+                method="removeDatanodeFromDomain">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="dynamicConfigCoordinator" class="py.console.action.DomainAction"
+                method="dynamicConfigCoordinator">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getShadowPageConfigStatus" class="py.console.action.DomainAction"
+                method="getShadowPageConfigStatus">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="dynamicConfigDatanodeShadowPage" class="py.console.action.DomainAction"
+                method="dynamicConfigDatanodeShadowPage">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="dynamicConfigCoordinatorsBindingOneVolume" class="py.console.action.DomainAction"
+                method="dynamicConfigCoordinatorsBindingOneVolume">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getDiscardConfigStatus" class="py.console.action.DomainAction"
+                method="getDiscardConfigStatus">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="disableAllDiscardConfigCoordinator" class="py.console.action.DomainAction"
+                method="disableAllDiscardConfigCoordinator">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="discardAll" class="py.console.action.DomainAction"
+                method="discardAll">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="stopDiscardingAll" class="py.console.action.DomainAction"
+                method="stopDiscardingAll">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="discardingAll" class="py.console.action.DomainAction"
+                method="discardingAll">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createStoragePool" class="py.console.action.StoragePoolAction"
+                method="createStoragePool">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listStoragePool" class="py.console.action.StoragePoolAction"
+                method="listStoragePool">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listStoragePoolCapacity" class="py.console.action.StoragePoolAction"
+                method="listStoragePoolCapacity">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="IsPoolhasPerformanceData" class="py.console.action.StoragePoolAction"
+                method="isPoolHasPerformanceData">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="listStoragePoolDT" class="py.console.action.StoragePoolAction"
+                method="listStoragePoolDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="listUnusedArchives" class="py.console.action.StoragePoolAction"
+                method="listUnusedArchives">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateStoragePool" class="py.console.action.StoragePoolAction"
+                method="updateStoragePool">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="removeArchivefromStoragePool" class="py.console.action.StoragePoolAction"
+                method="removeArchivefromStoragePool">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteStoragePool" class="py.console.action.StoragePoolAction"
+                method="deleteStoragePool">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listOperation" class="py.console.action.OperationAction"
+                method="listOperation">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listOperationLogByTime" class="py.console.action.OperationAction"
+                method="listOperationLogByTime">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listDriverLinkedLogByTime" class="py.console.action.OperationAction"
+                method="listDriverLinkedLogByTime">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listOperationDT" class="py.console.action.OperationAction"
+                method="listOperationDt">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getFtpInfo" class="py.console.action.OperationAction"
+                method="getFtpInfo">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="saveOperationLogsToCSV" class="py.console.action.OperationAction"
+                method="saveOperationLogsToCsv">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileStream</param>
+                <param name="contentDisposition">attachment;filename="operation_log.csv"</param>
+                <param name="bufferSize">8192</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">dataMap</param>
+                <param name="ignoreHierarchy">false</param>
+            </result>
+        </action>
+        <!-- ALARM FUNCTION -->
+        <action name="listAlarms" class="py.console.action.AlarmAction"
+                method="listAlarms">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="showLicenseMessages" class="py.console.action.LicenseAction"
+                method="showLicenseMessages">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAlert" class="py.console.action.AlertAction"
+                method="listAlert">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAlertsCount" class="py.console.action.AlertAction"
+                method="listAlertsCount">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="acknowledgerAlert" class="py.console.action.AlertAction"
+                method="acknowledgerAlert">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="clearAcknowledgerAlert" class="py.console.action.AlertAction"
+                method="clearAcknowledgerAlert">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="clearAlert" class="py.console.action.AlertAction"
+                method="clearAlert">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteAlerts" class="py.console.action.AlertAction"
+                method="deleteAlerts">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAlertTemplate" class="py.console.action.AlertAction"
+                method="listAlertTemplate">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="saveSnmpForward" class="py.console.action.AlertAction"
+                method="saveSnmpForward">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listSnmpForward" class="py.console.action.AlertAction"
+                method="listSnmpForward">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createRule" class="py.console.action.AlertAction"
+                method="createRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateRule" class="py.console.action.AlertAction"
+                method="updateRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteRootAlertRule" class="py.console.action.AlertAction"
+                method="deleteRootAlertRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="mergeAlertRule" class="py.console.action.AlertAction"
+                method="mergeAlertRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="saveAlertForwardingConfiguration" class="py.console.action.AlertAction"
+                method="saveAlertForwardingConfiguration">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getAlertForwardingConfig" class="py.console.action.AlertAction"
+                method="getAlertForwardingConfig">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateSnmpForwardItem" class="py.console.action.AlertAction"
+                method="updateSnmpForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteSnmpForwardItem" class="py.console.action.AlertAction"
+                method="deleteSnmpForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateEmailForwardItem" class="py.console.action.AlertAction"
+                method="updateEmailForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="obtainPerformanceItem" class="py.console.action.AlertAction"
+                method="obtainPerformanceItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteEmailForwardItem" class="py.console.action.AlertAction"
+                method="deleteEmailForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="saveEmailForwardItem" class="py.console.action.AlertAction"
+                method="saveEmailForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listEmailForwardItem" class="py.console.action.AlertAction"
+                method="listEmailForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="saveMessageForwardItem" class="py.console.action.AlertAction"
+                method="saveMessageForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateMessageForwardItem" class="py.console.action.AlertAction"
+                method="updateMessageForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteMessageForwardItem" class="py.console.action.AlertAction"
+                method="deleteMessageForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listMessageForwardItem" class="py.console.action.AlertAction"
+                method="listMessageForwardItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="saveOrUpdateSmtpItem" class="py.console.action.AlertAction"
+                method="saveOrUpdateSmtpItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getSmtpItem" class="py.console.action.AlertAction"
+                method="getSmtpItem">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="enableAlertRule" class="py.console.action.AlertAction"
+                method="enableAlertRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="disableAlertRule" class="py.console.action.AlertAction"
+                method="disableAlertRule">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getResource" class="py.console.action.PerformanceTaskAction"
+                method="getResource">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getMoniorServer" class="py.console.action.PerformanceTaskAction"
+                method="getMoniorServer">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listPerformanceTask" class="py.console.action.PerformanceTaskAction"
+                method="listPerformanceTask">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="startPerformanceTask" class="py.console.action.PerformanceTaskAction"
+                method="startPerformanceTask">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deletePerformanceTask" class="py.console.action.PerformanceTaskAction"
+                method="deletePerformanceTask">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="stopPerformanceTask" class="py.console.action.PerformanceTaskAction"
+                method="stopPerformanceTask">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createPerformanceTask" class="py.console.action.PerformanceTaskAction"
+                method="createPerformanceTask">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listCompressedPerformanceByCount" class="py.console.action.PerformanceTaskAction"
+                method="listCompressedPerformanceByCount">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listMultiCompressedPerformanceData"
+                class="py.console.action.PerformanceTaskAction"
+                method="listMultiCompressedPerformanceData">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deletePerformanceSearchTemplate"
+                class="py.console.action.PerformanceTaskAction"
+                method="deletePerformanceSearchTemplate">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listPerformanceSearchTemplate"
+                class="py.console.action.PerformanceTaskAction"
+                method="listPerformanceSearchTemplate">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="saveOrUpdatePerformanceSearchTemplate"
+                class="py.console.action.PerformanceTaskAction"
+                method="saveOrUpdatePerformanceSearchTemplate">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getPerformanceDataTimeSpan" class="py.console.action.PerformanceTaskAction"
+                method="getPerformanceDataTimeSpan">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getPerformanceStatistics" class="py.console.action.PerformanceTaskAction"
+                method="getPerformanceStatistics">
+            <result name="success" type="stream">
+                <param name="contentType">application/octet-stream</param>
+                <param name="inputName">fileStream</param>
+                <param name="contentDisposition">attachment;filename="report_form.csv"</param>
+                <param name="bufferSize">8192</param>
+            </result>
+            <result name="error" type="json">
+                <param name="root">dataMap</param>
+                <param name="ignoreHierarchy">false</param>
+            </result>
+        </action>
+        <action name="createMigrationRules" class="py.console.action.QosAction"
+                method="createMigrationRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listMigrationRules" class="py.console.action.QosAction"
+                method="listMigrationRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateMigrationRules" class="py.console.action.QosAction"
+                method="updateMigrationRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteMigrationRules" class="py.console.action.QosAction"
+                method="deleteMigrationRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancelMigrationRules" class="py.console.action.QosAction"
+                method="cancelMigrationRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="applyMigrationRules" class="py.console.action.QosAction"
+                method="applyMigrationRules">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getAppliedStoragePools" class="py.console.action.QosAction"
+                method="getAppliedStoragePools">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getUnAppliedPools" class="py.console.action.QosAction"
+                method="getUnAppliedPools">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createIOLimitations" class="py.console.action.QosAction"
+                method="createIoLimitations">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateIOLimitations" class="py.console.action.QosAction"
+                method="updateIoLimitations">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listIOLimitations" class="py.console.action.QosAction"
+                method="listIoLimitations">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteIOLimitations" class="py.console.action.QosAction"
+                method="deleteIoLimitations">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getIOLimitationAppliedDrivers" class="py.console.action.QosAction"
+                method="getIoLimitationAppliedDrivers">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getIOLimitationUnappliedDrivers" class="py.console.action.QosAction"
+                method="getIoLimitationUnappliedDrivers">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="applyIOLimitations" class="py.console.action.QosAction"
+                method="applyIoLimitations">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="cancelIOLimitations" class="py.console.action.QosAction"
+                method="cancelIoLimitations">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <!-- CONFIGRATION FUNCTION -->
+        <!-- <action name="getConfiguration" class="py.console.action.ConfigurationAction"
+            method="getConfiguration"> <result name="resultOfGetConfiguration" type="json"></result>
+            </action> -->
+        <action name="setConfiguration" class="py.console.action.ConfigurationAction"
+                method="setConfiguration">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listAlertDetail" class="py.console.action.AlertAction"
+                method="listAlertDetail">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="listAllDrivers" class="py.console.action.DriverAction"
+                method="listAllDrivers">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="setIscsiChapControl" class="py.console.action.DriverAction"
+                method="setIscsiChapControl">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="createSCSIClient" class="py.console.action.DriverAction"
+                method="createScsiClient">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="deleteSCSIClient" class="py.console.action.DriverAction"
+                method="deleteScsiClient">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="listSCSIClient" class="py.console.action.DriverAction"
+                method="listScsiClient">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="availableDriverContainerForClient" class="py.console.action.DriverAction"
+                method="availableDriverContainerForClient">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="launchDriverForScsi" class="py.console.action.DriverAction"
+                method="launchDriverForScsi">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="umountDriverForScsi" class="py.console.action.DriverAction"
+                method="umountDriverForScsi">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="saveDTOUserAct" class="py.console.action.DtoUserAction"
+          method="saveDtoUserAct">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateDTOUserAct" class="py.console.action.DtoUserAction"
+          method="updateDtoUserAct">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="updateDTOUserFlagAcl" class="py.console.action.DtoUserAction"
+          method="updateDtoUserFlagAcl">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="listDTOUsersAct" class="py.console.action.DtoUserAction"
+          method="listDtoUsersAct">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getDTOUserAct" class="py.console.action.DtoUserAction"
+          method="getDtoUserAct">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="deleteDTOUsersAct" class="py.console.action.DtoUserAction"
+          method="deleteDtoUsersAct">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="getDTOSendLogCountAct" class="py.console.action.DtoLogAction"
+          method="getDtoSendLogCountAct">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="listDTOSendLogAct" class="py.console.action.DtoLogAction"
+          method="listDtoSendLogAct">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="deleteDTOSendLogAct" class="py.console.action.DtoLogAction"
+          method="deleteDtoSendLogAct">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+        <action name="checkZookeeperStatus" class="py.console.action.ZookeeperStatusAction"
+          method="checkZookeeperStatus">
+            <result name="dataMap" type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+
+    </package>
+    <package name="console_def" extends="struts-default" namespace="/">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
+        <action name="lang" class="py.console.action.LangAction">
+            <result name="success">index.jsp</result>
+        </action>
+        <action name="logout" class="py.console.action.LoginAction"
+                method="logout">
+            <result name="success">index.html</result>
+        </action>
+    </package>
+</struts> 

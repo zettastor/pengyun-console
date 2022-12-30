@@ -1,0 +1,11 @@
+'use strict';
+
+angular.module('SmartAdmin.Layout').service('loginService', function() {
+   
+    this.show = function (scope,level,message) {
+        scope.level=level;
+        scope.message=message;
+        scope.show=true;
+        
+    }
+});

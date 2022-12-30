@@ -1,0 +1,20 @@
+/*
+ * Copyright (c) 2022. PengYunNetWork
+ *
+ * This program is free software: you can use, redistribute, and/or modify it
+ * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+ * as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ *  You should have received a copy of the GNU Affero General Public License along with
+ *  this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.ui-searchFilter { display: none; position: absolute; z-index: 770; overflow: visible;}
+.ui-searchFilter table {position:relative; margin:0em; width:auto}
+.ui-searchFilter table td {margin: 0em; padding: 1px;}
+.ui-searchFilter table td input, .ui-searchFilter table td select {margin: 0.1em;}
+.ui-searchFilter .ui-state-default { cursor: pointer; }
+.ui-searchFilter .divider hr {margin: 1px; }

@@ -1,0 +1,329 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content" >
+	<div class="row crumb_row">
+		<big-breadcrumbs items="['存储池', '在域的基础上对存储资源基于磁盘粒度的再次划分，用户可根据规划，将存储资源划分多个资源池']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+		<alert-message  level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+	</div>
+	<state-breadcrumbs></state-breadcrumbs>
+	<section id="widget-grid" widget-grid>
+		<div class="row">
+			 <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 action_wrap" >
+				<button class="btn btn_green" data-toggle="modal" ng-click="doFocus('poolName')" ng-show="apis.StoragePool.createStoragePool" data-target="#create_modal" >
+					创建
+				</button>
+				<button class="btn btn_red" data-toggle="modal" ng-show="apis.StoragePool.deleteStoragePool" data-target="#delete_modal" ng-disabled="showPool.d" ng-click="deleteNames()">
+					删除
+				</button>
+				<div class="pull-right">
+					<button class="btn btn_lightblue" ng-click="reloadData()"> 刷新
+					</button>
+					<a type="button" class="btn btn_lightblue" ng-href="/#!/domain" > 返回
+					</a> 				
+				</div> 
+			</div>
+			<article class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+				<div class="widget-body">
+					<table datatable dt-options="showPool.dtOptions" id="poolTab" dt-columns="showPool.dtColumns" class="table table-striped  table-hover row-border hover poolTable" dt-instance="showPool.dtInstance" ></table>
+				</div>
+			</article>
+		</div>
+	</section>
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="create_modal">
+		<div class="modal-dialog" id="create_storagepool_dlg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" ng-click="createReset()">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">创建存储池</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" name="poolForm" id="createForm">
+						<div class="form-group" ng-class="{'has-error':poolForm.poolName.$invalid &&poolForm.poolName.$touched}">
+							<label class="col-sm-3 control-label">存储池名称<span class="required">* </span></label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" data-required="1"  
+								placeholder="存储池名称" name="poolName" ng-model="poolName" id="poolName" ng-minlength="2" ng-maxlength="64" ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/" onfocus="hideSth(this)" onblur="showSth(this)">
+								<p class="hoverTip "  ng-if="!(poolForm.poolName.$invalid &&!poolForm.poolName.$error.maxlength&& !poolForm.poolName.$pristine&& poolForm.poolName.$touched)&&!(poolForm.poolName.$error.maxlength&& poolForm.poolName.$touched)"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",长度2-64</p>
+								<span ng-show="poolForm.poolName.$invalid &&!poolForm.poolName.$error.maxlength&& !poolForm.poolName.$pristine&& poolForm.poolName.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",长度2-64</span>
+								<span ng-show="poolForm.poolName.$error.maxlength&& poolForm.poolName.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",至多64位</span>
+							</div>
+						</div>
+						<div class="form-group" ng-show='false'>
+							<label  class="col-sm-3 control-label">类型&nbsp;<i class="fa  fa-question-circle" data-html="true" data-toggle="tooltip" title="选择存储池特性"></i></label>
+							<div class="col-sm-7">
+								<select class="form-control selectpicker" name="strategy" id="strategy_create">
+									<option value="Capacity" selected="selected">容量</option>
+									<option value="Performance">性能</option>
+									<option value="Mixed">混合</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-3 control-label">描述</label>
+							<div class="col-sm-7">
+								<textarea 
+                  type="textarea" 
+                  class="form-control" 
+                  placeholder="描述" 
+                  id="description"
+                  ng-model="description"
+                  style="resize: none; height: 100px" 
+                ></textarea>
+                <p ng-if="!PoolFormDes">
+                  <i class="fa fa-exclamation-circle"></i>
+                    输入长度最多250位字符
+                </p>
+                <p class="help-block "
+                  ng-if="PoolFormDes">
+                  <i class="fa fa-exclamation-circle"></i>
+                    输入长度最多250位字符
+                </p>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn_blue"    ng-disabled="poolForm.$invalid || PoolFormDes" ng-click="create()">创建</button>
+					<button type="button" class="btn btn_default" data-dismiss="modal" ng-click="createReset()" >取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"  id="update_modal">
+		<div class="modal-dialog" >
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close"  data-dismiss="modal" ng-click="updateReset()">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">修改存储池</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" name="updateForm" id="updateForm" novalidate>
+						<div class="form-group" >
+							<label  class="col-sm-3 control-label">存储池ID</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" readonly ng-model="updateId" >
+							</div>
+						</div>
+						<div class="form-group" ng-class="{'has-error':updateForm.updateName.$invalid  && updateForm.updateName.$touched}">
+							<label class="col-sm-3 control-label">存储池名称<span class="required">* </span></label>
+							<div class="col-sm-7">
+								<input type="text" ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/" class="form-control" id="poolNameModify" name="updateName" ng-model="updateName" ng-minlength="2" ng-maxlength="64" data-required="1" >
+								<p class="hoverTip "  ng-if="!(updateForm.updateName.$invalid &&!updateForm.updateName.$error.maxlength&&!updateForm.updateName.$pristine&& updateForm.updateName.$touched)&&!(updateForm.updateName.$error.maxlength&& updateForm.updateName.$touched)"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",长度2-64</p>
+								<span ng-show="updateForm.updateName.$invalid &&!updateForm.updateName.$error.maxlength&&!updateForm.updateName.$pristine&& updateForm.updateName.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",长度2-64</span>
+								<span ng-show="updateForm.updateName.$error.maxlength&& updateForm.updateName.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i>  只能输入中英文、数字、"_",至多64位</span>
+							</div>
+						</div>
+						<div class="form-group" ng-show='false'>
+							<label  class="col-sm-3 control-label">类型&nbsp;<i class="fa  fa-question-circle" data-html="true" data-toggle="tooltip" title="选择存储池特性"></i></label>
+							<div class="col-sm-7">
+								<select class="form-control selectpicker"  name="updateStrategy" id="strategy_update">
+									<option value="Capacity">容量</option>
+									<option value="Performance">性能</option>
+									<option value="Mixed">混合</option>
+								</select>
+							</div>
+						</div>
+            <div class="form-group">
+							<label class="col-sm-3 control-label">描述</label>
+							<div class="col-sm-7">
+								<textarea 
+                  type="textarea" 
+                  class="form-control" 
+                  placeholder="描述" ng-model="updatedescription"
+                  style="resize: none; height: 100px" 
+                ></textarea>
+                <p ng-if="!UpdatedFormDes">
+                  <i class="fa fa-exclamation-circle"></i>
+                  输入长度最多250位字符
+                </p>
+                <p class="help-block "
+                  ng-if="UpdatedFormDes">
+                  <i class="fa fa-exclamation-circle"></i>
+                  输入长度最多250位字符
+                </p>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn_blue"     ng-disabled="updateForm.$invalid|| UpdatedFormDes"  ng-click="update()">修改</button>
+					<button type="button" class="btn btn_default" data-dismiss="modal" ng-click="updateReset()">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" tabindex="-1" role="dialog"
+		  aria-labelledby="myLargeModalLabel" id="confirm_modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">修改存储池</h4>
+				</div>
+				<div class="modal-body">
+					<div>
+						修改存储池成功
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn_lightblue" data-dismiss="modal"  >确定 </button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" tabindex="-1" role="dialog"
+		  aria-labelledby="myLargeModalLabel" id="delete_modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">删除存储池</h4>
+				</div>
+				<div class="modal-body">
+					<div>
+						 确定删除下面的存储池吗？
+					</div>
+					<div  class="deleteNames">{{deletenames}}</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn_blue" data-dismiss="modal"  ng-click="deletes()">删除</button>
+					<button type="button" class="btn btn_default" data-dismiss="modal" ng-click="reset()">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" id="disk_modal" ng-if="toShow" style="overflow-y: auto;">
+		<div class="modal-dialog" style="width:900px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close"  ng-click="toHide()">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h5 class="modal-title">查看磁盘<span id="showPoolName">:{{showPoolName}}</span></h5>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" >
+						<div class="form-group">
+							<div class="col-sm-4">
+								<h6 style="font-weight:normal;">已使用磁盘</h6>
+							</div>
+							<div class="pull-right" style="margin-right:15px">
+								<button class="btn btn_lightblue btn-sm" style="margin-top:5px;"  ng-click="modelRefresh()">刷新</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="tableList"  >
+									 <table datatable dt-options="showPool.dtOptionU" id="poolUsedTab" dt-columns="showPool.dtColumnU" class=" table table-striped  table-hover row-border hover useDiskTable updateTable" dt-instance="showPool.dtInstanceU"  ></table>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2">
+								<h6 style="font-weight:normal;">未使用磁盘</h6>
+							</div>
+							<div class="col-sm-4" >
+								<button class="btn btn_blue btn-sm" ng-show="apis.StoragePool.updateStoragePool"  style="margin-top:5px" ng-disabled="showPool.addDisk" ng-click="addDisk()"><i class="fa fa-arrow-up"></i>&nbsp;扩容</button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-12">
+								<div class="tableList" >
+									<table datatable dt-options="showPool.dtOptionN" id="poolUnuseTab" dt-columns="showPool.dtColumnN" class=" table table-striped  table-hover row-border hover newDiskTable updateTable" dt-instance="showPool.dtInstanceN"  ></table>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<input type="button"  class="btn btn_lightblue" value="完成" ng-click="toHide()"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal" tabindex="-1" role="dialog"
+		  aria-labelledby="myLargeModalLabel" id="remove_modal">
+		  <div class="modal-dialog">
+			  <div class="modal-content">
+				  <div class="modal-header">
+					  <button type="button" class="close" data-dismiss="modal">
+						  <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					  </button>
+					  <h4 class="modal-title">确认信息</h4>
+				  </div>
+				  <div class="modal-body">
+					  <div>
+						  确定移除该磁盘？磁盘一旦移除，磁盘中的数据将被删除，此操作不可逆，请慎重操作！
+					  </div>
+				  </div>
+				  <div class="modal-footer">
+					  <button type="button" class="btn btn_lightblue" data-dismiss="modal"  ng-click="remove()">确定</button>
+					  <button type="button" class="btn btn_default" data-dismiss="modal" >取消</button>
+				  </div>
+			  </div>
+		  </div>
+	</div>
+	 <div class="modal" tabindex="-1" role="dialog"
+		 aria-labelledby="myLargeModalLabel" id="diskspeed_modal" ng-if="diskShow" style="overflow-y:auto">
+		 <div class="modal-dialog" style="width:900px;">
+			 <div class="modal-content">
+				 <div class="modal-header">
+					 <button type="button" class="close" data-dismiss="modal" ng-click="resetSpeedDisk()">
+						 <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					 </button>
+					 <h5 class="modal-title">磁盘展示</h5>
+				 </div>
+				 <div class="modal-body">
+					 <table id="showDiskTab" datatable dt-options="showPool.dtOptionD" dt-columns="showPool.dtColumnD" class=" table table-striped  table-hover row-border hover updateTable speedTable"  dt-instance="showPool.dtInstanceD"  ></table>
+				 </div>
+				 <div class="modal-footer">
+					 <input type="button"  data-dismiss="modal" class="btn btn_lightblue" value="确定" ng-click="resetSpeedDisk()"/>
+				 </div>
+			 </div>
+		 </div>
+	 </div>
+	<div class="modal" tabindex="-1" role="dialog"
+		 aria-labelledby="myLargeModalLabel" id="prompt_modal">
+		<div class="modal-dialog" style="width:400px">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">提示</h4>
+				</div>
+				<div class="modal-body">
+					<div style="text-align:center;margin-bottom:20px">
+						<h3><i class="fa fa-check" style="color:#46884E"></i>  存储池创建成功</h3>
+						若需添加磁盘，点击<a  data-toggle='modal' data-target='#disk_modal' ng-click="prompt()"> 添加</a>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn_lightblue" data-dismiss="modal">完成</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

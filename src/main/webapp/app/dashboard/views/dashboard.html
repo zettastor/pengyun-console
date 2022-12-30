@@ -1,0 +1,161 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content"  >
+	<div class="row crumb_row">
+		<big-breadcrumbs items="['Dashboard', '展示 & 统计']" class="col-xs-12 col-sm-12 col-md-12 col-lg-12"></big-breadcrumbs>
+		<alert-message  level=level message=message show=show class="col-xs-8 col-sm-5 col-md-5 col-lg-3"></alert-message>
+	</div>
+	<state-breadcrumbs></state-breadcrumbs> 
+	<section id="widget-grid" widget-grid>
+		<div class="row" style="padding:0 5px;padding-right: 5px;" >
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"  style="padding: 0 5px;" ng-mouseover="queryState()">
+				<div class="widget_wrap dashboard_big_item">
+					<p class="widget_item_head"><strong>系统容量</strong></p>
+					<e-chart  option="systemCapacityOption" height="320px"></e-chart> 
+				</div>
+			</div>
+
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0 5px;" ng-dblclick="setDrop(true)">
+        <div class="widget_wrap dashboard_big_item">
+					<p class="widget_item_head"><strong>服务</strong></p>
+					<div class="widget_item_body"  ng-click="jumpService()">
+            <div class="widget_item_word_1_wrap left blue" >
+							<div class="service_wrap" style="display: inline-block;width: 70px;"></div>
+							<div style="display: inline-block;position: relative;top: -20px;">
+								&nbsp;
+								<span class="widget_item_word_1 blue" ng-bind="serviceTotal" style="cursor:auto;"></span>
+							</div>
+						</div>
+					</div>
+          <p class="widget_item_head" style="border-bottom-style: dashed;padding-bottom: 28px;margin-bottom: 60px;"></p>
+          <div class="widget_icon_contain">
+            <p class="correct_icon left" ng-click="jumpService('ok')">健康：<a class="healthy_num" ng-bind="serviceOK"></a></p>
+            <p class="error_icon pull-right" ng-click="jumpService('error')">错误：<a class="ill_num" ng-bind="serviceINC"></a></p>
+          </div>
+				</div>
+			</div>
+
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"  style="padding: 0 5px;">
+        <div class="widget_wrap dashboard_big_item">
+					<p class="widget_item_head"><strong>存储池</strong></p>
+					<div class="widget_item_body" data-toggle="modal" data-target="#choose_domain_modal" ng-click="getAllDomainName();">
+            <div class="widget_item_word_1_wrap left blue" >
+							<div class="storagepool_icon_wrap" style="display: inline-block;width: 70px;"></div>
+							<div style="display: inline-block;position: relative;top: -20px;">
+								&nbsp;
+								<span class="widget_item_word_1 blue" ng-bind="poolTotal" style="cursor:auto;"></span>
+							</div>
+						</div>
+					</div>
+          <p class="widget_item_head" style="border-bottom-style: dashed;padding-bottom: 28px;margin-bottom: 60px;"></p>
+          <div class="widget_icon_contain">
+            <p class="correct_icon left" ng-click="getAllDomainName('HIGH')" data-toggle="modal" data-target="#choose_domain_modal">健康：<a class="healthy_num" ng-bind="poolHigh"></a></p>
+            <p class="error_icon pull-right" ng-click="getAllDomainName('OTHER')" data-toggle="modal" data-target="#choose_domain_modal">亚健康：<a style="color: #c3992b" ng-bind="poolMiddle"></a></p>
+          </div>
+				</div>
+			</div>
+    </div>
+    <div class="row" style="padding:0 5px;padding-right: 5px;">
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0 5px;" >
+				<div class="widget_wrap dashboard_small_item">
+					<p class="widget_item_head"><strong>磁盘</strong></p>
+					<div class="widget_item_body" ng-click="jumpDisk()">
+						<div class="widget_item_img left">
+							<div class="disk_icon_wrap"></div>
+						</div>
+						<div class="widget_item_word_1_wrap left">
+							<span class="widget_item_word_1 blue" ng-bind="diskCountsAll"></span>
+						</div>
+					</div>
+					<div class="widget_item_foot">
+						<div class="widget_icon_contain">
+							<p class="correct_icon left" ng-click="jumpDisk('GOOD')">健康：<a class="healthy_num" ng-bind="diskCountsOK"></a></p>
+							<p class="error_icon pull-right" ng-click="jumpDisk('BAD')">错误：<a class="ill_num" ng-bind="diskCountsFailed"></a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0 5px;">
+				<div class="widget_wrap dashboard_small_item">
+					<p class="widget_item_head"><strong>卷</strong></p>
+					<div class="widget_item_body"  ng-click="jumpVolume()">
+						<div class="widget_item_img left">
+							<div class="volume_icon_wrap"></div>
+						</div>
+						<div class="widget_item_word_1_wrap left">
+							<span class="widget_item_word_1 blue" ng-bind="volumeTotal"></span>
+						</div>
+					</div>
+					<div class="widget_item_foot">
+						<div class="widget_icon_contain">
+							<p class="correct_icon left" ng-click="jumpVolume('HEALTHY')">健康：<a class="healthy_num" ng-bind="volumeCountsOK"></a></p>
+							<p class="error_icon pull-right" ng-click="jumpVolume('WRONG')">错误：<a class="ill_num" ng-bind="volumeCountsUnavailable"></a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="padding: 0 5px;">
+				<div class="widget_wrap dashboard_small_item">
+					<p class="widget_item_head"><strong>客户机</strong></p>
+					<div class="widget_item_body"   data-ui-sref="app.storage.accessRule">
+						<div class="widget_item_img left">
+							<div class="client_icon_wrap"></div>
+						</div>
+						<div class="widget_item_word_1_wrap left">
+							<span class="widget_item_word_1 blue" ng-bind="clientsTotal"></span>
+						</div>
+					</div>
+					<div class="widget_item_foot">
+						<div class="widget_icon_contain">
+							<p class="link_icon"  data-ui-sref="app.storage.allDriver">连接数: <a class="link_num" ng-bind="clientsConnected"></a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<div class="modal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" id="choose_domain_modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title">选择域</h4>
+				</div>
+				<div class="modal-body">
+					<form name="chooseForm" id="chooseForm" class="form-horizontal" novalidate>
+						<div class="form-group initColor"  ng-class="{ 'has-error' :!choose.volumeDomain&&chooseForm.$dirty}"  >
+							<label for="volumeDomain" class="col-sm-3 control-label">所在域<span class="required">* </span></label>
+
+							<div class="col-sm-7">
+								<select class="form-control selectpicker volumeDomainClass" id="volumeDomain"   data-required="1"  name="domain" ng-model="choose.volumeDomain" ng-init="choose.volumeDomain=domainGroups[0].value">
+									<option ng-repeat="option in domainGroups" value="{{option.value}}">{{option.txt}}</option>
+								</select>
+								<span class="help-block initTip" ng-if="!choose.volumeDomain&&chooseForm.$dirty">域必选</span>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn_blue " ng-disabled="chooseForm.$invalid" ng-click="jumpPool()" data-dismiss="modal">跳转</button>
+					<button type="button" class="btn btn_default" data-dismiss="modal">取消</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

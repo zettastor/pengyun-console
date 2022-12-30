@@ -1,0 +1,307 @@
+<!--
+  ~ Copyright (c) 2022. PengYunNetWork
+  ~
+  ~ This program is free software: you can use, redistribute, and/or modify it
+  ~ under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
+  ~ as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License along with
+  ~  this program. If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<div id="content">
+  <div class="row crumb_row">
+    <big-breadcrumbs 
+      items="['域', '针对存储资源节点粒度的划分，用户可根据规划，将存储资源划分多个域']" 
+      class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+    ></big-breadcrumbs>
+    <alert-message 
+      level=level 
+      message=message 
+      show=show 
+      class="col-xs-8 col-sm-5 col-md-5 col-lg-3"
+    ></alert-message>
+  </div>
+  <state-breadcrumbs></state-breadcrumbs>
+  <section id="widget-grid" widget-grid>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 action_wrap" >
+        <button 
+          class="btn btn_green" 
+          data-toggle="modal" 
+          ng-click="doFocus('domainName')" 
+          ng-show="apis.Domain.createDomain" 
+          data-target="#create_modal" >
+          创建
+        </button>
+        <button 
+          class="btn btn_red" 
+          data-toggle="modal" 
+          data-target="#delete_modal" 
+          ng-show="apis.Domain.deleteDomain" 
+          ng-click="deleteNames()" 
+          ng-disabled="showDomain.d">
+          删除
+        </button>
+        <div class="pull-right">
+          <button class="btn btn_lightblue" ng-click="reloadData()"> 刷新
+          </button> 
+        </div> 
+      </div>
+      <article class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+        <div class="widget-body">
+          <table 
+            datatable 
+            dt-options="showDomain.dtOptions" 
+            dt-columns="showDomain.dtColumns" 
+            class="table table-striped table-hover row-border hover domainTable" 
+            id="domainTab" 
+            dt-instance="showDomain.dtInstance" 
+          ></table>
+        </div>
+      </article>
+    </div>
+  </section>
+  
+  <div class="modal" tabindex="-1" role="dialog"
+      aria-labelledby="myLargeModalLabel" 
+      id="datanode_modal" ng-if="toShow" style="overflow-y: auto;" >
+    <div class="modal-dialog" style="width:900px;">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" ng-click="toHide()">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h5 class="modal-title">存储节点
+            <span id="showDomainName">:{{showDomainName}}</span></h5>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form" >
+            <div class="form-group">
+              <div class="col-sm-4">
+                <h6 style="font-weight:normal;">已使用节点</h6>
+              </div>
+              <div class="pull-right" style="margin-right:15px" >
+                <button class="btn btn_lightblue btn-sm" 
+                    style="margin-top:5px" ng-click="modelRefresh()">刷新</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="tableList" >
+                  <table datatable dt-options="showDomain.dtOptionU" id="domainUsedTab" dt-columns="showDomain.dtColumnU" class="table table-striped table-hover row-border hover useDatanodeTable updateTable" dt-instance="showDomain.dtInstanceU" ></table>
+                </div> 
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2" >
+                <h6 style="font-weight:normal;">未使用节点</h6>
+              </div>
+              <div class="col-sm-4">
+                <button class="btn btn_blue btn-sm" ng-show="apis.Domain.updateDomain" style="margin-top:5px" ng-disabled="showDomain.addDatanode" ng-click="addDatanode()"><i class="fa fa-arrow-up"></i>&nbsp;添加节点</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="tableList" >
+                  <table datatable dt-options="showDomain.dtOptionN" id="domainUnuseTab" dt-columns="showDomain.dtColumnN" class=" table table-striped table-hover row-border hover newDatanodeTable updateTable" dt-instance="showDomain.dtInstanceN" ></table>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" ng-if="apis.StoragePool.createStoragePool" style="margin-bottom:0px">
+              <div class="col-md-offset-7 col-md-5" style="text-align:right">
+                若创建存储池，点击<a ng-click="jumpToPool()" style="text-decoration:none"> 创建存储池</a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="btn btn_lightblue" value="完成" ng-click="toHide()"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="create_modal">
+    <div class="modal-dialog" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" ng-click="createReset()">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">创建域</h4>
+        </div>
+        <div class="modal-body">
+          <form name="createForm" class="form-horizontal" role="form" id="createForm" novalidate>
+            <div class="form-group" ng-class="{'has-error':createForm.domainName.$invalid &&!createForm.domainName.$pristine&&createForm.domainName.$touched}">
+              <label class="col-sm-3 control-label">域名称<span class="required" aria-required="true">* </span></label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="domainName" name="domainName" placeholder="域名称" ng-minlength="2" ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/" ng-maxlength="64" ng-model="domainName" required onfocus="hideSth(this)" onblur="showSth(this)">
+                  <p class="hoverTip " ng-if="!(createForm.domainName.$invalid &&!createForm.domainName.$error.maxlength&&!createForm.domainName.$pristine&& createForm.domainName.$touched)&&!(createForm.domainName.$error.maxlength&& createForm.domainName.$touched)"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</p>
+                  <span ng-show="createForm.domainName.$invalid &&!createForm.domainName.$error.maxlength&&!createForm.domainName.$pristine&& createForm.domainName.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</span>
+                  <span ng-show="createForm.domainName.$error.maxlength&& createForm.domainName.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",至多64位</span>
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label class="col-sm-3 control-label">描述</label>
+              <div class="col-sm-7">
+                <textarea 
+                  type="textarea" 
+                  class="form-control" 
+                  placeholder="描述最长250" 
+                  id="description"
+                  ng-model="description"
+                  style="resize: none; height: 100px" 
+                ></textarea>
+                <p ng-if="!CreateFormDes">
+                  <i class="fa fa-exclamation-circle"></i>
+                  输入长度最多250位字符
+                </p>
+                <p class="help-block "
+                  ng-if="CreateFormDes">
+                  <i class="fa fa-exclamation-circle"></i>
+                  输入长度最多250位字符
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_blue" ng-disabled="createForm.$invalid || CreateFormDes" ng-click="create()">创建</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal" ng-click="createReset()">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="update_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" ng-click="updateReset()">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">修改域</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form" name="updateForm" novalidate id="updateForm">
+            <div class="form-group" >
+              <label class="col-sm-3 control-label">域ID</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" readonly ng-model="udomainId"
+                >
+              </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error':updateForm.updatename.$invalid &&updateForm.updatename.$touched}">
+              <label class="col-sm-3 control-label">域名称<span class="required" aria-required="true">* </span></label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" id="domainNameModify" name="updatename" placeholder="域名称" ng-minlength="2"     ng-pattern="/^[a-zA-Z0-9_\u4e00-\u9fa5]{2,}$/" ng-maxlength="64" ng-model="udomainName" required onfocus="hideSth(this)" onblur="showSth(this)">
+                <p class="hoverTip " ng-if="!(updateForm.updatename.$invalid &&!updateForm.updatename.$error.maxlength&&!updateForm.updatename.$pristine&& updateForm.updatename.$touched)&&!(updateForm.updatename.$error.maxlength&& updateForm.updatename.$touched)"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</p>
+                <span ng-show="updateForm.updatename.$invalid &&!updateForm.updatename.$error.maxlength&&!updateForm.updatename.$pristine&& updateForm.updatename.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",长度2-64</span>
+                <span ng-show="updateForm.updatename.$error.maxlength&& updateForm.updatename.$touched" class="help-block"><i class="fa fa-exclamation-circle"></i> 只能输入中英文、数字、"_",至多64位</span>
+              </div>
+            </div>
+            
+            <div class="form-group" >
+              <label for="new_domain_description_edit" class="col-sm-3 control-label">描述</label>
+              <div class="col-sm-6">
+                <textarea 
+                type="textarea" 
+                class="form-control" 
+                placeholder="描述最长250" 
+                ng-model="udescription"
+                style="resize: none; height: 100px" 
+                ></textarea>
+              
+                <p ng-if="!UpdateFormDes">
+                <i class="fa fa-exclamation-circle"></i>
+                  输入长度最多250位字符
+                </p>
+                <p class="help-block "
+                  ng-if="UpdateFormDes">
+                  <i class="fa fa-exclamation-circle"></i>
+                  输入长度最多250位字符
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_blue" ng-disabled="updateForm.$invalid || UpdateFormDes"  ng-click="update()">修改</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal" ng-click="updateReset()">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" id="delete_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">删除域</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            确定删除下面的域吗？
+          </div>
+          <div class="deleteNames">{{deletenames}}</div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_blue" data-dismiss="modal" ng-click="deletes()">删除</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal" >取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" id="remove_modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">确认信息</h4>
+        </div>
+        <div class="modal-body">
+          <div>
+            确定移除此节点?
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_lightblue" data-dismiss="modal" ng-click="removeDatanode()">确定</button>
+          <button type="button" class="btn btn_default" data-dismiss="modal" >取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" id="prompt_modal">
+    <div class="modal-dialog" style="width:400px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">提示</h4>
+        </div>
+        <div class="modal-body">
+        <div style="text-align:center;margin-bottom:20px">
+          <h3><i class="fa fa-check" style="color:#46884E"></i> 域创建成功</h3>
+          若添加节点，点击<a data-toggle='modal' data-target='#datanode_modal' ng-click="prompt()"> 添加节点</a>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_lightblue" data-dismiss="modal">完成</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

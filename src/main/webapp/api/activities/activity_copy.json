@@ -1,0 +1,20 @@
+{
+  "activities":{
+    "last_update":"12/12/2013 9:43AM",
+    "types":[
+
+      {
+          "title":"alarm",
+          "name":"notify",
+          "length":1,
+          "reflashflag":1
+      },
+      {
+        "title":"operation",
+        "name":"tasks",
+        "length":2,
+        "reflashflag":2
+      }
+    ]
+  }
+}

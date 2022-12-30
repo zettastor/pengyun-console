@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VersionInformation>
+<name>鹏云ZettaStor分布式块存储系统软件</name>
+<branch>V2.6</branch>
+<timestamp>2019-08-19</timestamp>
+<NewFeature>
+	<property name="feature1" value="系统负载均衡功能支持" />
+	<property name="feature2" value="告警信息SNMP支持" />
+	<property name="feature3" value="WriteThrough功能支持" />
+</NewFeature>
+<FixedIssues>
+	<property name="fixed1" value="对用户界面进行优化" />
+	<property name="fixed2" value="解决其它若干已知问题" />
+</FixedIssues>
+<KnownIssues>
+	<property name="known1" value="无" />
+</KnownIssues>
+<support>
+	<property name="telephone" value="025-83413533" />
+	<property name="email" value="support@pengyunnetwork.com" />
+</support>
+<copyright>
+	<property name="corporation" value="南京鹏云网络科技有限公司" />
+</copyright>
+</VersionInformation>
