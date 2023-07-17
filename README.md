@@ -1,3 +1,1 @@
-pengyun-console
-===============
-
+pengyun-console is the system's control panel, where users can configure the system and view various types of system information through a web browser.
