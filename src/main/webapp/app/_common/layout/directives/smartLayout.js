@@ -1,22 +1,9 @@
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
 angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScope, $timeout, $interval, $q, SmartCss, APP_CONFIG) {
-    
+
     var _debug = 0;
 
     function getDocHeight() {
@@ -28,8 +15,8 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
         );
     }
 
-    var initialized = false, 
-           initializedResolver = $q.defer();
+    var initialized = false,
+        initializedResolver = $q.defer();
     initializedResolver.promise.then(function () {
         initialized = true;
     });
@@ -38,7 +25,7 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
         $document = $(document),
         $html = $('html'),
         $body = $('body'),
-        $navigation ,
+        $navigation,
         $menu,
         $ribbon,
         $footer,
@@ -73,7 +60,7 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
         compile: function (tElement, tAttributes) {
             tElement.removeAttr('smart-layout data-smart-layout');
 
-            var appViewHeight = 0 ,
+            var appViewHeight = 0,
                 appViewWidth = 0,
                 calcWidth,
                 calcHeight,
@@ -84,7 +71,7 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
 
             function resizeListener() {
 
-//                    full window height appHeight = Math.max($menu.outerHeight() - 10, getDocHeight() - 10);
+                //full window height appHeight = Math.max($menu.outerHeight() - 10, getDocHeight() - 10);
 
                 var menuHeight = $body.hasClass('menu-on-top') && $menu.is(':visible') ? $menu.height() : 0;
                 var menuWidth = !$body.hasClass('menu-on-top') && $menu.is(':visible') ? $menu.width() + $menu.offset().left : 0;

@@ -1,15 +1,14 @@
 /*
- * Copyright (c) 2010-2022. PengYunNetWork
+ * JQuery zTree excheck v3.5.28
+ * http://treejs.cn/
  *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
+ * Copyright (c) 2010 Hunter.z
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * Licensed same as jquery - MIT License
+ * http://www.opensource.org/licenses/mit-license.php
  *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
+ * email: hunter.z@263.net
+ * Date: 2017-01-20
  */
 (function($){
 	//default consts of excheck

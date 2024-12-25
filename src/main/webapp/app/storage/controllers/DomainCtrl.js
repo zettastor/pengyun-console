@@ -1,15 +1,16 @@
-/*
- * Copyright (c) 2022. PengYunNetWork
+/**
+ * Copyright (C) 2013-2024 Nanjing Pengyun Network Technology Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 "use strict";
@@ -117,12 +118,12 @@ angular
         })
         .withDOM(
           "<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
-            "t" +
-            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
+          "t" +
+          "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
         )
 
         .withBootstrap()
-        .withOption("processing", false)
+        .withOption("processing", true)
         .withOption("serverSide", true)
         .withOption("rowId", "domainId")
         .withOption("fnDrawCallback", drawCallback)
@@ -300,7 +301,7 @@ angular
         });
       };
 
-      function toggleAll(selectAll, selectedItems) {
+      function toggleAll (selectAll, selectedItems) {
         for (var id in selectedItems) {
           if (selectedItems.hasOwnProperty(id)) {
             selectedItems[id] = selectAll;
@@ -314,7 +315,7 @@ angular
           }
         }
       }
-      function toggleOne(selectedItems) {
+      function toggleOne (selectedItems) {
         var s = 0;
         var count = 0;
         for (var id in selectedItems) {
@@ -339,7 +340,7 @@ angular
         }
       }
 
-      function drawCallback(result) {
+      function drawCallback (result) {
         $(".selectpicker").selectpicker("render");
         vm.selectAll = false;
         vm.disabled = false;
@@ -362,8 +363,8 @@ angular
         $(".domainClearItem").remove();
         $(
           '<i class="fa fa-times-circle item-error-style domainClearItem" onclick="clearFilter(\'' +
-            "domainTab_filter" +
-            "')\"></i>"
+          "domainTab_filter" +
+          "')\"></i>"
         ).insertAfter($("#domainTab_filter").find("input"));
         if ($("#domainTab_filter").find("input").val() == "") {
           $(".domainClearItem").hide();
@@ -379,48 +380,48 @@ angular
           e.preventDefault();
           $("#domainTab").DataTable().search("").draw();
         });
-        
+
         if (refreshIds.length > 0) {
           $interval.cancel(intervalTime);
           intervalTime = $interval(domainInterval, 3000);
         }
       }
-      function domainInterval() {
+      function domainInterval () {
         if (timeFlag) {
           timeFlag = false;
           if (refreshIds.length > 0) {
-          $http({
-            method: "POST",
-            async: false,
-            url: "listDomains",
-            data: {
-              idsJson: JSON.stringify(refreshIds),
-            },
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            transformRequest: function (obj) {
-              var str = [];
-              for (var s in obj) {
-                str.push(
-                  encodeURIComponent(s) + "=" + encodeURIComponent(obj[s])
-                );
-              }
-              return str.join("&");
-            },
-          }).then(
-            function successCallback(response) {
-              timeFlag = true;
-              if (
-                response.data.domainList.length == 0 ||
-                refreshIds.length != response.data.domainList.length
-              ) {
-                $interval.cancel(intervalTime);
-                refreshIds = [];
-                vm.dtInstance.reloadData(null, false);
-              }
-            },
-            function errorCallback(response) {}
-          );
-          }else{
+            $http({
+              method: "POST",
+              async: false,
+              url: "listDomains",
+              data: {
+                idsJson: JSON.stringify(refreshIds),
+              },
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              transformRequest: function (obj) {
+                var str = [];
+                for (var s in obj) {
+                  str.push(
+                    encodeURIComponent(s) + "=" + encodeURIComponent(obj[s])
+                  );
+                }
+                return str.join("&");
+              },
+            }).then(
+              function successCallback (response) {
+                timeFlag = true;
+                if (
+                  response.data.domainList.length == 0 ||
+                  refreshIds.length != response.data.domainList.length
+                ) {
+                  $interval.cancel(intervalTime);
+                  refreshIds = [];
+                  vm.dtInstance.reloadData(null, false);
+                }
+              },
+              function errorCallback (response) { }
+            );
+          } else {
             $interval.cancel(intervalTime);
           }
         }
@@ -430,7 +431,7 @@ angular
         vm.dtInstance.reloadData(null, false);
       };
 
-      function fixTwoDecimal(value) {
+      function fixTwoDecimal (value) {
         return Math.round(value * 100) / 100;
       }
 
@@ -470,7 +471,7 @@ angular
             return str.join("&");
           },
         }).then(
-          function successCallback(response) {
+          function successCallback (response) {
             if (response.data.resultMessage.message == "success") {
               $("#create_modal").modal("hide");
               domainid = response.data.domain.domainId;
@@ -498,7 +499,7 @@ angular
             }
             vm.dtInstance.reloadData(null, false);
           },
-          function errorCallback(response) {
+          function errorCallback (response) {
             showMessage.show(
               $scope,
               "error",
@@ -540,7 +541,7 @@ angular
             return str.join("&");
           },
         }).then(
-          function successCallback(response) {
+          function successCallback (response) {
             if (response.data.resultMessage.message == "success") {
               showMessage.show(
                 $scope,
@@ -569,7 +570,7 @@ angular
             }
             vm.dtInstance.reloadData(null, false);
           },
-          function errorCallback(response) {
+          function errorCallback (response) {
             showMessage.show(
               $scope,
               "error",
@@ -619,7 +620,7 @@ angular
               return str.join("&");
             },
           }).then(
-            function successCallback(response) {
+            function successCallback (response) {
               if (response.data.resultMessage.message == "success") {
                 showMessage.show(
                   $scope,
@@ -647,7 +648,7 @@ angular
               }
               vm.dtInstance.reloadData(null, false);
             },
-            function errorCallback(response) {
+            function errorCallback (response) {
               showMessage.show(
                 $scope,
                 "error",
@@ -690,8 +691,8 @@ angular
         vm.dtOptionU = DTOptionsBuilder.newOptions()
           .withDOM(
             "<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
-              "t" +
-              "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
+            "t" +
+            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
           )
           .withBootstrap()
           .withOption("ajax", {
@@ -753,8 +754,8 @@ angular
 
             $(
               '<i class="fa fa-times-circle item-error-style domainUsedClearItem" onclick="clearFilter(\'' +
-                "domainUsedTab_filter" +
-                "')\"></i>"
+              "domainUsedTab_filter" +
+              "')\"></i>"
             ).insertAfter($("#domainUsedTab_filter").find("input"));
             if ($("#domainUsedTab_filter").find("input").val() == "") {
               $(".domainUsedClearItem").hide();
@@ -868,8 +869,8 @@ angular
         vm.dtOptionN = DTOptionsBuilder.newOptions()
           .withDOM(
             "<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
-              "t" +
-              "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
+            "t" +
+            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
           )
           .withBootstrap()
           .withOption("ajax", {
@@ -947,8 +948,8 @@ angular
 
             $(
               '<i class="fa fa-times-circle item-error-style domainUnuseClearItem" onclick="clearFilter(\'' +
-                "domainUnuseTab_filter" +
-                "')\"></i>"
+              "domainUnuseTab_filter" +
+              "')\"></i>"
             ).insertAfter($("#domainUnuseTab_filter").find("input"));
             if ($("#domainUnuseTab_filter").find("input").val() == "") {
               $(".domainUnuseClearItem").hide();
@@ -1053,7 +1054,7 @@ angular
           DTColumnBuilder.newColumn("port").withTitle("端口"),
         ];
       };
-      function toggleAllN(selectAll, selectedItems) {
+      function toggleAllN (selectAll, selectedItems) {
         for (var id in selectedItems) {
           if (selectedItems.hasOwnProperty(id)) {
             var name = $(".newDatanodeTable")
@@ -1072,7 +1073,7 @@ angular
           }
         }
       }
-      function toggleOneN(selectedItems) {
+      function toggleOneN (selectedItems) {
         var s = 0;
         var t = 0;
         for (var id in selectedItems) {
@@ -1131,7 +1132,7 @@ angular
             return str.join("&");
           },
         }).then(
-          function successCallback(response) {
+          function successCallback (response) {
             if (response.data.resultMessage.message == "success") {
               showMessage.show(
                 $scope,
@@ -1163,7 +1164,7 @@ angular
               }
             }
           },
-          function errorCallback(response) {
+          function errorCallback (response) {
             showMessage.show(
               $scope,
               "error",
@@ -1211,7 +1212,7 @@ angular
             return str.join("&");
           },
         }).then(
-          function successCallback(response) {
+          function successCallback (response) {
             if (response.data.resultMessage.message == "success") {
               showMessage.show(
                 $scope,
@@ -1258,7 +1259,7 @@ angular
               }
             }
           },
-          function errorCallback(response) {
+          function errorCallback (response) {
             showMessage.show(
               $scope,
               "error",

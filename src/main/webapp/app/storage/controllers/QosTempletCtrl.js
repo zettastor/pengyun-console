@@ -1,15 +1,16 @@
-/*
- * Copyright (c) 2022. PengYunNetWork
+/**
+ * Copyright (C) 2013-2024 Nanjing Pengyun Network Technology Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 'use strict';
@@ -43,11 +44,11 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       })
     }
   })
-  $scope.$watch('showFlag',function (val) {
-    if(val==3){
+  $scope.$watch('showFlag', function (val) {
+    if (val == 3) {
       getRebalanceSignal()
     }
-  },true)
+  }, true)
   var rebalanceStr = `<span class="rbmark">
 		<hr style="padding-top: 5px">
 		<div class="form-group">
@@ -264,8 +265,8 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     .withOption('processing', true)
     .withOption('serverSide', false)
     .withOption('fnInitComplete', function (result) {
-      $('#chkAllBtnIO').click((e) =>{
-        toggleAll(e.target.checked,vm.selectedIO)
+      $('#chkAllBtnIO').click((e) => {
+        toggleAll(e.target.checked, vm.selectedIO)
       })
     })
     .withOption('fnDrawCallback', function (result) {
@@ -446,8 +447,8 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     .withOption('processing', true)
     .withOption('serverSide', false)
     .withOption('fnInitComplete', function (result) {
-      $('#chkAllBtnRB').click((e) =>{
-        toggleAll(e.target.checked,vm.selectedRB)
+      $('#chkAllBtnRB').click((e) => {
+        toggleAll(e.target.checked, vm.selectedRB)
       })
     })
     .withOption('fnDrawCallback', function (result) {
@@ -833,7 +834,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       $("#rbContainerModify").find(".rbmark").eq(i).find(".addET").val(secondToClock(tempArr[i].endTime));
     }
   }
-  function secondToClock(obj) {
+  function secondToClock (obj) {
     let h = parseInt(obj / 3600);
     let m = (obj % 3600) / 60;
     if (h * 1 < 10) {
@@ -873,7 +874,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -931,7 +932,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     }
     return true;
   }
-  function isTime(str) {
+  function isTime (str) {
     var a = str.match(/^(\d{1,2})(:)?(\d{1,2})\2(\d{1,2})$/);
     if (a == null) { return false }
     if (a[1] > 24 || a[3] > 60 || a[4] > 60) {
@@ -1029,7 +1030,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -1097,7 +1098,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           $(".iopsUpper").attr("disabled", "disabled");
           $(".throughputLower").attr("disabled", "disabled");
           $(".throughputUpper").attr("disabled", "disabled");
-        }else{
+        } else {
           $(".iopsLower").removeAttr("disabled")
           $(".iopsUpper").removeAttr("disabled")
           $(".throughputLower").removeAttr("disabled")
@@ -1201,7 +1202,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -1513,7 +1514,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       $(e).parents("tr").siblings(".details_tr").remove()
     }
   }
-  function getIOData(obj, input) {
+  function getIOData (obj, input) {
     if (input) {
       return obj * 1 < 0 ? "" : obj;
     } else {
@@ -1783,7 +1784,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -1824,7 +1825,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -1865,7 +1866,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -1903,7 +1904,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -1954,7 +1955,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -1993,7 +1994,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -2081,7 +2082,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -2096,79 +2097,79 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       vm.dtInstanceRB.reloadData(null, false);
     })
   }
-  function deleteQOSRules(ruleListJson, isConfirmString) {
-      $http({
-        async: false,
-        method: "post",
-        data: { "commit": isConfirmString, "ioLimitationsJson": ruleListJson },
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        url: "deleteIOLimitations",
-        transformRequest: function (obj) {
-          var str = [];
-          for (var s in obj) {
-            str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
-          }
-          return str.join("&");
+  function deleteQOSRules (ruleListJson, isConfirmString) {
+    $http({
+      async: false,
+      method: "post",
+      data: { "commit": isConfirmString, "ioLimitationsJson": ruleListJson },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      url: "deleteIOLimitations",
+      transformRequest: function (obj) {
+        var str = [];
+        for (var s in obj) {
+          str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
         }
-      }).then(function successCallback(data) {
-        data = data.data;
-        if (isConfirmString == "true") {
-          if (data.resultMessage.message != "success") {
-            if (data.resultMessage.message == "ERROR_0019_SessionOut") {
-              showMessage.show($scope, "warn", translate.getWord("session.out"));
-              $scope.logout();
-            } else {
-              showMessage.show($scope, "error", translate.getWord(data.resultMessage.message));
-            }
+        return str.join("&");
+      }
+    }).then(function successCallback (data) {
+      data = data.data;
+      if (isConfirmString == "true") {
+        if (data.resultMessage.message != "success") {
+          if (data.resultMessage.message == "ERROR_0019_SessionOut") {
+            showMessage.show($scope, "warn", translate.getWord("session.out"));
+            $scope.logout();
           } else {
-            showMessage.show($scope, "success", translate.getWord("response.success"));
+            showMessage.show($scope, "error", translate.getWord(data.resultMessage.message));
           }
-          vm.dtInstanceIO.reloadData(null, false);
-          return;
-        }
-        if (data.beAppliedIOLimitation2Drivers) {
-          var warningMessage = "这些IO应用于某些驱动，您确定要删除它们吗？";
-          var ioArr = [];
-          $.map(data.beAppliedIOLimitation2Drivers, function (k, v) {
-            ioArr = [];
-            for (var i = 0; i < k.length; i++) {
-              var a = k[i].driverType;
-              var b = k[i].driverContainerIp;
-              var c = k[i].host;
-              ioArr.push(b + "(" + (a == "NBD" ? "PYD" : a) + "):" + c + "<br/>")
-            }
-
-            warningMessage += "<div class='deleteNames'>" + v.getQuery("limitationName") + "&nbsp;" + translate.getWord("apply.to") + "&nbsp;" + ioArr.join(",") + "</div>";
-          });
-
-          newConfirm(translate.getWord("disk.operation.confirm"), warningMessage, function (rt) {
-            if (rt) {
-              deleteQOSRules(ruleListJson, "true");
-            }
-          }, translate.getWord("button.confirm"), translate.getWord("button.cancel"))
         } else {
-          if (data.resultMessage.message != "success") {
-            if (data.resultMessage.message == "ERROR_0019_SessionOut") {
-              showMessage.show($scope, "warn", translate.getWord("session.out"));
-              $scope.logout();
-            } else {
-              showMessage.show($scope, "error", translate.getWord(data.resultMessage.message));
-            }
-          } else {
-            showMessage.show($scope, "success", translate.getWord("response.success"));
-          }
-          vm.dtInstanceIO.reloadData(null, false);
-          return;
+          showMessage.show($scope, "success", translate.getWord("response.success"));
         }
-      });
-  }
-  
+        vm.dtInstanceIO.reloadData(null, false);
+        return;
+      }
+      if (data.beAppliedIOLimitation2Drivers) {
+        var warningMessage = "这些IO应用于某些驱动，您确定要删除它们吗？";
+        var ioArr = [];
+        $.map(data.beAppliedIOLimitation2Drivers, function (k, v) {
+          ioArr = [];
+          for (var i = 0; i < k.length; i++) {
+            var a = k[i].driverType;
+            var b = k[i].driverContainerIp;
+            var c = k[i].host;
+            ioArr.push(b + "(" + (a == "NBD" ? "PYD" : a) + "):" + c + "<br/>")
+          }
 
-  function timeToSecond(t) {
+          warningMessage += "<div class='deleteNames'>" + v.getQuery("limitationName") + "&nbsp;" + translate.getWord("apply.to") + "&nbsp;" + ioArr.join(",") + "</div>";
+        });
+
+        newConfirm(translate.getWord("disk.operation.confirm"), warningMessage, function (rt) {
+          if (rt) {
+            deleteQOSRules(ruleListJson, "true");
+          }
+        }, translate.getWord("button.confirm"), translate.getWord("button.cancel"))
+      } else {
+        if (data.resultMessage.message != "success") {
+          if (data.resultMessage.message == "ERROR_0019_SessionOut") {
+            showMessage.show($scope, "warn", translate.getWord("session.out"));
+            $scope.logout();
+          } else {
+            showMessage.show($scope, "error", translate.getWord(data.resultMessage.message));
+          }
+        } else {
+          showMessage.show($scope, "success", translate.getWord("response.success"));
+        }
+        vm.dtInstanceIO.reloadData(null, false);
+        return;
+      }
+    });
+  }
+
+
+  function timeToSecond (t) {
     var timeArr = t.split(":");
     return (timeArr[0] * 60 + timeArr[1] * 1) * 60
   }
-  function secondToTime(t, f) {
+  function secondToTime (t, f) {
     if (f) {
       var allMin = parseInt(t / 60);
       return addZero(parseInt(allMin / 60)) + ":" + addZero(allMin % 60);
@@ -2177,7 +2178,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       return parseInt(allMin / 60) + "小时" + allMin % 60 + "分钟";
     }
   }
-  function addZero(t) {
+  function addZero (t) {
     if (t < 10) {
       return "0" + t;
     } else {
@@ -2227,7 +2228,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -2261,11 +2262,11 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       $scope.deleteNames = ruleNameListToDelete.join(",");
     }
   }
-  function toggleAll(selectAll, selectedItems) {
+  function toggleAll (selectAll, selectedItems) {
     for (var id in selectedItems) {
       if (selectedItems.hasOwnProperty(id)) {
         selectedItems[id] = selectAll;
-        $('#checkbox_' + id).prop('checked',selectAll);
+        $('#checkbox_' + id).prop('checked', selectAll);
       }
     }
     for (var id in selectedItems) {
@@ -2283,7 +2284,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     }
   }
 
-  function toggleOne(selectedItems) {
+  function toggleOne (selectedItems) {
     for (var id in selectedItems) {
       if (selectedItems[id]) {
         $('#deleteRules').prop("disabled", false)
@@ -2317,10 +2318,10 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       if (s > 0) {
         if (s == t) {
           vm.selectAll = true;
-          $('#chkAllBtn').prop('checked',true)
+          $('#chkAllBtn').prop('checked', true)
         } else {
           vm.selectAll = false;
-          $('#chkAllBtn').prop('checked',false)
+          $('#chkAllBtn').prop('checked', false)
         }
 
       }
@@ -2345,10 +2346,10 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       if (s > 0) {
         if (s == t) {
           vm.selectAllIO = true;
-          $('#chkAllBtnIO').prop('checked',true)
+          $('#chkAllBtnIO').prop('checked', true)
         } else {
           vm.selectAllIO = false;
-          $('#chkAllBtnIO').prop('checked',false)
+          $('#chkAllBtnIO').prop('checked', false)
         }
 
       }
@@ -2372,10 +2373,10 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       if (s > 0) {
         if (s == t) {
           vm.selectAllRB = true;
-          $('#chkAllBtnRB').prop('checked',true)
+          $('#chkAllBtnRB').prop('checked', true)
         } else {
           vm.selectAllRB = false;
-          $('#chkAllBtnRB').prop('checked',false)
+          $('#chkAllBtnRB').prop('checked', false)
         }
 
       }
@@ -2408,7 +2409,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       $("#ruleContainer").append($(".iomodel2").html())
     }
   }
-  function toggleAllAC(str, selectAll, selectedItems) {
+  function toggleAllAC (str, selectAll, selectedItems) {
     for (var id in selectedItems) {
       if (selectedItems.hasOwnProperty(id)) {
         var name = "";
@@ -2434,7 +2435,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     }
     $scope.clickEvt()
   }
-  function toggleOneAC(str, selectedItems) {
+  function toggleOneAC (str, selectedItems) {
     var s = 0;
     if (str == "apply") {
       for (var id in selectedItems) {
@@ -2604,7 +2605,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     $scope.mode = "";
     $("#mode").selectpicker("val", '');
     $("#mode").selectpicker("refresh");
-    $("#tacticsBusinessCreateWrap").html($compile('<input data-smart-uislider type="text" class="slider slider-primary" id="tacticsBusinessCreate" value="" data-slider-min="1" data-slider-max="100" data-slider-value="1"  data-slider-selection = "before" data-slider-handle="squar" data-slider-tooltip = "show" style="padding: 0 5px"><span class="pull-left" style="margin-top: -30px;color: #999">1</span><span class="pull-right" style="margin-top: -30px;color: #999">100</span>')($scope));
+    // $("#tacticsBusinessCreateWrap").html($compile('<input data-smart-uislider type="text" class="slider slider-primary" id="tacticsBusinessCreate" value="" data-slider-min="1" data-slider-max="100" data-slider-value="1"  data-slider-selection = "before" data-slider-handle="squar" data-slider-tooltip = "show" style="padding: 0 5px"><span class="pull-left" style="margin-top: -30px;color: #999">1</span><span class="pull-right" style="margin-top: -30px;color: #999">100</span>')($scope));
     $scope.hideEditSelect = 'Static';
     $("#limitType").selectpicker("val", 'Static');
     $("#limitType").selectpicker("refresh");
@@ -2651,13 +2652,13 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(response) {
+      }).then(function successCallback (response) {
         if (response.data.resultMessage.message == "success") {
           getRebalanceSignal();
 
         }
 
-      }, function errorCallback(response) {
+      }, function errorCallback (response) {
 
       });
 
@@ -2678,18 +2679,18 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(response) {
+      }).then(function successCallback (response) {
         if (response.data.resultMessage.message == "success") {
           getRebalanceSignal();
 
         }
 
-      }, function errorCallback(response) {
+      }, function errorCallback (response) {
 
       });
     }
   }
-  function getRebalanceSignal() {
+  function getRebalanceSignal () {
     $http({
       method: "post",
       async: false,
@@ -2704,19 +2705,19 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(response) {
+    }).then(function successCallback (response) {
       if (response.data.rebalanceStarted) {
         $(".bootstrap-switch").removeClass("bootstrap-switch-off").addClass("bootstrap-switch-on")
       } else {
         $(".bootstrap-switch").removeClass("bootstrap-switch-off").addClass("bootstrap-switch-off")
       }
-    }, function errorCallback(response) {
+    }, function errorCallback (response) {
 
     });
   }
 });
 
-function removeIOModel(obj, e) {
+function removeIOModel (obj, e) {
 
   $(obj).parent().parent().parent().remove()
   var temp = $('#ruleContainerModify').children('.iomark')
@@ -2728,7 +2729,7 @@ function removeIOModel(obj, e) {
     $(temp[i]).find('.pull-right').attr('disabled', false)
   }
 }
-function checkNonnegativeNumber(e) {
+function checkNonnegativeNumber (e) {
   e.value = e.value.replace(/\D/g, '');
   if (e.value.length != 1) {
     if ($(e).val().split("")[0] * 1 == 0) {
@@ -2736,7 +2737,7 @@ function checkNonnegativeNumber(e) {
     }
   }
 }
-function checkPositiveNumber(e) {
+function checkPositiveNumber (e) {
 
   if (e.value.length == 1) {
     e.value = e.value.replace(/[^1-9]/g, '')
@@ -2744,7 +2745,7 @@ function checkPositiveNumber(e) {
     e.value = e.value.replace(/\D/g, '');
   }
 }
-function checkTransSpend(e) {
+function checkTransSpend (e) {
 
   if (e.value.length == 1) {
     e.value = e.value.replace(/[^1-9]/g, '')
@@ -2755,7 +2756,7 @@ function checkTransSpend(e) {
     e.value = e.value.substr(0, 2)
   }
 }
-function debounce(fn, delay = 1000) {
+function debounce (fn, delay = 1000) {
   var timer
   return function () {
     if (timer) {
@@ -2766,7 +2767,7 @@ function debounce(fn, delay = 1000) {
     }, delay);
   }
 }
-function throttle(fn, delay = 1000) {
+function throttle (fn, delay = 1000) {
   var timer
   return function () {
     if (!timer) {
