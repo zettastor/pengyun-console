@@ -1,0 +1,98 @@
+Apache PYSTOR DBS
+Copyright (C) 2013-2024 Nanjing Pengyun Network Technology Co., Ltd.
+
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+
+## Third Party Software Notices and Information
+1.
+This product includes software developed at The Apache Software Foundation (http://www.apache.org/).
+- Project: Apache Thrift
+- Version Used: 0.91 0.93
+- License: Apache License, Version 2.0
+- URL: https://thrift.apache.org/
+Copyright 2004-2023 The Apache Software Foundation
+
+2.
+This project incorporates software components from the Netty project.
+- Project Name: Netty
+- Version Used:  3.7.0 4.1.32
+- Homepage: https://netty.io/
+- License: Apache License, Version 2.0
+- License URL: https://www.apache.org/licenses/LICENSE-2.0
+Copyright 2008-2024 The Netty Project, All rights reserved.
+
+3.
+This project utilizes the Apache Tomcat web server and related components in version 8.5.50.
+- Project Name: Apache Tomcat
+- Version Used: 8.5.50
+- Homepage: https://tomcat.apache.org/
+- License: Apache License, Version 2.0
+- License URL: https://www.apache.org/licenses/LICENSE-2.0
+Copyright 1999-2022 The Apache Software Foundation. All rights reserved.
+
+4.
+This software pengyun-console incorporates software components from the JQuery zTree excheck project.
+- Project Name: JQuery zTree excheck
+- Version Used: v3.5.28
+- Homepage: http://treejs.cn/
+- License: MIT License
+- License URL: http://www.opensource.org/licenses/mit-license.php
+Copyright (c) 2010 Hunter.z
+Email: hunter.z@263.net
+Last Updated: 2017-01-20
+
+5.
+This software pengyun-console incorporates software components from the JQuery zTree core project.
+- Project Name: JQuery zTree core
+- Version Used: v3.5.29
+- Homepage: http://treejs.cn/
+- License: MIT License
+- License URL: http://www.opensource.org/licenses/mit-license.php
+Copyright (c) 2010 Hunter.z
+Email: hunter.z@263.net
+Last Updated: 2017-06-19
+
+6.
+This software pengyun-console incorporates software components from the JQuery zTree exedit project.
+- Project Name: JQuery zTree exedit
+- Version Used: v3.5.29
+- Homepage: http://treejs.cn/
+- License: MIT License
+- License URL: http://www.opensource.org/licenses/mit-license.php
+Copyright (c) 2010 Hunter.z
+Email: hunter.z@263.net
+Last Updated: 2017-06-19
+
+7.
+This software pengyun-console incorporates software components from the Bootstrap project.
+- Project Name: Bootstrap
+- Version Used: v3.3.7
+- Homepage: http://getbootstrap.com
+- License:  MIT 
+- License URL: https://github.com/twbs/bootstrap/blob/master/LICENSE
+Copyright 2011-2016 Twitter, Inc.
+
+8.
+This software pengyun-console incorporates software components from the jqGrid project.
+- Project Name: jqFilter  jQuery jqGrid filter addon.
+- License:  MIT 
+- License URL: http://www.opensource.org/licenses/mit-license.php
+Copyright (c) 2008, Tony Tomov, tony@trirand.com,
+Copyright (c) 2007,2008 Brice Burgess <bhb@iceburg.net>,
+Copyright (c) 2007 Brice Burgess <bhb@iceburg.net>, http://www.iceburg.net,Author:Stefan Goessner/2006,Author:Michael Schøler/2008-01-29,
+Copyright (c) 2011, Tony Tomov, tony@trirand.com,Author:Tony Tomov,Author: Mark Williams
+
+9.
+This software pengyun-console incorporates software components from the jqDnR project.
+- Project Name: jqDnR - Minimalistic Drag'n'Resize for jQuery.
+- License:  MIT 
+- License URL: http://www.opensource.org/licenses/mit-license.php
+Copyright (c) 2007 Brice Burgess <bhb@iceburg.net>, http://www.iceburg.net

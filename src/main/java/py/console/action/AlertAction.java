@@ -1,16 +1,17 @@
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+/**
+* Copyright (C) 2013-2024 Nanjing Pengyun Network Technology Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/ 
 
 package py.console.action;
 
@@ -26,12 +27,6 @@ import java.util.Map;
 import net.sf.json.JSONArray;
 import org.apache.commons.lang.StringUtils;
 import org.apache.thrift.TException;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import py.console.MessageForwardItem;
@@ -179,22 +174,6 @@ public class AlertAction extends ActionSupport {
       dataMap.put("resultMessage", resultMessage);
       return Constants.ACTION_RETURN_STRING;
     }
-    File file = new File(configFile);
-    if (!file.exists()) {
-      createXml();
-    }
-    SAXBuilder sb = new SAXBuilder();
-    Document doc = null;
-    try {
-      doc = sb.build(configFile);
-    } catch (JDOMException | IOException e) {
-      logger.error("exception catch", e);
-    }
-    Element root = doc.getRootElement();
-    Element element = root.getChild(relayType);
-    element.getChild("level").setText(alertLevel);
-    element.getChild("resource").setText(resources);
-    saveXml(doc);
 
     resultMessage.setMessage(ErrorCode2.ERROR_0000_SUCCESS);
     dataMap.put("resultMessage", resultMessage);
@@ -214,28 +193,6 @@ public class AlertAction extends ActionSupport {
       resultMessage.setMessage(ErrorCode2.ERROR_0019_SessionOut);
       dataMap.put("resultMessage", resultMessage);
       return Constants.ACTION_RETURN_STRING;
-    }
-    File file = new File(configFile);
-    if (!file.exists()) {
-      createXml();
-    }
-    SAXBuilder sb = new SAXBuilder();
-    Document doc = null;
-
-    try {
-      doc = sb.build(configFile);
-      Element root = doc.getRootElement();
-      Element element = root.getChild(relayType);
-      String level = element.getChildText("level");
-      String resource = element.getChildText("resource");
-      dataMap.put("level", level);
-      dataMap.put("resource", resource);
-      resultMessage.setMessage(ErrorCode2.ERROR_0000_SUCCESS);
-
-    } catch (JDOMException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
     }
 
     dataMap.put("resultMessage", resultMessage);
@@ -436,64 +393,6 @@ public class AlertAction extends ActionSupport {
     }
     dataMap.put("resultMessage", resultMessage);
     return Constants.ACTION_RETURN_STRING;
-  }
-
-  /**
-   * create Xml.
-   */
-  // first add volume cache type into xml
-  public void createXml() {
-    Element mailElement = new Element("mail");
-    Element mail1 = new Element("level");
-    Element mail2 = new Element("resource");
-    mailElement.addContent(mail1);
-    mailElement.addContent(mail2);
-    Element snmpElement = new Element("snmp");
-    Element snmp1 = new Element("level");
-    Element snmp2 = new Element("resource");
-    snmpElement.addContent(snmp1);
-    snmpElement.addContent(snmp2);
-    Element messageElement = new Element("message");
-    Element message1 = new Element("level");
-    Element message2 = new Element("resource");
-    messageElement.addContent(message1);
-    messageElement.addContent(message2);
-
-    Element root = new Element("CONFIG");
-    root.addContent(mailElement);
-    root.addContent(snmpElement);
-    root.addContent(messageElement);
-
-    Document document = new Document();
-    document.setRootElement(root);
-    saveXml(document);
-  }
-
-  /**
-   * save Xml.
-   *
-   * @param doc Document
-   */
-  public void saveXml(Document doc) {
-    // 将doc对象输出到文件
-    try {
-      // 创建xml文件输出流
-      XMLOutputter xmlopt = new XMLOutputter();
-
-      // 创建文件输出流
-      FileWriter writer = new FileWriter(configFile);
-
-      // 指定文档格式
-      Format fm = Format.getPrettyFormat();
-      // fm.setEncoding("GB2312");
-      xmlopt.setFormat(fm);
-
-      // 将doc写入到指定的文件中
-      xmlopt.output(doc, writer);
-      writer.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
   }
 
   /**

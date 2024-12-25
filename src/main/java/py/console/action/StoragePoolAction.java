@@ -1,16 +1,17 @@
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+/**
+* Copyright (C) 2013-2024 Nanjing Pengyun Network Technology Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/ 
 
 package py.console.action;
 
@@ -37,12 +38,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.thrift.TException;
 import org.apache.thrift.transport.TTransportException;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import py.console.bean.Account;
@@ -306,12 +301,6 @@ public class StoragePoolAction extends ActionSupport {
     simpleStoragePool.setStrategy(strategy);
     logger.warn("StoragePool will be created:{}", simpleStoragePool);
     // add security level into config.xml
-    File file = new File(configFile);
-    if (!file.exists()) {
-      createAndAddToXml(simpleStoragePool.getPoolId(), securityLevel);
-    } else {
-      addToXml(simpleStoragePool.getPoolId(), securityLevel);
-    }
     SimpleStoragePool createPool = new SimpleStoragePool();
     try {
       createPool = storagePoolService.createStoragePool(simpleStoragePool,
@@ -389,132 +378,12 @@ public class StoragePoolAction extends ActionSupport {
   }
 
   /**
-   * create And Add To Xml.
-   *
-   * @param id pool id
-   * @param securityLevel security level
-   */
-  // first add volume cache type into xml
-  public void createAndAddToXml(String id, String securityLevel) {
-    Element poolElement = new Element("pool");
-    poolElement.setAttribute("id", id);
-    poolElement.addContent(new Element("id").setText(id));
-    poolElement.addContent(new Element("securityLevel").setText(securityLevel));
-    Element root = new Element("CONFIG");
-    root.addContent(poolElement);
-    Document document = new Document();
-    document.setRootElement(root);
-    saveXml(document);
-  }
-
-  /**
-   * addToXml.
-   *
-   * @param id pool id
-   * @param securityLevel security level
-   */
-  public void addToXml(String id, String securityLevel) {
-    SAXBuilder sb = new SAXBuilder();
-    Document doc = null;
-    try {
-      doc = sb.build(configFile);
-    } catch (JDOMException | IOException e) {
-      logger.error("exception catch", e);
-    }
-    // List<Element> list = root.getChildren("volume");
-    Element poolElement = new Element("pool");
-    poolElement.setAttribute("id", id);
-    poolElement.addContent(new Element("id").setText(id));
-    poolElement.addContent(new Element("securityLevel").setText(securityLevel));
-    Element root = doc.getRootElement();
-    root.addContent(poolElement);
-    saveXml(doc);
-  }
-
-  /**
-   * modified Security Level.
-   *
-   * @param id pool id
-   * @param securityLevel security level
-   */
-  public void modifiedSecurityLevel(String id, String securityLevel) {
-    SAXBuilder sb = new SAXBuilder();
-    Document doc = null;
-    try {
-      doc = sb.build(configFile);
-    } catch (JDOMException | IOException e) {
-      logger.error("exception catch", e);
-    }
-    Element root = doc.getRootElement();
-    List<Element> list = root.getChildren("pool");
-    for (Element el : list) {
-      if (el.getAttributeValue("id").equals(id)) {
-        Element name = el.getChild("securityLevel");
-        name.setText(securityLevel);
-      }
-    }
-    saveXml(doc);
-
-  }
-
-  /**
-   * save Xml.
-   *
-   * @param doc Document
-   */
-  public void saveXml(Document doc) {
-    // 将doc对象输出到文件
-    try {
-      // 创建xml文件输出流
-      XMLOutputter xmlopt = new XMLOutputter();
-
-      // 创建文件输出流
-      FileWriter writer = new FileWriter(configFile);
-
-      // 指定文档格式
-      Format fm = Format.getPrettyFormat();
-      // fm.setEncoding("GB2312");
-      xmlopt.setFormat(fm);
-
-      // 将doc写入到指定的文件中
-      xmlopt.output(doc, writer);
-      writer.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
    * setting Security Level.
    *
    * @param poolList simple storage pool list
    * @return pool List
    */
   public List<SimpleStoragePool> settingSecurityLevel(List<SimpleStoragePool> poolList) {
-    SAXBuilder sb = new SAXBuilder();
-    Document doc = null;
-    File file = new File(configFile);
-    if (!file.exists()) {
-      return poolList;
-    }
-    try {
-      doc = sb.build(configFile);
-    } catch (JDOMException e) {
-      logger.error("exception catch", e);
-    } catch (IOException e) {
-      logger.error("exception catch", e);
-    }
-    Element root = doc.getRootElement();
-    List<Element> elements = root.getChildren("pool");
-    for (SimpleStoragePool pool : poolList) {
-      for (Element el : elements) {
-
-        if ((el.getChildText("id")).equals(pool.getPoolId())) {
-          pool.setSecurityLevel(el.getChildText("securityLevel"));
-
-        }
-      }
-    }
     return poolList;
   }
 
@@ -1013,9 +882,6 @@ public class StoragePoolAction extends ActionSupport {
       resultMessage.setMessage(ErrorCode2.ERROR_0019_SessionOut);
       dataMap.put("resultMessage", resultMessage);
       return Constants.ACTION_RETURN_STRING;
-    }
-    if (securityLevel != null && securityLevel.length() != 0) {
-      modifiedSecurityLevel(poolId, securityLevel);
     }
 
     SimpleStoragePool simpleStoragePool = new SimpleStoragePool();

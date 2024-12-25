@@ -1,16 +1,3 @@
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -80,19 +67,6 @@ appConfig.debugStyle_error = 'background-color:#ed1c24; font-weight:bold; color:
 appConfig.apiRootUrl = 'api';
 
 window.appConfig = appConfig;
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -108,23 +82,10 @@ $(function () {
  
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
-var BASE_API = '';
+var BASE_API = '/api/';
 angular.module('app', [
   'ngSanitize',
   'ngAnimate',
@@ -175,7 +136,7 @@ angular.module('app', [
   .config(function ($provide, $httpProvider, RestangularProvider, $translateProvider) {
     var lang = 'cn';
     $translateProvider.useStaticFilesLoader({
-      prefix: 'api/i18n/',
+      prefix: '/api/api/i18n/',
       suffix: '.json'
     });
     $translateProvider.preferredLanguage(lang);
@@ -196,9 +157,9 @@ angular.module('app', [
         },
         request: function (config) {
           config.headers = config.headers || {};
-          // if (config.method === 'POST') {
-          //   config.url = `/api/${config.url}`
-          // }
+          if (config.method === 'POST') {
+            config.url = `/api/${config.url}`
+          }
           return config || $q.when(config);
         },
         responseError: function (rejection) {
@@ -260,42 +221,7 @@ angular.module('app', [
         });
     });
   });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-(function(){
-    "use strict";
-
-    angular.module('SmartAdmin', [
-        "SmartAdmin.Forms",
-        "SmartAdmin.Layout",
-        "SmartAdmin.UI",
-    ]);
-})();
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -331,19 +257,6 @@ angular.module('app.auth', [
     facebookAppId: ''
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 angular.module('app.dashboard', [
@@ -369,19 +282,6 @@ angular.module('app.dashboard', [
         });
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -419,55 +319,7 @@ angular.module('app.hardware').config(function ($stateProvider) {
 		})
 }); 
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-"use strict";
-
-
-angular.module('app.layout', ['ui.router'])
-
-.config(function ($stateProvider, $urlRouterProvider) {
-
-
-    $stateProvider
-        .state('app', {
-            abstract: true,
-            views: {
-                root: {
-                    templateUrl: 'app/layout/layout.tpl.html'
-                }
-            }
-        });
-    $urlRouterProvider.otherwise('/dashboard');
-
-})
-
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -644,19 +496,6 @@ angular.module('app.storage').config(function ($stateProvider) {
 			}
 		})
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -716,19 +555,31 @@ angular.module('app.system').config(function ($stateProvider) {
     })
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
+
+"use strict";
+
+
+angular.module('app.layout', ['ui.router'])
+
+.config(function ($stateProvider, $urlRouterProvider) {
+
+
+    $stateProvider
+        .state('app', {
+            abstract: true,
+            views: {
+                root: {
+                    templateUrl: 'app/layout/layout.tpl.html'
+                }
+            }
+        });
+    $urlRouterProvider.otherwise('/dashboard');
+
+})
+
+
+
 
 "use strict";
 
@@ -819,112 +670,35 @@ angular.module('app.user').config(function ($stateProvider) {
 
 }); 
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 (function(){
     "use strict";
 
-    angular.module('SmartAdmin.Forms', []);
+    angular.module('SmartAdmin', [
+        "SmartAdmin.Forms",
+        "SmartAdmin.Layout",
+        "SmartAdmin.UI",
+    ]);
 })();
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 (function(){
     "use strict";
 
     angular.module('SmartAdmin.Layout', []);
 })();
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
+(function(){
+    "use strict";
+
+    angular.module('SmartAdmin.Forms', []);
+})();
 
 (function(){
     "use strict";
 
     angular.module('SmartAdmin.UI', []);
 })();
-    /*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-"use strict";
-
-
-angular.module('app.chat', ['ngSanitize'])
-.run(function ($templateCache) {
-
-    $templateCache.put("template/popover/popover.html",
-        "<div class=\"popover {{placement}}\" ng-class=\"{ in: isOpen(), fade: animation() }\">\n" +
-        "  <div class=\"arrow\"></div>\n" +
-        "\n" +
-        "  <div class=\"popover-inner\">\n" +
-        "      <h3 class=\"popover-title\" ng-bind-html=\"title | unsafe\" ng-show=\"title\"></h3>\n" +
-        "      <div class=\"popover-content\"ng-bind-html=\"content | unsafe\"></div>\n" +
-        "  </div>\n" +
-        "</div>\n" +
-        "");
-
-}).filter('unsafe', ['$sce', function ($sce) {
-    return function (val) {
-        return $sce.trustAsHtml(val);
-    };
-}]);
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -1391,19 +1165,37 @@ $(window).resize(function(){
 })
 
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
+
+"use strict";
+
+angular.module('app.auth').directive('loginInfo', function(User){
+
+    return {
+        restrict: 'A',
+        templateUrl: 'app/auth/directives/login-info.tpl.html',
+        link: function(scope, element){
+            User.initialized.then(function(){
+                scope.user = User
+            });
+        }
+    }
+})
+
+angular.module("app").run(["$templateCache", function($templateCache) {$templateCache.put("app/layout/layout.tpl.html","<div data-smart-include=\"app/layout/partials/header.tpl.html\" class=\"placeholder-header\"></div>\r\n\r\n<div data-smart-include=\"app/layout/partials/navigation.tpl.html\" class=\"placeholder-left-panel\"></div>\r\n\r\n<div id=\"main\" role=\"main\">\r\n	<mask>\r\n		<div class=\"loader\">\r\n			<div class=\"loader-inner ball-pulse\">\r\n				<div></div>\r\n				<div></div>\r\n				<div></div>\r\n			</div>\r\n		</div>\r\n	</mask>\r\n	<div id=\"ribbon\">\r\n		<span class=\"ribbon-button-alignment\">\r\n			<span id=\"refresh\" class=\"btn btn-ribbon\" tooltip-placement=\"bottom\">\r\n				<i class=\"fa fa-refresh\"></i>\r\n			</span>\r\n		</span>\r\n		<state-breadcrumbs></state-breadcrumbs>\r\n	</div>\r\n	<div data-smart-router-animation-wrap=\"content content@app\" data-wrap-for=\"#content\">\r\n		<div data-ui-view=\"content\" data-autoscroll=\"false\"></div>\r\n	</div>\r\n</div>\r\n\r\n<div data-smart-include=\"app/layout/partials/footer.tpl.html\"></div>\r\n");
+$templateCache.put("app/auth/directives/login-info.tpl.html","<div class=\"login-info ng-cloak\">\r\n    <span> <!-- User image size is adjusted inside CSS, it should stay as it -->\r\n        <a href=\"\">\r\n            <img ng-src=\"{{user.picture}}\" alt=\"me\" class=\"online\">\r\n            <span>{{user.username}}\r\n            </span>\r\n            <i class=\"fa fa-angle-down\"></i>\r\n        </a>\r\n    </span>\r\n</div>\r\n");
+$templateCache.put("app/layout/partials/footer.tpl.html","\r\n<div class=\"page-footer\" ng-controller=\"footCtrl\">\r\n  <div class=\"row\">\r\n    <div class=\"col-xs-12 col-sm-6\">\r\n    </div>\r\n  </div>\r\n  <div style=\"display:none\">\r\n    <alert-message level=level message=message show=show class=\"col-xs-8 col-sm-5 col-md-5 col-lg-3\"></alert-message>\r\n  </div><!-- 有用别删除 -->\r\n\r\n\r\n  <div class=\"modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\" id=\"version_modal\">\r\n    <div class=\"modal-dialog\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">\r\n            <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\r\n          </button>\r\n          <h4 class=\"modal-title\">当前版本</h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form class=\"form-horizontal\" role=\"form\" novalidate>\r\n            <div class=\"form-group\">\r\n              <div class=\"col-sm-3 col-sm-offset-4 control-label\">\r\n                <img src=\"styles/img/logo_version.png\" alt=\"Zhi Zhen\" style=\"width:135px\">\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">软件名称</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{name}}</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">当前版本</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{version}}</span>\r\n              </div>\r\n            </div>\r\n            <!--    <div class=\"form-group\">\r\n						   <label  class=\"col-sm-3 col-sm-offset-1 control-label\">时间</label>\r\n						   <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n							   <span>{{time}}</span>\r\n						   </div>\r\n					   </div> -->\r\n            <div class=\"form-group\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">公司名称</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{corporation}}</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\" style=\"display: none;\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">邮箱</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{email}}</span>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" style=\"display: none;\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">电话</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{tel}}</span>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" ng-show=\"fixBug\" style=\"display: none\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">修复问题\r\n\r\n              </label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px;color:#337AB7\">\r\n                <span ng-click=\"expand(\'fix\')\" style=\"cursor: pointer;\">展开</span>\r\n                <span class=\"glyphicon glyphicon-chevron-down fixSpan\" style=\"cursor: pointer;\" aria-hidden=\"true\"\r\n                  ng-click=\"expand(\'fix\')\"></span>\r\n              </div>\r\n              <div class=\"fixList col-sm-8 col-sm-offset-4\" ng-show=\"fixDiv\">\r\n\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\" ng-show=\"newIsu\" style=\"display: none\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">新增功能\r\n\r\n              </label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px;color:#337AB7\">\r\n                <span ng-click=\"expand(\'new\')\" style=\"cursor: pointer;\">展开</span>\r\n                <span class=\"glyphicon glyphicon-chevron-down newSpan\" style=\"cursor: pointer;\" aria-hidden=\"true\"\r\n                  ng-click=\"expand(\'new\')\"></span>\r\n              </div>\r\n              <div class=\"newList col-sm-8 col-sm-offset-4\" ng-show=\"newDiv\">\r\n\r\n              </div>\r\n            </div>\r\n\r\n          </form>\r\n\r\n\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n          <button type=\"button\" class=\"btn btn_lightblue\" data-dismiss=\"modal\">确定</button>\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <!--  begin update pwd modal -->\r\n  <div class=\"modal\" tabindex=\"-1\" id=\"update_pwd_modal\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\">\r\n    <div class=\"modal-dialog\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" ng-click=\"resetUpdate()\">\r\n            <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\r\n          </button>\r\n          <h4 class=\"modal-title\">修改密码</h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form class=\"form-horizontal\" role=\"form\" name=\"updateForm\" id=\"updateForm\" novalidate>\r\n            <div class=\"form-group\"\r\n              ng-class=\"{\'has-error\':updateForm.oldPassword.$invalid &&updateForm.oldPassword.$touched}\">\r\n              <label for=\"oldPassword\" class=\"col-sm-3 control-label\">旧密码<span class=\"required\" aria-required=\"true\">*\r\n                </span></label>\r\n              <div class=\"col-sm-7\">\r\n                <input type=\"password\" class=\"form-control\" name=\"oldPassword\" placeholder=\"旧密码\" ng-minlength=\"2\"\r\n                  ng-maxlength=\"64\" required ng-model=\"oldPwd\">\r\n                <span ng-show=\"updateForm.oldPassword.$error.minlength&& updateForm.oldPassword.$touched\"\r\n                  class=\"help-block\"><i class=\"fa fa-exclamation-circle\"></i> 至少两个字符</span>\r\n                <span ng-show=\"updateForm.oldPassword.$error.maxlength&& updateForm.oldPassword.$touched\"\r\n                  class=\"help-block\"><i class=\"fa fa-exclamation-circle\"></i> 至多十六个字符</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\" ng-class=\"{\'has-error\':updateForm.newPwd.$invalid &&updateForm.newPwd.$touched}\">\r\n              <label class=\"col-sm-3 control-label\">新密码<span class=\"required\" aria-required=\"true\">* </span></label>\r\n              <div class=\"col-sm-7\">\r\n                <input type=\"password\" class=\"form-control\" name=\"newPwd\" placeholder=\"新密码\" required ng-minlength=\"2\"\r\n                  ng-maxlength=\"64\" ng-model=\"newPwd\">\r\n\r\n                <span ng-show=\"updateForm.newPwd.$error.minlength&& updateForm.newPwd.$touched\" class=\"help-block\"><i\r\n                    class=\"fa fa-exclamation-circle\"></i> 至少两个字符</span>\r\n                <span ng-show=\"updateForm.newPwd.$error.maxlength&& updateForm.newPwd.$touched\" class=\"help-block\"><i\r\n                    class=\"fa fa-exclamation-circle\"></i> 至多十六个字符</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n              ng-class=\"{\'has-error\':updateForm.reNewPassword.$invalid && !updateForm.reNewPassword.$pristine&&updateForm.reNewPassword.$touched}\">\r\n              <label for=\"reNewPassword\" class=\"col-sm-3 control-label\">确认密码<span class=\"required\"\r\n                  aria-required=\"true\">* </span></label>\r\n              <div class=\"col-sm-7\">\r\n                <input type=\"password\" class=\"form-control\" name=\"reNewPassword\" placeholder=\"确认密码\"\r\n                  ng-model=\"reNewPassword\" compare=\"newPwd\">\r\n                <span\r\n                  ng-show=\"updateForm.reNewPassword.$error.compare &&updateForm.reNewPassword.$dirty&&updateForm.reNewPassword.$touched\"\r\n                  class=\"help-block\"><i class=\"fa fa-exclamation-circle\"></i> 两次密码输入不一致</span>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n          <button type=\"button\" class=\"btn btn_blue\" ng-disabled=\"updateForm.$invalid\" ng-click=\"updatePwd()\"\r\n            data-dismiss=\"modal\">修改</button>\r\n          <button type=\"button\" class=\"btn btn_default\" data-dismiss=\"modal\" ng-click=\"resetUpdate()\">取消</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <!-- end update pwd modal-->\r\n</div>\r\n");
+$templateCache.put("app/layout/partials/header.tpl.html","<header id=\"header\" style=\"height:50px;background:#F0F7FF\">\r\n	<div id=\"logo-group\" class=\"logo_cut_off\" ng-controller=\"messagesCtrl\">\r\n		<span id=\"logo\">\r\n			<img src=\"styles/img/logo_big.png\" alt=\"\">\r\n		</span>\r\n	</div>\r\n	<div class=\"pull-right\" id=\"header-info\" style=\"margin-right:11px\">\r\n		<ul>\r\n			<li title=\"登出\">\r\n				<div class=\"header-img shut-down\" ng-click=\"logout()\"></div>\r\n			</li>\r\n			<li ng-click=\"versionInfo()\" title=\"帮助\">\r\n				<div class=\"header-img view_version\"></div>\r\n			</li>\r\n			<li full-screen title=\"全屏\" ng-click=\"changeStatus()\">\r\n				<div class=\"header-img fullscreen\"></div>\r\n			</li>\r\n			<li>\r\n				<div class=\"dropdown\">\r\n					<div id=\"login-user\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" data-hover=\"dropdown\">\r\n						<span title=\"\" id=\"currentAccountName\"></span>\r\n					</div>\r\n					<ul class=\"dropdown-menu pull-right\" id=\"dropdown-pop\" style=\"margin-top:10px;\">\r\n						<li class=\"user-drop-li\">\r\n							<a data-toggle=\"modal\" data-target=\"#update_pwd_modal\" data-action=\"userLogout\"\r\n								style=\"margin-top:10px;font-size:12px;padding:0px;\">修改密码</a>\r\n						</li>\r\n						<li class=\"divider\"></li>\r\n						<li class=\"user-drop-li\">\r\n							<a href=\"javascript:void(0)\" ng-click=\"logout()\" data-action=\"userLogout\"\r\n								style=\"margin-bottom:10px;font-size:12px;padding:0px\">用户登出</a>\r\n						</li>\r\n					</ul>\r\n				</div>\r\n			</li>\r\n		</ul>\r\n	</div>\r\n	<div class=\"pull-left\" id=\"header-info\">\r\n		<ul>\r\n			<li style=\"margin-left: 10px\" toggle-menu title=\"折叠菜单\">\r\n				<div class=\"header-img hide-menu\"></div>\r\n			</li>\r\n		</ul>\r\n	</div>\r\n</header>\r\n");
+$templateCache.put("app/layout/partials/navigation.tpl.html","<aside id=\"left-panel\">\r\n  <nav style=\"overflow: hidden\">\r\n    <ul data-smart-menu>\r\n      <li data-ui-sref-active=\"active\">\r\n        <a data-ui-sref=\"app.dashboard\" title=\"dashboard\">\r\n          <i class=\"sidebar_icon dashboard\"></i>\r\n          <span class=\"menu-item-parent\"> Dashboard</span>\r\n        </a>\r\n      </li>\r\n      <li data-menu-collapse class=\"top-menu-invisible\">\r\n        <a href=\"#\" title=\"存储\">\r\n          <i class=\"sidebar_icon storage\"></i>\r\n          <span class=\"menu-item-parent\">存储</span>\r\n        </a>\r\n        <ul>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.domain\">域 & 存储池</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.volume\"> 卷</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.allDriver\">驱动</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.accessRule\">访问控制</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.qos\">QoS策略</a>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n      <li data-menu-collapse>\r\n        <a href=\"#\" title=\"硬件\">\r\n          <i class=\"sidebar_icon hardware\"></i>\r\n          <span class=\"menu-item-parent\">硬件</span>\r\n        </a>\r\n        <ul>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.hardware.disk\">存储磁盘</a>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n      <li data-menu-collapse>\r\n        <a href=\"#\" title=\"系统\">\r\n          <i class=\"sidebar_icon system\"></i>\r\n          <span class=\"menu-item-parent\">系统</span>\r\n        </a>\r\n        <ul>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.system.services\">服务</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.system.component\">组件</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.system.operationLog\">操作日志</a>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n      <li data-menu-collapse\r\n        ng-show=\"apis.Role.createRole||apis.Role.deleteRoles||apis.Role.updateRole||apis.Role.createRole||apis.Account.createAccount||apis.Account.assignResources||apis.Account.assignRoles||apis.Account.deleteAccounts||apis.Account.resetAccountPassword\">\r\n        <a href=\"#\" title=\"用户\">\r\n          <i class=\"sidebar_icon user\"></i>\r\n          <span class=\"menu-item-parent\">用户</span>\r\n        </a>\r\n        <ul>\r\n          <li data-ui-sref-active=\"active\"\r\n            ng-show=\"apis.Role.createRole||apis.Role.deleteRoles||apis.Role.updateRole||apis.Role.createRole\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.user.roles\">角色</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\"\r\n            ng-show=\"apis.Account.createAccount||apis.Account.assignResources||apis.Account.assignRoles||apis.Account.deleteAccounts||apis.Account.resetAccountPassword\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.user.users\">用户</a>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n    </ul>\r\n  </nav>\r\n\r\n  <!-- <span class=\"minifyme\" data-action=\"minifyMenu\" minify-menu>\r\n    <i class=\"fa fa-arrow-circle-left hit\"></i>\r\n  </span> -->\r\n</aside>\r\n");
+$templateCache.put("app/layout/language/language-selector.tpl.html","\r\n<ul class=\"header-dropdown-list hidden-xs ng-cloak\" ng-controller=\"LanguagesCtrl\">\r\n    <li class=\"dropdown\" dropdown>\r\n        <a class=\"dropdown-toggle\"  data-toggle=\"dropdown\" href> <img src=\"styles/img/blank.gif\" class=\"flag flag-{{currentLanguage.key}}\" alt=\"{{currentLanguage.alt}}\"> <span> {{currentLanguage.title}} </span>\r\n            <i class=\"fa fa-angle-down\"></i> </a>\r\n        <ul class=\"dropdown-menu pull-right\">\r\n            <li ng-class=\"{active: language.key==currentLanguage.key}\" ng-repeat=\"language in languages\">\r\n                <a ng-click=\"selectLanguage(language)\" ><img src=\"styles/img/blank.gif\" class=\"flag flag-{{language.key}}\"\r\n                                                   alt=\"{{language.alt}}\"> {{language.title}}</a>\r\n            </li>\r\n        </ul>\r\n    </li>\r\n</ul>");
+$templateCache.put("app/layout/shortcut/shortcut.tpl.html","\r\n<div id=\"shortcut\">\r\n	<ul>\r\n		<li>\r\n			<a href=\"#/inbox/\" class=\"jarvismetro-tile big-cubes bg-color-blue\"> <span class=\"iconbox\"> <i class=\"fa fa-envelope fa-4x\"></i> <span>Mail <span class=\"label pull-right bg-color-darken\">14</span></span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/calendar\" class=\"jarvismetro-tile big-cubes bg-color-orangeDark\"> <span class=\"iconbox\"> <i class=\"fa fa-calendar fa-4x\"></i> <span>Calendar</span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/maps\" class=\"jarvismetro-tile big-cubes bg-color-purple\"> <span class=\"iconbox\"> <i class=\"fa fa-map-marker fa-4x\"></i> <span>Maps</span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/invoice\" class=\"jarvismetro-tile big-cubes bg-color-blueDark\"> <span class=\"iconbox\"> <i class=\"fa fa-book fa-4x\"></i> <span>Invoice <span class=\"label pull-right bg-color-darken\">99</span></span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/gallery\" class=\"jarvismetro-tile big-cubes bg-color-greenLight\"> <span class=\"iconbox\"> <i class=\"fa fa-picture-o fa-4x\"></i> <span>Gallery </span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/profile\" class=\"jarvismetro-tile big-cubes selected bg-color-pinkDark\"> <span class=\"iconbox\"> <i class=\"fa fa-user fa-4x\"></i> <span>My Profile </span> </span> </a>\r\n		</li>\r\n	</ul>\r\n</div>");
+$templateCache.put("app/dashboard/views/live-feeds.tpl.html","\r\n<div jarvis-widget id=\"live-feeds-widget\" data-widget-editbutton=\"false\" data-widget-colorbutton=\"false\" data-widget-togglebutton=\"false\" data-widget-fullscreenbutton=\"false\" data-widget-deletebutton=\"false\" >\r\n<header>\r\n    <span class=\"widget-icon\"> <i class=\"glyphicon glyphicon-stats txt-color-darken\"></i> </span>\r\n\r\n    <h2>性能数据</h2>\r\n\r\n    <ul class=\"nav nav-tabs pull-right in\" id=\"serverTab\">\r\n        <li class=\"active\">\r\n            <a data-toggle=\"tab\" href=\"#s1\"><i class=\"fa fa-cog\"></i> <span class=\"hidden-mobile hidden-tablet\">系统</span></a>\r\n        </li>\r\n\r\n        <li>\r\n            <a data-toggle=\"tab\" href=\"#s2\"><i class=\"fa fa-database\"></i> <span class=\"hidden-mobile hidden-tablet\">卷</span></a>\r\n        </li>\r\n\r\n        <li>\r\n            <a data-toggle=\"tab\" href=\"#s3\"><i class=\"fa fa-wrench\"></i> <span class=\"hidden-mobile hidden-tablet\">机器</span></a>\r\n        </li>\r\n    </ul>\r\n\r\n</header>\r\n\r\n<!-- widget div-->\r\n<div class=\"no-padding\">\r\n\r\n    <div class=\"widget-body\">\r\n        <!-- content -->\r\n        <div id=\"myTabContent\" class=\"tab-content\">\r\n            <div class=\"tab-pane fade active in padding-10 no-padding-bottom\" id=\"s1\">\r\n                <div class=\"row\">\r\n                    \r\n                    <div class=\"col-sm-6 col-lg-6\">\r\n\r\n                        <!-- your contents here -->\r\n                        <div class=\"panel panel-default\">\r\n                            <div class=\"panel-body status\">\r\n                                <div class=\"who clearfix\">\r\n                                    <span class=\"name\"><b>Karrigan Mean</b> shared a photo</span>\r\n                                </div>\r\n                                \r\n                                <e-chart  option=\"systemCapacityTrendencyOption\"></e-chart> \r\n                            </div>\r\n                        </div>\r\n                    </div>   \r\n\r\n                </div>\r\n\r\n            </div>\r\n            <!-- end s1 tab pane -->\r\n\r\n            <div class=\"tab-pane fade\" id=\"s2\">\r\n\r\n\r\n            </div>\r\n            <!-- end s2 tab pane -->\r\n\r\n            <div class=\"tab-pane fade\" id=\"s3\">\r\n\r\n\r\n            </div>\r\n            <!-- end s3 tab pane -->\r\n        </div>\r\n\r\n        <!-- end content -->\r\n    </div>\r\n\r\n</div>\r\n<!-- end widget div -->\r\n</div>\r\n");
+$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-attribute-form.tpl.html","\r\n<form id=\"attributeForm\" class=\"form-horizontal\"\r\n      data-bv-message=\"This value is not valid\"\r\n      data-bv-feedbackicons-valid=\"glyphicon glyphicon-ok\"\r\n      data-bv-feedbackicons-invalid=\"glyphicon glyphicon-remove\"\r\n      data-bv-feedbackicons-validating=\"glyphicon glyphicon-refresh\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Set validator options via HTML attributes\r\n        </legend>\r\n\r\n        <div class=\"alert alert-warning\">\r\n            <code>&lt; input\r\n                data-bv-validatorname\r\n                data-bv-validatorname-validatoroption=\"...\" / &gt;</code>\r\n\r\n            <br>\r\n            <br>\r\n            More validator options can be found here:\r\n            <a href=\"http://bootstrapvalidator.com/validators/\" target=\"_blank\">http://bootstrapvalidator.com/validators/</a>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Full name</label>\r\n            <div class=\"col-lg-4\">\r\n                <input type=\"text\" class=\"form-control\" name=\"firstName\" placeholder=\"First name\"\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The first name is required and cannot be empty\" />\r\n            </div>\r\n            <div class=\"col-lg-4\">\r\n                <input type=\"text\" class=\"form-control\" name=\"lastName\" placeholder=\"Last name\"\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The last name is required and cannot be empty\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Username</label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"text\" class=\"form-control\" name=\"username\"\r\n                       data-bv-message=\"The username is not valid\"\r\n\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The username is required and cannot be empty\"\r\n\r\n                       data-bv-regexp=\"true\"\r\n                       data-bv-regexp-regexp=\"^[a-zA-Z0-9_\\.]+$\"\r\n                       data-bv-regexp-message=\"The username can only consist of alphabetical, number, dot and underscore\"\r\n\r\n                       data-bv-stringlength=\"true\"\r\n                       data-bv-stringlength-min=\"6\"\r\n                       data-bv-stringlength-max=\"30\"\r\n                       data-bv-stringlength-message=\"The username must be more than 6 and less than 30 characters long\"\r\n\r\n                       data-bv-different=\"true\"\r\n                       data-bv-different-field=\"password\"\r\n                       data-bv-different-message=\"The username and password cannot be the same as each other\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Email address</label>\r\n            <div class=\"col-lg-5\">\r\n                <input class=\"form-control\" name=\"email\" type=\"email\"\r\n                       data-bv-emailaddress=\"true\"\r\n                       data-bv-emailaddress-message=\"The input is not a valid email address\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Password</label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"password\" class=\"form-control\" name=\"password\"\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The password is required and cannot be empty\"\r\n\r\n                       data-bv-identical=\"true\"\r\n                       data-bv-identical-field=\"confirmPassword\"\r\n                       data-bv-identical-message=\"The password and its confirm are not the same\"\r\n\r\n                       data-bv-different=\"true\"\r\n                       data-bv-different-field=\"username\"\r\n                       data-bv-different-message=\"The password cannot be the same as username\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Retype password</label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"password\" class=\"form-control\" name=\"confirmPassword\"\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The confirm password is required and cannot be empty\"\r\n\r\n                       data-bv-identical=\"true\"\r\n                       data-bv-identical-field=\"password\"\r\n                       data-bv-identical-message=\"The password and its confirm are not the same\"\r\n\r\n                       data-bv-different=\"true\"\r\n                       data-bv-different-field=\"username\"\r\n                       data-bv-different-message=\"The password cannot be the same as username\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Languages</label>\r\n            <div class=\"col-lg-5\">\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"english\"\r\n                               data-bv-message=\"Please specify at least one language you can speak\"\r\n                               data-bv-notempty=\"true\" />\r\n                        English </label>\r\n                </div>\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"french\" />\r\n                        French </label>\r\n                </div>\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"german\" />\r\n                        German </label>\r\n                </div>\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"russian\" />\r\n                        Russian </label>\r\n                </div>\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"other\" />\r\n                        Other </label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n     ");
+$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-contact-form.tpl.html","\r\n<form id=\"contactForm\" method=\"post\" class=\"form-horizontal\">\r\n\r\n    <fieldset>\r\n        <legend>Showing messages in custom area</legend>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-3 control-label\">Full name</label>\r\n            <div class=\"col-md-6\">\r\n                <input type=\"text\" class=\"form-control\" name=\"fullName\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-3 control-label\">Email</label>\r\n            <div class=\"col-md-6\">\r\n                <input type=\"text\" class=\"form-control\" name=\"email\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-3 control-label\">Title</label>\r\n            <div class=\"col-md-6\">\r\n                <input type=\"text\" class=\"form-control\" name=\"title\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-3 control-label\">Content</label>\r\n            <div class=\"col-md-6\">\r\n                <textarea class=\"form-control\" name=\"content\" rows=\"5\"></textarea>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <!-- #messages is where the messages are placed inside -->\r\n        <div class=\"form-group\">\r\n            <div class=\"col-md-9 col-md-offset-3\">\r\n                <div id=\"messages\"></div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n");
+$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-movie-form.tpl.html","\r\n\r\n<form id=\"movieForm\" method=\"post\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Default Form Elements\r\n        </legend>\r\n        <div class=\"form-group\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-8\">\r\n                    <label class=\"control-label\">Movie title</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"title\" />\r\n                </div>\r\n\r\n                <div class=\"col-md-4 selectContainer\">\r\n                    <label class=\"control-label\">Genre</label>\r\n                    <select class=\"form-control\" name=\"genre\">\r\n                        <option value=\"\">Choose a genre</option>\r\n                        <option value=\"action\">Action</option>\r\n                        <option value=\"comedy\">Comedy</option>\r\n                        <option value=\"horror\">Horror</option>\r\n                        <option value=\"romance\">Romance</option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-4\">\r\n                    <label class=\"control-label\">Director</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"director\" />\r\n                </div>\r\n\r\n                <div class=\"col-sm-12 col-md-4\">\r\n                    <label class=\"control-label\">Writer</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"writer\" />\r\n                </div>\r\n\r\n                <div class=\"col-sm-12 col-md-4\">\r\n                    <label class=\"control-label\">Producer</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"producer\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-6\">\r\n                    <label class=\"control-label\">Website</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"website\" />\r\n                </div>\r\n\r\n                <div class=\"col-sm-12 col-md-6\">\r\n                    <label class=\"control-label\">Youtube trailer</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"trailer\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\">Review</label>\r\n            <textarea class=\"form-control\" name=\"review\" rows=\"8\"></textarea>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12\">\r\n                    <label class=\"control-label\">Rating</label>\r\n                </div>\r\n\r\n                <div class=\"col-sm-12 col-md-10\">\r\n\r\n                    <label class=\"radio radio-inline no-margin\">\r\n                        <input type=\"radio\" name=\"rating\" value=\"terrible\" class=\"radiobox style-2\" />\r\n                        <span>Terrible</span> </label>\r\n\r\n                    <label class=\"radio radio-inline\">\r\n                        <input type=\"radio\" name=\"rating\" value=\"watchable\" class=\"radiobox style-2\" />\r\n                        <span>Watchable</span> </label>\r\n                    <label class=\"radio radio-inline\">\r\n                        <input type=\"radio\" name=\"rating\" value=\"best\" class=\"radiobox style-2\" />\r\n                        <span>Best ever</span> </label>\r\n\r\n                </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n\r\n ");
+$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-product-form.tpl.html","\r\n<form id=\"productForm\" class=\"form-horizontal\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Default Form Elements\r\n        </legend>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-xs-2 col-lg-3 control-label\">Price</label>\r\n            <div class=\"col-xs-9 col-lg-6 inputGroupContainer\">\r\n                <div class=\"input-group\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"price\" />\r\n                    <span class=\"input-group-addon\">$</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-xs-2 col-lg-3 control-label\">Amount</label>\r\n            <div class=\"col-xs-9 col-lg-6 inputGroupContainer\">\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\">&#8364;</span>\r\n                    <input type=\"text\" class=\"form-control\" name=\"amount\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-xs-2 col-lg-3 control-label\">Color</label>\r\n            <div class=\"col-xs-9 col-lg-6 selectContainer\">\r\n                <select class=\"form-control\" name=\"color\">\r\n                    <option value=\"\">Choose a color</option>\r\n                    <option value=\"blue\">Blue</option>\r\n                    <option value=\"green\">Green</option>\r\n                    <option value=\"red\">Red</option>\r\n                    <option value=\"yellow\">Yellow</option>\r\n                    <option value=\"white\">White</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-xs-2 col-lg-3 control-label\">Size</label>\r\n            <div class=\"col-xs-9 col-lg-6 selectContainer\">\r\n                <select class=\"form-control\" name=\"size\">\r\n                    <option value=\"\">Choose a size</option>\r\n                    <option value=\"S\">S</option>\r\n                    <option value=\"M\">M</option>\r\n                    <option value=\"L\">L</option>\r\n                    <option value=\"XL\">XL</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</form>\r\n\r\n");
+$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-toggling-form.tpl.html","\r\n<form id=\"togglingForm\" method=\"post\" class=\"form-horizontal\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Default Form Elements\r\n        </legend>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Full name <sup>*</sup></label>\r\n            <div class=\"col-lg-4\">\r\n                <input type=\"text\" class=\"form-control\" name=\"firstName\" placeholder=\"First name\" />\r\n            </div>\r\n            <div class=\"col-lg-4\">\r\n                <input type=\"text\" class=\"form-control\" name=\"lastName\" placeholder=\"Last name\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Company <sup>*</sup></label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"text\" class=\"form-control\" name=\"company\"\r\n                       required data-bv-notempty-message=\"The company name is required\" />\r\n            </div>\r\n            <div class=\"col-lg-2\">\r\n                <button type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"#jobInfo\">\r\n                    Add more info\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <!-- These fields will not be validated as long as they are not visible -->\r\n    <div id=\"jobInfo\" style=\"display: none;\">\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label class=\"col-lg-3 control-label\">Job title <sup>*</sup></label>\r\n                <div class=\"col-lg-5\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"job\" />\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label class=\"col-lg-3 control-label\">Department <sup>*</sup></label>\r\n                <div class=\"col-lg-5\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"department\" />\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </div>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Mobile phone <sup>*</sup></label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"text\" class=\"form-control\" name=\"mobilePhone\" />\r\n            </div>\r\n            <div class=\"col-lg-2\">\r\n                <button type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"#phoneInfo\">\r\n                    Add more phone numbers\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n    <!-- These fields will not be validated as long as they are not visible -->\r\n    <div id=\"phoneInfo\" style=\"display: none;\">\r\n\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label class=\"col-lg-3 control-label\">Home phone</label>\r\n                <div class=\"col-lg-5\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"homePhone\" />\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label class=\"col-lg-3 control-label\">Office phone</label>\r\n                <div class=\"col-lg-5\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"officePhone\" />\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </div>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</form>");}]);
+ 
 
 'use strict';
 
@@ -1528,85 +1320,392 @@ angular.module('app.auth').controller('AuthCtrl', function (focus, $scope, $http
     return this;
   })
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
-angular.module('app.auth').directive('loginInfo', function(User){
+angular.module('app').controller("messagesCtrl", function ($scope, translate, $http, $interval, $log, $rootScope, activityService, $location, $state) {
+  var timeInterval;
+  $scope.activeTab = 'tasks';
+  $scope.currentActivityItems = [];
+  $scope.ids = [$rootScope.globals.currentAccount.accountId]
 
-    return {
-        restrict: 'A',
-        templateUrl: 'app/auth/directives/login-info.tpl.html',
-        link: function(scope, element){
-            User.initialized.then(function(){
-                scope.user = User
-            });
-        }
+  if ($rootScope.globals.currentAccount) {
+    let showName = $rootScope.globals.currentAccount.accountName;
+    if (showName.length > 10) {
+      showName = showName.substring(0, 10) + "...";
     }
-})
+    $("#currentAccountName").html(showName);
+    $("#currentAccountName").attr("title", $rootScope.globals.currentAccount.accountName);
+  }
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+  $scope.isActive = function (tab) {
+    return $scope.activeTab === tab;
+  };
+
+  $scope.showMessage = function (th) {
+    var ajax_dropdown = null;
+    ajax_dropdown = $('.ajax-dropdown');
+    if (!ajax_dropdown.is(':visible')) {
+      ajax_dropdown.fadeIn(150);//expand
+
+      $interval.cancel(timeInterval)
+      listLogSiderbar();
+      timeInterval = $interval(listLogSiderbar, 3000);
+
+    } else {
+      $interval.cancel(timeInterval);
+      ajax_dropdown.fadeOut(150);
+    }
+  }
+
+  function listLogSiderbar() {
+    var resultStr = '';
+    $http({
+      method: "post",
+      data: {
+        tempNum: Math.random()
+      },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      url: "listOperation",
+      transformRequest: function (obj) {
+        var str = [];
+        for (var s in obj) {
+          str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+        }
+        return str.join("&");
+      }
+    }).then(
+      function successCallback(data) {
+        data = data.data;
+        $.each(data.operationsList, function (i, value) {
+          var tempJson;
+          var t1, t2, t3, t4, t5, t6, t7, t8;
+          if (i < 10) {
+            switch (value.status) {
+              case "SUCCESS":
+                t1 = "fa-check";
+                t2 = "green";
+                break;
+              case "ACTIVITING":
+                t1 = "fa-info";
+                t2 = "yellow";
+                break;
+              case "FAILED":
+                t1 = "fa-close";
+                t2 = "red";
+                break;
+            }
+            t3 = translate.getWord(value.type);
+            t4 = translate.getWord(value.targetType);
+            if (value.targetName == null || value.targetName == "") {
+              t5 = value.operationObject;
+            } else if (value.operationObject == null || value.operationObject == "") {
+              t5 = value.targetName;
+            } else {
+              t5 = value.operationObject + "(" + value.targetName + ")"
+            }
+            var now = new Date();
+            var timespan = now.getTime() - parseInt(value.startTime);
+            var timespan = Math.floor(timespan / 60000);
+            if (timespan < 1) {
+              t7 = translate.getWord("time.justnow");
+            } else if (timespan < 60) {
+              t7 = timespan + translate.getWord("time.minutesago");
+            } else if (timespan < 60 * 24) {
+              timespan = Math.floor(timespan / 60);
+              t7 = timespan + translate.getWord("time.hoursago");
+            } else {
+              timespan = Math.floor(timespan / 60 / 24);
+              t7 = timespan + translate.getWord("time.daysago");
+            }
+            if (value.status != "ACTIVITING") {
+              switch (value.status) {
+                case "SUCCESS":
+                  t6 = translate.getWord("success"); break;
+
+                case "FAILED":
+                  t6 = translate.getWord("fail"); break;
+              }
+            } else {
+              t6 = "ACTIVITING";
+              t8 = value.progress;
+            }
+            resultStr += '<li>'
+              + '<span class="padding-10">'
+              + '<span class="badge padding-5 no-border-radius bg-color-' + t2 + ' pull-left margin-right-5 margin-top-5"><i class="fa ' + t1 + ' fa-fw "></i></span>'
+              + '<span>' + t3 + t4 + t5 + '</span><br>';
+            if (value.status == "ACTIVITING") {
+              resultStr += '<div class="progress progress-sm progress-striped active"  style="margin-bottom: 8px;">'
+                + '<div class="progress-bar bg-color-lightBlue" role="progressbar" style="width: 100%"></div>'
+                + '</div><span class="pull-right font-xs text-muted"><i>' + t7 + '</i></span></span></li>'
+            } else {
+              resultStr += '<div  color=' + t2 + '>' + t6 + '</div><span class="pull-right font-xs text-muted"><i>' + t7 + '</i></span></span></li>'
+            }
+          }
+        });
+        $("#operationLog").html(resultStr)
+      },
+      function errorCallback(response) {
+      }
+    );
+  }
+
+  $(document).mouseup(function (e) {
+    var ajax_dropdown = null;
+    ajax_dropdown = $('.ajax-dropdown');
+    if (ajax_dropdown && !ajax_dropdown.is(e.target) && ajax_dropdown.has(e.target).length === 0) {
+      $interval.cancel(timeInterval)
+      ajax_dropdown.fadeOut(150);
+    }
+  });
+
+  $scope.hideWindow = function (flag) {
+    var ajax_dropdown = null;
+    ajax_dropdown = $('.ajax-dropdown');
+    $interval.cancel(timeInterval)
+    ajax_dropdown.fadeOut(150);
+    if (flag) {
+      $location.path("/alarm")
+    } else {
+      $location.path("/operationLog")
+    }
+  }
+
+  ;(function($, window, undefined) {
+    var $allDropdowns = $();
+  
+    $.fn.dropdownHover = function(options) {
+        $allDropdowns = $allDropdowns.add(this.parent());
+        return this.each(function() {
+            var $this = $(this).parent(),
+                defaults = {
+                    delay: 200,
+                    instantlyCloseOthers: true
+                },
+                data = {
+                    delay: $(this).data('delay'),
+                    instantlyCloseOthers: $(this).data('close-others')
+                },
+                options = $.extend(true, {}, defaults, options, data),
+                timeout;
+            $this.hover(function() {
+                if(options.instantlyCloseOthers === true)
+                    $allDropdowns.removeClass('open');
+                clearTimeout(timeout);
+                $(this).addClass('open');
+            }, function() {
+                timeout = setTimeout(function() {
+                    $this.removeClass('open');
+                }, options.delay);
+            });
+        });
+    };
+    $('#login-user').dropdownHover();
+  })(jQuery, this);
+})
 
 "use strict";
 
-angular.module('app.auth').controller('LoginCtrl', function ($scope, $state, GooglePlus, User, ezfb) {
-
-    $scope.$on('event:google-plus-signin-success', function (event, authResult) {
-        if (authResult.status.method == 'PROMPT') {
-            GooglePlus.getUser().then(function (user) {
-                User.username = user.name;
-                User.picture = user.picture;
-                $state.go('app.dashboard');
-            });
+angular.module('app').controller("footCtrl", function ($scope, translate, $http, $rootScope, showMessage) {
+  $scope.fixDiv = false;
+  $scope.newDiv = false;
+  $scope.newIsu = false;
+  $scope.fixBug = false;
+  $scope.updatePwd = function () {
+    $http({
+      method: "POST",
+      url: "updatePassword",
+      data: { "oldPassword": $scope.oldPwd, "newPassword": $scope.newPwd },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      transformRequest: function (obj) {
+        var str = [];
+        for (var s in obj) {
+          str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
         }
-    });
+        return str.join("&");
+      }
+    }).then(function successCallback(response) {
+      $scope.resetUpdate();
+      if (response.data.resultMessage.message == "ERROR_0019_SessionOut") {
+        showMessage.show($scope, "warn", translate.getWord("session.out"));
+        $scope.logout();
+        return;
+      } else if (response.data.resultMessage.message == "success") {
 
-    $scope.$on('event:facebook-signin-success', function (event, authResult) {
-        ezfb.api('/me', function (res) {
-            User.username = res.name;
-            User.picture = 'https://graph.facebook.com/' + res.id + '/picture';
-            $state.go('app.dashboard');
-        });
+        showMessage.show($scope, "success", translate.getWord("response.success"));
+
+      } else {
+        showMessage.show($scope, "error", translate.getWord(response.data.resultMessage.message));
+
+      }
+    })
+  }
+
+  $scope.resetUpdate = function () {
+    $scope.oldPwd = "";
+    $scope.newPwd = "";
+    $scope.updateForm.$setPristine();
+    $scope.updateForm.$setUntouched();
+    document.getElementById("updateForm").reset();
+  }
+
+  function getSystemInfo() {
+    $http({
+      method: "post",
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      url: "getSystemInfo",
+      transformRequest: function (obj) {
+        var str = [];
+        for (var s in obj) {
+          str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
+        }
+        return str.join("&");
+      }
+    }).then(function successCallback(response) {
+      if (response.data.resultMessage.message == "ERROR_0019_SessionOut") {
+        showMessage.show($scope, "warn", translate.getWord("ERROR_0019_SessionOut"));
+        $scope.logout();
+        return;
+      } else if (response.data.resultMessage.message == "success") {
+        $scope.name = response.data.name;
+        $scope.version = response.data.version.replace(/\"/g, "");
+        $scope.email = response.data.email;
+        $scope.tel = response.data.tel;
+        $scope.time = response.data.timeStamp.split("_")[0];
+        $scope.corporation = response.data.corporation;
+        var fix = "";
+        var str = "";
+        if (response.data.fixedIssuesStringList.length > 0) {
+          $scope.fixBug = true;
+          angular.forEach(response.data.fixedIssuesStringList, function (data, index) {
+            fix = fix + "<div class='col-sm-12' style='padding:10px 0px'>" + (++index) + ":" + data + "</div>"
+          })
+        } else {
+          $scope.fixBug = false;
+        }
+        if (response.data.newFeaturesStringList.length > 0) {
+          $scope.newIsu = true;
+          angular.forEach(response.data.newFeaturesStringList, function (data, index) {
+            str = str + "<div class='col-sm-12' style='padding:10px 0px'>" + (++index) + ":" + data + "</div>"
+          })
+        } else {
+          $scope.newIsu = false;
+        }
+        $(".fixList").html(fix);
+        $(".newList").html(str);
+      } else {
+        showMessage.show($scope, "error", translate.getWord(response.data.resultMessage.message));
+      }
+    }, function errorCallback(response) {
     });
+  }
+
+  $scope.versionInfo = function () {
+    $("#version_modal").modal("show");
+    getSystemInfo();
+  }
+
+  $("#version_modal").on("hide.bs.modal", function () {
+    $scope.fixDiv = false;
+    $scope.newDiv = false;
+    $scope.newIsu = false;
+    $scope.fixBug = false;
+    $(".fixSpan").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+    $(".fixSpan").prev().html("展开");
+    $(".newSpan").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+    $(".newSpan").prev().html("展开");
+  })
+
+  $scope.expand = function (item) {
+    if (item == "fix") {
+      $scope.fixDiv = !$scope.fixDiv
+      if ($(".fixSpan").hasClass("glyphicon-chevron-down")) {
+        $(".fixSpan").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+        $(".fixSpan").prev().html("收起");
+      } else {
+        $(".fixSpan").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+        $(".fixSpan").prev().html("展开");
+      }
+    } else {
+      $scope.newDiv = !$scope.newDiv
+      if ($(".newSpan").hasClass("glyphicon-chevron-down")) {
+        $(".newSpan").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+        $(".newSpan").prev().html("收起");
+      } else {
+        $(".newSpan").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+        $(".newSpan").prev().html("展开");
+      }
+    }
+  }
 })
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
+"use strict";
+
+angular.module('app').controller("LanguagesCtrl",  function LanguagesCtrl($scope,$cookieStore, $rootScope, $log, Language,$translate,translate,$state){
+
+    $rootScope.lang = {};
+    
+    Language.getLanguages(function(data){
+        
+        $rootScope.languages = data;
+
+    });
+
+    $scope.selectLanguage = function(language){
+        $rootScope.currentLanguage = language;
+        $cookieStore.remove("lan");
+        $cookieStore.put("lan", $rootScope.currentLanguage);
+        $translate.use(language.key).then(function(){
+        	$state.reload();
+        })
+    }
+
+});
+
+
+"use strict";
+
+angular.module('app').factory('Language', function($http, APP_CONFIG){
+
+
+
+	function getLanguages(callback) {
+
+		$http.get(APP_CONFIG.apiRootUrl + '/languages.json').then(function(data){
+
+			callback(data.data);
+			
+		},function(){
+
+			$log.log('Error');
+			callback([]);
+
+		});
+
+	}
+
+	return {
+
+		getLanguages:function(callback){
+			getLanguages(callback);
+		}
+	}
+
+});
+
+
+"use strict";
+
+angular.module('app').directive('languageSelector', function(Language){
+    return {
+        restrict: "EA",
+        replace: true,
+        templateUrl: "app/layout/language/language-selector.tpl.html",
+        scope: true
+    }
+});
+
 
 "use strict";
  
@@ -1614,104 +1713,6 @@ angular.module('app').controller("ActivitiesCtrl", function ActivitiesCtrl($scop
 	
 });
 
-angular.module("app").run(["$templateCache", function($templateCache) {$templateCache.put("app/layout/layout.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<div data-smart-include=\"app/layout/partials/header.tpl.html\" class=\"placeholder-header\"></div>\r\n\r\n<div data-smart-include=\"app/layout/partials/navigation.tpl.html\" class=\"placeholder-left-panel\"></div>\r\n\r\n<div id=\"main\" role=\"main\">\r\n	<mask>\r\n		<div class=\"loader\">\r\n			<div class=\"loader-inner ball-pulse\">\r\n				<div></div>\r\n				<div></div>\r\n				<div></div>\r\n			</div>\r\n		</div>\r\n	</mask>\r\n	<demo-states></demo-states>\r\n	<div id=\"ribbon\" >\r\n    <span class=\"ribbon-button-alignment\">\r\n      <span id=\"refresh\" class=\"btn btn-ribbon\" reset-widgets\r\n          tooltip-placement=\"bottom\"\r\n          smart-tooltip-html=\"<i class=\'text-warning fa fa-warning\'></i> Warning! This will reset all your widget settings.\">\r\n        <i class=\"fa fa-refresh\"></i>\r\n      </span>\r\n    </span>\r\n		<state-breadcrumbs></state-breadcrumbs>\r\n	</div>\r\n	<div data-smart-router-animation-wrap=\"content content@app\" data-wrap-for=\"#content\">\r\n		<div data-ui-view=\"content\" data-autoscroll=\"false\"></div>\r\n	</div>\r\n</div>\r\n\r\n<div data-smart-include=\"app/layout/partials/footer.tpl.html\"></div>\r\n");
-$templateCache.put("app/auth/directives/login-info.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<div class=\"login-info ng-cloak\">\r\n    <span> <!-- User image size is adjusted inside CSS, it should stay as it -->\r\n        <a  href=\"\" toggle-shortcut>\r\n            <img ng-src=\"{{user.picture}}\" alt=\"me\" class=\"online\">\r\n                <span>{{user.username}}\r\n                </span>\r\n            <i class=\"fa fa-angle-down\"></i>\r\n        </a>\r\n     </span>\r\n</div>");
-$templateCache.put("app/dashboard/views/live-feeds.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<div jarvis-widget id=\"live-feeds-widget\" data-widget-editbutton=\"false\" data-widget-colorbutton=\"false\" data-widget-togglebutton=\"false\" data-widget-fullscreenbutton=\"false\" data-widget-deletebutton=\"false\" >\r\n<header>\r\n    <span class=\"widget-icon\"> <i class=\"glyphicon glyphicon-stats txt-color-darken\"></i> </span>\r\n\r\n    <h2>性能数据</h2>\r\n\r\n    <ul class=\"nav nav-tabs pull-right in\" id=\"serverTab\">\r\n        <li class=\"active\">\r\n            <a data-toggle=\"tab\" href=\"#s1\"><i class=\"fa fa-cog\"></i> <span class=\"hidden-mobile hidden-tablet\">系统</span></a>\r\n        </li>\r\n\r\n        <li>\r\n            <a data-toggle=\"tab\" href=\"#s2\"><i class=\"fa fa-database\"></i> <span class=\"hidden-mobile hidden-tablet\">卷</span></a>\r\n        </li>\r\n\r\n        <li>\r\n            <a data-toggle=\"tab\" href=\"#s3\"><i class=\"fa fa-wrench\"></i> <span class=\"hidden-mobile hidden-tablet\">机器</span></a>\r\n        </li>\r\n    </ul>\r\n\r\n</header>\r\n\r\n<!-- widget div-->\r\n<div class=\"no-padding\">\r\n\r\n    <div class=\"widget-body\">\r\n        <!-- content -->\r\n        <div id=\"myTabContent\" class=\"tab-content\">\r\n            <div class=\"tab-pane fade active in padding-10 no-padding-bottom\" id=\"s1\">\r\n                <div class=\"row\">\r\n                    \r\n                    <div class=\"col-sm-6 col-lg-6\">\r\n\r\n                        <!-- your contents here -->\r\n                        <div class=\"panel panel-default\">\r\n                            <div class=\"panel-body status\">\r\n                                <div class=\"who clearfix\">\r\n                                    <span class=\"name\"><b>Karrigan Mean</b> shared a photo</span>\r\n                                </div>\r\n                                \r\n                                <e-chart  option=\"systemCapacityTrendencyOption\"></e-chart> \r\n                            </div>\r\n                        </div>\r\n                    </div>   \r\n\r\n                </div>\r\n\r\n            </div>\r\n            <!-- end s1 tab pane -->\r\n\r\n            <div class=\"tab-pane fade\" id=\"s2\">\r\n\r\n\r\n            </div>\r\n            <!-- end s2 tab pane -->\r\n\r\n            <div class=\"tab-pane fade\" id=\"s3\">\r\n\r\n\r\n            </div>\r\n            <!-- end s3 tab pane -->\r\n        </div>\r\n\r\n        <!-- end content -->\r\n    </div>\r\n\r\n</div>\r\n<!-- end widget div -->\r\n</div>\r\n");
-$templateCache.put("app/layout/language/language-selector.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<ul class=\"header-dropdown-list hidden-xs ng-cloak\" ng-controller=\"LanguagesCtrl\">\r\n    <li class=\"dropdown\" dropdown>\r\n        <a class=\"dropdown-toggle\"  data-toggle=\"dropdown\" href> <img src=\"styles/img/blank.gif\" class=\"flag flag-{{currentLanguage.key}}\" alt=\"{{currentLanguage.alt}}\"> <span> {{currentLanguage.title}} </span>\r\n            <i class=\"fa fa-angle-down\"></i> </a>\r\n        <ul class=\"dropdown-menu pull-right\">\r\n            <li ng-class=\"{active: language.key==currentLanguage.key}\" ng-repeat=\"language in languages\">\r\n                <a ng-click=\"selectLanguage(language)\" ><img src=\"styles/img/blank.gif\" class=\"flag flag-{{language.key}}\"\r\n                                                   alt=\"{{language.alt}}\"> {{language.title}}</a>\r\n            </li>\r\n        </ul>\r\n    </li>\r\n</ul>");
-$templateCache.put("app/layout/partials/footer.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<div class=\"page-footer\" ng-controller=\"footCtrl\">\r\n  <div class=\"row\">\r\n    <div class=\"col-xs-12 col-sm-6\">\r\n    </div>\r\n  </div>\r\n  <div style=\"display:none\">\r\n    <alert-message level=level message=message show=show class=\"col-xs-8 col-sm-5 col-md-5 col-lg-3\"></alert-message>\r\n  </div><!-- 有用别删除 -->\r\n\r\n\r\n  <div class=\"modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\" id=\"version_modal\">\r\n    <div class=\"modal-dialog\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">\r\n            <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\r\n          </button>\r\n          <h4 class=\"modal-title\">当前版本</h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form class=\"form-horizontal\" role=\"form\" novalidate>\r\n            <div class=\"form-group\">\r\n              <div class=\"col-sm-3 col-sm-offset-4 control-label\">\r\n                <img src=\"styles/img/logo_version.png\" alt=\"Zhi Zhen\" style=\"width:135px\">\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">软件名称</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{name}}</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">当前版本</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{version}}</span>\r\n              </div>\r\n            </div>\r\n            <!--    <div class=\"form-group\">\r\n						   <label  class=\"col-sm-3 col-sm-offset-1 control-label\">时间</label>\r\n						   <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n							   <span>{{time}}</span>\r\n						   </div>\r\n					   </div> -->\r\n            <div class=\"form-group\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">公司名称</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{corporation}}</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\" style=\"display: none;\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">邮箱</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{email}}</span>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" style=\"display: none;\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">电话</label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px\">\r\n                <span>{{tel}}</span>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"form-group\" ng-show=\"fixBug\" style=\"display: none\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">修复问题\r\n\r\n              </label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px;color:#337AB7\">\r\n                <span ng-click=\"expand(\'fix\')\" style=\"cursor: pointer;\">展开</span>\r\n                <span class=\"glyphicon glyphicon-chevron-down fixSpan\" style=\"cursor: pointer;\" aria-hidden=\"true\"\r\n                  ng-click=\"expand(\'fix\')\"></span>\r\n              </div>\r\n              <div class=\"fixList col-sm-8 col-sm-offset-4\" ng-show=\"fixDiv\">\r\n\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\" ng-show=\"newIsu\" style=\"display: none\">\r\n              <label class=\"col-sm-3 col-sm-offset-1 control-label\">新增功能\r\n\r\n              </label>\r\n              <div class=\"col-sm-8\" style=\"padding-top:7px;color:#337AB7\">\r\n                <span ng-click=\"expand(\'new\')\" style=\"cursor: pointer;\">展开</span>\r\n                <span class=\"glyphicon glyphicon-chevron-down newSpan\" style=\"cursor: pointer;\" aria-hidden=\"true\"\r\n                  ng-click=\"expand(\'new\')\"></span>\r\n              </div>\r\n              <div class=\"newList col-sm-8 col-sm-offset-4\" ng-show=\"newDiv\">\r\n\r\n              </div>\r\n            </div>\r\n\r\n          </form>\r\n\r\n\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n          <button type=\"button\" class=\"btn btn_lightblue\" data-dismiss=\"modal\">确定</button>\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <!--  begin update pwd modal -->\r\n  <div class=\"modal\" tabindex=\"-1\" id=\"update_pwd_modal\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\">\r\n    <div class=\"modal-dialog\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\" ng-click=\"resetUpdate()\">\r\n            <span aria-hidden=\"true\">&times;</span><span class=\"sr-only\">Close</span>\r\n          </button>\r\n          <h4 class=\"modal-title\">修改密码</h4>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form class=\"form-horizontal\" role=\"form\" name=\"updateForm\" id=\"updateForm\" novalidate>\r\n            <div class=\"form-group\"\r\n              ng-class=\"{\'has-error\':updateForm.oldPassword.$invalid &&updateForm.oldPassword.$touched}\">\r\n              <label for=\"oldPassword\" class=\"col-sm-3 control-label\">旧密码<span class=\"required\" aria-required=\"true\">*\r\n                </span></label>\r\n              <div class=\"col-sm-7\">\r\n                <input type=\"password\" class=\"form-control\" name=\"oldPassword\" placeholder=\"旧密码\" ng-minlength=\"2\"\r\n                  ng-maxlength=\"64\" required ng-model=\"oldPwd\">\r\n                <span ng-show=\"updateForm.oldPassword.$error.minlength&& updateForm.oldPassword.$touched\"\r\n                  class=\"help-block\"><i class=\"fa fa-exclamation-circle\"></i> 至少两个字符</span>\r\n                <span ng-show=\"updateForm.oldPassword.$error.maxlength&& updateForm.oldPassword.$touched\"\r\n                  class=\"help-block\"><i class=\"fa fa-exclamation-circle\"></i> 至多十六个字符</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\" ng-class=\"{\'has-error\':updateForm.newPwd.$invalid &&updateForm.newPwd.$touched}\">\r\n              <label class=\"col-sm-3 control-label\">新密码<span class=\"required\" aria-required=\"true\">* </span></label>\r\n              <div class=\"col-sm-7\">\r\n                <input type=\"password\" class=\"form-control\" name=\"newPwd\" placeholder=\"新密码\" required ng-minlength=\"2\"\r\n                  ng-maxlength=\"64\" ng-model=\"newPwd\">\r\n\r\n                <span ng-show=\"updateForm.newPwd.$error.minlength&& updateForm.newPwd.$touched\" class=\"help-block\"><i\r\n                    class=\"fa fa-exclamation-circle\"></i> 至少两个字符</span>\r\n                <span ng-show=\"updateForm.newPwd.$error.maxlength&& updateForm.newPwd.$touched\" class=\"help-block\"><i\r\n                    class=\"fa fa-exclamation-circle\"></i> 至多十六个字符</span>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group\"\r\n              ng-class=\"{\'has-error\':updateForm.reNewPassword.$invalid && !updateForm.reNewPassword.$pristine&&updateForm.reNewPassword.$touched}\">\r\n              <label for=\"reNewPassword\" class=\"col-sm-3 control-label\">确认密码<span class=\"required\"\r\n                  aria-required=\"true\">* </span></label>\r\n              <div class=\"col-sm-7\">\r\n                <input type=\"password\" class=\"form-control\" name=\"reNewPassword\" placeholder=\"确认密码\"\r\n                  ng-model=\"reNewPassword\" compare=\"newPwd\">\r\n                <span\r\n                  ng-show=\"updateForm.reNewPassword.$error.compare &&updateForm.reNewPassword.$dirty&&updateForm.reNewPassword.$touched\"\r\n                  class=\"help-block\"><i class=\"fa fa-exclamation-circle\"></i> 两次密码输入不一致</span>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n        <div class=\"modal-footer\">\r\n          <button type=\"button\" class=\"btn btn_blue\" ng-disabled=\"updateForm.$invalid\" ng-click=\"updatePwd()\"\r\n            data-dismiss=\"modal\">修改</button>\r\n          <button type=\"button\" class=\"btn btn_default\" data-dismiss=\"modal\" ng-click=\"resetUpdate()\">取消</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <!-- end update pwd modal-->\r\n</div>\r\n");
-$templateCache.put("app/layout/partials/header.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<header id=\"header\" style=\"height:50px;background:#F0F7FF\">\r\n	<div id=\"logo-group\" class=\"logo_cut_off\" ng-controller=\"messagesCtrl\">\r\n		<span id=\"logo\">\r\n      <img src=\"styles/img/logo_big.png\" alt=\"\">\r\n    </span>\r\n	</div>\r\n	<div class=\"pull-right\" id=\"header-info\" style=\"margin-right:11px\">\r\n		<ul>\r\n			<li title=\"登出\"><div class=\"header-img shut-down\" ng-click=\"logout()\"></div></li>\r\n			<li ng-click=\"versionInfo()\" title=\"帮助\"><div class=\"header-img view_version\" ></div></li>\r\n			<li full-screen title=\"全屏\" ng-click=\"changeStatus()\">\r\n        <div class=\"header-img fullscreen\"></div>\r\n      </li>\r\n			<li>\r\n				<div class=\"dropdown\">\r\n					<div id=\"login-user\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" data-hover=\"dropdown\">\r\n						<span title=\"\" id=\"currentAccountName\"></span>\r\n					</div>\r\n					<ul class=\"dropdown-menu pull-right\" id=\"dropdown-pop\" style=\"margin-top:10px;\">\r\n						<li class=\"user-drop-li\">\r\n							<a data-toggle=\"modal\"  data-target=\"#update_pwd_modal\" data-action=\"userLogout\" style=\"margin-top:10px;font-size:12px;padding:0px;\">修改密码</a>\r\n						</li>\r\n						<li class=\"divider\"></li>\r\n						<li class=\"user-drop-li\" >\r\n							<a href=\"javascript:void(0)\" ng-click=\"logout()\"  data-action=\"userLogout\" style=\"margin-bottom:10px;font-size:12px;padding:0px\">用户登出</a>\r\n						</li>\r\n					</ul>\r\n				</div>\r\n			</li>\r\n		</ul>\r\n	</div>\r\n  <div class=\"pull-left\" id=\"header-info\">\r\n		<ul>\r\n      <li style=\"margin-left: 10px\" toggle-menu title=\"折叠菜单\"><div class=\"header-img hide-menu\" ></div></li>\r\n    </ul>\r\n  </div>\r\n</header>");
-$templateCache.put("app/layout/partials/navigation.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<aside id=\"left-panel\">\r\n  <nav style=\"overflow: hidden\">\r\n    <ul data-smart-menu>\r\n      <li data-ui-sref-active=\"active\">\r\n        <a data-ui-sref=\"app.dashboard\" title=\"dashboard\">\r\n          <i class=\"sidebar_icon dashboard\"></i\r\n          ><span class=\"menu-item-parent\"> Dashboard</span>\r\n        </a>\r\n      </li>\r\n      <li data-menu-collapse class=\"top-menu-invisible\">\r\n        <a href=\"#\" title=\"存储\">\r\n          <i class=\"sidebar_icon storage\"></i\r\n          ><span class=\"menu-item-parent\">存储</span>\r\n        </a>\r\n        <ul>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.domain\"\r\n              >域 & 存储池</a\r\n            >\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.volume\"> 卷</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.allDriver\">驱动</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.accessRule\"\r\n              >访问控制</a\r\n            >\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.storage.qos\">QoS策略</a>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n      <li data-menu-collapse>\r\n        <a href=\"#\" title=\"硬件\">\r\n          <i class=\"sidebar_icon hardware\"></i\r\n          ><span class=\"menu-item-parent\">硬件</span>\r\n        </a>\r\n        <ul>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.hardware.disk\">存储磁盘</a>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n      <li data-menu-collapse>\r\n        <a href=\"#\" title=\"系统\">\r\n          <i class=\"sidebar_icon system\"></i\r\n          ><span class=\"menu-item-parent\">系统</span>\r\n        </a>\r\n        <ul>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.system.services\">服务</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.system.component\">组件</a>\r\n          </li>\r\n          <li data-ui-sref-active=\"active\">\r\n            <a class=\"nav_items\" data-ui-sref=\"app.system.operationLog\"\r\n              >操作日志</a\r\n            >\r\n          </li>\r\n        </ul>\r\n      </li>\r\n      <li\r\n        data-menu-collapse\r\n        ng-show=\"apis.Role.createRole||apis.Role.deleteRoles||apis.Role.updateRole||apis.Role.createRole||apis.Account.createAccount||apis.Account.assignResources||apis.Account.assignRoles||apis.Account.deleteAccounts||apis.Account.resetAccountPassword\"\r\n      >\r\n        <a href=\"#\" title=\"用户\">\r\n          <i class=\"sidebar_icon user\"></i\r\n          ><span class=\"menu-item-parent\">用户</span>\r\n        </a>\r\n        <ul>\r\n          <li\r\n            data-ui-sref-active=\"active\"\r\n            ng-show=\"apis.Role.createRole||apis.Role.deleteRoles||apis.Role.updateRole||apis.Role.createRole\"\r\n          >\r\n            <a class=\"nav_items\" data-ui-sref=\"app.user.roles\">角色</a>\r\n          </li>\r\n          <li\r\n            data-ui-sref-active=\"active\"\r\n            ng-show=\"apis.Account.createAccount||apis.Account.assignResources||apis.Account.assignRoles||apis.Account.deleteAccounts||apis.Account.resetAccountPassword\"\r\n          >\r\n            <a class=\"nav_items\" data-ui-sref=\"app.user.users\">用户</a>\r\n          </li>\r\n        </ul>\r\n      </li>\r\n    </ul>\r\n  </nav>\r\n\r\n  <span class=\"minifyme\" data-action=\"minifyMenu\" minify-menu>\r\n    <i class=\"fa fa-arrow-circle-left hit\"></i>\r\n  </span>\r\n</aside>\r\n");
-$templateCache.put("app/layout/shortcut/shortcut.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<div id=\"shortcut\">\r\n	<ul>\r\n		<li>\r\n			<a href=\"#/inbox/\" class=\"jarvismetro-tile big-cubes bg-color-blue\"> <span class=\"iconbox\"> <i class=\"fa fa-envelope fa-4x\"></i> <span>Mail <span class=\"label pull-right bg-color-darken\">14</span></span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/calendar\" class=\"jarvismetro-tile big-cubes bg-color-orangeDark\"> <span class=\"iconbox\"> <i class=\"fa fa-calendar fa-4x\"></i> <span>Calendar</span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/maps\" class=\"jarvismetro-tile big-cubes bg-color-purple\"> <span class=\"iconbox\"> <i class=\"fa fa-map-marker fa-4x\"></i> <span>Maps</span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/invoice\" class=\"jarvismetro-tile big-cubes bg-color-blueDark\"> <span class=\"iconbox\"> <i class=\"fa fa-book fa-4x\"></i> <span>Invoice <span class=\"label pull-right bg-color-darken\">99</span></span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/gallery\" class=\"jarvismetro-tile big-cubes bg-color-greenLight\"> <span class=\"iconbox\"> <i class=\"fa fa-picture-o fa-4x\"></i> <span>Gallery </span> </span> </a>\r\n		</li>\r\n		<li>\r\n			<a href=\"#/profile\" class=\"jarvismetro-tile big-cubes selected bg-color-pinkDark\"> <span class=\"iconbox\"> <i class=\"fa fa-user fa-4x\"></i> <span>My Profile </span> </span> </a>\r\n		</li>\r\n	</ul>\r\n</div>");
-$templateCache.put("app/dashboard/chat/directives/aside-chat-widget.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<ul>\r\n    <li>\r\n        <div class=\"display-users\">\r\n            <input class=\"form-control chat-user-filter\" placeholder=\"Filter\" type=\"text\">\r\n            <dl>\r\n                <dt>\r\n                    <a href=\"#\" class=\"usr\"\r\n                       data-chat-id=\"cha1\"\r\n                       data-chat-fname=\"Sadi\"\r\n                       data-chat-lname=\"Orlaf\"\r\n                       data-chat-status=\"busy\"\r\n                       data-chat-alertmsg=\"Sadi Orlaf is in a meeting. Please do not disturb!\"\r\n                       data-chat-alertshow=\"true\"\r\n                       popover-trigger=\"hover\"\r\n                       popover-placement=\"right\"\r\n                       smart-popover-html=\"\r\n										<div class=\'usr-card\'>\r\n											<img src=\'styles/img/avatars/5.png\' alt=\'Sadi Orlaf\'>\r\n											<div class=\'usr-card-content\'>\r\n												<h3>Sadi Orlaf</h3>\r\n												<p>Marketing Executive</p>\r\n											</div>\r\n										</div>\r\n									\">\r\n                        <i></i>Sadi Orlaf\r\n                    </a>\r\n                </dt>\r\n                <dt>\r\n                    <a href=\"#\" class=\"usr\"\r\n                       data-chat-id=\"cha2\"\r\n                       data-chat-fname=\"Jessica\"\r\n                       data-chat-lname=\"Dolof\"\r\n                       data-chat-status=\"online\"\r\n                       data-chat-alertmsg=\"\"\r\n                       data-chat-alertshow=\"false\"\r\n                       popover-trigger=\"hover\"\r\n                       popover-placement=\"right\"\r\n                       smart-popover-html=\"\r\n										<div class=\'usr-card\'>\r\n											<img src=\'styles/img/avatars/1.png\' alt=\'Jessica Dolof\'>\r\n											<div class=\'usr-card-content\'>\r\n												<h3>Jessica Dolof</h3>\r\n												<p>Sales Administrator</p>\r\n											</div>\r\n										</div>\r\n									\">\r\n                        <i></i>Jessica Dolof\r\n                    </a>\r\n                </dt>\r\n                <dt>\r\n                    <a href=\"#\" class=\"usr\"\r\n                       data-chat-id=\"cha3\"\r\n                       data-chat-fname=\"Zekarburg\"\r\n                       data-chat-lname=\"Almandalie\"\r\n                       data-chat-status=\"online\"\r\n                       popover-trigger=\"hover\"\r\n                       popover-placement=\"right\"\r\n                       smart-popover-html=\"\r\n										<div class=\'usr-card\'>\r\n											<img src=\'styles/img/avatars/3.png\' alt=\'Zekarburg Almandalie\'>\r\n											<div class=\'usr-card-content\'>\r\n												<h3>Zekarburg Almandalie</h3>\r\n												<p>Sales Admin</p>\r\n											</div>\r\n										</div>\r\n									\">\r\n                        <i></i>Zekarburg Almandalie\r\n                    </a>\r\n                </dt>\r\n                <dt>\r\n                    <a href=\"#\" class=\"usr\"\r\n                       data-chat-id=\"cha4\"\r\n                       data-chat-fname=\"Barley\"\r\n                       data-chat-lname=\"Krazurkth\"\r\n                       data-chat-status=\"away\"\r\n                       popover-trigger=\"hover\"\r\n                       popover-placement=\"right\"\r\n                       smart-popover-html=\"\r\n										<div class=\'usr-card\'>\r\n											<img src=\'styles/img/avatars/4.png\' alt=\'Barley Krazurkth\'>\r\n											<div class=\'usr-card-content\'>\r\n												<h3>Barley Krazurkth</h3>\r\n												<p>Sales Director</p>\r\n											</div>\r\n										</div>\r\n									\">\r\n                        <i></i>Barley Krazurkth\r\n                    </a>\r\n                </dt>\r\n                <dt>\r\n                    <a href=\"#\" class=\"usr offline\"\r\n                       data-chat-id=\"cha5\"\r\n                       data-chat-fname=\"Farhana\"\r\n                       data-chat-lname=\"Amrin\"\r\n                       data-chat-status=\"incognito\"\r\n                       popover-trigger=\"hover\"\r\n                       popover-placement=\"right\"\r\n                       smart-popover-html=\"\r\n										<div class=\'usr-card\'>\r\n											<img src=\'styles/img/avatars/female.png\' alt=\'Farhana Amrin\'>\r\n											<div class=\'usr-card-content\'>\r\n												<h3>Farhana Amrin</h3>\r\n												<p>Support Admin <small><i class=\'fa fa-music\'></i> Playing Beethoven Classics</small></p>\r\n											</div>\r\n										</div>\r\n									\">\r\n                        <i></i>Farhana Amrin (offline)\r\n                    </a>\r\n                </dt>\r\n                <dt>\r\n                    <a href=\"#\" class=\"usr offline\"\r\n                       data-chat-id=\"cha6\"\r\n                       data-chat-fname=\"Lezley\"\r\n                       data-chat-lname=\"Jacob\"\r\n                       data-chat-status=\"incognito\"\r\n                       popover-trigger=\"hover\"\r\n                       popover-placement=\"right\"\r\n                       smart-popover-html=\"\r\n										<div class=\'usr-card\'>\r\n											<img src=\'styles/img/avatars/male.png\' alt=\'Lezley Jacob\'>\r\n											<div class=\'usr-card-content\'>\r\n												<h3>Lezley Jacob</h3>\r\n												<p>Sales Director</p>\r\n											</div>\r\n										</div>\r\n									\">\r\n                        <i></i>Lezley Jacob (offline)\r\n                    </a>\r\n                </dt>\r\n            </dl>\r\n\r\n\r\n            <!--<a href=\"chat.html\" class=\"btn btn-xs btn-default btn-block sa-chat-learnmore-btn\">About the API</a>-->\r\n        </div>\r\n    </li>\r\n</ul>");
-$templateCache.put("app/dashboard/chat/directives/chat-users.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<div id=\"chat-container\" ng-class=\"{open: open}\">\r\n    <span class=\"chat-list-open-close\" ng-click=\"openToggle()\"><i class=\"fa fa-user\"></i><b>!</b></span>\r\n\r\n    <div class=\"chat-list-body custom-scroll\">\r\n        <ul id=\"chat-users\">\r\n            <li ng-repeat=\"chatUser in chatUsers | filter: chatUserFilter\">\r\n                <a ng-click=\"messageTo(chatUser)\"><img ng-src=\"{{chatUser.picture}}\">{{chatUser.username}} <span\r\n                        class=\"badge badge-inverse\">{{chatUser.username.length}}</span><span class=\"state\"><i\r\n                        class=\"fa fa-circle txt-color-green pull-right\"></i></span></a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"chat-list-footer\">\r\n        <div class=\"control-group\">\r\n            <form class=\"smart-form\">\r\n                <section>\r\n                    <label class=\"input\" >\r\n                        <input type=\"text\" ng-model=\"chatUserFilter\" id=\"filter-chat-list\" placeholder=\"Filter\">\r\n                    </label>\r\n                </section>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>");
-$templateCache.put("app/dashboard/chat/directives/chat-widget.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<div id=\"chat-widget\" jarvis-widget data-widget-editbutton=\"false\" data-widget-colorbutton=\"false\" data-widget-togglebutton=\"false\" data-widget-fullscreenbutton=\"false\" data-widget-deletebutton=\"false\" >\r\n\r\n\r\n    <header>\r\n        <span class=\"widget-icon\"> <i class=\"fa fa-comments txt-color-white\"></i> </span>\r\n\r\n        <h2> SmartMessage </h2>\r\n\r\n        <div class=\"widget-toolbar\">\r\n            <!-- add: non-hidden - to disable auto hide -->\r\n\r\n            <div class=\"btn-group\" data-dropdown>\r\n                <button class=\"btn dropdown-toggle btn-xs btn_blue\" data-toggle=\"dropdown\">\r\n                    Status <i class=\"fa fa-caret-down\"></i>\r\n                </button>\r\n                <ul class=\"dropdown-menu pull-right js-status-update\">\r\n                    <li>\r\n                        <a href-void><i class=\"fa fa-circle txt-color-green\"></i> Online</a>\r\n                    </li>\r\n                    <li>\r\n                        <a href-void><i class=\"fa fa-circle txt-color-red\"></i> Busy</a>\r\n                    </li>\r\n                    <li>\r\n                        <a href-void><i class=\"fa fa-circle txt-color-orange\"></i> Away</a>\r\n                    </li>\r\n                    <li class=\"divider\"></li>\r\n                    <li>\r\n                        <a href-void><i class=\"fa fa-power-off\"></i> Log Off</a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </header>\r\n\r\n    <!-- widget div-->\r\n    <div>\r\n        <div class=\"widget-body widget-hide-overflow no-padding\">\r\n            <!-- content goes here -->\r\n\r\n            <chat-users></chat-users>\r\n\r\n            <!-- CHAT BODY -->\r\n            <div id=\"chat-body\" class=\"chat-body custom-scroll\">\r\n                <ul>\r\n                    <li class=\"message\" ng-repeat=\"message in chatMessages\">\r\n                        <img class=\"message-picture online\" ng-src=\"{{message.user.picture}}\">\r\n\r\n                        <div class=\"message-text\">\r\n                            <time>\r\n                                {{message.date | date }}\r\n                            </time>\r\n                            <a ng-click=\"messageTo(message.user)\" class=\"username\">{{message.user.username}}</a>\r\n                            <div ng-bind-html=\"message.body\"></div>\r\n\r\n                        </div>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n\r\n            <!-- CHAT FOOTER -->\r\n            <div class=\"chat-footer\">\r\n\r\n                <!-- CHAT TEXTAREA -->\r\n                <div class=\"textarea-div\">\r\n\r\n                    <div class=\"typearea\">\r\n                        <textarea placeholder=\"Write a reply...\" id=\"textarea-expand\"\r\n                                  class=\"custom-scroll\" ng-model=\"newMessage\"></textarea>\r\n                    </div>\r\n\r\n                </div>\r\n\r\n                <!-- CHAT REPLY/SEND -->\r\n											<span class=\"textarea-controls\">\r\n												<button class=\"btn btn-sm btn_blue pull-right\" ng-click=\"sendMessage()\">\r\n                                                    Reply\r\n                                                </button> <span class=\"pull-right smart-form\"\r\n                                                                style=\"margin-top: 3px; margin-right: 10px;\"> <label\r\n                                                    class=\"checkbox pull-right\">\r\n                                                <input type=\"checkbox\" name=\"subscription\" id=\"subscription\">\r\n                                                <i></i>Press <strong> ENTER </strong> to send </label> </span> <a\r\n                                                    href-void class=\"pull-left\"><i\r\n                                                    class=\"fa fa-camera fa-fw fa-lg\"></i></a> </span>\r\n\r\n            </div>\r\n\r\n            <!-- end content -->\r\n        </div>\r\n\r\n    </div>\r\n    <!-- end widget div -->\r\n</div>");
-$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-attribute-form.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<form id=\"attributeForm\" class=\"form-horizontal\"\r\n      data-bv-message=\"This value is not valid\"\r\n      data-bv-feedbackicons-valid=\"glyphicon glyphicon-ok\"\r\n      data-bv-feedbackicons-invalid=\"glyphicon glyphicon-remove\"\r\n      data-bv-feedbackicons-validating=\"glyphicon glyphicon-refresh\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Set validator options via HTML attributes\r\n        </legend>\r\n\r\n        <div class=\"alert alert-warning\">\r\n            <code>&lt; input\r\n                data-bv-validatorname\r\n                data-bv-validatorname-validatoroption=\"...\" / &gt;</code>\r\n\r\n            <br>\r\n            <br>\r\n            More validator options can be found here:\r\n            <a href=\"http://bootstrapvalidator.com/validators/\" target=\"_blank\">http://bootstrapvalidator.com/validators/</a>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Full name</label>\r\n            <div class=\"col-lg-4\">\r\n                <input type=\"text\" class=\"form-control\" name=\"firstName\" placeholder=\"First name\"\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The first name is required and cannot be empty\" />\r\n            </div>\r\n            <div class=\"col-lg-4\">\r\n                <input type=\"text\" class=\"form-control\" name=\"lastName\" placeholder=\"Last name\"\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The last name is required and cannot be empty\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Username</label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"text\" class=\"form-control\" name=\"username\"\r\n                       data-bv-message=\"The username is not valid\"\r\n\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The username is required and cannot be empty\"\r\n\r\n                       data-bv-regexp=\"true\"\r\n                       data-bv-regexp-regexp=\"^[a-zA-Z0-9_\\.]+$\"\r\n                       data-bv-regexp-message=\"The username can only consist of alphabetical, number, dot and underscore\"\r\n\r\n                       data-bv-stringlength=\"true\"\r\n                       data-bv-stringlength-min=\"6\"\r\n                       data-bv-stringlength-max=\"30\"\r\n                       data-bv-stringlength-message=\"The username must be more than 6 and less than 30 characters long\"\r\n\r\n                       data-bv-different=\"true\"\r\n                       data-bv-different-field=\"password\"\r\n                       data-bv-different-message=\"The username and password cannot be the same as each other\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Email address</label>\r\n            <div class=\"col-lg-5\">\r\n                <input class=\"form-control\" name=\"email\" type=\"email\"\r\n                       data-bv-emailaddress=\"true\"\r\n                       data-bv-emailaddress-message=\"The input is not a valid email address\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Password</label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"password\" class=\"form-control\" name=\"password\"\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The password is required and cannot be empty\"\r\n\r\n                       data-bv-identical=\"true\"\r\n                       data-bv-identical-field=\"confirmPassword\"\r\n                       data-bv-identical-message=\"The password and its confirm are not the same\"\r\n\r\n                       data-bv-different=\"true\"\r\n                       data-bv-different-field=\"username\"\r\n                       data-bv-different-message=\"The password cannot be the same as username\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Retype password</label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"password\" class=\"form-control\" name=\"confirmPassword\"\r\n                       data-bv-notempty=\"true\"\r\n                       data-bv-notempty-message=\"The confirm password is required and cannot be empty\"\r\n\r\n                       data-bv-identical=\"true\"\r\n                       data-bv-identical-field=\"password\"\r\n                       data-bv-identical-message=\"The password and its confirm are not the same\"\r\n\r\n                       data-bv-different=\"true\"\r\n                       data-bv-different-field=\"username\"\r\n                       data-bv-different-message=\"The password cannot be the same as username\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Languages</label>\r\n            <div class=\"col-lg-5\">\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"english\"\r\n                               data-bv-message=\"Please specify at least one language you can speak\"\r\n                               data-bv-notempty=\"true\" />\r\n                        English </label>\r\n                </div>\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"french\" />\r\n                        French </label>\r\n                </div>\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"german\" />\r\n                        German </label>\r\n                </div>\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"russian\" />\r\n                        Russian </label>\r\n                </div>\r\n                <div class=\"checkbox\">\r\n                    <label>\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"other\" />\r\n                        Other </label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n     ");
-$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-button-group-form.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<form id=\"buttonGroupForm\" method=\"post\" class=\"form-horizontal\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Default Form Elements\r\n        </legend>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Gender</label>\r\n            <div class=\"col-lg-9\">\r\n                <div class=\"btn-group\" data-toggle=\"buttons\">\r\n                    <label class=\"btn btn-default\">\r\n                        <input type=\"radio\" name=\"gender\" value=\"male\" />\r\n                        Male </label>\r\n                    <label class=\"btn btn-default\">\r\n                        <input type=\"radio\" name=\"gender\" value=\"female\" />\r\n                        Female </label>\r\n                    <label class=\"btn btn-default\">\r\n                        <input type=\"radio\" name=\"gender\" value=\"other\" />\r\n                        Other </label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Languages</label>\r\n            <div class=\"col-lg-9\">\r\n                <div class=\"btn-group\" data-toggle=\"buttons\">\r\n                    <label class=\"btn btn-default\">\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"english\" />\r\n                        English </label>\r\n                    <label class=\"btn btn-default\">\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"german\" />\r\n                        German </label>\r\n                    <label class=\"btn btn-default\">\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"french\" />\r\n                        French </label>\r\n                    <label class=\"btn btn-default\">\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"russian\" />\r\n                        Russian </label>\r\n                    <label class=\"btn btn-default\">\r\n                        <input type=\"checkbox\" name=\"languages[]\" value=\"italian\">\r\n                        Italian </label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n");
-$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-contact-form.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<form id=\"contactForm\" method=\"post\" class=\"form-horizontal\">\r\n\r\n    <fieldset>\r\n        <legend>Showing messages in custom area</legend>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-3 control-label\">Full name</label>\r\n            <div class=\"col-md-6\">\r\n                <input type=\"text\" class=\"form-control\" name=\"fullName\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-3 control-label\">Email</label>\r\n            <div class=\"col-md-6\">\r\n                <input type=\"text\" class=\"form-control\" name=\"email\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-3 control-label\">Title</label>\r\n            <div class=\"col-md-6\">\r\n                <input type=\"text\" class=\"form-control\" name=\"title\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-3 control-label\">Content</label>\r\n            <div class=\"col-md-6\">\r\n                <textarea class=\"form-control\" name=\"content\" rows=\"5\"></textarea>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <!-- #messages is where the messages are placed inside -->\r\n        <div class=\"form-group\">\r\n            <div class=\"col-md-9 col-md-offset-3\">\r\n                <div id=\"messages\"></div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n");
-$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-movie-form.tpl.html","\r\n<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<form id=\"movieForm\" method=\"post\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Default Form Elements\r\n        </legend>\r\n        <div class=\"form-group\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-8\">\r\n                    <label class=\"control-label\">Movie title</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"title\" />\r\n                </div>\r\n\r\n                <div class=\"col-md-4 selectContainer\">\r\n                    <label class=\"control-label\">Genre</label>\r\n                    <select class=\"form-control\" name=\"genre\">\r\n                        <option value=\"\">Choose a genre</option>\r\n                        <option value=\"action\">Action</option>\r\n                        <option value=\"comedy\">Comedy</option>\r\n                        <option value=\"horror\">Horror</option>\r\n                        <option value=\"romance\">Romance</option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-4\">\r\n                    <label class=\"control-label\">Director</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"director\" />\r\n                </div>\r\n\r\n                <div class=\"col-sm-12 col-md-4\">\r\n                    <label class=\"control-label\">Writer</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"writer\" />\r\n                </div>\r\n\r\n                <div class=\"col-sm-12 col-md-4\">\r\n                    <label class=\"control-label\">Producer</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"producer\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-6\">\r\n                    <label class=\"control-label\">Website</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"website\" />\r\n                </div>\r\n\r\n                <div class=\"col-sm-12 col-md-6\">\r\n                    <label class=\"control-label\">Youtube trailer</label>\r\n                    <input type=\"text\" class=\"form-control\" name=\"trailer\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\">Review</label>\r\n            <textarea class=\"form-control\" name=\"review\" rows=\"8\"></textarea>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n\r\n            <div class=\"row\">\r\n                <div class=\"col-sm-12 col-md-12\">\r\n                    <label class=\"control-label\">Rating</label>\r\n                </div>\r\n\r\n                <div class=\"col-sm-12 col-md-10\">\r\n\r\n                    <label class=\"radio radio-inline no-margin\">\r\n                        <input type=\"radio\" name=\"rating\" value=\"terrible\" class=\"radiobox style-2\" />\r\n                        <span>Terrible</span> </label>\r\n\r\n                    <label class=\"radio radio-inline\">\r\n                        <input type=\"radio\" name=\"rating\" value=\"watchable\" class=\"radiobox style-2\" />\r\n                        <span>Watchable</span> </label>\r\n                    <label class=\"radio radio-inline\">\r\n                        <input type=\"radio\" name=\"rating\" value=\"best\" class=\"radiobox style-2\" />\r\n                        <span>Best ever</span> </label>\r\n\r\n                </div>\r\n\r\n            </div>\r\n\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n\r\n</form>\r\n\r\n ");
-$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-product-form.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<form id=\"productForm\" class=\"form-horizontal\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Default Form Elements\r\n        </legend>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-xs-2 col-lg-3 control-label\">Price</label>\r\n            <div class=\"col-xs-9 col-lg-6 inputGroupContainer\">\r\n                <div class=\"input-group\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"price\" />\r\n                    <span class=\"input-group-addon\">$</span>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-xs-2 col-lg-3 control-label\">Amount</label>\r\n            <div class=\"col-xs-9 col-lg-6 inputGroupContainer\">\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\">&#8364;</span>\r\n                    <input type=\"text\" class=\"form-control\" name=\"amount\" />\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-xs-2 col-lg-3 control-label\">Color</label>\r\n            <div class=\"col-xs-9 col-lg-6 selectContainer\">\r\n                <select class=\"form-control\" name=\"color\">\r\n                    <option value=\"\">Choose a color</option>\r\n                    <option value=\"blue\">Blue</option>\r\n                    <option value=\"green\">Green</option>\r\n                    <option value=\"red\">Red</option>\r\n                    <option value=\"yellow\">Yellow</option>\r\n                    <option value=\"white\">White</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-xs-2 col-lg-3 control-label\">Size</label>\r\n            <div class=\"col-xs-9 col-lg-6 selectContainer\">\r\n                <select class=\"form-control\" name=\"size\">\r\n                    <option value=\"\">Choose a size</option>\r\n                    <option value=\"S\">S</option>\r\n                    <option value=\"M\">M</option>\r\n                    <option value=\"L\">L</option>\r\n                    <option value=\"XL\">XL</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</form>\r\n\r\n");
-$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-profile-form.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<form id=\"profileForm\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Default Form Elements\r\n        </legend>\r\n        <div class=\"form-group\">\r\n            <label>Email address</label>\r\n            <input type=\"text\" class=\"form-control\" name=\"email\" />\r\n        </div>\r\n    </fieldset>\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label>Password</label>\r\n            <input type=\"password\" class=\"form-control\" name=\"password\" />\r\n        </div>\r\n    </fieldset>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</form>\r\n");
-$templateCache.put("app/_common/forms/directives/bootstrap-validation/bootstrap-toggling-form.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<form id=\"togglingForm\" method=\"post\" class=\"form-horizontal\">\r\n\r\n    <fieldset>\r\n        <legend>\r\n            Default Form Elements\r\n        </legend>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Full name <sup>*</sup></label>\r\n            <div class=\"col-lg-4\">\r\n                <input type=\"text\" class=\"form-control\" name=\"firstName\" placeholder=\"First name\" />\r\n            </div>\r\n            <div class=\"col-lg-4\">\r\n                <input type=\"text\" class=\"form-control\" name=\"lastName\" placeholder=\"Last name\" />\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Company <sup>*</sup></label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"text\" class=\"form-control\" name=\"company\"\r\n                       required data-bv-notempty-message=\"The company name is required\" />\r\n            </div>\r\n            <div class=\"col-lg-2\">\r\n                <button type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"#jobInfo\">\r\n                    Add more info\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n\r\n    <!-- These fields will not be validated as long as they are not visible -->\r\n    <div id=\"jobInfo\" style=\"display: none;\">\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label class=\"col-lg-3 control-label\">Job title <sup>*</sup></label>\r\n                <div class=\"col-lg-5\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"job\" />\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label class=\"col-lg-3 control-label\">Department <sup>*</sup></label>\r\n                <div class=\"col-lg-5\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"department\" />\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </div>\r\n\r\n    <fieldset>\r\n        <div class=\"form-group\">\r\n            <label class=\"col-lg-3 control-label\">Mobile phone <sup>*</sup></label>\r\n            <div class=\"col-lg-5\">\r\n                <input type=\"text\" class=\"form-control\" name=\"mobilePhone\" />\r\n            </div>\r\n            <div class=\"col-lg-2\">\r\n                <button type=\"button\" class=\"btn btn-info btn-sm\" data-toggle=\"#phoneInfo\">\r\n                    Add more phone numbers\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n    <!-- These fields will not be validated as long as they are not visible -->\r\n    <div id=\"phoneInfo\" style=\"display: none;\">\r\n\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label class=\"col-lg-3 control-label\">Home phone</label>\r\n                <div class=\"col-lg-5\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"homePhone\" />\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n        <fieldset>\r\n            <div class=\"form-group\">\r\n                <label class=\"col-lg-3 control-label\">Office phone</label>\r\n                <div class=\"col-lg-5\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"officePhone\" />\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </div>\r\n\r\n    <div class=\"form-actions\">\r\n        <div class=\"row\">\r\n            <div class=\"col-md-12\">\r\n                <button class=\"btn btn-default\" type=\"submit\">\r\n                    <i class=\"fa fa-eye\"></i>\r\n                    Validate\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</form>");
-$templateCache.put("app/_common/layout/directives/demo/demo-states.tpl.html","<!--\r\n  ~ Copyright (c) 2022. PengYunNetWork\r\n  ~\r\n  ~ This program is free software: you can use, redistribute, and/or modify it\r\n  ~ under the terms of the GNU Affero General Public License, version 3 or later (\"AGPL\"),\r\n  ~ as published by the Free Software Foundation.\r\n  ~\r\n  ~ This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;\r\n  ~  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n  ~\r\n  ~  You should have received a copy of the GNU Affero General Public License along with\r\n  ~  this program. If not, see <http://www.gnu.org/licenses/>.\r\n  -->\r\n\r\n<div class=\"demo\" style=\"display: none\"><span id=\"demo-setting\"><i class=\"fa fa-cog txt-color-blueDark\"></i></span>\r\n\r\n    <form>\r\n        <legend class=\"no-padding margin-bottom-10\">Layout Options</legend>\r\n        <section>\r\n            <label><input type=\"checkbox\" ng-model=\"fixedHeader\"\r\n                          class=\"checkbox style-0\"><span>Fixed Header</span></label>\r\n            <label><input type=\"checkbox\"\r\n                          ng-model=\"fixedNavigation\"\r\n                          class=\"checkbox style-0\"><span>Fixed Navigation</span></label>\r\n            <label><input type=\"checkbox\"\r\n                          ng-model=\"fixedRibbon\"\r\n                          class=\"checkbox style-0\"><span>Fixed Ribbon</span></label>\r\n            <label><input type=\"checkbox\"\r\n                          ng-model=\"fixedPageFooter\"\r\n                          class=\"checkbox style-0\"><span>Fixed Footer</span></label>\r\n            <label><input type=\"checkbox\"\r\n                          ng-model=\"insideContainer\"\r\n                          class=\"checkbox style-0\"><span>Inside <b>.container</b></span></label>\r\n            <label><input type=\"checkbox\"\r\n                          ng-model=\"rtl\"\r\n                          class=\"checkbox style-0\"><span>RTL</span></label>\r\n            <label><input type=\"checkbox\"\r\n                          ng-model=\"menuOnTop\"\r\n                          class=\"checkbox style-0\"><span>Menu on <b>top</b></span></label>\r\n            <label><input type=\"checkbox\"\r\n                          ng-model=\"colorblindFriendly\"\r\n                          class=\"checkbox style-0\"><span>For Colorblind <div\r\n                    class=\"font-xs text-right\">(experimental)\r\n            </div></span>\r\n            </label><span id=\"smart-bgimages\"></span></section>\r\n        <section><h6 class=\"margin-top-10 semi-bold margin-bottom-5\">Clear Localstorage</h6><a\r\n                ng-click=\"factoryReset()\" class=\"btn btn-xs btn-block btn_blue\" id=\"reset-smart-widget\"><i\r\n                class=\"fa fa-refresh\"></i> Factory Reset</a></section>\r\n\r\n        <h6 class=\"margin-top-10 semi-bold margin-bottom-5\">SmartAdmin Skins</h6>\r\n\r\n\r\n        <section id=\"smart-styles\">\r\n            <a ng-repeat=\"skin in skins\" ng-click=\"setSkin(skin)\" class=\"{{skin.class}}\" style=\"{{skin.style}}\"><i ng-if=\"skin.name == $parent.smartSkin\" class=\"fa fa-check fa-fw\"></i> {{skin.label}} <sup ng-if=\"skin.beta\">beta</sup></a>\r\n        </section>\r\n    </form>\r\n</div>");}]);
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app').directive('activitiesDropdownToggle', function($log) {
-    
-	var link = function($scope,$element, attrs){
-		var ajax_dropdown = null;
-
-		$element.on('click',function(){
-
-			var badge = $(this).find('.badge');
-			if (badge.hasClass('bg-color-red')) {
-
-				/*badge.removeClass('bg-color-red').text(0);*/
-
-
-			}
-
-			ajax_dropdown = $(this).next('.ajax-dropdown');
-
-			if (!ajax_dropdown.is(':visible')) {
-
-				ajax_dropdown.fadeIn(150);
-
-				/*$(this).addClass('active');*/
-
-			}
-			 else {
-				
-				ajax_dropdown.fadeOut(150);
-				
-				/*$(this).removeClass('active');*/
-				
-
-			}
-
-		})
-
-		$(document).mouseup(function(e) {
-			if (ajax_dropdown && !ajax_dropdown.is(e.target) && ajax_dropdown.has(e.target).length === 0) {
-				ajax_dropdown.fadeOut(150);
-				$element.removeClass('active');
-				
-
-			}
-		});
-	}
-	
-	return{
-		restrict:'EA',
-		link:link
-	}
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -1757,19 +1758,7 @@ angular.module('app').factory('activityService', function($http, $log, APP_CONFI
 		}
 	}
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
 
 'use strict';
 
@@ -1800,19 +1789,7 @@ angular.module('app.dashboard').directive('eChart', function () {
         }
     };
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
 
 'use strict';
 
@@ -2422,530 +2399,7 @@ angular.module('app.hardware').controller('DiskCtrl', function ($http, $scope, D
   }
 
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-"use strict";
-
-angular.module('app').factory('Language', function($http, APP_CONFIG){
-
-
-
-	function getLanguages(callback) {
-
-		$http.get(APP_CONFIG.apiRootUrl + '/languages.json').then(function(data){
-
-			callback(data.data);
-			
-		},function(){
-
-			$log.log('Error');
-			callback([]);
-
-		});
-
-	}
-
-	return {
-
-		getLanguages:function(callback){
-			getLanguages(callback);
-		}
-	}
-
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app').controller("LanguagesCtrl",  function LanguagesCtrl($scope,$cookieStore, $rootScope, $log, Language,$translate,translate,$state){
-
-    $rootScope.lang = {};
-    
-    Language.getLanguages(function(data){
-        
-        $rootScope.languages = data;
-
-    });
-
-    $scope.selectLanguage = function(language){
-        $rootScope.currentLanguage = language;
-        $cookieStore.remove("lan");
-        $cookieStore.put("lan", $rootScope.currentLanguage);
-        $translate.use(language.key).then(function(){
-        	$state.reload();
-        })
-    }
-
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app').directive('languageSelector', function(Language){
-    return {
-        restrict: "EA",
-        replace: true,
-        templateUrl: "app/layout/language/language-selector.tpl.html",
-        scope: true
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app').controller("messagesCtrl", function ($scope, translate, $http, $interval, $log, $rootScope, activityService, $location, $state) {
-  var timeInterval;
-  $scope.activeTab = 'tasks';
-  $scope.currentActivityItems = [];
-  $scope.ids = [$rootScope.globals.currentAccount.accountId]
-
-  if ($rootScope.globals.currentAccount) {
-    let showName = $rootScope.globals.currentAccount.accountName;
-    if (showName.length > 10) {
-      showName = showName.substring(0, 10) + "...";
-    }
-    $("#currentAccountName").html(showName);
-    $("#currentAccountName").attr("title", $rootScope.globals.currentAccount.accountName);
-  }
-
-  $scope.isActive = function (tab) {
-    return $scope.activeTab === tab;
-  };
-
-  $scope.showMessage = function (th) {
-    var ajax_dropdown = null;
-    ajax_dropdown = $('.ajax-dropdown');
-    if (!ajax_dropdown.is(':visible')) {
-      ajax_dropdown.fadeIn(150);//expand
-
-      $interval.cancel(timeInterval)
-      listLogSiderbar();
-      timeInterval = $interval(listLogSiderbar, 3000);
-
-    } else {
-      $interval.cancel(timeInterval);
-      ajax_dropdown.fadeOut(150);
-    }
-  }
-
-  function listLogSiderbar() {
-    var resultStr = '';
-    $http({
-      method: "post",
-      data: {
-        tempNum: Math.random()
-      },
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      url: "listOperation",
-      transformRequest: function (obj) {
-        var str = [];
-        for (var s in obj) {
-          str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
-        }
-        return str.join("&");
-      }
-    }).then(
-      function successCallback(data) {
-        data = data.data;
-        $.each(data.operationsList, function (i, value) {
-          var tempJson;
-          var t1, t2, t3, t4, t5, t6, t7, t8;
-          if (i < 10) {
-            switch (value.status) {
-              case "SUCCESS":
-                t1 = "fa-check";
-                t2 = "green";
-                break;
-              case "ACTIVITING":
-                t1 = "fa-info";
-                t2 = "yellow";
-                break;
-              case "FAILED":
-                t1 = "fa-close";
-                t2 = "red";
-                break;
-            }
-            t3 = translate.getWord(value.type);
-            t4 = translate.getWord(value.targetType);
-            if (value.targetName == null || value.targetName == "") {
-              t5 = value.operationObject;
-            } else if (value.operationObject == null || value.operationObject == "") {
-              t5 = value.targetName;
-            } else {
-              t5 = value.operationObject + "(" + value.targetName + ")"
-            }
-            var now = new Date();
-            var timespan = now.getTime() - parseInt(value.startTime);
-            var timespan = Math.floor(timespan / 60000);
-            if (timespan < 1) {
-              t7 = translate.getWord("time.justnow");
-            } else if (timespan < 60) {
-              t7 = timespan + translate.getWord("time.minutesago");
-            } else if (timespan < 60 * 24) {
-              timespan = Math.floor(timespan / 60);
-              t7 = timespan + translate.getWord("time.hoursago");
-            } else {
-              timespan = Math.floor(timespan / 60 / 24);
-              t7 = timespan + translate.getWord("time.daysago");
-            }
-            if (value.status != "ACTIVITING") {
-              switch (value.status) {
-                case "SUCCESS":
-                  t6 = translate.getWord("success"); break;
-
-                case "FAILED":
-                  t6 = translate.getWord("fail"); break;
-              }
-            } else {
-              t6 = "ACTIVITING";
-              t8 = value.progress;
-            }
-            resultStr += '<li>'
-              + '<span class="padding-10">'
-              + '<span class="badge padding-5 no-border-radius bg-color-' + t2 + ' pull-left margin-right-5 margin-top-5"><i class="fa ' + t1 + ' fa-fw "></i></span>'
-              + '<span>' + t3 + t4 + t5 + '</span><br>';
-            if (value.status == "ACTIVITING") {
-              resultStr += '<div class="progress progress-sm progress-striped active"  style="margin-bottom: 8px;">'
-                + '<div class="progress-bar bg-color-lightBlue" role="progressbar" style="width: 100%"></div>'
-                + '</div><span class="pull-right font-xs text-muted"><i>' + t7 + '</i></span></span></li>'
-            } else {
-              resultStr += '<div  color=' + t2 + '>' + t6 + '</div><span class="pull-right font-xs text-muted"><i>' + t7 + '</i></span></span></li>'
-            }
-          }
-        });
-        $("#operationLog").html(resultStr)
-      },
-      function errorCallback(response) {
-      }
-    );
-  }
-
-  $(document).mouseup(function (e) {
-    var ajax_dropdown = null;
-    ajax_dropdown = $('.ajax-dropdown');
-    if (ajax_dropdown && !ajax_dropdown.is(e.target) && ajax_dropdown.has(e.target).length === 0) {
-      $interval.cancel(timeInterval)
-      ajax_dropdown.fadeOut(150);
-    }
-  });
-
-  $scope.hideWindow = function (flag) {
-    var ajax_dropdown = null;
-    ajax_dropdown = $('.ajax-dropdown');
-    $interval.cancel(timeInterval)
-    ajax_dropdown.fadeOut(150);
-    if (flag) {
-      $location.path("/alarm")
-    } else {
-      $location.path("/operationLog")
-    }
-  }
-
-  ;(function($, window, undefined) {
-    var $allDropdowns = $();
-  
-    $.fn.dropdownHover = function(options) {
-        $allDropdowns = $allDropdowns.add(this.parent());
-        return this.each(function() {
-            var $this = $(this).parent(),
-                defaults = {
-                    delay: 200,
-                    instantlyCloseOthers: true
-                },
-                data = {
-                    delay: $(this).data('delay'),
-                    instantlyCloseOthers: $(this).data('close-others')
-                },
-                options = $.extend(true, {}, defaults, options, data),
-                timeout;
-            $this.hover(function() {
-                if(options.instantlyCloseOthers === true)
-                    $allDropdowns.removeClass('open');
-                clearTimeout(timeout);
-                $(this).addClass('open');
-            }, function() {
-                timeout = setTimeout(function() {
-                    $this.removeClass('open');
-                }, options.delay);
-            });
-        });
-    };
-    $('#login-user').dropdownHover();
-  })(jQuery, this);
-})
-
-"use strict";
-
-angular.module('app').controller("footCtrl", function ($scope, translate, $http, $rootScope, showMessage) {
-  $scope.fixDiv = false;
-  $scope.newDiv = false;
-  $scope.newIsu = false;
-  $scope.fixBug = false;
-  $scope.updatePwd = function () {
-    $http({
-      method: "POST",
-      url: "updatePassword",
-      data: { "oldPassword": $scope.oldPwd, "newPassword": $scope.newPwd },
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      transformRequest: function (obj) {
-        var str = [];
-        for (var s in obj) {
-          str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
-        }
-        return str.join("&");
-      }
-    }).then(function successCallback(response) {
-      $scope.resetUpdate();
-      if (response.data.resultMessage.message == "ERROR_0019_SessionOut") {
-        showMessage.show($scope, "warn", translate.getWord("session.out"));
-        $scope.logout();
-        return;
-      } else if (response.data.resultMessage.message == "success") {
-
-        showMessage.show($scope, "success", translate.getWord("response.success"));
-
-      } else {
-        showMessage.show($scope, "error", translate.getWord(response.data.resultMessage.message));
-
-      }
-    })
-  }
-
-  $scope.resetUpdate = function () {
-    $scope.oldPwd = "";
-    $scope.newPwd = "";
-    $scope.updateForm.$setPristine();
-    $scope.updateForm.$setUntouched();
-    document.getElementById("updateForm").reset();
-  }
-
-  function getSystemInfo() {
-    $http({
-      method: "post",
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      url: "getSystemInfo",
-      transformRequest: function (obj) {
-        var str = [];
-        for (var s in obj) {
-          str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
-        }
-        return str.join("&");
-      }
-    }).then(function successCallback(response) {
-      if (response.data.resultMessage.message == "ERROR_0019_SessionOut") {
-        showMessage.show($scope, "warn", translate.getWord("ERROR_0019_SessionOut"));
-        $scope.logout();
-        return;
-      } else if (response.data.resultMessage.message == "success") {
-        $scope.name = response.data.name;
-        $scope.version = response.data.version.replace(/\"/g, "");
-        $scope.email = response.data.email;
-        $scope.tel = response.data.tel;
-        $scope.time = response.data.timeStamp.split("_")[0];
-        $scope.corporation = response.data.corporation;
-        var fix = "";
-        var str = "";
-        if (response.data.fixedIssuesStringList.length > 0) {
-          $scope.fixBug = true;
-          angular.forEach(response.data.fixedIssuesStringList, function (data, index) {
-            fix = fix + "<div class='col-sm-12' style='padding:10px 0px'>" + (++index) + ":" + data + "</div>"
-          })
-        } else {
-          $scope.fixBug = false;
-        }
-        if (response.data.newFeaturesStringList.length > 0) {
-          $scope.newIsu = true;
-          angular.forEach(response.data.newFeaturesStringList, function (data, index) {
-            str = str + "<div class='col-sm-12' style='padding:10px 0px'>" + (++index) + ":" + data + "</div>"
-          })
-        } else {
-          $scope.newIsu = false;
-        }
-        $(".fixList").html(fix);
-        $(".newList").html(str);
-      } else {
-        showMessage.show($scope, "error", translate.getWord(response.data.resultMessage.message));
-      }
-    }, function errorCallback(response) {
-    });
-  }
-
-  $scope.versionInfo = function () {
-    $("#version_modal").modal("show");
-    getSystemInfo();
-  }
-
-  $("#version_modal").on("hide.bs.modal", function () {
-    $scope.fixDiv = false;
-    $scope.newDiv = false;
-    $scope.newIsu = false;
-    $scope.fixBug = false;
-    $(".fixSpan").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-    $(".fixSpan").prev().html("展开");
-    $(".newSpan").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-    $(".newSpan").prev().html("展开");
-  })
-
-  $scope.expand = function (item) {
-    if (item == "fix") {
-      $scope.fixDiv = !$scope.fixDiv
-      if ($(".fixSpan").hasClass("glyphicon-chevron-down")) {
-        $(".fixSpan").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-        $(".fixSpan").prev().html("收起");
-      } else {
-        $(".fixSpan").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-        $(".fixSpan").prev().html("展开");
-      }
-    } else {
-      $scope.newDiv = !$scope.newDiv
-      if ($(".newSpan").hasClass("glyphicon-chevron-down")) {
-        $(".newSpan").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-        $(".newSpan").prev().html("收起");
-      } else {
-        $(".newSpan").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
-        $(".newSpan").prev().html("展开");
-      }
-    }
-  }
-})
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app').directive('toggleShortcut', function($log,$timeout) {
-
-	var initDomEvents = function($element){
-
-		var shortcut_dropdown = $('#shortcut');
-
-		$element.on('click',function(){
-		
-			if (shortcut_dropdown.is(":visible")) {
-				shortcut_buttons_hide();
-			} else {
-				shortcut_buttons_show();
-			}
-
-		})
-
-		shortcut_dropdown.find('a').click(function(e) {
-			e.preventDefault();
-			window.location = $(this).attr('href');
-			setTimeout(shortcut_buttons_hide, 300);
-		});
-
-		
-
-		// SHORTCUT buttons goes away if mouse is clicked outside of the area
-		$(document).mouseup(function(e) {
-			if (shortcut_dropdown && !shortcut_dropdown.is(e.target) && shortcut_dropdown.has(e.target).length === 0) {
-				shortcut_buttons_hide();
-			}
-		});
-
-		// SHORTCUT ANIMATE HIDE
-		function shortcut_buttons_hide() {
-			shortcut_dropdown.animate({
-				height : "hide"
-			}, 300, "easeOutCirc");
-			$('body').removeClass('shortcut-on');
-
-		}
-
-		// SHORTCUT ANIMATE SHOW
-		function shortcut_buttons_show() {
-			shortcut_dropdown.animate({
-				height : "show"
-			}, 200, "easeOutCirc");
-			$('body').addClass('shortcut-on');
-		}
-	}
-
-	var link = function($scope,$element){
-		$timeout(function(){
-			initDomEvents($element);
-		});
-	}
-
-	return{
-		restrict:'EA',
-		link:link
-	}
-})
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -4699,19 +4153,6 @@ function watchIcon(domId){
     })
   }
 }
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -5393,19 +4834,6 @@ angular.module('app.storage').controller('AllDriverCtrl', function (focus, $root
 })
 
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -5512,12 +4940,12 @@ angular
         })
         .withDOM(
           "<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
-            "t" +
-            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
+          "t" +
+          "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
         )
 
         .withBootstrap()
-        .withOption("processing", false)
+        .withOption("processing", true)
         .withOption("serverSide", true)
         .withOption("rowId", "domainId")
         .withOption("fnDrawCallback", drawCallback)
@@ -5695,7 +5123,7 @@ angular
         });
       };
 
-      function toggleAll(selectAll, selectedItems) {
+      function toggleAll (selectAll, selectedItems) {
         for (var id in selectedItems) {
           if (selectedItems.hasOwnProperty(id)) {
             selectedItems[id] = selectAll;
@@ -5709,7 +5137,7 @@ angular
           }
         }
       }
-      function toggleOne(selectedItems) {
+      function toggleOne (selectedItems) {
         var s = 0;
         var count = 0;
         for (var id in selectedItems) {
@@ -5734,7 +5162,7 @@ angular
         }
       }
 
-      function drawCallback(result) {
+      function drawCallback (result) {
         $(".selectpicker").selectpicker("render");
         vm.selectAll = false;
         vm.disabled = false;
@@ -5757,8 +5185,8 @@ angular
         $(".domainClearItem").remove();
         $(
           '<i class="fa fa-times-circle item-error-style domainClearItem" onclick="clearFilter(\'' +
-            "domainTab_filter" +
-            "')\"></i>"
+          "domainTab_filter" +
+          "')\"></i>"
         ).insertAfter($("#domainTab_filter").find("input"));
         if ($("#domainTab_filter").find("input").val() == "") {
           $(".domainClearItem").hide();
@@ -5774,48 +5202,48 @@ angular
           e.preventDefault();
           $("#domainTab").DataTable().search("").draw();
         });
-        
+
         if (refreshIds.length > 0) {
           $interval.cancel(intervalTime);
           intervalTime = $interval(domainInterval, 3000);
         }
       }
-      function domainInterval() {
+      function domainInterval () {
         if (timeFlag) {
           timeFlag = false;
           if (refreshIds.length > 0) {
-          $http({
-            method: "POST",
-            async: false,
-            url: "listDomains",
-            data: {
-              idsJson: JSON.stringify(refreshIds),
-            },
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            transformRequest: function (obj) {
-              var str = [];
-              for (var s in obj) {
-                str.push(
-                  encodeURIComponent(s) + "=" + encodeURIComponent(obj[s])
-                );
-              }
-              return str.join("&");
-            },
-          }).then(
-            function successCallback(response) {
-              timeFlag = true;
-              if (
-                response.data.domainList.length == 0 ||
-                refreshIds.length != response.data.domainList.length
-              ) {
-                $interval.cancel(intervalTime);
-                refreshIds = [];
-                vm.dtInstance.reloadData(null, false);
-              }
-            },
-            function errorCallback(response) {}
-          );
-          }else{
+            $http({
+              method: "POST",
+              async: false,
+              url: "listDomains",
+              data: {
+                idsJson: JSON.stringify(refreshIds),
+              },
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              transformRequest: function (obj) {
+                var str = [];
+                for (var s in obj) {
+                  str.push(
+                    encodeURIComponent(s) + "=" + encodeURIComponent(obj[s])
+                  );
+                }
+                return str.join("&");
+              },
+            }).then(
+              function successCallback (response) {
+                timeFlag = true;
+                if (
+                  response.data.domainList.length == 0 ||
+                  refreshIds.length != response.data.domainList.length
+                ) {
+                  $interval.cancel(intervalTime);
+                  refreshIds = [];
+                  vm.dtInstance.reloadData(null, false);
+                }
+              },
+              function errorCallback (response) { }
+            );
+          } else {
             $interval.cancel(intervalTime);
           }
         }
@@ -5825,7 +5253,7 @@ angular
         vm.dtInstance.reloadData(null, false);
       };
 
-      function fixTwoDecimal(value) {
+      function fixTwoDecimal (value) {
         return Math.round(value * 100) / 100;
       }
 
@@ -5865,7 +5293,7 @@ angular
             return str.join("&");
           },
         }).then(
-          function successCallback(response) {
+          function successCallback (response) {
             if (response.data.resultMessage.message == "success") {
               $("#create_modal").modal("hide");
               domainid = response.data.domain.domainId;
@@ -5893,7 +5321,7 @@ angular
             }
             vm.dtInstance.reloadData(null, false);
           },
-          function errorCallback(response) {
+          function errorCallback (response) {
             showMessage.show(
               $scope,
               "error",
@@ -5935,7 +5363,7 @@ angular
             return str.join("&");
           },
         }).then(
-          function successCallback(response) {
+          function successCallback (response) {
             if (response.data.resultMessage.message == "success") {
               showMessage.show(
                 $scope,
@@ -5964,7 +5392,7 @@ angular
             }
             vm.dtInstance.reloadData(null, false);
           },
-          function errorCallback(response) {
+          function errorCallback (response) {
             showMessage.show(
               $scope,
               "error",
@@ -6014,7 +5442,7 @@ angular
               return str.join("&");
             },
           }).then(
-            function successCallback(response) {
+            function successCallback (response) {
               if (response.data.resultMessage.message == "success") {
                 showMessage.show(
                   $scope,
@@ -6042,7 +5470,7 @@ angular
               }
               vm.dtInstance.reloadData(null, false);
             },
-            function errorCallback(response) {
+            function errorCallback (response) {
               showMessage.show(
                 $scope,
                 "error",
@@ -6085,8 +5513,8 @@ angular
         vm.dtOptionU = DTOptionsBuilder.newOptions()
           .withDOM(
             "<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
-              "t" +
-              "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
+            "t" +
+            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
           )
           .withBootstrap()
           .withOption("ajax", {
@@ -6148,8 +5576,8 @@ angular
 
             $(
               '<i class="fa fa-times-circle item-error-style domainUsedClearItem" onclick="clearFilter(\'' +
-                "domainUsedTab_filter" +
-                "')\"></i>"
+              "domainUsedTab_filter" +
+              "')\"></i>"
             ).insertAfter($("#domainUsedTab_filter").find("input"));
             if ($("#domainUsedTab_filter").find("input").val() == "") {
               $(".domainUsedClearItem").hide();
@@ -6263,8 +5691,8 @@ angular
         vm.dtOptionN = DTOptionsBuilder.newOptions()
           .withDOM(
             "<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
-              "t" +
-              "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
+            "t" +
+            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
           )
           .withBootstrap()
           .withOption("ajax", {
@@ -6342,8 +5770,8 @@ angular
 
             $(
               '<i class="fa fa-times-circle item-error-style domainUnuseClearItem" onclick="clearFilter(\'' +
-                "domainUnuseTab_filter" +
-                "')\"></i>"
+              "domainUnuseTab_filter" +
+              "')\"></i>"
             ).insertAfter($("#domainUnuseTab_filter").find("input"));
             if ($("#domainUnuseTab_filter").find("input").val() == "") {
               $(".domainUnuseClearItem").hide();
@@ -6448,7 +5876,7 @@ angular
           DTColumnBuilder.newColumn("port").withTitle("端口"),
         ];
       };
-      function toggleAllN(selectAll, selectedItems) {
+      function toggleAllN (selectAll, selectedItems) {
         for (var id in selectedItems) {
           if (selectedItems.hasOwnProperty(id)) {
             var name = $(".newDatanodeTable")
@@ -6467,7 +5895,7 @@ angular
           }
         }
       }
-      function toggleOneN(selectedItems) {
+      function toggleOneN (selectedItems) {
         var s = 0;
         var t = 0;
         for (var id in selectedItems) {
@@ -6526,7 +5954,7 @@ angular
             return str.join("&");
           },
         }).then(
-          function successCallback(response) {
+          function successCallback (response) {
             if (response.data.resultMessage.message == "success") {
               showMessage.show(
                 $scope,
@@ -6558,7 +5986,7 @@ angular
               }
             }
           },
-          function errorCallback(response) {
+          function errorCallback (response) {
             showMessage.show(
               $scope,
               "error",
@@ -6606,7 +6034,7 @@ angular
             return str.join("&");
           },
         }).then(
-          function successCallback(response) {
+          function successCallback (response) {
             if (response.data.resultMessage.message == "success") {
               showMessage.show(
                 $scope,
@@ -6653,7 +6081,7 @@ angular
               }
             }
           },
-          function errorCallback(response) {
+          function errorCallback (response) {
             showMessage.show(
               $scope,
               "error",
@@ -6682,19 +6110,6 @@ angular
     }
   );
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -6898,19 +6313,6 @@ angular.module('app.storage').controller('domainDetailCtrl', function ($compile,
   })
 })
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -6976,19 +6378,6 @@ angular.module('app.storage').controller('showTable', function ($http,$scope,DTO
  ];
    })
 })
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -7005,19 +6394,6 @@ angular.module('app.storage').controller('diskTable', function ($http,$scope,DTO
     var data=row.data();
     var newData=[];
 })
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -8950,19 +8326,6 @@ angular
     }
   );
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -10036,19 +9399,6 @@ angular.module('app.storage').controller('poolDetailCtrl', function ($compile,fo
 
 
 })
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -10081,11 +9431,11 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       })
     }
   })
-  $scope.$watch('showFlag',function (val) {
-    if(val==3){
+  $scope.$watch('showFlag', function (val) {
+    if (val == 3) {
       getRebalanceSignal()
     }
-  },true)
+  }, true)
   var rebalanceStr = `<span class="rbmark">
 		<hr style="padding-top: 5px">
 		<div class="form-group">
@@ -10302,8 +9652,8 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     .withOption('processing', true)
     .withOption('serverSide', false)
     .withOption('fnInitComplete', function (result) {
-      $('#chkAllBtnIO').click((e) =>{
-        toggleAll(e.target.checked,vm.selectedIO)
+      $('#chkAllBtnIO').click((e) => {
+        toggleAll(e.target.checked, vm.selectedIO)
       })
     })
     .withOption('fnDrawCallback', function (result) {
@@ -10484,8 +9834,8 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     .withOption('processing', true)
     .withOption('serverSide', false)
     .withOption('fnInitComplete', function (result) {
-      $('#chkAllBtnRB').click((e) =>{
-        toggleAll(e.target.checked,vm.selectedRB)
+      $('#chkAllBtnRB').click((e) => {
+        toggleAll(e.target.checked, vm.selectedRB)
       })
     })
     .withOption('fnDrawCallback', function (result) {
@@ -10871,7 +10221,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       $("#rbContainerModify").find(".rbmark").eq(i).find(".addET").val(secondToClock(tempArr[i].endTime));
     }
   }
-  function secondToClock(obj) {
+  function secondToClock (obj) {
     let h = parseInt(obj / 3600);
     let m = (obj % 3600) / 60;
     if (h * 1 < 10) {
@@ -10911,7 +10261,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -10969,7 +10319,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     }
     return true;
   }
-  function isTime(str) {
+  function isTime (str) {
     var a = str.match(/^(\d{1,2})(:)?(\d{1,2})\2(\d{1,2})$/);
     if (a == null) { return false }
     if (a[1] > 24 || a[3] > 60 || a[4] > 60) {
@@ -11067,7 +10417,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -11135,7 +10485,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           $(".iopsUpper").attr("disabled", "disabled");
           $(".throughputLower").attr("disabled", "disabled");
           $(".throughputUpper").attr("disabled", "disabled");
-        }else{
+        } else {
           $(".iopsLower").removeAttr("disabled")
           $(".iopsUpper").removeAttr("disabled")
           $(".throughputLower").removeAttr("disabled")
@@ -11239,7 +10589,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -11551,7 +10901,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       $(e).parents("tr").siblings(".details_tr").remove()
     }
   }
-  function getIOData(obj, input) {
+  function getIOData (obj, input) {
     if (input) {
       return obj * 1 < 0 ? "" : obj;
     } else {
@@ -11821,7 +11171,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -11862,7 +11212,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -11903,7 +11253,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -11941,7 +11291,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -11992,7 +11342,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -12031,7 +11381,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(data) {
+      }).then(function successCallback (data) {
         data = data.data;
         if (data.resultMessage.message != "success") {
           if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -12119,7 +11469,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -12134,79 +11484,79 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       vm.dtInstanceRB.reloadData(null, false);
     })
   }
-  function deleteQOSRules(ruleListJson, isConfirmString) {
-      $http({
-        async: false,
-        method: "post",
-        data: { "commit": isConfirmString, "ioLimitationsJson": ruleListJson },
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        url: "deleteIOLimitations",
-        transformRequest: function (obj) {
-          var str = [];
-          for (var s in obj) {
-            str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
-          }
-          return str.join("&");
+  function deleteQOSRules (ruleListJson, isConfirmString) {
+    $http({
+      async: false,
+      method: "post",
+      data: { "commit": isConfirmString, "ioLimitationsJson": ruleListJson },
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      url: "deleteIOLimitations",
+      transformRequest: function (obj) {
+        var str = [];
+        for (var s in obj) {
+          str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));
         }
-      }).then(function successCallback(data) {
-        data = data.data;
-        if (isConfirmString == "true") {
-          if (data.resultMessage.message != "success") {
-            if (data.resultMessage.message == "ERROR_0019_SessionOut") {
-              showMessage.show($scope, "warn", translate.getWord("session.out"));
-              $scope.logout();
-            } else {
-              showMessage.show($scope, "error", translate.getWord(data.resultMessage.message));
-            }
+        return str.join("&");
+      }
+    }).then(function successCallback (data) {
+      data = data.data;
+      if (isConfirmString == "true") {
+        if (data.resultMessage.message != "success") {
+          if (data.resultMessage.message == "ERROR_0019_SessionOut") {
+            showMessage.show($scope, "warn", translate.getWord("session.out"));
+            $scope.logout();
           } else {
-            showMessage.show($scope, "success", translate.getWord("response.success"));
+            showMessage.show($scope, "error", translate.getWord(data.resultMessage.message));
           }
-          vm.dtInstanceIO.reloadData(null, false);
-          return;
-        }
-        if (data.beAppliedIOLimitation2Drivers) {
-          var warningMessage = "这些IO应用于某些驱动，您确定要删除它们吗？";
-          var ioArr = [];
-          $.map(data.beAppliedIOLimitation2Drivers, function (k, v) {
-            ioArr = [];
-            for (var i = 0; i < k.length; i++) {
-              var a = k[i].driverType;
-              var b = k[i].driverContainerIp;
-              var c = k[i].host;
-              ioArr.push(b + "(" + (a == "NBD" ? "PYD" : a) + "):" + c + "<br/>")
-            }
-
-            warningMessage += "<div class='deleteNames'>" + v.getQuery("limitationName") + "&nbsp;" + translate.getWord("apply.to") + "&nbsp;" + ioArr.join(",") + "</div>";
-          });
-
-          newConfirm(translate.getWord("disk.operation.confirm"), warningMessage, function (rt) {
-            if (rt) {
-              deleteQOSRules(ruleListJson, "true");
-            }
-          }, translate.getWord("button.confirm"), translate.getWord("button.cancel"))
         } else {
-          if (data.resultMessage.message != "success") {
-            if (data.resultMessage.message == "ERROR_0019_SessionOut") {
-              showMessage.show($scope, "warn", translate.getWord("session.out"));
-              $scope.logout();
-            } else {
-              showMessage.show($scope, "error", translate.getWord(data.resultMessage.message));
-            }
-          } else {
-            showMessage.show($scope, "success", translate.getWord("response.success"));
-          }
-          vm.dtInstanceIO.reloadData(null, false);
-          return;
+          showMessage.show($scope, "success", translate.getWord("response.success"));
         }
-      });
-  }
-  
+        vm.dtInstanceIO.reloadData(null, false);
+        return;
+      }
+      if (data.beAppliedIOLimitation2Drivers) {
+        var warningMessage = "这些IO应用于某些驱动，您确定要删除它们吗？";
+        var ioArr = [];
+        $.map(data.beAppliedIOLimitation2Drivers, function (k, v) {
+          ioArr = [];
+          for (var i = 0; i < k.length; i++) {
+            var a = k[i].driverType;
+            var b = k[i].driverContainerIp;
+            var c = k[i].host;
+            ioArr.push(b + "(" + (a == "NBD" ? "PYD" : a) + "):" + c + "<br/>")
+          }
 
-  function timeToSecond(t) {
+          warningMessage += "<div class='deleteNames'>" + v.getQuery("limitationName") + "&nbsp;" + translate.getWord("apply.to") + "&nbsp;" + ioArr.join(",") + "</div>";
+        });
+
+        newConfirm(translate.getWord("disk.operation.confirm"), warningMessage, function (rt) {
+          if (rt) {
+            deleteQOSRules(ruleListJson, "true");
+          }
+        }, translate.getWord("button.confirm"), translate.getWord("button.cancel"))
+      } else {
+        if (data.resultMessage.message != "success") {
+          if (data.resultMessage.message == "ERROR_0019_SessionOut") {
+            showMessage.show($scope, "warn", translate.getWord("session.out"));
+            $scope.logout();
+          } else {
+            showMessage.show($scope, "error", translate.getWord(data.resultMessage.message));
+          }
+        } else {
+          showMessage.show($scope, "success", translate.getWord("response.success"));
+        }
+        vm.dtInstanceIO.reloadData(null, false);
+        return;
+      }
+    });
+  }
+
+
+  function timeToSecond (t) {
     var timeArr = t.split(":");
     return (timeArr[0] * 60 + timeArr[1] * 1) * 60
   }
-  function secondToTime(t, f) {
+  function secondToTime (t, f) {
     if (f) {
       var allMin = parseInt(t / 60);
       return addZero(parseInt(allMin / 60)) + ":" + addZero(allMin % 60);
@@ -12215,7 +11565,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       return parseInt(allMin / 60) + "小时" + allMin % 60 + "分钟";
     }
   }
-  function addZero(t) {
+  function addZero (t) {
     if (t < 10) {
       return "0" + t;
     } else {
@@ -12265,7 +11615,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(data) {
+    }).then(function successCallback (data) {
       data = data.data;
       if (data.resultMessage.message != "success") {
         if (data.resultMessage.message == "ERROR_0019_SessionOut") {
@@ -12299,11 +11649,11 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       $scope.deleteNames = ruleNameListToDelete.join(",");
     }
   }
-  function toggleAll(selectAll, selectedItems) {
+  function toggleAll (selectAll, selectedItems) {
     for (var id in selectedItems) {
       if (selectedItems.hasOwnProperty(id)) {
         selectedItems[id] = selectAll;
-        $('#checkbox_' + id).prop('checked',selectAll);
+        $('#checkbox_' + id).prop('checked', selectAll);
       }
     }
     for (var id in selectedItems) {
@@ -12321,7 +11671,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     }
   }
 
-  function toggleOne(selectedItems) {
+  function toggleOne (selectedItems) {
     for (var id in selectedItems) {
       if (selectedItems[id]) {
         $('#deleteRules').prop("disabled", false)
@@ -12355,10 +11705,10 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       if (s > 0) {
         if (s == t) {
           vm.selectAll = true;
-          $('#chkAllBtn').prop('checked',true)
+          $('#chkAllBtn').prop('checked', true)
         } else {
           vm.selectAll = false;
-          $('#chkAllBtn').prop('checked',false)
+          $('#chkAllBtn').prop('checked', false)
         }
 
       }
@@ -12383,10 +11733,10 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       if (s > 0) {
         if (s == t) {
           vm.selectAllIO = true;
-          $('#chkAllBtnIO').prop('checked',true)
+          $('#chkAllBtnIO').prop('checked', true)
         } else {
           vm.selectAllIO = false;
-          $('#chkAllBtnIO').prop('checked',false)
+          $('#chkAllBtnIO').prop('checked', false)
         }
 
       }
@@ -12410,10 +11760,10 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       if (s > 0) {
         if (s == t) {
           vm.selectAllRB = true;
-          $('#chkAllBtnRB').prop('checked',true)
+          $('#chkAllBtnRB').prop('checked', true)
         } else {
           vm.selectAllRB = false;
-          $('#chkAllBtnRB').prop('checked',false)
+          $('#chkAllBtnRB').prop('checked', false)
         }
 
       }
@@ -12446,7 +11796,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
       $("#ruleContainer").append($(".iomodel2").html())
     }
   }
-  function toggleAllAC(str, selectAll, selectedItems) {
+  function toggleAllAC (str, selectAll, selectedItems) {
     for (var id in selectedItems) {
       if (selectedItems.hasOwnProperty(id)) {
         var name = "";
@@ -12472,7 +11822,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     }
     $scope.clickEvt()
   }
-  function toggleOneAC(str, selectedItems) {
+  function toggleOneAC (str, selectedItems) {
     var s = 0;
     if (str == "apply") {
       for (var id in selectedItems) {
@@ -12642,7 +11992,7 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
     $scope.mode = "";
     $("#mode").selectpicker("val", '');
     $("#mode").selectpicker("refresh");
-    $("#tacticsBusinessCreateWrap").html($compile('<input data-smart-uislider type="text" class="slider slider-primary" id="tacticsBusinessCreate" value="" data-slider-min="1" data-slider-max="100" data-slider-value="1"  data-slider-selection = "before" data-slider-handle="squar" data-slider-tooltip = "show" style="padding: 0 5px"><span class="pull-left" style="margin-top: -30px;color: #999">1</span><span class="pull-right" style="margin-top: -30px;color: #999">100</span>')($scope));
+    // $("#tacticsBusinessCreateWrap").html($compile('<input data-smart-uislider type="text" class="slider slider-primary" id="tacticsBusinessCreate" value="" data-slider-min="1" data-slider-max="100" data-slider-value="1"  data-slider-selection = "before" data-slider-handle="squar" data-slider-tooltip = "show" style="padding: 0 5px"><span class="pull-left" style="margin-top: -30px;color: #999">1</span><span class="pull-right" style="margin-top: -30px;color: #999">100</span>')($scope));
     $scope.hideEditSelect = 'Static';
     $("#limitType").selectpicker("val", 'Static');
     $("#limitType").selectpicker("refresh");
@@ -12689,13 +12039,13 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(response) {
+      }).then(function successCallback (response) {
         if (response.data.resultMessage.message == "success") {
           getRebalanceSignal();
 
         }
 
-      }, function errorCallback(response) {
+      }, function errorCallback (response) {
 
       });
 
@@ -12716,18 +12066,18 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
           }
           return str.join("&");
         }
-      }).then(function successCallback(response) {
+      }).then(function successCallback (response) {
         if (response.data.resultMessage.message == "success") {
           getRebalanceSignal();
 
         }
 
-      }, function errorCallback(response) {
+      }, function errorCallback (response) {
 
       });
     }
   }
-  function getRebalanceSignal() {
+  function getRebalanceSignal () {
     $http({
       method: "post",
       async: false,
@@ -12742,19 +12092,19 @@ angular.module('app.storage').controller('QosTempletCtrl', function (focus, $sta
         }
         return str.join("&");
       }
-    }).then(function successCallback(response) {
+    }).then(function successCallback (response) {
       if (response.data.rebalanceStarted) {
         $(".bootstrap-switch").removeClass("bootstrap-switch-off").addClass("bootstrap-switch-on")
       } else {
         $(".bootstrap-switch").removeClass("bootstrap-switch-off").addClass("bootstrap-switch-off")
       }
-    }, function errorCallback(response) {
+    }, function errorCallback (response) {
 
     });
   }
 });
 
-function removeIOModel(obj, e) {
+function removeIOModel (obj, e) {
 
   $(obj).parent().parent().parent().remove()
   var temp = $('#ruleContainerModify').children('.iomark')
@@ -12766,7 +12116,7 @@ function removeIOModel(obj, e) {
     $(temp[i]).find('.pull-right').attr('disabled', false)
   }
 }
-function checkNonnegativeNumber(e) {
+function checkNonnegativeNumber (e) {
   e.value = e.value.replace(/\D/g, '');
   if (e.value.length != 1) {
     if ($(e).val().split("")[0] * 1 == 0) {
@@ -12774,7 +12124,7 @@ function checkNonnegativeNumber(e) {
     }
   }
 }
-function checkPositiveNumber(e) {
+function checkPositiveNumber (e) {
 
   if (e.value.length == 1) {
     e.value = e.value.replace(/[^1-9]/g, '')
@@ -12782,7 +12132,7 @@ function checkPositiveNumber(e) {
     e.value = e.value.replace(/\D/g, '');
   }
 }
-function checkTransSpend(e) {
+function checkTransSpend (e) {
 
   if (e.value.length == 1) {
     e.value = e.value.replace(/[^1-9]/g, '')
@@ -12793,7 +12143,7 @@ function checkTransSpend(e) {
     e.value = e.value.substr(0, 2)
   }
 }
-function debounce(fn, delay = 1000) {
+function debounce (fn, delay = 1000) {
   var timer
   return function () {
     if (timer) {
@@ -12804,7 +12154,7 @@ function debounce(fn, delay = 1000) {
     }, delay);
   }
 }
-function throttle(fn, delay = 1000) {
+function throttle (fn, delay = 1000) {
   var timer
   return function () {
     if (!timer) {
@@ -12816,19 +12166,6 @@ function throttle(fn, delay = 1000) {
   }
 }
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -14900,19 +14237,6 @@ function byteFormat(size) {
   return size.toFixed(1) + "GB";
 }
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -16024,19 +15348,6 @@ function keyDown(e){
 })(jQuery, window, document);
 
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -16464,19 +15775,6 @@ angular.module('app.storage').controller('VolumePerformanceDataCtrl', function (
   }
 })
 
- /*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 angular.module('app.storage').directive('usedDatanode', function() {
  	 return {
@@ -16490,19 +15788,6 @@ angular.module('app.storage').directive('usedDatanode', function() {
  	 }
  	    
  });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -16547,19 +15832,6 @@ angular.module('app.storage').directive("datetimepicker",function(){
 });
 ;
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -16748,928 +16020,7 @@ angular.module('app.storage').service('goPage', function(translate) {
 
 
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-"use strict"
-angular
-  .module("app.storage")
-  .controller(
-  "ComponentCtrl",function (
-    $scope,
-    $interval,
-    DTOptionsBuilder,
-    showMessage,
-    DTColumnBuilder,
-    $compile,
-    translate,
-    ) 
-  {
-    $(".modal").draggable();
-    var vm = this;
-    var intervalTimer
-    $scope.showFlag = 1;
-
-    function changeTime() {
-      $interval.cancel(intervalTimer)
-      intervalTimer = $interval(serviceInterval, 5000)
-    }
-
-    function stopTimer() {
-      $interval.cancel(intervalTimer)
-    }
-
-    $scope.$watch('showFlag',function () {
-      stopTimer()
-    })
-
-    function serviceInterval() {
-      if ($scope.showFlag==1) {
-        vm.dtInstance.reloadData(null,false)
-      }
-    }
-
-    $scope.$on('$destroy', function () {
-      $interval.cancel(intervalTimer);
-    })
-
-    vm.dtOptions = DTOptionsBuilder.newOptions()
-    .withDOM(
-      "<'dt-toolbar'<'col-xs-12 col-sm-3'l><'col-sm-9 col-xs-12 hidden-xs'f>r>" +
-        "t" +
-        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
-    )
-    .withBootstrap()
-    .withOption("ajax", {
-      url: "checkZookeeperStatus",
-      type: 'post',
-      dataSrc: function (data) {
-        if (data.resultMessage.message == 'ERROR_0019_SessionOut') {
-          showMessage.show(
-            $scope,
-            'warn',
-            translate.getWord('session.out')
-          )
-          $scope.logout()
-          return
-        }
-        return data.zookeeperStatusList
-      },
-    })
-    .withOption('processing', false)
-    .withOption('serverSide', false)  
-    .withOption("pageLength", 20)
-    .withOption("createdRow", function (row, data, dataIndex) {
-      $compile(angular.element(row).contents())($scope);
-    })
-    .withOption("headerCallback", function (header) {
-      $compile(angular.element(header).contents())($scope);
-    })
-    .withOption("fnInitComplete", function (result) {
-      $('#zookeeperTab thead tr th').eq(0).css('width','700px').next().css('width','800px')
-      $(".selectpicker").selectpicker("render");
-    })
-    .withOption("fnDrawCallback", function (result) {
-      $(".selectpicker").selectpicker("render");
-      $("#zookeeperTab_filter").find("input").addClass("filter_input");
-      $(".zookClearItem").remove();
-      $('<i class="fa fa-times-circle item-error-style zookClearItem" onclick="clearFilter(\''+"zookeeperTab_filter"+"')\"></i>"
-      ).insertAfter($("#zookeeperTab_filter").find("input"));
-      $("#zookeeperTab_filter input").val()? $(".zookClearItem").show() : $(".zookClearItem").hide()
-      $("#zookeeperTab_filter input").unbind("keyup", showItem);
-      $("#zookeeperTab_filter input").bind("keyup", { cName: "zookClearItem" }, showItem);
-      $(".zookClearItem").click(function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-        $("#zookeeperTab").DataTable().search("").draw();
-      });
-      changeTime();
-    })
-    .withLanguage({
-      search: "",
-      searchPlaceholder: "节点查询",
-      aria: {
-        sortAscending: ": activate to sort column ascending",
-        sortDescending: ": activate to sort column descending",
-      },
-      emptyTable: "表中数据为空",
-      info: "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-      infoEmpty: "显示第 0 至 0 项结果，共 0 项",
-      infoFiltered: "(由 _MAX_ 项结果过滤)",
-      zeroRecords: "表中数据为空",
-      lengthMenu:
-        "显示" +
-        '&nbsp;<select data-width="80px" class="selectpicker " style="background-color: white;"  name="timeSelect"  >' +
-        '<option value="5" >5条</option>' +
-        '<option value="10" >10条</option>' +
-        '<option value="20" >20条</option>' +
-        '<option value="50" >50条</option>' +
-        '<option value="100" >100条</option>' +
-        "</select>",
-      paginate: {
-        previous: '<i class="fa fa-angle-left"></i>',
-        next: '<i class="fa fa-angle-right"></i>',
-        last: '<i class="fa  fa-angle-double-right"></i>',
-        first: '<i class="fa  fa-angle-double-left"></i>',
-      },
-    });
-
-    vm.dtColumns = [
-      DTColumnBuilder.newColumn('hostname').withTitle('节点ip'),
-      DTColumnBuilder.newColumn('status').withTitle('服务状态')
-        .renderWith(function (data,tpye,row) {
-          switch(data){
-            case 'OK':
-              return '<span class="status_green">' + "正常" + '</span>'
-            case 'ERROR':
-              return '<span class="status_red">' + "断开连接" + '</span>'
-            default:
-              return '<span class="status_red">' + "断开连接" + '</span>'
-          }
-        }),
-    ]
-
-    vm.dtInstance = {};
-
-    $scope.reloadData = function () {
-      vm.dtInstance.reloadData(null,false)
-    }
-    
-    $scope.refresh = function () {
-      $scope.reloadData()
-    }
-})
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('app.system').controller('OperationLogCtrl', function ($rootScope,$scope,translate, $interval,$http,DTOptionsBuilder,showMessage, DTColumnBuilder,$compile) {
-	$(".modal").draggable();
-	$scope.selectGroups=['5','10','20','50','100'];
-	$scope.startTime="";
-	$scope.endTime="";
-	$scope.startNum=0;
-	var logInterval;
-	var timerFlag=true;
-	var accountNameSearchGlobal="",
-	typeSearchGlobal="",
-	filterStatusGlobal="",
-	targetTypeSearchGlobal="",
-	operationObjectSearchGlobal="",
-	startTimeGlobal="",
-	endTimeGlobal="";
-
-	$scope.loadTab=function(){
-		$scope.perpage_num=$("#operationlog_select").val()||5;
-		timerFlag=false;
-		$http({
-			method: "post",
-			data:{
-				"status":filterStatusGlobal,
-				"accountName":accountNameSearchGlobal,
-				"operationType":typeSearchGlobal,
-				"targetType":targetTypeSearchGlobal,
-				"targetName":operationObjectSearchGlobal,
-				"startTime":startTimeGlobal,
-				"endTime":endTimeGlobal,
-				"start":$scope.startNum,
-				"length":$scope.perpage_num
-			},
-			async:false,
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },  
-			url:"listOperationLogByTime",  
-			transformRequest: function(obj) {  
-				var str = [];  
-				for (var s in obj) {  
-					str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));  
-				}
-				return str.join("&");  
-			}
-		}).then(function successCallback(data){
-			data=data.data;
-			timerFlag=true;
-			if(data.resultMessage.message != "success"){
-				if (data.resultMessage.message  == "ERROR_0019_SessionOut") {
-					showMessage.show($scope,"warn",translate.getWord("session.out"));
-					$scope.logout();
-				}
-			}else{
-				$scope.totalSize=data.totalRecord;
-				$scope.pageNum=Math.ceil($scope.totalSize/$scope.perpage_num);
-				$(".selectpicker").selectpicker("render");
-				var resultStr="";
-				$scope.dataLength=0;
-				if(!data.operationLogFormatList.length){
-					var tempStr='<tr class="odd"><td colspan="8" class="dataTables_empty" valign="top">表中数据为空</td></tr>';
-					$("#operationlogTab tbody").html(tempStr)
-					$("#opertationlog_pagination").html("")
-					return ;
-				}
-				for (var i = 0; i < data.operationLogFormatList.length; i++) {
-					var tempObj=data.operationLogFormatList[i];
-					resultStr+='<tr  role="row" class="operationlog_time">'
-						+'<td colspan="8">'
-							+'<p class="operationlog_p">'+$scope.getObjDate(tempObj.dayTime)+'</p>'
-						+'</td>'
-					+'</tr>';
-					for (var j = 0; j < tempObj.operationList.length; j++) {
-						$scope.dataLength++;
-						var tempData=tempObj.operationList[j];
-						resultStr+='<tr class="operationlog_data" role="row"><td><span>'+tempData.accountName+'</span></td>'
-						+'<td><span>'+translate.getWord(tempData.type)+'</span></td>'
-						+'<td><span>'+translate.getWord(tempData.targetType)+'</span></td>'
-						+'<td><span>';
-						if(tempData.targetName==null||tempData.targetName==""){
-							resultStr+=tempData.operationObject;
-						}else if(tempData.operationObject==null||tempData.operationObject==""){
-							resultStr+=tempData.targetName;
-						}else if(tempData.operationObject=="priorityService"||tempData.operationObject=="priorityRefactor"){
-							resultStr+=tempData.targetName+"("+translate.getWord(tempData.operationObject)+")"
-						}else{
-							resultStr+=tempData.targetName+"("+tempData.operationObject+")"
-						}
-						resultStr+='</span></td>'
-						+'<td><span>';
-
-						if(tempData.status!="ACTIVITING"){
-							switch(tempData.status){
-								case "SUCCESS":
-									resultStr+="<div><span class='status_green'>"+translate.getWord("success")+"</span></div>";break;
-								case "FAILED":
-									resultStr+="<div><span class='status_red'>"+translate.getWord("fail")+"</span></div>";break;
-							}
-						}else{
-							resultStr+="<div class='progress progress-striped active' >"
-								+"<div class='progress-bar' role='progressbar'  style='width:100%'>"
-									+"<span >"
-										+tempData.progress+"%"
-									+"</span>"
-								+"</div>"
-							+"</div>"
-						}
-						resultStr+='</span></td>'
-						+'<td><span>'+fillDate(tempData.startTime)+'</span></td>'
-						+'<td><span>'+fillDate(tempData.endTime)+'</span></td>'
-						+'<td><span>'+(tempData.errorMessage==null?'&nbsp;':tempData.errorMessage)+'</span></td></tr>';
-					}
-				}
-				$("#operationlogTab tbody").html(resultStr)
-				$scope.currentNum=Math.floor($scope.startNum/$scope.perpage_num)+1;
-				var pageStr='';
-				if($scope.currentNum==1){
-					pageStr+='<li class="paginate_button first disabled"><a onclick="event.preventDefault()"><i class="fa  fa-angle-double-left"></i></a></li>'
-					+'<li class="paginate_button previous disabled" ><a onclick="event.preventDefault()"><i class="fa fa-angle-left"></i></a></li>';
-				}else{
-					pageStr+='<li class="paginate_button first"><a ng-click="goPage(1)"><i class="fa  fa-angle-double-left"></i></a></li>'
-					+'<li class="paginate_button previous " ><a ng-click="goPage('+($scope.currentNum-1)+')"><i class="fa fa-angle-left"></i></a></li>';
-				}
-				if($scope.pageNum<=7){
-					for (var i = 1; i <= $scope.pageNum; i++) {
-						if(i==$scope.currentNum){
-							pageStr+='<li class="paginate_button active"><a>'+i+'</a></li>'
-						}else{
-							pageStr+='<li class="paginate_button"><a ng-click="goPage('+i+')">'+i+'</a></li>'
-						}
-					}
-				}else{
-					if($scope.currentNum<=4){
-						for (var i = 1; i <=5; i++) {
-							if(i==$scope.currentNum){
-								pageStr+='<li class="paginate_button active"><a>'+i+'</a></li>'
-							}else{
-								pageStr+='<li class="paginate_button"><a ng-click="goPage('+i+')">'+i+'</a></li>'
-							}
-						}
-						pageStr+='<li class="paginate_button disabled"><a onclick="event.preventDefault()">...</a></li>'
-							+'<li class="paginate_button"><a ng-click="goPage('+$scope.pageNum+')">'+$scope.pageNum+'</a></li>'
-					}else if($scope.currentNum>=($scope.pageNum-3)){
-						pageStr+='<li class="paginate_button"><a  ng-click="goPage(1)">1</a></li>'
-							+'<li class="paginate_button disabled"><a onclick="event.preventDefault()">...</a></li>';
-						for (var i = 4; i >=0; i--) {
-							if($scope.pageNum-i==$scope.currentNum){
-								pageStr+='<li class="paginate_button active"><a>'+($scope.pageNum-i)+'</a></li>'
-							}else{
-								pageStr+='<li class="paginate_button"><a  ng-click="goPage('+($scope.pageNum-i)+')">'+($scope.pageNum-i)+'</a></li>'
-							}
-						}
-					}else{
-						pageStr+='<li class="paginate_button"><a  ng-click="goPage(1)">1</a></li>'
-							+'<li class="paginate_button disabled"><a onclick="event.preventDefault()">...</a></li>'
-							+'<li class="paginate_button"><a  ng-click="goPage('+($scope.currentNum-1)+')">'+($scope.currentNum-1)+'</a></li>'
-							+'<li class="paginate_button active"><a>'+$scope.currentNum+'</a></li>'
-							+'<li class="paginate_button"><a  ng-click="goPage('+($scope.currentNum+1)+')">'+($scope.currentNum+1)+'</a></li>'
-							+'<li class="paginate_button disabled"><a onclick="event.preventDefault()">...</a></li>'
-							+'<li class="paginate_button"><a  ng-click="goPage('+$scope.pageNum+')">'+$scope.pageNum+'</a></li>'
-					}
-				}
-				if($scope.currentNum==$scope.pageNum){
-					pageStr+='<li class="paginate_button next disabled"><a onclick="event.preventDefault()"><i class="fa fa-angle-right"></i></a></li>'
-					+'<li class="paginate_button last disabled"><a onclick="event.preventDefault()"><i class="fa  fa-angle-double-right"></i></a></li>';
-				}else{
-					pageStr+='<li class="paginate_button next"><a ng-click="goPage('+($scope.currentNum+1)+')"><i class="fa fa-angle-right"></i></a></li>'
-					+'<li class="paginate_button last"><a ng-click="goPage('+$scope.pageNum+')"><i class="fa  fa-angle-double-right"></i></a></li>';
-				}
-				$("#opertationlog_pagination").html($compile(pageStr)($scope))
-			}
-		});
-	}
-
-	$scope.loadTab()
-
-	$scope.goPage=function(num){
-		$scope.startNum=(num-1)*$scope.perpage_num;
-		$scope.loadTab()
-	}
-
-	$scope.search=function(){
-		$scope.startNum=0;
-		var startTime=(new Date($("#startTime").val().split("-").join("/")+" 00:00:00")).getTime()||"";
-		 var endTime=((new Date($("#endTime").val().split("-").join("/")+" 00:00:00")).getTime())+86399999||"";
-		 var currentTime=(new Date()).getTime();
-
-		 if(endTime*1<startTime*1){
-			 showMessage.show($scope,"error","结束时间需要大于开始时间");
-			 return;
-		 }else if(currentTime*1<(endTime*1-86399999)){
-			 showMessage.show($scope,"error","只可查询当前时间之前的日志");
-			 return;
-		 }
-		accountNameSearchGlobal=$("#accountNameSearch").val()||"";
-		typeSearchGlobal=$("#typeSearch").val()||"";
-		filterStatusGlobal=$("#filterStatus").val()||"";
-		targetTypeSearchGlobal=$("#targetTypeSearch").val()||"";
-		operationObjectSearchGlobal=$("#operationObjectSearch").val()||"";
-		startTimeGlobal=startTime;
-		endTimeGlobal=endTime;
-		$scope.searchFlag=true;
-		$scope.loadTab()
-	}
-
-	$scope.searchAndExport=function(){
-		$scope.search();
-		var status=$("#filterStatus").val()||"";
-		var accountName=$("#accountNameSearch").val()||"";
-		var operationType=$("#typeSearch").val()||"";
-		var targetType=$("#targetTypeSearch").val()||"";
-		var targetName=$("#operationObjectSearch").val()||"";
-		var endTime=((new Date($("#endTime").val().split("-").join("/")+" 00:00:00")).getTime())+86399999||"";
-		var startTime=(new Date($("#startTime").val().split("-").join("/")+" 00:00:00")).getTime()||"";
-		window.location.href="saveOperationLogsToCSV?status="+status
-			+"&accountName="+accountName
-			+"&operationType="+operationType
-			+"&targetType="+targetType
-			+"&startTime="+startTime
-			+"&endTime="+endTime
-			+"&targetName="+targetName
-	}
-
-	$scope.clearSelf=function(n){
-		if(n*1==1){
-			$scope.logItem1=""
-		}else if(n*1==2){
-			$scope.logItem2=""
-		}else if(n*1==3){
-			$scope.startTime=""
-		}else if(n*1==4){
-			$scope.endTime=""
-		}
-	}
-
-	$scope.getObjDate=function(timer){
-		var time=new Date(parseInt(timer));
-		var month = time.getMonth()+1;
-		var day=time.getDate();
-		var hour=time.getHours();
-		var minute=time.getMinutes();
-		var second=time.getSeconds();
-		return time.getFullYear()+"年"+ month + "月"+day+"日";
-	}
-
-	logInterval=$interval($scope.loadTab,5000)
-  
-	$scope.$on('$destroy',function(){
-		$interval.cancel(logInterval)
-	}) 
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-angular.module('app.system').controller('ServicesCtrl', ServicesCtrl);
-function ServicesCtrl($compile, translate, $scope, DTOptionsBuilder, showMessage, DTColumnBuilder, $http, $interval, $stateParams, $rootScope) {
-  $(".modal").draggable();
-  var vm = this;
-  $scope.isGreater = false;
-  var statusLevel = $stateParams.statusLevel;
-  var level = $("#searchServiceStatus").val() || "";
-  if (statusLevel != "") {
-    level = statusLevel;
-    $scope.isGreater = true;
-  }
-  var instanceIds = new Array();
-  var instanceNames = new Array();
-  var instanceStatuses = new Array();
-  var instanceHostIps = new Array();
-  var intervalTimer;
-  var tableLength;
-  var timeFlag = true;
-
-  function changeTime() {
-    $interval.cancel(intervalTimer)
-    intervalTimer = $interval(serviceInterval, 3000)
-  }
-
-  function stopTimer() {
-    $interval.cancel(intervalTimer)
-  }
-
-  function serviceInterval() {
-    if (timeFlag) {
-      timeFlag = false;
-      if ($scope.isGreater) {
-        vm.dtInstance.reloadData(null, false);
-      } else {
-        vm.dtInstanceInfo.reloadData(null, false);
-      }
-    }
-  }
-
-  vm.selected = {};
-  vm.selectAll = false;
-  vm.toggleAll = toggleAll;
-  vm.toggleOne = toggleOne;
-
-  var selectStr = '<span  style="margin-left:10px;float:right !important"><select data-width="100px" class="selectpicker " id="searchServiceStatus" name="searchServiceStatus"  >' +
-  '<option value="" >所有状态</option>' +
-  '<option value="ok">健康</option>' +
-  '<option value="alarm">废弃</option>' +
-  '<option value="error">异常</option>' +
-  '</select></span>';
-
-  vm.dtOptions = DTOptionsBuilder.newOptions()
-    .withDOM("<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
-      "t" +
-      "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>")
-    .withOption('ajax', {
-      url: '/api/listInstanceDT',
-      data: {
-        serverStatus: level
-      },
-      dataSrc: function (data) {
-        timeFlag = true;
-        if (data.resultMessage.message != "success") {
-          if (data.resultMessage.message == "ERROR_0019_SessionOut") {
-            showMessage.show($scope, "warn", translate.getWord("session.out"));
-            $scope.logout();
-          }
-        } else {
-          tableLength = data.data.length;
-          return data.data
-        }
-      },
-      type: 'POST'
-    })
-    .withBootstrap()
-    .withOption('createdRow', function (row, data, dataIndex) {
-      $compile(angular.element(row).contents())($scope);
-    })
-    .withOption('headerCallback', function (header) {
-      if (!vm.headerCompiled) {
-        vm.headerCompiled = true;
-        $compile(angular.element(header).contents())($scope);
-      }
-    })
-    .withDataProp('data')
-    .withOption('processing', false)
-    .withOption('serverSide', true)
-    .withOption('rowId', 'instanceId')
-    .withOption('pageLength', 20)
-    .withOption('fnInitComplete', function (result) {
-      $(selectStr).insertBefore($("#serviceTab_filter label"));
-      $("#searchServiceStatus").unbind();
-      $("#searchServiceStatus").bind("change", function () {
-        level = $("#searchServiceStatus").val() || "";
-        vm.dtInstance.changeData({
-          data: {
-            serverStatus: level
-          },
-          url: '/api/listInstanceDT',
-          dataSrc: function (data) {
-            vm.selected = {};
-            vm.selectAll = false;
-
-            if (data.resultMessage.message != "success") {
-              if (data.resultMessage.message == "ERROR_0019_SessionOut") {
-                showMessage.show($scope, "error", translate.getWord("session.out"));
-                $scope.logout();
-              }
-            } else {
-              tableLength = data.data.length;
-              return data.data
-            }
-
-          },
-          type: 'POST'
-        });
-      });
-      $("#searchServiceStatus").selectpicker("val", level);
-      $(".selectpicker").selectpicker("refresh");
-    })
-    .withOption('fnDrawCallback', function (result) {
-      $(".selectpicker").selectpicker("refresh");
-      $("#serviceCheckedAll").prop("checked", false)
-
-      $("#serviceTab_filter").find("input").addClass("filter_input");
-      $(".serviceClearItem").remove();
-      $('<i class="fa fa-times-circle item-error-style serviceClearItem" onclick="clearFilter(\'' + 'serviceTab_filter' + '\')"></i>').insertAfter($("#serviceTab_filter").find("input"));
-      if ($("#serviceTab_filter").find("input").val() == "") {
-        $(".serviceClearItem").hide();
-      } else {
-        $(".serviceClearItem").show();
-      }
-      $("#serviceTab_filter").find("input").unbind('keyup', showItem);
-      $("#serviceTab_filter").find("input").bind('keyup', { cName: 'serviceClearItem' }, showItem);
-      $(".serviceClearItem").click(function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-        $('#serviceTab').DataTable().search("").draw();
-      })
-      if ($("#serviceTab .dataTables_empty").size()) {
-        $("#serviceTab_paginate").hide()
-      } else {
-        $("#serviceTab_paginate").show()
-      }
-      clickEvent();
-      changeTime();
-    })
-    .withLanguage({
-      "search": '',
-      "searchPlaceholder": "查询服务名称",
-      "aria": {
-        "sortAscending": ": activate to sort column ascending",
-        "sortDescending": ": activate to sort column descending"
-      },
-      "emptyTable": "表中数据为空",
-      "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-      "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
-      "order": [[2, "asc"]],
-      "infoFiltered": "(由 _MAX_ 项结果过滤)",
-      "zeroRecords": "表中数据为空",
-      "lengthMenu": '显示' + '&nbsp;<select data-width="80px" class="selectpicker " style="background-color: white;"  name="timeSelect"  >' +
-        '<option value="5" >5条</option>' +
-        '<option value="10" >10条</option>' +
-        '<option value="20" >20条</option>' +
-        '<option value="50" >50条</option>' +
-        '<option value="100" >100条</option>' +
-        '</select>&nbsp',
-      "paginate": {
-        "previous": '<i class="fa fa-angle-left"></i>',
-        "next": '<i class="fa fa-angle-right"></i>',
-        "last": '<i class="fa  fa-angle-double-right"></i>',
-        "first": '<i class="fa  fa-angle-double-left"></i>'
-      }
-    })
-    .withPaginationType('full_numbers');
-    var htmlStr = '<span class="check_span"><input ng-model="servicesShow.selectAll" class="input_check" id="serviceCheckedAll"  ng-click="servicesShow.toggleAll(servicesShow.selectAll, servicesShow.selected)" type="checkbox"><label for="serviceCheckedAll"></label></span>';
-
-  vm.dtColumns = [
-    DTColumnBuilder.newColumn('instanceId').withTitle('instanceId').notVisible(),
-    DTColumnBuilder.newColumn('domainId').withTitle('domainId').notVisible(),
-    DTColumnBuilder.newColumn('instanceName').withTitle("服务名称"),
-    DTColumnBuilder.newColumn('status').withTitle("状态").renderWith(function (data, type, row) {
-      var resultString = ""
-      switch (data) {
-        case "HEALTHY":
-          resultString = "<span class='status_green'>" + translate.getWord("ok.status") + "</span>"; break;
-        case "SUSPEND":
-          resultString = "<span class='status_blue'>" + translate.getWord("status.suspend") + "</span>"; break;
-        case "SICK":
-          resultString = "<span class='status_red'>" + translate.getWord("status.unusual") + "</span>"; break;
-        case "FAILED":
-          resultString = "<span class='status_red'>" + translate.getWord("status.unusual") + "</span>"; break;
-        case "DISUSED":
-          resultString = "<span class='status_orange'>" + translate.getWord("status.disused") + "</span>"; break;
-        case "UNKNOWN":
-          resultString = "<span class='status_orange'>" + translate.getWord("status.unknown") + "</span>"; break;
-
-      }
-      if (row.maintenance == "true") {
-        resultString = '<div class="progress progress-striped active" >' +
-          '<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%" ><span  style="color: #fff;">维护中</span></div></div>';
-      }
-      return resultString;
-    }),
-    DTColumnBuilder.newColumn('groupId').withTitle("所在组编号"),
-    DTColumnBuilder.newColumn('host').withTitle("主机IP"),
-    DTColumnBuilder.newColumn('port').withTitle("端口")
-  ];
-
-  vm.dtInstance = {};
-  $scope.$watch('$viewContentLoaded', function (event) {
-    if ($rootScope.showDataNode == true) {
-      $('#serviceTab').DataTable().search("DataNode").draw();
-    }
-    $rootScope.showDataNode = false;
-  });
-
-  function toggleAll(selectAll, selectedItems) {
-    for (var id in selectedItems) {
-      if (selectedItems.hasOwnProperty(id)) {
-        selectedItems[id] = selectAll;
-      }
-      if (selectAll == false) {
-        $('#' + id).find(('[name=instanceCheckbox]:checkbox')).prop('checked', false);
-      } else {
-        $('#' + id).find(('[name=instanceCheckbox]:checkbox')).prop('checked', true)
-      }
-    }
-    clickEvent()
-  }
-
-  function toggleOne(selectedItems) {
-    var s = 0;
-    for (var id in selectedItems) {
-      if (selectedItems.hasOwnProperty(id)) {
-        if (!selectedItems[id]) {
-          vm.selectAll = false;
-          clickEvent()
-        } else {
-          s++;
-        }
-      }
-    }
-    if (s > 0) {
-      if (s == tableLength) {
-        vm.selectAll = true;
-      } else {
-        vm.selectAll = false;
-      }
-
-    }
-    clickEvent()
-  }
-
-  $scope.$on('$destroy', function () {
-    $interval.cancel(intervalTimer);
-  })
-
-  function clickEvent() {
-    var count = 0;
-    var fir = false;
-    var sec = false;
-    var thir = false;
-    var fou = false;
-    $('[name=instanceCheckbox]:checkbox').each(function () {
-      if (this.checked) {
-        instanceIds[count] = $(this).parent().parent().parent().prop("id");
-        instanceNames[count] = $(this).parent().parent().next().html();
-        instanceHostIps[count] = $(this).parent().parent().next().next().next().next().html();
-        instanceStatuses[count] = $(this).parent().parent().next().next().children().eq(0).html();
-        count++;
-      }
-    });
-    if (count == 0) {
-      changeTime()
-      $("#startInstance").attr('disabled', true);
-      $("#stopInstance").attr('disabled', true);
-      $("#deleteInstance").attr('disabled', true);
-    } else {
-      stopTimer()
-      $("#startInstance").removeAttr("disabled");
-      $("#stopInstance").removeAttr("disabled");
-      $("#deleteInstance").removeAttr("disabled");
-      for (var i = 0; i < count; i++) {
-        if ((instanceStatuses[i] == "正常") || (instanceStatuses[i] == translate.getWord("status.suspend"))) {
-          fir = true;
-        }
-        else if (instanceStatuses[i] == translate.getWord("status.stop")) {
-          sec = true;
-        }
-        else if (instanceStatuses[i] == translate.getWord("status.unknown")) {
-          thir = true;
-        } else {
-          fou = true;
-        }
-      }
-      if (sec == true && fou == true && fir == false && thir == false) {
-        $("#deleteInstance").attr('disabled', false);
-        $("#stopInstance").attr('disabled', true);
-        $("#startInstance").attr('disabled', true);
-      } else if (fir == true && sec == false && thir == false && fou == false) {
-        $("#startInstance").attr('disabled', true);
-        $("#deleteInstance").attr('disabled', true);
-      } else if (fir == false && sec == true && thir == false && fou == false) {
-        $("#stopInstance").attr('disabled', true);
-      } else if (fir == false && sec == false && thir == true && fou == false) {
-        $("#stopInstance").attr('disabled', true);
-        $("#startInstance").attr('disabled', true);
-        $("#deleteInstance").attr('disabled', true);
-      } else if (fir == false && sec == false && thir == false && fou == true) {
-        $("#stopInstance").attr('disabled', true);
-        $("#startInstance").attr('disabled', true);
-        $("#deleteInstance").attr('disabled', false);
-      } else {
-        $("#stopInstance").attr('disabled', true);
-        $("#startInstance").attr('disabled', true);
-        $("#deleteInstance").attr('disabled', true);
-      }
-    }
-  }
-
-  vm.dtOptionsInfo = DTOptionsBuilder.newOptions()
-    .withDOM("<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
-      "t" +
-      "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>")
-    .withBootstrap()
-    .withOption('ajax', {
-      url: '/api/listInstanceByIp',
-      dataSrc: function (data) {
-        timeFlag = true;
-        if (data.resultMessage.message != "success") {
-          if (data.resultMessage.message == "ERROR_0019_SessionOut") {
-            showMessage.show($scope, "warn", translate.getWord("session.out"));
-            $scope.logout();
-          }
-        } else {
-          return data.instanceFormatList
-        }
-      },
-      type: 'POST'
-    })
-    .withDataProp('instanceFormatList')
-    .withOption('processing', false)
-    .withOption('serverSide', false)
-    .withOption('fnDrawCallback', function (result) {
-      $("#serviceInfoTab_filter").find("input").addClass("filter_input");
-      $(".serviceInfoClearItem").remove();
-      $('<i class="fa fa-times-circle item-error-style serviceInfoClearItem" onclick="clearFilter(\'' + 'serviceInfoTab_filter' + '\')"></i>').insertAfter($("#serviceInfoTab_filter").find("input"));
-      if ($("#serviceInfoTab_filter").find("input").val() == "") {
-        $(".serviceInfoClearItem").hide();
-      } else {
-        $(".serviceInfoClearItem").show();
-      }
-      $("#serviceInfoTab_filter").find("input").unbind('keyup', showItem);
-      $("#serviceInfoTab_filter").find("input").bind('keyup', { cName: 'serviceInfoClearItem' }, showItem);
-      $(".serviceInfoClearItem").click(function (e) {
-        e.stopPropagation();
-        e.preventDefault();
-        $('#serviceInfoTab').DataTable().search("").draw();
-      })
-      if ($("#serviceInfoTab .dataTables_empty").size()) {
-        $("#serviceInfoTab_paginate").hide()
-      } else {
-        $("#serviceInfoTab_paginate").show()
-      }
-      changeTime()
-    })
-    .withOption('createdRow', function (row, data, dataIndex) {
-      $compile(angular.element(row).contents())($scope);
-    })
-    .withOption('headerCallback', function (header) {
-      if (!vm.headerCompiledFix) {
-        vm.headerCompiledFix = true;
-        $compile(angular.element(header).contents())($scope);
-      }
-    })
-    .withLanguage({
-      "search": "",
-      "searchPlaceholder": "过滤",
-      "aria": {
-        "sortAscending": ": activate to sort column ascending",
-        "sortDescending": ": activate to sort column descending"
-      },
-      "emptyTable": "表中数据为空",
-      "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
-      "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
-      "order": [[2, "asc"]],
-      "infoFiltered": "(由 _MAX_ 项结果过滤)",
-      "zeroRecords": "表中数据为空",
-      "lengthMenu": '显示' + '&nbsp;<select data-width="80px" class="selectpicker " style="background-color: white;"  name="timeSelect"  >' +
-
-        '<option value="5" >5条</option>' +
-        '<option value="10" >10条</option>' +
-        '<option value="20" >20条</option>' +
-        '<option value="50" >50条</option>' +
-        '<option value="100" >100条</option>' +
-        '</select>&nbsp;' + '  ',
-      "paginate": {
-        "previous": '<i class="fa fa-angle-left"></i>',
-        "next": '<i class="fa fa-angle-right"></i>',
-        "last": '<i class="fa  fa-angle-double-right"></i>',
-        "first": '<i class="fa  fa-angle-double-left"></i>'
-      }
-    })
-    .withPaginationType('full_numbers');
-
-  var normalStr = "<span>服务<span class='pull-right'>"
-    + "<i class='icon_circle icon_safe'></i>健康"
-    + "<i class='icon_circle icon_suspend'></i>挂起"
-    + "<i class='icon_circle icon_alarm'></i>废弃"
-    + "<i class='icon_circle icon_danger'></i>异常"
-    + "</span></span>"
-
-  vm.dtColumnsInfo = [
-    DTColumnBuilder.newColumn('ip').withTitle("").notVisible(),
-    DTColumnBuilder.newColumn('ip').withTitle("服务器名称"),
-    DTColumnBuilder.newColumn('instances').withTitle(normalStr).notSortable().renderWith(function (data, type, row) {
-      var resultString = "";
-      var status_level = "";
-      for (var i = 0; i < data.length; i++) {
-        switch (data[i].status) {
-          case "HEALTHY":
-            status_level = "icon_safe";
-            break;
-          case "SUSPEND":
-            status_level = "icon_suspend";
-            break;
-          case "SICK":
-            status_level = "icon_danger";
-            break;
-          case "FAILED":
-            status_level = "icon_danger";
-            break;
-          case "DISUSED":
-            status_level = "icon_alarm";
-            break;
-          case "UNKNOWN":
-            status_level = "icon_alarm";
-            break;
-        }
-        resultString += "<p class='instance_wrap " + status_level + "'>" + data[i].instanceName + "</p>"
-      }
-      return resultString;
-    })
-  ];
-  vm.dtInstanceInfo = {};
-
-  $scope.goGreat = function () {
-    $scope.isGreater = true;
-    $scope.reloadData();
-  }
-  
-  $scope.goNormal = function () {
-    $scope.isGreater = false;
-    $scope.reloadData();
-  }
-  
-  $scope.reloadData = function () {
-    if ($scope.isGreater) {
-      vm.dtInstance.reloadData(null, false);
-    } else {
-      vm.dtInstanceInfo.reloadData(null, false);
-    }
-  }
-}
-
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -17779,19 +16130,6 @@ angular.module('app.user').controller('RoleDetailCtrl', function (focus,$state,$
 
 	}
 })
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -18843,19 +17181,6 @@ function selectOneOption(btn) {
     $("#addPerformace").prop("disabled", false);
   }
 }
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -18986,19 +17311,6 @@ angular.module('app.user').controller('UserDetailCtrl', function (focus,$state,$
 
 	}
 })
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -19895,19 +18207,875 @@ angular.module('app.user').controller('UsersCtrl', function (focus, translate, $
 
 })
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
+"use strict"
+angular
+  .module("app.storage")
+  .controller(
+  "ComponentCtrl",function (
+    $scope,
+    $interval,
+    DTOptionsBuilder,
+    showMessage,
+    DTColumnBuilder,
+    $compile,
+    translate,
+    ) 
+  {
+    $(".modal").draggable();
+    var vm = this;
+    var intervalTimer
+    $scope.showFlag = 1;
+
+    function changeTime() {
+      $interval.cancel(intervalTimer)
+      intervalTimer = $interval(serviceInterval, 5000)
+    }
+
+    function stopTimer() {
+      $interval.cancel(intervalTimer)
+    }
+
+    $scope.$watch('showFlag',function () {
+      stopTimer()
+    })
+
+    function serviceInterval() {
+      if ($scope.showFlag==1) {
+        vm.dtInstance.reloadData(null,false)
+      }
+    }
+
+    $scope.$on('$destroy', function () {
+      $interval.cancel(intervalTimer);
+    })
+
+    vm.dtOptions = DTOptionsBuilder.newOptions()
+    .withDOM(
+      "<'dt-toolbar'<'col-xs-12 col-sm-3'l><'col-sm-9 col-xs-12 hidden-xs'f>r>" +
+        "t" +
+        "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>"
+    )
+    .withBootstrap()
+    .withOption("ajax", {
+      url: "checkZookeeperStatus",
+      type: 'post',
+      dataSrc: function (data) {
+        if (data.resultMessage.message == 'ERROR_0019_SessionOut') {
+          showMessage.show(
+            $scope,
+            'warn',
+            translate.getWord('session.out')
+          )
+          $scope.logout()
+          return
+        }
+        return data.zookeeperStatusList
+      },
+    })
+    .withOption('processing', false)
+    .withOption('serverSide', false)  
+    .withOption("pageLength", 20)
+    .withOption("createdRow", function (row, data, dataIndex) {
+      $compile(angular.element(row).contents())($scope);
+    })
+    .withOption("headerCallback", function (header) {
+      $compile(angular.element(header).contents())($scope);
+    })
+    .withOption("fnInitComplete", function (result) {
+      $('#zookeeperTab thead tr th').eq(0).css('width','700px').next().css('width','800px')
+      $(".selectpicker").selectpicker("render");
+    })
+    .withOption("fnDrawCallback", function (result) {
+      $(".selectpicker").selectpicker("render");
+      $("#zookeeperTab_filter").find("input").addClass("filter_input");
+      $(".zookClearItem").remove();
+      $('<i class="fa fa-times-circle item-error-style zookClearItem" onclick="clearFilter(\''+"zookeeperTab_filter"+"')\"></i>"
+      ).insertAfter($("#zookeeperTab_filter").find("input"));
+      $("#zookeeperTab_filter input").val()? $(".zookClearItem").show() : $(".zookClearItem").hide()
+      $("#zookeeperTab_filter input").unbind("keyup", showItem);
+      $("#zookeeperTab_filter input").bind("keyup", { cName: "zookClearItem" }, showItem);
+      $(".zookClearItem").click(function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $("#zookeeperTab").DataTable().search("").draw();
+      });
+      changeTime();
+    })
+    .withLanguage({
+      search: "",
+      searchPlaceholder: "节点查询",
+      aria: {
+        sortAscending: ": activate to sort column ascending",
+        sortDescending: ": activate to sort column descending",
+      },
+      emptyTable: "表中数据为空",
+      info: "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+      infoEmpty: "显示第 0 至 0 项结果，共 0 项",
+      infoFiltered: "(由 _MAX_ 项结果过滤)",
+      zeroRecords: "表中数据为空",
+      lengthMenu:
+        "显示" +
+        '&nbsp;<select data-width="80px" class="selectpicker " style="background-color: white;"  name="timeSelect"  >' +
+        '<option value="5" >5条</option>' +
+        '<option value="10" >10条</option>' +
+        '<option value="20" >20条</option>' +
+        '<option value="50" >50条</option>' +
+        '<option value="100" >100条</option>' +
+        "</select>",
+      paginate: {
+        previous: '<i class="fa fa-angle-left"></i>',
+        next: '<i class="fa fa-angle-right"></i>',
+        last: '<i class="fa  fa-angle-double-right"></i>',
+        first: '<i class="fa  fa-angle-double-left"></i>',
+      },
+    });
+
+    vm.dtColumns = [
+      DTColumnBuilder.newColumn('hostname').withTitle('节点ip'),
+      DTColumnBuilder.newColumn('status').withTitle('服务状态')
+        .renderWith(function (data,tpye,row) {
+          switch(data){
+            case 'OK':
+              return '<span class="status_green">' + "正常" + '</span>'
+            case 'ERROR':
+              return '<span class="status_red">' + "断开连接" + '</span>'
+            default:
+              return '<span class="status_red">' + "断开连接" + '</span>'
+          }
+        }),
+    ]
+
+    vm.dtInstance = {};
+
+    $scope.reloadData = function () {
+      vm.dtInstance.reloadData(null,false)
+    }
+    
+    $scope.refresh = function () {
+      $scope.reloadData()
+    }
+})
+
+
+'use strict';
+
+angular.module('app.system').controller('OperationLogCtrl', function ($rootScope,$scope,translate, $interval,$http,DTOptionsBuilder,showMessage, DTColumnBuilder,$compile) {
+	$(".modal").draggable();
+	$scope.selectGroups=['5','10','20','50','100'];
+	$scope.startTime="";
+	$scope.endTime="";
+	$scope.startNum=0;
+	var logInterval;
+	var timerFlag=true;
+	var accountNameSearchGlobal="",
+	typeSearchGlobal="",
+	filterStatusGlobal="",
+	targetTypeSearchGlobal="",
+	operationObjectSearchGlobal="",
+	startTimeGlobal="",
+	endTimeGlobal="";
+
+	$scope.loadTab=function(){
+		$scope.perpage_num=$("#operationlog_select").val()||5;
+		timerFlag=false;
+		$http({
+			method: "post",
+			data:{
+				"status":filterStatusGlobal,
+				"accountName":accountNameSearchGlobal,
+				"operationType":typeSearchGlobal,
+				"targetType":targetTypeSearchGlobal,
+				"targetName":operationObjectSearchGlobal,
+				"startTime":startTimeGlobal,
+				"endTime":endTimeGlobal,
+				"start":$scope.startNum,
+				"length":$scope.perpage_num
+			},
+			async:false,
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },  
+			url:"listOperationLogByTime",  
+			transformRequest: function(obj) {  
+				var str = [];  
+				for (var s in obj) {  
+					str.push(encodeURIComponent(s) + "=" + encodeURIComponent(obj[s]));  
+				}
+				return str.join("&");  
+			}
+		}).then(function successCallback(data){
+			data=data.data;
+			timerFlag=true;
+			if(data.resultMessage.message != "success"){
+				if (data.resultMessage.message  == "ERROR_0019_SessionOut") {
+					showMessage.show($scope,"warn",translate.getWord("session.out"));
+					$scope.logout();
+				}
+			}else{
+				$scope.totalSize=data.totalRecord;
+				$scope.pageNum=Math.ceil($scope.totalSize/$scope.perpage_num);
+				$(".selectpicker").selectpicker("render");
+				var resultStr="";
+				$scope.dataLength=0;
+				if(!data.operationLogFormatList.length){
+					var tempStr='<tr class="odd"><td colspan="8" class="dataTables_empty" valign="top">表中数据为空</td></tr>';
+					$("#operationlogTab tbody").html(tempStr)
+					$("#opertationlog_pagination").html("")
+					return ;
+				}
+				for (var i = 0; i < data.operationLogFormatList.length; i++) {
+					var tempObj=data.operationLogFormatList[i];
+					resultStr+='<tr  role="row" class="operationlog_time">'
+						+'<td colspan="8">'
+							+'<p class="operationlog_p">'+$scope.getObjDate(tempObj.dayTime)+'</p>'
+						+'</td>'
+					+'</tr>';
+					for (var j = 0; j < tempObj.operationList.length; j++) {
+						$scope.dataLength++;
+						var tempData=tempObj.operationList[j];
+						resultStr+='<tr class="operationlog_data" role="row"><td><span>'+tempData.accountName+'</span></td>'
+						+'<td><span>'+translate.getWord(tempData.type)+'</span></td>'
+						+'<td><span>'+translate.getWord(tempData.targetType)+'</span></td>'
+						+'<td><span>';
+						if(tempData.targetName==null||tempData.targetName==""){
+							resultStr+=tempData.operationObject;
+						}else if(tempData.operationObject==null||tempData.operationObject==""){
+							resultStr+=tempData.targetName;
+						}else if(tempData.operationObject=="priorityService"||tempData.operationObject=="priorityRefactor"){
+							resultStr+=tempData.targetName+"("+translate.getWord(tempData.operationObject)+")"
+						}else{
+							resultStr+=tempData.targetName+"("+tempData.operationObject+")"
+						}
+						resultStr+='</span></td>'
+						+'<td><span>';
+
+						if(tempData.status!="ACTIVITING"){
+							switch(tempData.status){
+								case "SUCCESS":
+									resultStr+="<div><span class='status_green'>"+translate.getWord("success")+"</span></div>";break;
+								case "FAILED":
+									resultStr+="<div><span class='status_red'>"+translate.getWord("fail")+"</span></div>";break;
+							}
+						}else{
+							resultStr+="<div class='progress progress-striped active' >"
+								+"<div class='progress-bar' role='progressbar'  style='width:100%'>"
+									+"<span >"
+										+tempData.progress+"%"
+									+"</span>"
+								+"</div>"
+							+"</div>"
+						}
+						resultStr+='</span></td>'
+						+'<td><span>'+fillDate(tempData.startTime)+'</span></td>'
+						+'<td><span>'+fillDate(tempData.endTime)+'</span></td>'
+						+'<td><span>'+(tempData.errorMessage==null?'&nbsp;':tempData.errorMessage)+'</span></td></tr>';
+					}
+				}
+				$("#operationlogTab tbody").html(resultStr)
+				$scope.currentNum=Math.floor($scope.startNum/$scope.perpage_num)+1;
+				var pageStr='';
+				if($scope.currentNum==1){
+					pageStr+='<li class="paginate_button first disabled"><a onclick="event.preventDefault()"><i class="fa  fa-angle-double-left"></i></a></li>'
+					+'<li class="paginate_button previous disabled" ><a onclick="event.preventDefault()"><i class="fa fa-angle-left"></i></a></li>';
+				}else{
+					pageStr+='<li class="paginate_button first"><a ng-click="goPage(1)"><i class="fa  fa-angle-double-left"></i></a></li>'
+					+'<li class="paginate_button previous " ><a ng-click="goPage('+($scope.currentNum-1)+')"><i class="fa fa-angle-left"></i></a></li>';
+				}
+				if($scope.pageNum<=7){
+					for (var i = 1; i <= $scope.pageNum; i++) {
+						if(i==$scope.currentNum){
+							pageStr+='<li class="paginate_button active"><a>'+i+'</a></li>'
+						}else{
+							pageStr+='<li class="paginate_button"><a ng-click="goPage('+i+')">'+i+'</a></li>'
+						}
+					}
+				}else{
+					if($scope.currentNum<=4){
+						for (var i = 1; i <=5; i++) {
+							if(i==$scope.currentNum){
+								pageStr+='<li class="paginate_button active"><a>'+i+'</a></li>'
+							}else{
+								pageStr+='<li class="paginate_button"><a ng-click="goPage('+i+')">'+i+'</a></li>'
+							}
+						}
+						pageStr+='<li class="paginate_button disabled"><a onclick="event.preventDefault()">...</a></li>'
+							+'<li class="paginate_button"><a ng-click="goPage('+$scope.pageNum+')">'+$scope.pageNum+'</a></li>'
+					}else if($scope.currentNum>=($scope.pageNum-3)){
+						pageStr+='<li class="paginate_button"><a  ng-click="goPage(1)">1</a></li>'
+							+'<li class="paginate_button disabled"><a onclick="event.preventDefault()">...</a></li>';
+						for (var i = 4; i >=0; i--) {
+							if($scope.pageNum-i==$scope.currentNum){
+								pageStr+='<li class="paginate_button active"><a>'+($scope.pageNum-i)+'</a></li>'
+							}else{
+								pageStr+='<li class="paginate_button"><a  ng-click="goPage('+($scope.pageNum-i)+')">'+($scope.pageNum-i)+'</a></li>'
+							}
+						}
+					}else{
+						pageStr+='<li class="paginate_button"><a  ng-click="goPage(1)">1</a></li>'
+							+'<li class="paginate_button disabled"><a onclick="event.preventDefault()">...</a></li>'
+							+'<li class="paginate_button"><a  ng-click="goPage('+($scope.currentNum-1)+')">'+($scope.currentNum-1)+'</a></li>'
+							+'<li class="paginate_button active"><a>'+$scope.currentNum+'</a></li>'
+							+'<li class="paginate_button"><a  ng-click="goPage('+($scope.currentNum+1)+')">'+($scope.currentNum+1)+'</a></li>'
+							+'<li class="paginate_button disabled"><a onclick="event.preventDefault()">...</a></li>'
+							+'<li class="paginate_button"><a  ng-click="goPage('+$scope.pageNum+')">'+$scope.pageNum+'</a></li>'
+					}
+				}
+				if($scope.currentNum==$scope.pageNum){
+					pageStr+='<li class="paginate_button next disabled"><a onclick="event.preventDefault()"><i class="fa fa-angle-right"></i></a></li>'
+					+'<li class="paginate_button last disabled"><a onclick="event.preventDefault()"><i class="fa  fa-angle-double-right"></i></a></li>';
+				}else{
+					pageStr+='<li class="paginate_button next"><a ng-click="goPage('+($scope.currentNum+1)+')"><i class="fa fa-angle-right"></i></a></li>'
+					+'<li class="paginate_button last"><a ng-click="goPage('+$scope.pageNum+')"><i class="fa  fa-angle-double-right"></i></a></li>';
+				}
+				$("#opertationlog_pagination").html($compile(pageStr)($scope))
+			}
+		});
+	}
+
+	$scope.loadTab()
+
+	$scope.goPage=function(num){
+		$scope.startNum=(num-1)*$scope.perpage_num;
+		$scope.loadTab()
+	}
+
+	$scope.search=function(){
+		$scope.startNum=0;
+		var startTime=(new Date($("#startTime").val().split("-").join("/")+" 00:00:00")).getTime()||"";
+		 var endTime=((new Date($("#endTime").val().split("-").join("/")+" 00:00:00")).getTime())+86399999||"";
+		 var currentTime=(new Date()).getTime();
+
+		 if(endTime*1<startTime*1){
+			 showMessage.show($scope,"error","结束时间需要大于开始时间");
+			 return;
+		 }else if(currentTime*1<(endTime*1-86399999)){
+			 showMessage.show($scope,"error","只可查询当前时间之前的日志");
+			 return;
+		 }
+		accountNameSearchGlobal=$("#accountNameSearch").val()||"";
+		typeSearchGlobal=$("#typeSearch").val()||"";
+		filterStatusGlobal=$("#filterStatus").val()||"";
+		targetTypeSearchGlobal=$("#targetTypeSearch").val()||"";
+		operationObjectSearchGlobal=$("#operationObjectSearch").val()||"";
+		startTimeGlobal=startTime;
+		endTimeGlobal=endTime;
+		$scope.searchFlag=true;
+		$scope.loadTab()
+	}
+
+	$scope.searchAndExport=function(){
+		$scope.search();
+		var status=$("#filterStatus").val()||"";
+		var accountName=$("#accountNameSearch").val()||"";
+		var operationType=$("#typeSearch").val()||"";
+		var targetType=$("#targetTypeSearch").val()||"";
+		var targetName=$("#operationObjectSearch").val()||"";
+		var endTime=((new Date($("#endTime").val().split("-").join("/")+" 00:00:00")).getTime())+86399999||"";
+		var startTime=(new Date($("#startTime").val().split("-").join("/")+" 00:00:00")).getTime()||"";
+		window.location.href="saveOperationLogsToCSV?status="+status
+			+"&accountName="+accountName
+			+"&operationType="+operationType
+			+"&targetType="+targetType
+			+"&startTime="+startTime
+			+"&endTime="+endTime
+			+"&targetName="+targetName
+	}
+
+	$scope.clearSelf=function(n){
+		if(n*1==1){
+			$scope.logItem1=""
+		}else if(n*1==2){
+			$scope.logItem2=""
+		}else if(n*1==3){
+			$scope.startTime=""
+		}else if(n*1==4){
+			$scope.endTime=""
+		}
+	}
+
+	$scope.getObjDate=function(timer){
+		var time=new Date(parseInt(timer));
+		var month = time.getMonth()+1;
+		var day=time.getDate();
+		var hour=time.getHours();
+		var minute=time.getMinutes();
+		var second=time.getSeconds();
+		return time.getFullYear()+"年"+ month + "月"+day+"日";
+	}
+
+	logInterval=$interval($scope.loadTab,5000)
+  
+	$scope.$on('$destroy',function(){
+		$interval.cancel(logInterval)
+	}) 
+});
+
+'use strict';
+angular.module('app.system').controller('ServicesCtrl', ServicesCtrl);
+function ServicesCtrl($compile, translate, $scope, DTOptionsBuilder, showMessage, DTColumnBuilder, $http, $interval, $stateParams, $rootScope) {
+  $(".modal").draggable();
+  var vm = this;
+  $scope.isGreater = false;
+  var statusLevel = $stateParams.statusLevel;
+  var level = $("#searchServiceStatus").val() || "";
+  if (statusLevel != "") {
+    level = statusLevel;
+    $scope.isGreater = true;
+  }
+  var instanceIds = new Array();
+  var instanceNames = new Array();
+  var instanceStatuses = new Array();
+  var instanceHostIps = new Array();
+  var intervalTimer;
+  var tableLength;
+  var timeFlag = true;
+
+  function changeTime() {
+    $interval.cancel(intervalTimer)
+    intervalTimer = $interval(serviceInterval, 3000)
+  }
+
+  function stopTimer() {
+    $interval.cancel(intervalTimer)
+  }
+
+  function serviceInterval() {
+    if (timeFlag) {
+      timeFlag = false;
+      if ($scope.isGreater) {
+        vm.dtInstance.reloadData(null, false);
+      } else {
+        vm.dtInstanceInfo.reloadData(null, false);
+      }
+    }
+  }
+
+  vm.selected = {};
+  vm.selectAll = false;
+  vm.toggleAll = toggleAll;
+  vm.toggleOne = toggleOne;
+
+  var selectStr = '<span  style="margin-left:10px;float:right !important"><select data-width="100px" class="selectpicker " id="searchServiceStatus" name="searchServiceStatus"  >' +
+  '<option value="" >所有状态</option>' +
+  '<option value="ok">健康</option>' +
+  '<option value="alarm">废弃</option>' +
+  '<option value="error">异常</option>' +
+  '</select></span>';
+
+  vm.dtOptions = DTOptionsBuilder.newOptions()
+    .withDOM("<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
+      "t" +
+      "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>")
+    .withOption('ajax', {
+      url: '/api/listInstanceDT',
+      data: {
+        serverStatus: level
+      },
+      dataSrc: function (data) {
+        timeFlag = true;
+        if (data.resultMessage.message != "success") {
+          if (data.resultMessage.message == "ERROR_0019_SessionOut") {
+            showMessage.show($scope, "warn", translate.getWord("session.out"));
+            $scope.logout();
+          }
+        } else {
+          tableLength = data.data.length;
+          return data.data
+        }
+      },
+      type: 'POST'
+    })
+    .withBootstrap()
+    .withOption('createdRow', function (row, data, dataIndex) {
+      $compile(angular.element(row).contents())($scope);
+    })
+    .withOption('headerCallback', function (header) {
+      if (!vm.headerCompiled) {
+        vm.headerCompiled = true;
+        $compile(angular.element(header).contents())($scope);
+      }
+    })
+    .withDataProp('data')
+    .withOption('processing', false)
+    .withOption('serverSide', true)
+    .withOption('rowId', 'instanceId')
+    .withOption('pageLength', 20)
+    .withOption('fnInitComplete', function (result) {
+      $(selectStr).insertBefore($("#serviceTab_filter label"));
+      $("#searchServiceStatus").unbind();
+      $("#searchServiceStatus").bind("change", function () {
+        level = $("#searchServiceStatus").val() || "";
+        vm.dtInstance.changeData({
+          data: {
+            serverStatus: level
+          },
+          url: '/api/listInstanceDT',
+          dataSrc: function (data) {
+            vm.selected = {};
+            vm.selectAll = false;
+
+            if (data.resultMessage.message != "success") {
+              if (data.resultMessage.message == "ERROR_0019_SessionOut") {
+                showMessage.show($scope, "error", translate.getWord("session.out"));
+                $scope.logout();
+              }
+            } else {
+              tableLength = data.data.length;
+              return data.data
+            }
+
+          },
+          type: 'POST'
+        });
+      });
+      $("#searchServiceStatus").selectpicker("val", level);
+      $(".selectpicker").selectpicker("refresh");
+    })
+    .withOption('fnDrawCallback', function (result) {
+      $(".selectpicker").selectpicker("refresh");
+      $("#serviceCheckedAll").prop("checked", false)
+
+      $("#serviceTab_filter").find("input").addClass("filter_input");
+      $(".serviceClearItem").remove();
+      $('<i class="fa fa-times-circle item-error-style serviceClearItem" onclick="clearFilter(\'' + 'serviceTab_filter' + '\')"></i>').insertAfter($("#serviceTab_filter").find("input"));
+      if ($("#serviceTab_filter").find("input").val() == "") {
+        $(".serviceClearItem").hide();
+      } else {
+        $(".serviceClearItem").show();
+      }
+      $("#serviceTab_filter").find("input").unbind('keyup', showItem);
+      $("#serviceTab_filter").find("input").bind('keyup', { cName: 'serviceClearItem' }, showItem);
+      $(".serviceClearItem").click(function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $('#serviceTab').DataTable().search("").draw();
+      })
+      if ($("#serviceTab .dataTables_empty").size()) {
+        $("#serviceTab_paginate").hide()
+      } else {
+        $("#serviceTab_paginate").show()
+      }
+      clickEvent();
+      changeTime();
+    })
+    .withLanguage({
+      "search": '',
+      "searchPlaceholder": "查询服务名称",
+      "aria": {
+        "sortAscending": ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+      },
+      "emptyTable": "表中数据为空",
+      "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+      "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
+      "order": [[2, "asc"]],
+      "infoFiltered": "(由 _MAX_ 项结果过滤)",
+      "zeroRecords": "表中数据为空",
+      "lengthMenu": '显示' + '&nbsp;<select data-width="80px" class="selectpicker " style="background-color: white;"  name="timeSelect"  >' +
+        '<option value="5" >5条</option>' +
+        '<option value="10" >10条</option>' +
+        '<option value="20" >20条</option>' +
+        '<option value="50" >50条</option>' +
+        '<option value="100" >100条</option>' +
+        '</select>&nbsp',
+      "paginate": {
+        "previous": '<i class="fa fa-angle-left"></i>',
+        "next": '<i class="fa fa-angle-right"></i>',
+        "last": '<i class="fa  fa-angle-double-right"></i>',
+        "first": '<i class="fa  fa-angle-double-left"></i>'
+      }
+    })
+    .withPaginationType('full_numbers');
+    var htmlStr = '<span class="check_span"><input ng-model="servicesShow.selectAll" class="input_check" id="serviceCheckedAll"  ng-click="servicesShow.toggleAll(servicesShow.selectAll, servicesShow.selected)" type="checkbox"><label for="serviceCheckedAll"></label></span>';
+
+  vm.dtColumns = [
+    DTColumnBuilder.newColumn('instanceId').withTitle('instanceId').notVisible(),
+    DTColumnBuilder.newColumn('domainId').withTitle('domainId').notVisible(),
+    DTColumnBuilder.newColumn('instanceName').withTitle("服务名称"),
+    DTColumnBuilder.newColumn('status').withTitle("状态").renderWith(function (data, type, row) {
+      var resultString = ""
+      switch (data) {
+        case "HEALTHY":
+          resultString = "<span class='status_green'>" + translate.getWord("ok.status") + "</span>"; break;
+        case "SUSPEND":
+          resultString = "<span class='status_blue'>" + translate.getWord("status.suspend") + "</span>"; break;
+        case "SICK":
+          resultString = "<span class='status_red'>" + translate.getWord("status.unusual") + "</span>"; break;
+        case "FAILED":
+          resultString = "<span class='status_red'>" + translate.getWord("status.unusual") + "</span>"; break;
+        case "DISUSED":
+          resultString = "<span class='status_orange'>" + translate.getWord("status.disused") + "</span>"; break;
+        case "UNKNOWN":
+          resultString = "<span class='status_orange'>" + translate.getWord("status.unknown") + "</span>"; break;
+
+      }
+      if (row.maintenance == "true") {
+        resultString = '<div class="progress progress-striped active" >' +
+          '<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%" ><span  style="color: #fff;">维护中</span></div></div>';
+      }
+      return resultString;
+    }),
+    DTColumnBuilder.newColumn('groupId').withTitle("所在组编号"),
+    DTColumnBuilder.newColumn('host').withTitle("主机IP"),
+    DTColumnBuilder.newColumn('port').withTitle("端口")
+  ];
+
+  vm.dtInstance = {};
+  $scope.$watch('$viewContentLoaded', function (event) {
+    if ($rootScope.showDataNode == true) {
+      $('#serviceTab').DataTable().search("DataNode").draw();
+    }
+    $rootScope.showDataNode = false;
+  });
+
+  function toggleAll(selectAll, selectedItems) {
+    for (var id in selectedItems) {
+      if (selectedItems.hasOwnProperty(id)) {
+        selectedItems[id] = selectAll;
+      }
+      if (selectAll == false) {
+        $('#' + id).find(('[name=instanceCheckbox]:checkbox')).prop('checked', false);
+      } else {
+        $('#' + id).find(('[name=instanceCheckbox]:checkbox')).prop('checked', true)
+      }
+    }
+    clickEvent()
+  }
+
+  function toggleOne(selectedItems) {
+    var s = 0;
+    for (var id in selectedItems) {
+      if (selectedItems.hasOwnProperty(id)) {
+        if (!selectedItems[id]) {
+          vm.selectAll = false;
+          clickEvent()
+        } else {
+          s++;
+        }
+      }
+    }
+    if (s > 0) {
+      if (s == tableLength) {
+        vm.selectAll = true;
+      } else {
+        vm.selectAll = false;
+      }
+
+    }
+    clickEvent()
+  }
+
+  $scope.$on('$destroy', function () {
+    $interval.cancel(intervalTimer);
+  })
+
+  function clickEvent() {
+    var count = 0;
+    var fir = false;
+    var sec = false;
+    var thir = false;
+    var fou = false;
+    $('[name=instanceCheckbox]:checkbox').each(function () {
+      if (this.checked) {
+        instanceIds[count] = $(this).parent().parent().parent().prop("id");
+        instanceNames[count] = $(this).parent().parent().next().html();
+        instanceHostIps[count] = $(this).parent().parent().next().next().next().next().html();
+        instanceStatuses[count] = $(this).parent().parent().next().next().children().eq(0).html();
+        count++;
+      }
+    });
+    if (count == 0) {
+      changeTime()
+      $("#startInstance").attr('disabled', true);
+      $("#stopInstance").attr('disabled', true);
+      $("#deleteInstance").attr('disabled', true);
+    } else {
+      stopTimer()
+      $("#startInstance").removeAttr("disabled");
+      $("#stopInstance").removeAttr("disabled");
+      $("#deleteInstance").removeAttr("disabled");
+      for (var i = 0; i < count; i++) {
+        if ((instanceStatuses[i] == "正常") || (instanceStatuses[i] == translate.getWord("status.suspend"))) {
+          fir = true;
+        }
+        else if (instanceStatuses[i] == translate.getWord("status.stop")) {
+          sec = true;
+        }
+        else if (instanceStatuses[i] == translate.getWord("status.unknown")) {
+          thir = true;
+        } else {
+          fou = true;
+        }
+      }
+      if (sec == true && fou == true && fir == false && thir == false) {
+        $("#deleteInstance").attr('disabled', false);
+        $("#stopInstance").attr('disabled', true);
+        $("#startInstance").attr('disabled', true);
+      } else if (fir == true && sec == false && thir == false && fou == false) {
+        $("#startInstance").attr('disabled', true);
+        $("#deleteInstance").attr('disabled', true);
+      } else if (fir == false && sec == true && thir == false && fou == false) {
+        $("#stopInstance").attr('disabled', true);
+      } else if (fir == false && sec == false && thir == true && fou == false) {
+        $("#stopInstance").attr('disabled', true);
+        $("#startInstance").attr('disabled', true);
+        $("#deleteInstance").attr('disabled', true);
+      } else if (fir == false && sec == false && thir == false && fou == true) {
+        $("#stopInstance").attr('disabled', true);
+        $("#startInstance").attr('disabled', true);
+        $("#deleteInstance").attr('disabled', false);
+      } else {
+        $("#stopInstance").attr('disabled', true);
+        $("#startInstance").attr('disabled', true);
+        $("#deleteInstance").attr('disabled', true);
+      }
+    }
+  }
+
+  vm.dtOptionsInfo = DTOptionsBuilder.newOptions()
+    .withDOM("<'dt-toolbar'<'col-xs-12 col-sm-6'l><'col-sm-6 col-xs-12 hidden-xs'f>r>" +
+      "t" +
+      "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>")
+    .withBootstrap()
+    .withOption('ajax', {
+      url: '/api/listInstanceByIp',
+      dataSrc: function (data) {
+        timeFlag = true;
+        if (data.resultMessage.message != "success") {
+          if (data.resultMessage.message == "ERROR_0019_SessionOut") {
+            showMessage.show($scope, "warn", translate.getWord("session.out"));
+            $scope.logout();
+          }
+        } else {
+          return data.instanceFormatList
+        }
+      },
+      type: 'POST'
+    })
+    .withDataProp('instanceFormatList')
+    .withOption('processing', false)
+    .withOption('serverSide', false)
+    .withOption('fnDrawCallback', function (result) {
+      $("#serviceInfoTab_filter").find("input").addClass("filter_input");
+      $(".serviceInfoClearItem").remove();
+      $('<i class="fa fa-times-circle item-error-style serviceInfoClearItem" onclick="clearFilter(\'' + 'serviceInfoTab_filter' + '\')"></i>').insertAfter($("#serviceInfoTab_filter").find("input"));
+      if ($("#serviceInfoTab_filter").find("input").val() == "") {
+        $(".serviceInfoClearItem").hide();
+      } else {
+        $(".serviceInfoClearItem").show();
+      }
+      $("#serviceInfoTab_filter").find("input").unbind('keyup', showItem);
+      $("#serviceInfoTab_filter").find("input").bind('keyup', { cName: 'serviceInfoClearItem' }, showItem);
+      $(".serviceInfoClearItem").click(function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $('#serviceInfoTab').DataTable().search("").draw();
+      })
+      if ($("#serviceInfoTab .dataTables_empty").size()) {
+        $("#serviceInfoTab_paginate").hide()
+      } else {
+        $("#serviceInfoTab_paginate").show()
+      }
+      changeTime()
+    })
+    .withOption('createdRow', function (row, data, dataIndex) {
+      $compile(angular.element(row).contents())($scope);
+    })
+    .withOption('headerCallback', function (header) {
+      if (!vm.headerCompiledFix) {
+        vm.headerCompiledFix = true;
+        $compile(angular.element(header).contents())($scope);
+      }
+    })
+    .withLanguage({
+      "search": "",
+      "searchPlaceholder": "过滤",
+      "aria": {
+        "sortAscending": ": activate to sort column ascending",
+        "sortDescending": ": activate to sort column descending"
+      },
+      "emptyTable": "表中数据为空",
+      "info": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+      "infoEmpty": "显示第 0 至 0 项结果，共 0 项",
+      "order": [[2, "asc"]],
+      "infoFiltered": "(由 _MAX_ 项结果过滤)",
+      "zeroRecords": "表中数据为空",
+      "lengthMenu": '显示' + '&nbsp;<select data-width="80px" class="selectpicker " style="background-color: white;"  name="timeSelect"  >' +
+
+        '<option value="5" >5条</option>' +
+        '<option value="10" >10条</option>' +
+        '<option value="20" >20条</option>' +
+        '<option value="50" >50条</option>' +
+        '<option value="100" >100条</option>' +
+        '</select>&nbsp;' + '  ',
+      "paginate": {
+        "previous": '<i class="fa fa-angle-left"></i>',
+        "next": '<i class="fa fa-angle-right"></i>',
+        "last": '<i class="fa  fa-angle-double-right"></i>',
+        "first": '<i class="fa  fa-angle-double-left"></i>'
+      }
+    })
+    .withPaginationType('full_numbers');
+
+  var normalStr = "<span>服务<span class='pull-right'>"
+    + "<i class='icon_circle icon_safe'></i>健康"
+    + "<i class='icon_circle icon_suspend'></i>挂起"
+    + "<i class='icon_circle icon_alarm'></i>废弃"
+    + "<i class='icon_circle icon_danger'></i>异常"
+    + "</span></span>"
+
+  vm.dtColumnsInfo = [
+    DTColumnBuilder.newColumn('ip').withTitle("").notVisible(),
+    DTColumnBuilder.newColumn('ip').withTitle("服务器名称"),
+    DTColumnBuilder.newColumn('instances').withTitle(normalStr).notSortable().renderWith(function (data, type, row) {
+      var resultString = "";
+      var status_level = "";
+      for (var i = 0; i < data.length; i++) {
+        switch (data[i].status) {
+          case "HEALTHY":
+            status_level = "icon_safe";
+            break;
+          case "SUSPEND":
+            status_level = "icon_suspend";
+            break;
+          case "SICK":
+            status_level = "icon_danger";
+            break;
+          case "FAILED":
+            status_level = "icon_danger";
+            break;
+          case "DISUSED":
+            status_level = "icon_alarm";
+            break;
+          case "UNKNOWN":
+            status_level = "icon_alarm";
+            break;
+        }
+        resultString += "<p class='instance_wrap " + status_level + "'>" + data[i].instanceName + "</p>"
+      }
+      return resultString;
+    })
+  ];
+  vm.dtInstanceInfo = {};
+
+  $scope.goGreat = function () {
+    $scope.isGreater = true;
+    $scope.reloadData();
+  }
+  
+  $scope.goNormal = function () {
+    $scope.isGreater = false;
+    $scope.reloadData();
+  }
+  
+  $scope.reloadData = function () {
+    if ($scope.isGreater) {
+      vm.dtInstance.reloadData(null, false);
+    } else {
+      vm.dtInstanceInfo.reloadData(null, false);
+    }
+  }
+}
+
 
 "use strict";
 
@@ -19945,158 +19113,6 @@ angular.module('SmartAdmin.Layout').directive('fullScreen', function(){
 		}
 	}
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('SmartAdmin.Layout').directive('minifyMenu', function(){
-    return {
-        restrict: 'A',
-        link: function(scope, element){
-                var $body = $('body');
-            var minifyMenu = function() {
-                if (!$body.hasClass("menu-on-top")) {
-                    $body.toggleClass("minified");
-                    $body.removeClass("hidden-menu");
-                    $('html').removeClass("hidden-menu-mobile-lock");
-                }
-            };
-
-            element.on('click', minifyMenu);
-        }
-    }
-})
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Layout').directive('reloadState', function ($rootScope) {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('reload-state data-reload-state');
-            tElement.on('click', function (e) {
-                $rootScope.$state.transitionTo($rootScope.$state.current, $rootScope.$stateParams, {
-                    reload: true,
-                    inherit: false,
-                    notify: true
-                });
-                e.preventDefault();
-            })
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('SmartAdmin.Layout').directive('resetWidgets', function($state){
-
-    return {
-        restrict: 'A',
-        link: function(scope, element){
-            element.on('click', function(){
-                $.SmartMessageBox({
-                    title : "<i class='fa fa-refresh' style='color:green'></i> Clear Local Storage",
-                    content : "Would you like to RESET all your saved widgets and clear LocalStorage?1",
-                    buttons : '[No][Yes]'
-                }, function(ButtonPressed) {
-                    if (ButtonPressed == "Yes" && localStorage) {
-                        localStorage.clear();
-                        location.reload()
-                    }
-                });
-
-            });
-        }
-    }
-
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Layout').directive('searchMobile', function () {
-    return {
-        restrict: 'A',
-        compile: function (element, attributes) {
-            element.removeAttr('search-mobile data-search-mobile');
-
-            element.on('click', function (e) {
-                $('body').addClass('search-mobile');
-                e.preventDefault();
-            });
-
-            $('#cancel-search-js').on('click', function (e) {
-                $('body').removeClass('search-mobile');
-                e.preventDefault();
-            });
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -20126,19 +19142,119 @@ angular.module('SmartAdmin.Layout').directive('toggleMenu', function(){
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
+
+'use strict';
+
+angular.module('SmartAdmin.Layout').factory('lazyScript', function($q, $http){
+
+    var cache = {};
+
+    function isPending(scriptName){
+        return (cache.hasOwnProperty(scriptName) && cache[scriptName].promise && cache[scriptName].promise.$$state.pending)
+    }
+
+    function isRegistered(scriptName){
+        return cache.hasOwnProperty(scriptName)
+    }
+    function loadScript(scriptName){
+        if(!cache[scriptName]){
+            cache[scriptName] = $q.defer();
+            var el = document.createElement( 'script' );
+            el.onload = function(script){
+                cache[scriptName].resolve(scriptName);
+            };
+            el.src = scriptName;
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(el, x);
+            
+        }
+        return cache[scriptName].promise;
+
+    }
+
+    function register(scriptName){
+        if(isPending(scriptName)){
+            return cache[scriptName].promise
+        }
+        if(isRegistered(scriptName)){
+            return $q.resolve(scriptName);
+        } else {
+            var dfd = $q.defer();
+
+            loadScript(scriptName).then(function(){
+                dfd.resolve(scriptName);
+            });
+
+            return dfd.promise; 
+
+        }
+    }
+    return {
+        register: function (scripts) {
+            
+            var dfd = $q.defer();
+            var promises = [];
+            if (angular.isString(scripts))
+                scripts = [scripts];
+
+            angular.forEach(scripts, function(script){
+                promises.push(register(script));
+            })
+
+            $q.all(promises).then(function(resolves){
+                dfd.resolve(resolves);
+            })
+            return dfd.promise;
+
+        }
+    };
+});
+
+'use strict';
+
+angular.module('SmartAdmin.Layout').service('showMessage', function() {
+   
+	this.show = function (scope,level,message) {
+		scope.level=level;
+		scope.message=message;
+		scope.show=true;
+		
+	}
+}).factory('focus', function ($timeout, $window) {  
+	  return function (id) {  
+		  $timeout(function () {  
+		   var element = $window.document.getElementById(id);  
+			if (element) element.focus();  
+		  });  
+	  };  
+ });
+
+
+'use strict'
+
+angular
+	.module('SmartAdmin.Layout')
+	.factory('translate', function ($translate) {
+		var getWord = {
+			getWord: function (key, obj) {
+				if (key) {
+					return $translate.instant(key, obj)
+				}
+				return key
+			},
+		}
+		return getWord
+	})
+	.filter('translate', function ($translate) {
+		return function (key) {
+			if (key) {
+				return $translate.instant(key)
+			}
+		}
+	})
+
+
 
 'use strict';
 
@@ -20203,19 +19319,6 @@ angular.module('SmartAdmin.Layout').directive('alertMessage', function () {
 	}
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -20243,49 +19346,6 @@ angular.module('SmartAdmin.Layout').directive('bigBreadcrumbs', function (transl
     }
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Layout').directive('dismisser', function () {
-    return {
-        restrict: 'A',
-        compile: function (element) {
-            element.removeAttr('dismisser data-dissmiser')
-            var closer = '<button class="close">&times;</button>';
-            element.prepend(closer);
-            element.on('click', '>button.close', function(){
-                element.fadeOut('fast',function(){ $(this).remove(); });
-
-            })
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -20301,185 +19361,8 @@ angular.module('SmartAdmin.Layout').directive('hrefVoid', function () {
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-/*
-* Directive for toggling a ng-model with a button
-* Source: https://gist.github.com/aeife/9374784
-*/
-
-angular.module('SmartAdmin.Layout').directive('radioToggle', function ($log) {
-    return {
-        scope: {
-            model: "=ngModel",
-            value: "@value"
-        },
-        link: function(scope, element, attrs) {
-
-            element.parent().on('click', function() {
-                scope.model = scope.value;
-                scope.$apply();
-            });
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * DETECT MOBILE DEVICES
- * Description: Detects mobile device - if any of the listed device is
- *
- * detected class is inserted to <tElement>.
- *
- *  (so far this is covering most hand held devices)
- */
-'use strict';
-
-angular.module('SmartAdmin.Layout').directive('smartDeviceDetect', function () {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('smart-device-detect data-smart-device-detect');
-
-            var isMobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
-            
-            tElement.toggleClass('desktop-detected', !isMobile);
-            tElement.toggleClass('mobile-detected', isMobile);
 
 
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- *
- * Description: Directive utilizes FastClick library.
- *
- *
- * FastClick is a simple, easy-to-use library for eliminating the
- * 300ms delay between a physical tap and the firing of a click event on mobile browsers.
- * FastClick doesn't attach any listeners on desktop browsers.
- * @link: https://github.com/ftlabs/fastclick
- *
- * On mobile devices 'needsclick' class is attached to <tElement>
- *
- */
-
-
-'use strict';
-
-angular.module('SmartAdmin.Layout').directive('smartFastClick', function () {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('smart-fast-click data-smart-fast-click');
-
-            FastClick.attach(tElement);
-
-            if(!FastClick.notNeeded())
-                tElement.addClass('needsclick')
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Layout').directive('smartFitAppView', function ($rootScope, SmartCss) {
-    return {
-        restrict: 'A',
-        compile: function (element, attributes) {
-            element.removeAttr('smart-fit-app-view data-smart-fit-app-view leading-y data-leading-y');
-
-            var leadingY = attributes.leadingY ? parseInt(attributes.leadingY) : 0;
-
-            var selector = attributes.smartFitAppView;
-
-            if(SmartCss.appViewSize && SmartCss.appViewSize.height){
-                var height =  SmartCss.appViewSize.height - leadingY < 252 ? 252 :  SmartCss.appViewSize.height - leadingY;
-                SmartCss.add(selector, 'height', height+'px');
-            }
-
-            var listenerDestroy = $rootScope.$on('$smartContentResize', function (event, data) {
-                var height = data.height - leadingY < 252 ? 252 : data.height - leadingY;
-                SmartCss.add(selector, 'height', height+'px');
-            });
-
-            element.on('$destroy', function () {
-                listenerDestroy();
-                SmartCss.remove(selector, 'height');
-            });
-
-
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -20498,27 +19381,14 @@ angular.module('SmartAdmin.Layout').directive('smartInclude', function () {
 );
 
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
-angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScope, $timeout, $interval, $q, SmartCss, APP_CONFIG) {
-    
+angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScope, $timeout, $interval, $q, APP_CONFIG) {
+
     var _debug = 0;
 
-    function getDocHeight() {
+    function getDocHeight () {
         var D = document;
         return Math.max(
             D.body.scrollHeight, D.documentElement.scrollHeight,
@@ -20527,8 +19397,8 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
         );
     }
 
-    var initialized = false, 
-           initializedResolver = $q.defer();
+    var initialized = false,
+        initializedResolver = $q.defer();
     initializedResolver.promise.then(function () {
         initialized = true;
     });
@@ -20537,14 +19407,14 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
         $document = $(document),
         $html = $('html'),
         $body = $('body'),
-        $navigation ,
+        $navigation,
         $menu,
         $ribbon,
         $footer,
         $contentAnimContainer;
 
 
-    (function cacheElements() {
+    (function cacheElements () {
         $navigation = $('#header');
         $menu = $('#left-panel');
         $ribbon = $('#ribbon');
@@ -20558,8 +19428,8 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
         }
     })();
 
-    (function applyConfigSkin(){
-        if(APP_CONFIG.smartSkin){
+    (function applyConfigSkin () {
+        if (APP_CONFIG.smartSkin) {
             $body.removeClass(_.pluck(APP_CONFIG.skins, 'name').join(' '));
             $body.addClass(APP_CONFIG.smartSkin);
         }
@@ -20572,7 +19442,7 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
         compile: function (tElement, tAttributes) {
             tElement.removeAttr('smart-layout data-smart-layout');
 
-            var appViewHeight = 0 ,
+            var appViewHeight = 0,
                 appViewWidth = 0,
                 calcWidth,
                 calcHeight,
@@ -20581,9 +19451,9 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
 
             var forceResizeTrigger = false;
 
-            function resizeListener() {
+            function resizeListener () {
 
-//                    full window height appHeight = Math.max($menu.outerHeight() - 10, getDocHeight() - 10);
+                //                    full window height appHeight = Math.max($menu.outerHeight() - 10, getDocHeight() - 10);
 
                 var menuHeight = $body.hasClass('menu-on-top') && $menu.is(':visible') ? $menu.height() : 0;
                 var menuWidth = !$body.hasClass('menu-on-top') && $menu.is(':visible') ? $menu.width() + $menu.offset().left : 0;
@@ -20622,7 +19492,7 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
                 run(300)
             }, 300);
 
-            function run(delay) {
+            function run (delay) {
                 initializedResolver.promise.then(function () {
                     attachOnResize(delay);
                 });
@@ -20630,17 +19500,17 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
 
             run(10);
 
-            function detachOnResize() {
+            function detachOnResize () {
                 looping = false;
             }
 
-            function attachOnResize(delay) {
+            function attachOnResize (delay) {
                 $timeout(function () {
                     looping = true;
                 }, delay);
             }
 
-            function loop() {
+            function loop () {
                 $body.toggleClass('mobile-view-activated', $window.width() < 979);
                 if ($window.width() < 979)
                     $body.removeClass('minified');
@@ -20648,7 +19518,7 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
                 resizeListener();
             }
 
-            function handleHtmlId(toState) {
+            function handleHtmlId (toState) {
                 if (toState.data && toState.data.htmlId) $html.attr('id', toState.data.htmlId);
                 else $html.removeAttr('id');
             }
@@ -20678,57 +19548,6 @@ angular.module('SmartAdmin.Layout').directive('smartLayout', function ($rootScop
 });
 
 
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Layout').directive('smartPageTitle', function ($rootScope, $timeout) {
-    return {
-        restrict: 'A',
-        compile: function (element, attributes) {
-            element.removeAttr('smart-page-title data-smart-page-title');
-
-            var defaultTitle = attributes.smartPageTitle;
-            var listener = function(event, toState, toParams, fromState, fromParams) {
-                var title = defaultTitle;
-                if (toState.data && toState.data.title) title = toState.data.title + ' | ' + title;
-                // Set asynchronously so page changes before title does
-                $timeout(function() {
-                    $('html head title').text(title);
-                });
-            };
-
-            $rootScope.$on('$stateChangeStart', listener);
-
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -20808,570 +19627,7 @@ angular.module('SmartAdmin.Layout').directive('smartRouterAnimationWrap', functi
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-angular.module('SmartAdmin.Layout').directive('speechRecognition', function ($log) {
-	'use strict';
-
-	$.root_ = $('body');
-	var root, commands;
-
-    root = window;
-    window.appConfig = window.appConfig || {};
-
-	if (appConfig.voice_command) {
-		commands = appConfig.commands;
-	}
-
-
-	/*
-	 * SMART VOICE
-	 * Author: MyOrange | @bootstraphunt
-	 * http://www.myorange.ca
-	 */
-
-	var SpeechRecognition = root.SpeechRecognition || root.webkitSpeechRecognition || root.mozSpeechRecognition || root.msSpeechRecognition || root.oSpeechRecognition;
-
-// ref: http://updates.html5rocks.com/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API
-
-
-// function
-	$.speechApp = (function(speech) {
-
-		speech.start = function() {
-
-			// Add our commands to smartSpeechRecognition
-			smartSpeechRecognition.addCommands(commands);
-
-			if (smartSpeechRecognition) {
-				// activate plugin
-				smartSpeechRecognition.start();
-				// add btn class
-				$.root_.addClass("voice-command-active");
-				// play sound
-				$.speechApp.playON();
-				// set localStorage when switch is on manually
-				if (appConfig.voice_localStorage) {
-					localStorage.setItem('sm-setautovoice', 'true');
-				}
-
-			} else {
-				// if plugin not found
-				alert("speech plugin not loaded");
-			}
-
-		};
-		speech.stop = function() {
-
-			if (smartSpeechRecognition) {
-				// deactivate plugin
-				smartSpeechRecognition.abort();
-				// remove btn class
-				$.root_.removeClass("voice-command-active");
-				// sound
-				$.speechApp.playOFF();
-				// del localStorage when switch if off manually
-				if (appConfig.voice_localStorage) {
-					localStorage.setItem('sm-setautovoice', 'false');
-				}
-				// remove popover if visible
-				if ($('#speech-btn .popover').is(':visible')) {
-					$('#speech-btn .popover').fadeOut(250);
-				}
-			}
-
-		};
-
-		// play sound
-		speech.playON = function() {
-
-			var audioElement = document.createElement('audio');
-
-			if (navigator.userAgent.match('Firefox/'))
-				audioElement.setAttribute('src', appConfig.sound_path + 'voice_on' + ".ogg");
-			else
-				audioElement.setAttribute('src', appConfig.sound_path + 'voice_on' + ".mp3");
-
-			//$.get();
-			audioElement.addEventListener("load", function() {
-				audioElement.play();
-			}, true);
-
-			if (appConfig.sound_on) {
-				audioElement.pause();
-				audioElement.play();
-			}
-		};
-
-		speech.playOFF = function() {
-
-			var audioElement = document.createElement('audio');
-
-			if (navigator.userAgent.match('Firefox/'))
-				audioElement.setAttribute('src', appConfig.sound_path + 'voice_off' + ".ogg");
-			else
-				audioElement.setAttribute('src', appConfig.sound_path + 'voice_off' + ".mp3");
-
-			$.get();
-			audioElement.addEventListener("load", function() {
-				audioElement.play();
-			}, true);
-
-			if (appConfig.sound_on) {
-				audioElement.pause();
-				audioElement.play();
-			}
-		};
-
-		speech.playConfirmation = function() {
-
-			var audioElement = document.createElement('audio');
-
-			if (navigator.userAgent.match('Firefox/'))
-				audioElement.setAttribute('src', appConfig.sound_path + 'voice_alert' + ".ogg");
-			else
-				audioElement.setAttribute('src', appConfig.sound_path + 'voice_alert' + ".mp3");
-
-			$.get();
-			audioElement.addEventListener("load", function() {
-				audioElement.play();
-			}, true);
-
-			if (appConfig.sound_on) {
-				audioElement.pause();
-				audioElement.play();
-			}
-		};
-
-		return speech;
-
-	})({});
-
-
-
-	/*
-	 * SPEECH RECOGNITION ENGINE
-	 * Copyright (c) 2013 Tal Ater
-	 * Modified by MyOrange
-	 * All modifications made are hereby copyright (c) 2014 MyOrange
-	 */
-
-	(function(undefined) {"use strict";
-
-		// Check browser support
-		// This is done as early as possible, to make it as fast as possible for unsupported browsers
-		if (!SpeechRecognition) {
-			root.smartSpeechRecognition = null;
-			return undefined;
-		}
-
-		var commandsList = [], recognition, callbacks = {
-				start : [],
-				error : [],
-				end : [],
-				result : [],
-				resultMatch : [],
-				resultNoMatch : [],
-				errorNetwork : [],
-				errorPermissionBlocked : [],
-				errorPermissionDenied : []
-			}, autoRestart, lastStartedAt = 0,
-		//debugState = false, // decleared in app.appConfig.js
-		//appConfig.debugStyle = 'font-weight: bold; color: #00f;', // decleared in app.appConfig.js
-
-		// The command matching code is a modified version of Backbone.Router by Jeremy Ashkenas, under the MIT license.
-			optionalParam = /\s*\((.*?)\)\s*/g, optionalRegex = /(\(\?:[^)]+\))\?/g, namedParam = /(\(\?)?:\w+/g, splatParam = /\*\w+/g, escapeRegExp = /[\-{}\[\]+?.,\\\^$|#]/g, commandToRegExp = function(command) {
-				command = command.replace(escapeRegExp, '\\$&').replace(optionalParam, '(?:$1)?').replace(namedParam, function(match, optional) {
-					return optional ? match : '([^\\s]+)';
-				}).replace(splatParam, '(.*?)').replace(optionalRegex, '\\s*$1?\\s*');
-				return new RegExp('^' + command + '$', 'i');
-			};
-
-		// This method receives an array of callbacks to iterate over, and invokes each of them
-		var invokeCallbacks = function(callbacks) {
-			callbacks.forEach(function(callback) {
-				callback.callback.apply(callback.context);
-			});
-		};
-
-		var initIfNeeded = function() {
-			if (!isInitialized()) {
-				root.smartSpeechRecognition.init({}, false);
-			}
-		};
-
-		var isInitialized = function() {
-			return recognition !== undefined;
-		};
-
-		root.smartSpeechRecognition = {
-			// Initialize smartSpeechRecognition with a list of commands to recognize.
-			// e.g. smartSpeechRecognition.init({'hello :name': helloFunction})
-			// smartSpeechRecognition understands commands with named variables, splats, and optional words.
-			init : function(commands, resetCommands) {
-
-				// resetCommands defaults to true
-				if (resetCommands === undefined) {
-					resetCommands = true;
-				} else {
-					resetCommands = !!resetCommands;
-				}
-
-				// Abort previous instances of recognition already running
-				if (recognition && recognition.abort) {
-					recognition.abort();
-				}
-
-				// initiate SpeechRecognition
-				recognition = new SpeechRecognition();
-
-				// Set the max number of alternative transcripts to try and match with a command
-				recognition.maxAlternatives = 5;
-				recognition.continuous = true;
-				// Sets the language to the default 'en-US'. This can be changed with smartSpeechRecognition.setLanguage()
-				recognition.lang = appConfig.voice_command_lang || 'en-US';
-
-				recognition.onstart = function() {
-					invokeCallbacks(callbacks.start);
-					//debugState
-					if (appConfig.debugState) {
-						root.console.log('%c ✔ SUCCESS: User allowed access the microphone service to start ', appConfig.debugStyle_success);
-						root.console.log('Language setting is set to: ' + recognition.lang, appConfig.debugStyle);
-					}
-					$.root_.removeClass("service-not-allowed");
-					$.root_.addClass("service-allowed");
-				};
-
-				recognition.onerror = function(event) {
-					invokeCallbacks(callbacks.error);
-					switch (event.error) {
-						case 'network':
-							invokeCallbacks(callbacks.errorNetwork);
-							break;
-						case 'not-allowed':
-						case 'service-not-allowed':
-							// if permission to use the mic is denied, turn off auto-restart
-							autoRestart = false;
-							$.root_.removeClass("service-allowed");
-							$.root_.addClass("service-not-allowed");
-							//debugState
-							if (appConfig.debugState) {
-								root.console.log('%c WARNING: Microphone was not detected (either user denied access or it is not installed properly) ', appConfig.debugStyle_warning);
-							}
-							// determine if permission was denied by user or automatically.
-							if (new Date().getTime() - lastStartedAt < 200) {
-								invokeCallbacks(callbacks.errorPermissionBlocked);
-							} else {
-								invokeCallbacks(callbacks.errorPermissionDenied);
-							}
-							break;
-					}
-				};
-
-				recognition.onend = function() {
-					invokeCallbacks(callbacks.end);
-					// smartSpeechRecognition will auto restart if it is closed automatically and not by user action.
-					if (autoRestart) {
-						// play nicely with the browser, and never restart smartSpeechRecognition automatically more than once per second
-						var timeSinceLastStart = new Date().getTime() - lastStartedAt;
-						if (timeSinceLastStart < 1000) {
-							setTimeout(root.smartSpeechRecognition.start, 1000 - timeSinceLastStart);
-						} else {
-							root.smartSpeechRecognition.start();
-						}
-					}
-				};
-
-				recognition.onresult = function(event) {
-					invokeCallbacks(callbacks.result);
-
-					var results = event.results[event.resultIndex], commandText;
-
-					// go over each of the 5 results and alternative results received (we've set maxAlternatives to 5 above)
-					for (var i = 0; i < results.length; i++) {
-						// the text recognized
-						commandText = results[i].transcript.trim();
-						if (appConfig.debugState) {
-							root.console.log('Speech recognized: %c' + commandText, appConfig.debugStyle);
-						}
-
-						// try and match recognized text to one of the commands on the list
-						for (var j = 0, l = commandsList.length; j < l; j++) {
-							var result = commandsList[j].command.exec(commandText);
-							if (result) {
-								var parameters = result.slice(1);
-								if (appConfig.debugState) {
-									root.console.log('command matched: %c' + commandsList[j].originalPhrase, appConfig.debugStyle);
-									if (parameters.length) {
-										root.console.log('with parameters', parameters);
-									}
-								}
-								// execute the matched command
-								commandsList[j].callback.apply(this, parameters);
-								invokeCallbacks(callbacks.resultMatch);
-
-								// for commands "sound on", "stop" and "mute" do not play sound or display message
-								//var myMatchedCommand = commandsList[j].originalPhrase;
-
-								var ignoreCallsFor = ["sound on", "mute", "stop"];
-
-								if (ignoreCallsFor.indexOf(commandsList[j].originalPhrase) < 0) {
-									// play sound when match found
-									$.smallBox({
-										title : (commandsList[j].originalPhrase),
-										content : "loading...",
-										color : "#333",
-										sound_file : 'voice_alert',
-										timeout : 2000
-									});
-
-									if ($('#speech-btn .popover').is(':visible')) {
-										$('#speech-btn .popover').fadeOut(250);
-									}
-								}// end if
-
-								return true;
-							}
-						} // end for
-					}// end for
-
-					invokeCallbacks(callbacks.resultNoMatch);
-					$.smallBox({
-						title : "Error: <strong>" + ' " ' + commandText + ' " ' + "</strong> no match found!",
-						content : "Please speak clearly into the microphone",
-						color : "#a90329",
-						timeout : 5000,
-						icon : "fa fa-microphone"
-					});
-					if ($('#speech-btn .popover').is(':visible')) {
-						$('#speech-btn .popover').fadeOut(250);
-					}
-					return false;
-				};
-
-				// build commands list
-				if (resetCommands) {
-					commandsList = [];
-				}
-				if (commands.length) {
-					this.addCommands(commands);
-				}
-			},
-
-			// Start listening (asking for permission first, if needed).
-			// Call this after you've initialized smartSpeechRecognition with commands.
-			// Receives an optional options object:
-			// { autoRestart: true }
-			start : function(options) {
-				initIfNeeded();
-				options = options || {};
-				if (options.autoRestart !== undefined) {
-					autoRestart = !!options.autoRestart;
-				} else {
-					autoRestart = true;
-				}
-				lastStartedAt = new Date().getTime();
-				recognition.start();
-			},
-
-			// abort the listening session (aka stop)
-			abort : function() {
-				autoRestart = false;
-				if (isInitialized) {
-					recognition.abort();
-				}
-			},
-
-			// Turn on output of debug messages to the console. Ugly, but super-handy!
-			debug : function(newState) {
-				if (arguments.length > 0) {
-					appConfig.debugState = !!newState;
-				} else {
-					appConfig.debugState = true;
-				}
-			},
-
-			// Set the language the user will speak in. If not called, defaults to 'en-US'.
-			// e.g. 'fr-FR' (French-France), 'es-CR' (Español-Costa Rica)
-			setLanguage : function(language) {
-				initIfNeeded();
-				recognition.lang = language;
-			},
-
-			// Add additional commands that smartSpeechRecognition will respond to. Similar in syntax to smartSpeechRecognition.init()
-			addCommands : function(commands) {
-				var cb, command;
-
-				initIfNeeded();
-
-				for (var phrase in commands) {
-					if (commands.hasOwnProperty(phrase)) {
-						cb = root[commands[phrase]] || commands[phrase];
-						if ( typeof cb !== 'function') {
-							continue;
-						}
-						//convert command to regex
-						command = commandToRegExp(phrase);
-
-						commandsList.push({
-							command : command,
-							callback : cb,
-							originalPhrase : phrase
-						});
-					}
-				}
-				if (appConfig.debugState) {
-					root.console.log('Commands successfully loaded: %c' + commandsList.length, appConfig.debugStyle);
-				}
-			},
-
-			// Remove existing commands. Called with a single phrase, array of phrases, or methodically. Pass no params to remove all commands.
-			removeCommands : function(commandsToRemove) {
-				if (commandsToRemove === undefined) {
-					commandsList = [];
-					return;
-				}
-				commandsToRemove = Array.isArray(commandsToRemove) ? commandsToRemove : [commandsToRemove];
-				commandsList = commandsList.filter(function(command) {
-					for (var i = 0; i < commandsToRemove.length; i++) {
-						if (commandsToRemove[i] === command.originalPhrase) {
-							return false;
-						}
-					}
-					return true;
-				});
-			},
-
-			// Lets the user add a callback of one of 9 types:
-			// start, error, end, result, resultMatch, resultNoMatch, errorNetwork, errorPermissionBlocked, errorPermissionDenied
-			// Can also optionally receive a context for the callback function as the third argument
-			addCallback : function(type, callback, context) {
-				if (callbacks[type] === undefined) {
-					return;
-				}
-				var cb = root[callback] || callback;
-				if ( typeof cb !== 'function') {
-					return;
-				}
-				callbacks[type].push({
-					callback : cb,
-					context : context || this
-				});
-			}
-		};
-
-	}).call(this);
-
-	var autoStart = function() {
-
-		smartSpeechRecognition.addCommands(commands);
-
-		if (smartSpeechRecognition) {
-			// activate plugin
-			smartSpeechRecognition.start();
-			// add btn class
-			$.root_.addClass("voice-command-active");
-			// set localStorage when switch is on manually
-			if (appConfig.voice_localStorage) {
-				localStorage.setItem('sm-setautovoice', 'true');
-			}
-
-		} else {
-			// if plugin not found
-			alert("speech plugin not loaded");
-		}
-	}
-// if already running with localstorage
-	if (SpeechRecognition && appConfig.voice_command && localStorage.getItem('sm-setautovoice') == 'true') {
-		autoStart();
-	}
-
-// auto start
-	if (SpeechRecognition && appConfig.voice_command_auto && appConfig.voice_command) {
-		autoStart();
-	}
-
-
-	var link = function(scope, element) {
-
-
-		if (SpeechRecognition && appConfig.voice_command) {
-
-			// create dynamic modal instance
-			var modal = $('<div class="modal fade" id="voiceModal" tabindex="-1" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"></div></div></div>');
-			// attach to body
-			modal.appendTo("body");
-
-			element.on("click", function(e) {
-
-            	if ($.root_.hasClass("voice-command-active")) {
-					$.speechApp.stop();
-					//$('#speech-btn > span > a > i').removeClass().addClass('fa fa-microphone-slash');
-				} else {
-					$.speechApp.start();
-					//add popover
-					$('#speech-btn .popover').fadeIn(350);
-					//$('#speech-btn > span > a > i').removeClass().addClass('fa fa-microphone')
-
-				}
-
-				e.preventDefault();
-
-            });
-
-			//remove popover
-			$(document).mouseup(function(e) {
-				if (!$('#speech-btn .popover').is(e.target) && $('#speech-btn .popover').has(e.target).length === 0) {
-					$('#speech-btn .popover').fadeOut(250);
-				}
-			});
-
-
-			$("#speech-help-btn").on("click", function() {
-				commands.help();
-			});
-
-		}
-		else {
-			$("#speech-btn").addClass("display-none");
-		}
-
-
-	}
-
-
-
-    return {
-        restrict: 'AE',
-        link: link
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 var pre,cur,isRresh=null
@@ -21463,1117 +19719,7 @@ angular.module('SmartAdmin.Layout').directive('stateBreadcrumbs', function ($roo
   }
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-'use strict';
-
-angular.module('SmartAdmin.Layout').factory('SmartCss', function ($rootScope, $timeout) {
-
-    var sheet = (function () {
-        // Create the <style> tag
-        var style = document.createElement("style");
-
-        // Add a media (and/or media query) here if you'd like!
-        // style.setAttribute("media", "screen")
-        // style.setAttribute("media", "@media only screen and (max-width : 1024px)")
-
-        // WebKit hack :(
-        style.appendChild(document.createTextNode(""));
-
-        // Add the <style> element to the page
-        document.head.appendChild(style);
-
-        return style.sheet;
-    })();
-
-    var _styles = {};
-
-
-    var SmartCss = {
-        writeRule: function(selector){
-            SmartCss.deleteRuleFor(selector);
-            if(_.has(_styles, selector)){
-                var css = selector + '{ ' + _.map(_styles[selector], function(v, k){
-                    return  k + ':' +  v + ';'
-                }).join(' ') +'}';
-                sheet.insertRule(css, _.size(_styles) - 1);
-            }
-        },
-        add: function (selector, property, value, delay) {
-            if(!_.has(_styles, selector))
-                _styles[selector] = {};
-
-            if(value == undefined || value == null || value == '')
-                delete _styles[selector][property];
-            else
-                _styles[selector][property] = value;
-
-
-            if(_.keys(_styles[selector]).length == 0)
-                delete _styles[selector];
-
-            if(!delay)
-                delay = 0;
-            $timeout(function(){
-                SmartCss.writeRule(selector);
-            }, delay);
-
-        },
-        remove: function(selector, property, delay){
-            SmartCss.add(selector, property, null, delay);
-        },
-        deleteRuleFor: function (selector) {
-            _(sheet.rules).forEach(function (rule, idx) {
-                if (rule.selectorText == selector) {
-                    sheet.deleteRule(idx);
-                }
-            });
-        },
-        appViewSize: null
-    };
-
-    $rootScope.$on('$smartContentResize', function (event, data) {
-        SmartCss.appViewSize = data;
-    });
-
-    return SmartCss;
-
-});
-
-
-
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Layout').factory('lazyScript', function($q, $http){
-
-    var cache = {};
-
-    function isPending(scriptName){
-        return (cache.hasOwnProperty(scriptName) && cache[scriptName].promise && cache[scriptName].promise.$$state.pending)
-    }
-
-    function isRegistered(scriptName){
-        return cache.hasOwnProperty(scriptName)
-    }
-    function loadScript(scriptName){
-        if(!cache[scriptName]){
-            cache[scriptName] = $q.defer();
-            var el = document.createElement( 'script' );
-            el.onload = function(script){
-                cache[scriptName].resolve(scriptName);
-            };
-            el.src = scriptName;
-            var x = document.getElementsByTagName('script')[0];
-            x.parentNode.insertBefore(el, x);
-            
-        }
-        return cache[scriptName].promise;
-
-    }
-
-    function register(scriptName){
-        if(isPending(scriptName)){
-            return cache[scriptName].promise
-        }
-        if(isRegistered(scriptName)){
-            return $q.resolve(scriptName);
-        } else {
-            var dfd = $q.defer();
-
-            loadScript(scriptName).then(function(){
-                dfd.resolve(scriptName);
-            });
-
-            return dfd.promise; 
-
-        }
-    }
-    return {
-        register: function (scripts) {
-            
-            var dfd = $q.defer();
-            var promises = [];
-            if (angular.isString(scripts))
-                scripts = [scripts];
-
-            angular.forEach(scripts, function(script){
-                promises.push(register(script));
-            })
-
-            $q.all(promises).then(function(resolves){
-                dfd.resolve(resolves);
-            })
-            return dfd.promise;
-
-        }
-    };
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Layout').service('showMessage', function() {
-   
-	this.show = function (scope,level,message) {
-		scope.level=level;
-		scope.message=message;
-		scope.show=true;
-		
-	}
-}).factory('focus', function ($timeout, $window) {  
-	  return function (id) {  
-		  $timeout(function () {  
-		   var element = $window.document.getElementById(id);  
-			if (element) element.focus();  
-		  });  
-	  };  
- });
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict'
-
-angular
-	.module('SmartAdmin.Layout')
-	.factory('translate', function ($translate) {
-		var getWord = {
-			getWord: function (key, obj) {
-				if (key) {
-					return $translate.instant(key, obj)
-				}
-				return key
-			},
-		}
-		return getWord
-	})
-	.filter('translate', function ($translate) {
-		return function (key) {
-			if (key) {
-				return $translate.instant(key)
-			}
-		}
-	})
-
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('SmartAdmin.UI').directive('smartPopoverHtml', function () {
-    return {
-        restrict: "A",
-        link: function(scope, element, attributes){
-            var options = {};
-            options.content = attributes.smartPopoverHtml;
-            options.placement = attributes.popoverPlacement || 'top';
-            options.html = true;
-            options.trigger =  attributes.popoverTrigger || 'click';
-            options.title =  attributes.popoverTitle || attributes.title;
-            element.popover(options)
-
-        }
-
-    };
-});
-
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('SmartAdmin.UI').directive('smartTooltipHtml', function () {
-        return {
-            restrict: 'A',
-            link: function(scope, element, attributes){
-                element.tooltip({
-                    placement: attributes.tooltipPlacement || 'top',
-                    html: true,
-                    title: attributes.smartTooltipHtml
-                })
-            }
-        };
-    }
-);
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app.auth').directive('facebookSignin', function ($rootScope, ezfb) {
-    return {
-        replace: true,
-        restrict: 'E',
-        template: '<a class="btn btn-block btn-social btn-facebook"><i class="fa fa-facebook"></i> Sign in with Facebook</a>',
-        link: function(scope, element){
-            element.on('click', function(){
-                ezfb.login(function (res) {
-                    if (res.authResponse) {
-                        $rootScope.$broadcast('event:facebook-signin-success', res.authResponse);
-                    }
-                }, {scope: 'public_profile'});
-            })
-
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app.auth').directive('googleSignin', function ($rootScope, GooglePlus) {
-    return {
-        restrict: 'E',
-        template: '<a class="g-signin btn btn-block btn-social btn-google-plus"><i class="fa fa-google-plus"></i> Sign in with Google</a>',
-        replace: true,
-        link: function (scope, element) {
-            element.on('click', function(){
-                GooglePlus.login().then(function (authResult) {
-                    $rootScope.$broadcast('event:google-plus-signin-success', authResult);
-
-                }, function (err) {
-                    $rootScope.$broadcast('event:google-plus-signin-failure', err);
-
-                });
-            })
-        }
-    };
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('app.chat').factory('ChatApi', function ($q, $rootScope, User, $http, APP_CONFIG) {
-    var dfd = $q.defer();
-    var _user;
-    var ChatSrv = {
-        initialized: dfd.promise,
-        users: [],
-        messages: [],
-        statuses: ['Online', 'Busy', 'Away', 'Log Off'],
-        status: 'Online',
-        setUser: function (user) {
-            if (ChatSrv.users.indexOf(_user) != -1)
-                ChatSrv.users.splice(ChatSrv.users.indexOf(_user), 1);
-            _user = user;
-            ChatSrv.users.push(_user);
-        },
-        sendMessage: function (text) {
-            var message = {
-                user: _user,
-                body: text,
-                date: new Date()
-            };
-            this.messages.push(message);
-        }
-    };
-
-
-    $http.get(APP_CONFIG.apiRootUrl + '/chat.json').then(function(res){
-        ChatSrv.messages = res.data.messages;
-        ChatSrv.users = res.data.users;
-        dfd.resolve();
-    });
-
-    ChatSrv.initialized.then(function () {
-
-        User.initialized.then(function () {
-            ChatSrv.setUser({
-                username: User.username,
-                picture: User.picture,
-                status: ChatSrv.status
-            });
-        });
-
-        $rootScope.$watch(function () {
-            return User.username
-        }, function (name, oldName) {
-            if (name != oldName) {
-                ChatSrv.setUser({
-                    username: User.username,
-                    picture: User.picture,
-                    status: ChatSrv.status
-                });
-            }
-        });
-    });
-
-
-    return ChatSrv;
-
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-(function() {
-        
-   'use strict';
-
-    /*
-    * SMARTCHAT PLUGIN ARRAYS & CONFIG
-    * Dependency: js/plugin/moment/moment.min.js 
-    *             js/plugin/cssemotions/jquery.cssemoticons.min.js 
-    *             js/smart-chat-ui/smart.chat.ui.js
-    * (DO NOT CHANGE) 
-    */ 
-        var boxList = [],
-        showList = [],
-        nameList = [],
-        idList = [];
-    /*
-    * Width of the chat boxes, and the gap inbetween in pixel (minus padding)
-    */ 
-        var chatbox_config = {
-            width: 200,
-            gap: 35,
-            offset: 0
-        };
-
-
-
-    /*
-    * SMART CHAT ENGINE
-    * Copyright (c) 2013 Wen Pu
-    * Modified by MyOrange
-    * All modifications made are hereby copyright (c) 2014-2015 MyOrange
-    */
-
-    // TODO: implement destroy()
-    (function($) {
-    $.widget("ui.chatbox", {
-        options: {
-            id: null, //id for the DOM element
-            title: null, // title of the chatbox
-            user: null, // can be anything associated with this chatbox
-            hidden: false,
-            offset: 0, // relative to right edge of the browser window
-            width: 300, // width of the chatbox
-            status: 'online', //
-            alertmsg: null,
-            alertshow: null,
-            messageSent: function(id, user, msg) {
-                // override this
-                this.boxManager.addMsg(user.first_name, msg);
-            },
-            boxClosed: function(id) {
-            }, // called when the close icon is clicked
-            boxManager: {
-                // thanks to the widget factory facility
-                // similar to http://alexsexton.com/?p=51
-                init: function(elem) {
-                    this.elem = elem;
-                },
-                addMsg: function(peer, msg) {
-                    var self = this;
-                    var box = self.elem.uiChatboxLog;
-                    var e = document.createElement('div');
-                    box.append(e);
-                    $(e).hide();
-
-                    var systemMessage = false;
-
-                    if (peer) {
-                        var peerName = document.createElement("b");
-                        $(peerName).text(peer + ": ");
-                        e.appendChild(peerName);
-                    } else {
-                        systemMessage = true;
-                    }
-
-                    var msgElement = document.createElement(
-                        systemMessage ? "i" : "span");
-                    $(msgElement).text(msg);
-                    e.appendChild(msgElement);
-                    $(e).addClass("ui-chatbox-msg");
-                    $(e).css("maxWidth", $(box).width());
-                    $(e).fadeIn();
-                    //$(e).prop( 'title', moment().calendar() ); // add dep: moment.js
-                    $(e).find("span").emoticonize(); // add dep: jquery.cssemoticons.js
-                    self._scrollToBottom();
-
-                    if (!self.elem.uiChatboxTitlebar.hasClass("ui-state-focus")
-                        && !self.highlightLock) {
-                        self.highlightLock = true;
-                        self.highlightBox();
-                    }
-                },
-                highlightBox: function() {
-                    var self = this;
-                    self.elem.uiChatboxTitlebar.effect("highlight", {}, 300);
-                    self.elem.uiChatbox.effect("bounce", {times: 2}, 300, function() {
-                        self.highlightLock = false;
-                        self._scrollToBottom();
-                    });
-                },
-                toggleBox: function() {
-                    this.elem.uiChatbox.toggle();
-                },
-                _scrollToBottom: function() {
-                    var box = this.elem.uiChatboxLog;
-                    box.scrollTop(box.get(0).scrollHeight);
-                }
-            }
-        },
-        toggleContent: function(event) {
-            this.uiChatboxContent.toggle();
-            if (this.uiChatboxContent.is(":visible")) {
-                this.uiChatboxInputBox.focus();
-            }
-        },
-        widget: function() {
-            return this.uiChatbox
-        },
-        _create: function() {
-            var self = this,
-            options = self.options,
-            title = options.title || "No Title",
-            // chatbox
-            uiChatbox = (self.uiChatbox = $('<div></div>'))
-                .appendTo(document.body)
-                .addClass('ui-widget ' +
-                          //'ui-corner-top ' +
-                          'ui-chatbox'
-                         )
-                .attr('outline', 0)
-                .focusin(function() {
-                    // ui-state-highlight is not really helpful here
-                    //self.uiChatbox.removeClass('ui-state-highlight');
-                    self.uiChatboxTitlebar.addClass('ui-state-focus');
-                })
-                .focusout(function() {
-                    self.uiChatboxTitlebar.removeClass('ui-state-focus');
-                }),
-            // titlebar
-            uiChatboxTitlebar = (self.uiChatboxTitlebar = $('<div></div>'))
-                .addClass('ui-widget-header ' +
-                          //'ui-corner-top ' +
-                          'ui-chatbox-titlebar ' +
-                          self.options.status +
-                          ' ui-dialog-header' // take advantage of dialog header style
-                         )
-                .click(function(event) {
-                    self.toggleContent(event);
-                })
-                .appendTo(uiChatbox),
-            uiChatboxTitle = (self.uiChatboxTitle = $('<span></span>'))
-                .html(title)
-                .appendTo(uiChatboxTitlebar),
-            uiChatboxTitlebarClose = (self.uiChatboxTitlebarClose = $('<a href="#" rel="tooltip" data-placement="top" data-original-title="Hide"></a>'))
-                .addClass(//'ui-corner-all ' +
-                          'ui-chatbox-icon '
-                         )
-                .attr('role', 'button')
-                .hover(function() { uiChatboxTitlebarClose.addClass('ui-state-hover'); },
-                       function() { uiChatboxTitlebarClose.removeClass('ui-state-hover'); })
-                .click(function(event) {
-                    uiChatbox.hide();
-                    self.options.boxClosed(self.options.id);
-                    return false;
-                })
-                .appendTo(uiChatboxTitlebar),
-            uiChatboxTitlebarCloseText = $('<i></i>')
-                .addClass('fa ' +
-                          'fa-times')
-                .appendTo(uiChatboxTitlebarClose),
-            uiChatboxTitlebarMinimize = (self.uiChatboxTitlebarMinimize = $('<a href="#" rel="tooltip" data-placement="top" data-original-title="Minimize"></a>'))
-                .addClass(//'ui-corner-all ' +
-                          'ui-chatbox-icon'
-                         )
-                .attr('role', 'button')
-                .hover(function() { uiChatboxTitlebarMinimize.addClass('ui-state-hover'); },
-                       function() { uiChatboxTitlebarMinimize.removeClass('ui-state-hover'); })
-                .click(function(event) {
-                    self.toggleContent(event);
-                    return false;
-                })
-                .appendTo(uiChatboxTitlebar),
-            uiChatboxTitlebarMinimizeText = $('<i></i>')
-                .addClass('fa ' +
-                          'fa-minus')
-                .appendTo(uiChatboxTitlebarMinimize),
-            // content
-            uiChatboxContent = (self.uiChatboxContent = $('<div class="'+ self.options.alertshow +'"><span class="alert-msg">'+ self.options.alertmsg + '</span></div>'))
-                .addClass('ui-widget-content ' +
-                          'ui-chatbox-content '
-                         )
-                .appendTo(uiChatbox),
-            uiChatboxLog = (self.uiChatboxLog = self.element)
-                .addClass('ui-widget-content ' +
-                          'ui-chatbox-log ' +
-                          'custom-scroll'
-                         )
-                .appendTo(uiChatboxContent),
-            uiChatboxInput = (self.uiChatboxInput = $('<div></div>'))
-                .addClass('ui-widget-content ' +
-                          'ui-chatbox-input'
-                         )
-                .click(function(event) {
-                    // anything?
-                })
-                .appendTo(uiChatboxContent),
-            uiChatboxInputBox = (self.uiChatboxInputBox = $('<textarea></textarea>'))
-                .addClass('ui-widget-content ' +
-                          'ui-chatbox-input-box '
-                         )
-                .appendTo(uiChatboxInput)
-                .keydown(function(event) {
-                    if (event.keyCode && event.keyCode == $.ui.keyCode.ENTER) {
-                        var msg = $.trim($(this).val());
-                        if (msg.length > 0) {
-                            self.options.messageSent(self.options.id, self.options.user, msg);
-                        }
-                        $(this).val('');
-                        return false;
-                    }
-                })
-                .focusin(function() {
-                    uiChatboxInputBox.addClass('ui-chatbox-input-focus');
-                    var box = $(this).parent().prev();
-                    box.scrollTop(box.get(0).scrollHeight);
-                })
-                .focusout(function() {
-                    uiChatboxInputBox.removeClass('ui-chatbox-input-focus');
-                });
-
-            // disable selection
-            uiChatboxTitlebar.find('*').add(uiChatboxTitlebar).disableSelection();
-
-            // switch focus to input box when whatever clicked
-            uiChatboxContent.children().click(function() {
-                // click on any children, set focus on input box
-                self.uiChatboxInputBox.focus();
-            });
-
-            self._setWidth(self.options.width);
-            self._position(self.options.offset);
-
-            self.options.boxManager.init(self);
-
-            if (!self.options.hidden) {
-                uiChatbox.show();
-            }
-            
-            $(".ui-chatbox [rel=tooltip]").tooltip();
-        },
-        _setOption: function(option, value) {
-            if (value != null) {
-                switch (option) {
-                case "hidden":
-                    if (value)
-                        this.uiChatbox.hide();
-                    else
-                        this.uiChatbox.show();
-                    break;
-                case "offset":
-                    this._position(value);
-                    break;
-                case "width":
-                    this._setWidth(value);
-                    break;
-                }
-            }
-            $.Widget.prototype._setOption.apply(this, arguments);
-        },
-        _setWidth: function(width) {
-            this.uiChatbox.width((width + 28) + "px");
-            //this.uiChatboxTitlebar.width((width + 28) + "px");
-            //this.uiChatboxLog.width(width + "px");
-           // this.uiChatboxInput.css("maxWidth", width + "px");
-            // padding:2, boarder:2, margin:5
-            this.uiChatboxInputBox.css("width", (width + 18) + "px");
-        },
-        _position: function(offset) {
-            this.uiChatbox.css("right", offset);
-        }
-    });
-    }(jQuery));
-
-
-    /*
-    * jQuery CSSEmoticons plugin 0.2.9
-    *
-    * Copyright (c) 2010 Steve Schwartz (JangoSteve)
-    *
-    * Dual licensed under the MIT and GPL licenses:
-    *   http://www.opensource.org/licenses/mit-license.php
-    *   http://www.gnu.org/licenses/gpl.html
-    *
-    * Date: Sun Oct 22 1:00:00 2010 -0500
-    */
-    (function($) {
-    $.fn.emoticonize = function(options) {
-
-    var opts = $.extend({}, $.fn.emoticonize.defaults, options);
-
-    var escapeCharacters = [ ")", "(", "*", "[", "]", "{", "}", "|", "^", "<", ">", "\\", "?", "+", "=", "." ];
-
-    var threeCharacterEmoticons = [
-        // really weird bug if you have :{ and then have :{) in the same container anywhere *after* :{ then :{ doesn't get matched, e.g. :] :{ :) :{) :) :-) will match everything except :{
-        //  But if you take out the :{) or even just move :{ to the right of :{) then everything works fine. This has something to do with the preMatch string below I think, because
-        //  it'll work again if you set preMatch equal to '()'
-        //  So for now, we'll just remove :{) from the emoticons, because who actually uses this mustache man anyway?
-      // ":{)",
-      ":-)", ":o)", ":c)", ":^)", ":-D", ":-(", ":-9", ";-)", ":-P", ":-p", ":-Þ", ":-b", ":-O", ":-/", ":-X", ":-#", ":'(", "B-)", "8-)", ";*(", ":-*", ":-\\",
-      "?-)", // <== This is my own invention, it's a smiling pirate (with an eye-patch)!
-      // and the twoCharacterEmoticons from below, but with a space inserted
-      ": )", ": ]", "= ]", "= )", "8 )", ": }", ": D", "8 D", "X D", "x D", "= D", ": (", ": [", ": {", "= (", "; )", "; ]", "; D", ": P", ": p", "= P", "= p", ": b", ": Þ", ": O", "8 O", ": /", "= /", ": S", ": #", ": X", "B )", ": |", ": \\", "= \\", ": *", ": &gt;", ": &lt;"//, "* )"
-    ];
-
-    var twoCharacterEmoticons = [ // separate these out so that we can add a letter-spacing between the characters for better proportions
-      ":)", ":]", "=]", "=)", "8)", ":}", ":D", ":(", ":[", ":{", "=(", ";)", ";]", ";D", ":P", ":p", "=P", "=p", ":b", ":Þ", ":O", ":/", "=/", ":S", ":#", ":X", "B)", ":|", ":\\", "=\\", ":*", ":&gt;", ":&lt;"//, "*)"
-    ];
-
-    var specialEmoticons = { // emoticons to be treated with a special class, hash specifies the additional class to add, along with standard css-emoticon class
-      "&gt;:)": { cssClass: "red-emoticon small-emoticon spaced-emoticon" },
-      "&gt;;)": { cssClass: "red-emoticon small-emoticon spaced-emoticon"},
-      "&gt;:(": { cssClass: "red-emoticon small-emoticon spaced-emoticon" },
-      "&gt;: )": { cssClass: "red-emoticon small-emoticon" },
-      "&gt;; )": { cssClass: "red-emoticon small-emoticon"},
-      "&gt;: (": { cssClass: "red-emoticon small-emoticon" },
-      ";(":     { cssClass: "red-emoticon spaced-emoticon" },
-      "&lt;3":  { cssClass: "pink-emoticon counter-rotated" },
-      "O_O":    { cssClass: "no-rotate" },
-      "o_o":    { cssClass: "no-rotate" },
-      "0_o":    { cssClass: "no-rotate" },
-      "O_o":    { cssClass: "no-rotate" },
-      "T_T":    { cssClass: "no-rotate" },
-      "^_^":    { cssClass: "no-rotate" },
-      "O:)":    { cssClass: "small-emoticon spaced-emoticon" },
-      "O: )":   { cssClass: "small-emoticon" },
-      "8D":     { cssClass: "small-emoticon spaced-emoticon" },
-      "XD":     { cssClass: "small-emoticon spaced-emoticon" },
-      "xD":     { cssClass: "small-emoticon spaced-emoticon" },
-      "=D":     { cssClass: "small-emoticon spaced-emoticon" },
-      "8O":     { cssClass: "small-emoticon spaced-emoticon" },
-      "[+=..]":  { cssClass: "no-rotate nintendo-controller" }
-      //"OwO":  { cssClass: "no-rotate" }, // these emoticons overflow and look weird even if they're made even smaller, could probably fix this with some more css trickery
-      //"O-O":  { cssClass: "no-rotate" },
-      //"O=)":    { cssClass: "small-emoticon" } 
-    }
-
-    var specialRegex = new RegExp( '(\\' + escapeCharacters.join('|\\') + ')', 'g' );
-    // One of these characters must be present before the matched emoticon, or the matched emoticon must be the first character in the container HTML
-    //  This is to ensure that the characters in the middle of HTML properties or URLs are not matched as emoticons
-    //  Below matches ^ (first character in container HTML), \s (whitespace like space or tab), or \0 (NULL character)
-    // (<\\S+.*>) matches <\\S+.*> (matches an HTML tag like <span> or <div>), but haven't quite gotten it working yet, need to push this fix now
-    var preMatch = '(^|[\\s\\0])';
-
-    for ( var i=threeCharacterEmoticons.length-1; i>=0; --i ){
-      threeCharacterEmoticons[i] = threeCharacterEmoticons[i].replace(specialRegex,'\\$1');
-      threeCharacterEmoticons[i] = new RegExp( preMatch+'(' + threeCharacterEmoticons[i] + ')', 'g' );
-    }
-
-    for ( var i=twoCharacterEmoticons.length-1; i>=0; --i ){
-      twoCharacterEmoticons[i] = twoCharacterEmoticons[i].replace(specialRegex,'\\$1');
-      twoCharacterEmoticons[i] = new RegExp( preMatch+'(' + twoCharacterEmoticons[i] + ')', 'g' );
-    }
-
-    for ( var emoticon in specialEmoticons ){
-      specialEmoticons[emoticon].regexp = emoticon.replace(specialRegex,'\\$1');
-      specialEmoticons[emoticon].regexp = new RegExp( preMatch+'(' + specialEmoticons[emoticon].regexp + ')', 'g' );
-    }
-
-    var exclude = 'span.css-emoticon';
-    if(opts.exclude){ exclude += ','+opts.exclude; }
-    var excludeArray = exclude.split(',')
-
-    return this.not(exclude).each(function() {
-      var container = $(this);
-      var cssClass = 'css-emoticon'
-      if(opts.animate){ cssClass += ' un-transformed-emoticon animated-emoticon'; }
-      
-      for( var emoticon in specialEmoticons ){
-        var specialCssClass = cssClass + " " + specialEmoticons[emoticon].cssClass;
-        container.html(container.html().replace(specialEmoticons[emoticon].regexp,"$1<span class='" + specialCssClass + "'>$2</span>"));
-      }
-      $(threeCharacterEmoticons).each(function(){
-        container.html(container.html().replace(this,"$1<span class='" + cssClass + "'>$2</span>"));
-      });                                                          
-      $(twoCharacterEmoticons).each(function(){                    
-        container.html(container.html().replace(this,"$1<span class='" + cssClass + " spaced-emoticon'>$2</span>"));
-      });
-      // fix emoticons that got matched more then once (where one emoticon is a subset of another emoticon), and thus got nested spans
-      $.each(excludeArray,function(index,item){
-        container.find($.trim(item)+" span.css-emoticon").each(function(){
-          $(this).replaceWith($(this).text());
-        });
-      });
-      if(opts.animate){
-        setTimeout(function(){$('.un-transformed-emoticon').removeClass('un-transformed-emoticon');}, opts.delay);
-      }
-    });
-    }
-
-    $.fn.unemoticonize = function(options) {
-    var opts = $.extend({}, $.fn.emoticonize.defaults, options);
-    return this.each(function() {
-      var container = $(this);
-      container.find('span.css-emoticon').each(function(){
-        // add delay equal to animate speed if animate is not false
-        var span = $(this);
-        if(opts.animate){
-          span.addClass('un-transformed-emoticon');
-          setTimeout(function(){span.replaceWith(span.text());}, opts.delay); 
-        }else{
-          span.replaceWith(span.text());
-        }
-      });
-    });
-    }
-
-    $.fn.emoticonize.defaults = {animate: true, delay: 500, exclude: 'pre,code,.no-emoticons'}
-    })(jQuery);
-
-    var chatboxManager = function () {
-        
-    var init = function (options) {
-        $.extend(chatbox_config, options)
-    };
-
-
-    var delBox = function (id) {
-        // TODO
-    };
-
-    var getNextOffset = function () {
-        return (chatbox_config.width + chatbox_config.gap) * showList.length;
-    };
-
-    var boxClosedCallback = function (id) {
-        // close button in the titlebar is clicked
-        var idx = showList.indexOf(id);
-        if (idx != -1) {
-            showList.splice(idx, 1);
-            var diff = chatbox_config.width + chatbox_config.gap;
-            for (var i = idx; i < showList.length; i++) {
-                chatbox_config.offset = $("#" + showList[i]).chatbox("option", "offset");
-                $("#" + showList[i]).chatbox("option", "offset", chatbox_config.offset - diff);
-            }
-        } else {
-            alert("NOTE: Id missing from array: " + id);
-        }
-    };
-
-    // caller should guarantee the uniqueness of id
-    var addBox = function (id, user, name) {
-        var idx1 = showList.indexOf(id);
-        var idx2 = boxList.indexOf(id);
-        if (idx1 != -1) {
-            // found one in show box, do nothing
-        } else if (idx2 != -1) {
-            // exists, but hidden
-            // show it and put it back to showList
-            $("#" + id).chatbox("option", "offset", getNextOffset());
-            var manager = $("#" + id).chatbox("option", "boxManager");
-            manager.toggleBox();
-            showList.push(id);
-        } else {
-            var el = document.createElement('div');
-            el.setAttribute('id', id);
-            $(el).chatbox({
-                id: id,
-                user: user,
-                title: '<i title="' + user.status + '"></i>' + user.first_name + " " + user.last_name,
-                hidden: false,
-                offset: getNextOffset(),
-                width: chatbox_config.width,
-                status: user.status,
-                alertmsg: user.alertmsg,
-                alertshow: user.alertshow,
-                messageSent: dispatch,
-                boxClosed: boxClosedCallback
-            });
-            boxList.push(id);
-            showList.push(id);
-            nameList.push(user.first_name);
-        }
-    };
-
-    var messageSentCallback = function (id, user, msg) {
-        var idx = boxList.indexOf(id);
-        chatbox_config.messageSent(nameList[idx], msg);
-    };
-
-    // not used in demo
-    var dispatch = function (id, user, msg) {
-        //$("#log").append("<i>" + moment().calendar() + "</i> you said to <b>" + user.first_name + " " + user.last_name + ":</b> " + msg + "<br/>");
-        if ($('#chatlog').length){
-            $("#chatlog").append("You said to <b>" + user.first_name + " " + user.last_name + ":</b> " + msg + "<br/>").effect("highlight", {}, 500);;
-        }
-        $("#" + id).chatbox("option", "boxManager").addMsg("Me", msg);
-    }
-
-    return {
-        init: init,
-        addBox: addBox,
-        delBox: delBox,
-        dispatch: dispatch
-    };
-    }();
-
-    var link = function (scope, element, attributes) {
-
-        $('a[data-chat-id]').click(function (event, ui) {
-            if(!$(this).hasClass('offline')){
-
-                var $this = $(this),
-                    temp_chat_id = $this.attr("data-chat-id"),
-                    fname = $this.attr("data-chat-fname"),
-                    lname = $this.attr("data-chat-lname"),
-                    status = $this.attr("data-chat-status") || "online",
-                    alertmsg = $this.attr("data-chat-alertmsg"),
-                    alertshow =  $this.attr("data-chat-alertshow") || false;
-
-
-                chatboxManager.addBox(temp_chat_id, {
-                    // dest:"dest" + counter, 
-                    // not used in demo
-                    title: "username" + temp_chat_id,
-                    first_name: fname,
-                    last_name: lname,
-                    status: status,
-                    alertmsg: alertmsg,
-                    alertshow: alertshow
-                    //you can add your own options too
-                });
-            }
-
-            event.preventDefault();
-
-        });
-
-    }
-
-    angular.module('app.chat').directive('asideChatWidget', function (ChatApi) {
-        return {
-            restrict: 'A',
-            replace: true,
-            templateUrl: 'app/dashboard/chat/directives/aside-chat-widget.tpl.html',
-            link: link
-        }
-    });
-
-})(); 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app.chat').directive('chatUsers', function(ChatApi){
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'app/dashboard/chat/directives/chat-users.tpl.html',
-        scope: true,
-        link: function(scope, element){
-            scope.open = false;
-            scope.openToggle = function(){
-                scope.open = !scope.open;
-            };
-
-            scope.chatUserFilter = '';
-
-            ChatApi.initialized.then(function () {
-                scope.chatUsers = ChatApi.users;
-            });
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('app.chat').directive('chatWidget', function (ChatApi) {
-    return {
-        replace: true,
-        restrict: 'E',
-        templateUrl: 'app/dashboard/chat/directives/chat-widget.tpl.html',
-        scope: {},
-        link: function (scope, element) {
-            scope.newMessage = '';
-
-            scope.sendMessage = function () {
-                ChatApi.sendMessage(scope.newMessage);
-                scope.newMessage = '';
-            };
-
-            scope.messageTo = function(user){
-                scope.newMessage += (user.username + ', ');
-            };
-
-            ChatApi.initialized.then(function () {
-                scope.chatMessages = ChatApi.messages;
-            });
-            scope.$watch(function () {
-                return ChatApi.messages.length
-            }, function (count) {
-                if (count){
-                    var $body = $('.chat-body', element);
-                    $body.animate({scrollTop: $body[0].scrollHeight});
-                }
-            })
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -22592,685 +19738,6 @@ angular.module('SmartAdmin.Forms').directive('bootstrapAttributeForm', function(
 
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-
-angular.module('SmartAdmin.Forms').directive('bootstrapButtonGroupForm', function(){
-
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'app/_common/forms/directives/bootstrap-validation/bootstrap-button-group-form.tpl.html',
-        link: function(scope, form){
-            form.bootstrapValidator({
-                excluded : ':disabled',
-                feedbackIcons : {
-                    valid : 'glyphicon glyphicon-ok',
-                    invalid : 'glyphicon glyphicon-remove',
-                    validating : 'glyphicon glyphicon-refresh'
-                },
-                fields : {
-                    gender : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The gender is required'
-                            }
-                        }
-                    },
-                    'languages[]' : {
-                        validators : {
-                            choice : {
-                                min : 1,
-                                max : 2,
-                                message : 'Please choose 1 - 2 languages you can speak'
-                            }
-                        }
-                    }
-                }
-            });
-
-
-        }
-
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-
-angular.module('SmartAdmin.Forms').directive('bootstrapContactForm', function(){
-
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'app/_common/forms/directives/bootstrap-validation/bootstrap-contact-form.tpl.html',
-        link: function(scope, form){
-            form.bootstrapValidator({
-                container : '#messages',
-                feedbackIcons : {
-                    valid : 'glyphicon glyphicon-ok',
-                    invalid : 'glyphicon glyphicon-remove',
-                    validating : 'glyphicon glyphicon-refresh'
-                },
-                fields : {
-                    fullName : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The full name is required and cannot be empty'
-                            }
-                        }
-                    },
-                    email : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The email address is required and cannot be empty'
-                            },
-                            emailAddress : {
-                                message : 'The email address is not valid'
-                            }
-                        }
-                    },
-                    title : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The title is required and cannot be empty'
-                            },
-                            stringLength : {
-                                max : 100,
-                                message : 'The title must be less than 100 characters long'
-                            }
-                        }
-                    },
-                    content : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The content is required and cannot be empty'
-                            },
-                            stringLength : {
-                                max : 500,
-                                message : 'The content must be less than 500 characters long'
-                            }
-                        }
-                    }
-                }
-            });
-
-        }
-
-    }
-
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-
-angular.module('SmartAdmin.Forms').directive('bootstrapMovieForm', function(){
-
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'app/_common/forms/directives/bootstrap-validation/bootstrap-movie-form.tpl.html',
-        link: function(scope, form){
-            form.bootstrapValidator({
-                feedbackIcons : {
-                    valid : 'glyphicon glyphicon-ok',
-                    invalid : 'glyphicon glyphicon-remove',
-                    validating : 'glyphicon glyphicon-refresh'
-                },
-                fields : {
-                    title : {
-                        group : '.col-md-8',
-                        validators : {
-                            notEmpty : {
-                                message : 'The title is required'
-                            },
-                            stringLength : {
-                                max : 200,
-                                message : 'The title must be less than 200 characters long'
-                            }
-                        }
-                    },
-                    genre : {
-                        group : '.col-md-4',
-                        validators : {
-                            notEmpty : {
-                                message : 'The genre is required'
-                            }
-                        }
-                    },
-                    director : {
-                        group : '.col-md-4',
-                        validators : {
-                            notEmpty : {
-                                message : 'The director name is required'
-                            },
-                            stringLength : {
-                                max : 80,
-                                message : 'The director name must be less than 80 characters long'
-                            }
-                        }
-                    },
-                    writer : {
-                        group : '.col-md-4',
-                        validators : {
-                            notEmpty : {
-                                message : 'The writer name is required'
-                            },
-                            stringLength : {
-                                max : 80,
-                                message : 'The writer name must be less than 80 characters long'
-                            }
-                        }
-                    },
-                    producer : {
-                        group : '.col-md-4',
-                        validators : {
-                            notEmpty : {
-                                message : 'The producer name is required'
-                            },
-                            stringLength : {
-                                max : 80,
-                                message : 'The producer name must be less than 80 characters long'
-                            }
-                        }
-                    },
-                    website : {
-                        group : '.col-md-6',
-                        validators : {
-                            notEmpty : {
-                                message : 'The website address is required'
-                            },
-                            uri : {
-                                message : 'The website address is not valid'
-                            }
-                        }
-                    },
-                    trailer : {
-                        group : '.col-md-6',
-                        validators : {
-                            notEmpty : {
-                                message : 'The trailer link is required'
-                            },
-                            uri : {
-                                message : 'The trailer link is not valid'
-                            }
-                        }
-                    },
-                    review : {
-                        // The group will be set as default (.form-group)
-                        validators : {
-                            stringLength : {
-                                max : 500,
-                                message : 'The review must be less than 500 characters long'
-                            }
-                        }
-                    },
-                    rating : {
-                        // The group will be set as default (.form-group)
-                        validators : {
-                            notEmpty : {
-                                message : 'The rating is required'
-                            }
-                        }
-                    }
-                }
-            });
-
-        }
-
-    }
-
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-
-angular.module('SmartAdmin.Forms').directive('bootstrapProductForm', function(){
-
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'app/_common/forms/directives/bootstrap-validation/bootstrap-product-form.tpl.html',
-        link: function(scope, form){
-            form.bootstrapValidator({
-                feedbackIcons : {
-                    valid : 'glyphicon glyphicon-ok',
-                    invalid : 'glyphicon glyphicon-remove',
-                    validating : 'glyphicon glyphicon-refresh'
-                },
-                fields : {
-                    price : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The price is required'
-                            },
-                            numeric : {
-                                message : 'The price must be a number'
-                            }
-                        }
-                    },
-                    amount : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The amount is required'
-                            },
-                            numeric : {
-                                message : 'The amount must be a number'
-                            }
-                        }
-                    },
-                    color : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The color is required'
-                            }
-                        }
-                    },
-                    size : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The size is required'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-
-angular.module('SmartAdmin.Forms').directive('bootstrapProfileForm', function(){
-
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'app/_common/forms/directives/bootstrap-validation/bootstrap-profile-form.tpl.html',
-        link: function(scope, form){
-           form.bootstrapValidator({
-                feedbackIcons : {
-                    valid : 'glyphicon glyphicon-ok',
-                    invalid : 'glyphicon glyphicon-remove',
-                    validating : 'glyphicon glyphicon-refresh'
-                },
-                fields : {
-                    email : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The email address is required'
-                            },
-                            emailAddress : {
-                                message : 'The email address is not valid'
-                            }
-                        }
-                    },
-                    password : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The password is required'
-                            }
-                        }
-                    }
-                }
-            });
-        }
-
-    }
-
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-
-angular.module('SmartAdmin.Forms').directive('bootstrapTogglingForm', function(){
-
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'app/_common/forms/directives/bootstrap-validation/bootstrap-toggling-form.tpl.html',
-        link: function(scope, form){
-            form.bootstrapValidator({
-                feedbackIcons : {
-                    valid : 'glyphicon glyphicon-ok',
-                    invalid : 'glyphicon glyphicon-remove',
-                    validating : 'glyphicon glyphicon-refresh'
-                },
-                fields : {
-                    firstName : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The first name is required'
-                            }
-                        }
-                    },
-                    lastName : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The last name is required'
-                            }
-                        }
-                    },
-                    company : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The company name is required'
-                            }
-                        }
-                    },
-                    // These fields will be validated when being visible
-                    job : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The job title is required'
-                            }
-                        }
-                    },
-                    department : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The department name is required'
-                            }
-                        }
-                    },
-                    mobilePhone : {
-                        validators : {
-                            notEmpty : {
-                                message : 'The mobile phone number is required'
-                            },
-                            digits : {
-                                message : 'The mobile phone number is not valid'
-                            }
-                        }
-                    },
-                    // These fields will be validated when being visible
-                    homePhone : {
-                        validators : {
-                            digits : {
-                                message : 'The home phone number is not valid'
-                            }
-                        }
-                    },
-                    officePhone : {
-                        validators : {
-                            digits : {
-                                message : 'The office phone number is not valid'
-                            }
-                        }
-                    }
-                }
-            }).find('button[data-toggle]').on('click', function() {
-                var $target = $($(this).attr('data-toggle'));
-                // Show or hide the additional fields
-                // They will or will not be validated based on their visibilities
-                $target.toggle();
-                if (!$target.is(':visible')) {
-                    // Enable the submit buttons in case additional fields are not valid
-                    form.data('bootstrapValidator').disableSubmitButtons(false);
-                }
-            });
-        }
-
-    }
-
-
-
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartCkEditor', function () {
-    return {
-        restrict: 'A',
-        compile: function ( tElement) {
-            tElement.removeAttr('smart-ck-editor data-smart-ck-editor');
-            //CKEDITOR.basePath = 'bower_components/ckeditor/';
-
-            CKEDITOR.replace( tElement.attr('name'), { height: '380px', startupFocus : true} );
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartDestroySummernote', function () {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('smart-destroy-summernote data-smart-destroy-summernote')
-            tElement.on('click', function() {
-                angular.element(tAttributes.smartDestroySummernote).destroy();
-            })
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartEditSummernote', function () {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('smart-edit-summernote data-smart-edit-summernote');
-            tElement.on('click', function(){
-                angular.element(tAttributes.smartEditSummernote).summernote({
-                    focus : true
-                });  
-            });
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartMarkdownEditor', function () {
-    return {
-        restrict: 'A',
-        compile: function (element, attributes) {
-            element.removeAttr('smart-markdown-editor data-smart-markdown-editor')
-
-            var options = {
-                autofocus:false,
-                savable:true,
-                fullscreen: {
-                    enable: false
-                }
-            };
-
-            if(attributes.height){
-                options.height = parseInt(attributes.height);
-            }
-
-            element.markdown(options);
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartSummernoteEditor', function (lazyScript) {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('smart-summernote-editor data-smart-summernote-editor');
-
-            var options = {
-                focus : true,
-                tabsize : 2
-            };
-
-            if(tAttributes.height){
-                options.height = tAttributes.height;
-            }
-
-            lazyScript.register('build/vendor.ui.js').then(function(){
-                tElement.summernote(options);                
-            });
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -23382,594 +19849,7 @@ angular.module('SmartAdmin.Forms').directive('smartCheckoutForm', function (form
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartCommentForm', function (formsCommon, lazyScript) {
-    return {
-        restrict: 'A',
-        link: function (scope, form) {
-            lazyScript.register('build/vendor.ui.js').then(function(){
-                form.validate(angular.extend({
-                    // Rules for form validation
-                    rules : {
-                        name : {
-                            required : true
-                        },
-                        email : {
-                            required : true,
-                            email : true
-                        },
-                        url : {
-                            url : true
-                        },
-                        comment : {
-                            required : true
-                        }
-                    },
-
-                    // Messages for form validation
-                    messages : {
-                        name : {
-                            required : 'Enter your name',
-                        },
-                        email : {
-                            required : 'Enter your email address',
-                            email : 'Enter a VALID email'
-                        },
-                        url : {
-                            email : 'Enter a VALID url'
-                        },
-                        comment : {
-                            required : 'Please enter your comment'
-                        }
-                    },
-
-                    // Ajax form submition
-                    submitHandler : function() {
-                        form.ajaxSubmit({
-                            success : function() {
-                                form.addClass('submited');
-                            }
-                        });
-                    }
-
-                }, formsCommon.validateOptions));
-            });
-
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartContactsForm', function (formsCommon, lazyScript) {
-    return {
-        restrict: 'A',
-        link: function (scope, form) {
-            lazyScript.register('build/vendor.ui.js').then(function(){
-                form.validate(angular.extend({
-                    // Rules for form validation
-                    rules : {
-                        name : {
-                            required : true
-                        },
-                        email : {
-                            required : true,
-                            email : true
-                        },
-                        message : {
-                            required : true,
-                            minlength : 10
-                        }
-                    },
-
-                    // Messages for form validation
-                    messages : {
-                        name : {
-                            required : 'Please enter your name'
-                        },
-                        email : {
-                            required : 'Please enter your email address',
-                            email : 'Please enter a VALID email address'
-                        },
-                        message : {
-                            required : 'Please enter your message'
-                        }
-                    },
-
-                    // Ajax form submition
-                    submitHandler : function() {
-                        form.ajaxSubmit({
-                            success : function() {
-                                form.addClass('submited');
-                            }
-                        });
-                    }
-                }, formsCommon.validateOptions));
-            });
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartOrderForm', function (formsCommon, lazyScript) {
-    return {
-        restrict: 'E',
-        link: function (scope, form) {
-            lazyScript.register('build/vendor.ui.js').then(function(){
-                form.validate(angular.extend({
-                    // Rules for form validation
-                    rules : {
-                        name : {
-                            required : true
-                        },
-                        email : {
-                            required : true,
-                            email : true
-                        },
-                        phone : {
-                            required : true
-                        },
-                        interested : {
-                            required : true
-                        },
-                        budget : {
-                            required : true
-                        }
-                    },
-
-                    // Messages for form validation
-                    messages : {
-                        name : {
-                            required : 'Please enter your name'
-                        },
-                        email : {
-                            required : 'Please enter your email address',
-                            email : 'Please enter a VALID email address'
-                        },
-                        phone : {
-                            required : 'Please enter your phone number'
-                        },
-                        interested : {
-                            required : 'Please select interested service'
-                        },
-                        budget : {
-                            required : 'Please select your budget'
-                        }
-                    },
-
-                }, formsCommon.validateOptions));
-            });
-
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartRegistrationForm', function (formsCommon, lazyScript) {
-    return {
-        restrict: 'A',
-        link: function (scope, form, attributes) {
-            lazyScript.register('build/vendor.ui.js').then(function(){
-                form.validate(angular.extend({
-
-                    // Rules for form validation
-                    rules: {
-                        username: {
-                            required: true
-                        },
-                        email: {
-                            required: true,
-                            email: true
-                        },
-                        password: {
-                            required: true,
-                            minlength: 3,
-                            maxlength: 20
-                        },
-                        passwordConfirm: {
-                            required: true,
-                            minlength: 3,
-                            maxlength: 20,
-                            equalTo: '#password'
-                        },
-                        firstname: {
-                            required: true
-                        },
-                        lastname: {
-                            required: true
-                        },
-                        gender: {
-                            required: true
-                        },
-                        terms: {
-                            required: true
-                        }
-                    },
-
-                    // Messages for form validation
-                    messages: {
-                        login: {
-                            required: 'Please enter your login'
-                        },
-                        email: {
-                            required: 'Please enter your email address',
-                            email: 'Please enter a VALID email address'
-                        },
-                        password: {
-                            required: 'Please enter your password'
-                        },
-                        passwordConfirm: {
-                            required: 'Please enter your password one more time',
-                            equalTo: 'Please enter the same password as above'
-                        },
-                        firstname: {
-                            required: 'Please select your first name'
-                        },
-                        lastname: {
-                            required: 'Please select your last name'
-                        },
-                        gender: {
-                            required: 'Please select your gender'
-                        },
-                        terms: {
-                            required: 'You must agree with Terms and Conditions'
-                        }
-                    }
-
-                }, formsCommon.validateOptions));
-            });
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartReviewForm', function (formsCommon, lazyScript) {
-    return {
-        restrict: 'E',
-        link: function (scope, form) {
-            lazyScript.register('build/vendor.ui.js').then(function(){
-
-                form.validate(angular.extend({
-                    // Rules for form validation
-                    rules : {
-                        name : {
-                            required : true
-                        },
-                        email : {
-                            required : true,
-                            email : true
-                        },
-                        review : {
-                            required : true,
-                            minlength : 20
-                        },
-                        quality : {
-                            required : true
-                        },
-                        reliability : {
-                            required : true
-                        },
-                        overall : {
-                            required : true
-                        }
-                    },
-
-                    // Messages for form validation
-                    messages : {
-                        name : {
-                            required : 'Please enter your name'
-                        },
-                        email : {
-                            required : 'Please enter your email address',
-                            email : '<i class="fa fa-warning"></i><strong>Please enter a VALID email addres</strong>'
-                        },
-                        review : {
-                            required : 'Please enter your review'
-                        },
-                        quality : {
-                            required : 'Please rate quality of the product'
-                        },
-                        reliability : {
-                            required : 'Please rate reliability of the product'
-                        },
-                        overall : {
-                            required : 'Please rate the product'
-                        }
-                    }
-
-                }, formsCommon.validateOptions));
-            });
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartJcrop', function ($q) {
-    return {
-        restrict: 'A',
-        scope: {
-            coords: '=',
-            options: '=',
-            selection: '='
-        },
-        link: function (scope, element, attributes) {
-            var jcropApi, imageWidth, imageHeight, imageLoaded = $q.defer();
-
-            var listeners = {
-                onSelectHandlers: [],
-                onChangeHandlers: [],
-                onSelect: function (c) {
-                    angular.forEach(listeners.onSelectHandlers, function (handler) {
-                        handler.call(jcropApi, c)
-                    })
-                },
-                onChange: function (c) {
-                    angular.forEach(listeners.onChangeHandlers, function (handler) {
-                        handler.call(jcropApi, c)
-                    })
-                }
-            };
-
-            if (attributes.coords) {
-                var coordsUpdate = function (c) {
-                    scope.$apply(function () {
-                        scope.coords = c;
-                    });
-                };
-                listeners.onSelectHandlers.push(coordsUpdate);
-                listeners.onChangeHandlers.push(coordsUpdate);
-            }
-
-            var $previewPane = $(attributes.smartJcropPreview),
-                $previewContainer = $previewPane.find('.preview-container'),
-                $previewImg = $previewPane.find('img');
-
-            if ($previewPane.length && $previewImg.length) {
-                var previewUpdate = function (coords) {
-                    if (parseInt(coords.w) > 0) {
-                        var rx = $previewContainer.width() / coords.w;
-                        var ry = $previewContainer.height() / coords.h;
-
-                        $previewImg.css({
-                            width: Math.round(rx * imageWidth) + 'px',
-                            height: Math.round(ry * imageHeight) + 'px',
-                            marginLeft: '-' + Math.round(rx * coords.x) + 'px',
-                            marginTop: '-' + Math.round(ry * coords.y) + 'px'
-                        });
-                    }
-                };
-                listeners.onSelectHandlers.push(previewUpdate);
-                listeners.onChangeHandlers.push(previewUpdate);
-            }
-
-
-            var options = {
-                onSelect: listeners.onSelect,
-                onChange: listeners.onChange
-            };
-
-            if ($previewContainer.length) {
-                options.aspectRatio = $previewContainer.width() / $previewContainer.height()
-            }
-
-            if (attributes.selection) {
-                scope.$watch('selection', function (newVal, oldVal) {
-                    if (newVal != oldVal) {
-                        var rectangle = newVal == 'release' ? [imageWidth / 2, imageHeight / 2, imageWidth / 2, imageHeight / 2] : newVal;
-
-                        var callback = newVal == 'release' ? function () {
-                            jcropApi.release();
-                        } : angular.noop;
-
-                        imageLoaded.promise.then(function () {
-                            if (scope.options && scope.options.animate) {
-                                jcropApi.animateTo(rectangle, callback);
-                            } else {
-                                jcropApi.setSelect(rectangle);
-                            }
-                        });
-                    }
-                });
-            }
-
-            if (attributes.options) {
-
-                var optionNames = [
-                    'bgOpacity', 'bgColor', 'bgFade', 'shade', 'outerImage',
-                    'allowSelect', 'allowMove', 'allowResize',
-                    'aspectRatio'
-                ];
-
-                angular.forEach(optionNames, function (name) {
-                    if (scope.options[name])
-                        options[name] = scope.options[name]
-
-                    scope.$watch('options.' + name, function (newVal, oldVal) {
-                        if (newVal != oldVal) {
-                            imageLoaded.promise.then(function () {
-                                var update = {};
-                                update[name] = newVal;
-                                jcropApi.setOptions(update);
-                            });
-                        }
-                    });
-
-                });
-
-
-                scope.$watch('options.disabled', function (newVal, oldVal) {
-                    if (newVal != oldVal) {
-                        if (newVal) {
-                            jcropApi.disable();
-                        } else {
-                            jcropApi.enable();
-                        }
-                    }
-                });
-
-                scope.$watch('options.destroyed', function (newVal, oldVal) {
-                    if (newVal != oldVal) {
-                        if (newVal) {
-                            jcropApi.destroy();
-                        } else {
-                            _init();
-                        }
-                    }
-                });
-
-                scope.$watch('options.src', function (newVal, oldVal) {
-                    imageLoaded = $q.defer();
-                    if (newVal != oldVal) {
-                        jcropApi.setImage(scope.options.src, function () {
-                            imageLoaded.resolve();
-                        });
-                    }
-                });
-
-                var updateSize = function(){
-                    jcropApi.setOptions({
-                        minSize: [scope.options.minSizeWidth, scope.options.minSizeHeight],
-                        maxSize: [scope.options.maxSizeWidth, scope.options.maxSizeHeight]
-                    });
-                };
-
-                scope.$watch('options.minSizeWidth', function (newVal, oldVal) {
-                    if (newVal != oldVal) updateSize();
-                });
-                scope.$watch('options.minSizeHeight', function (newVal, oldVal) {
-                    if (newVal != oldVal) updateSize();
-                });
-                scope.$watch('options.maxSizeWidth', function (newVal, oldVal) {
-                    if (newVal != oldVal) updateSize();
-                });
-                scope.$watch('options.maxSizeHeight', function (newVal, oldVal) {
-                    if (newVal != oldVal) updateSize();
-                });
-            }
-
-            var _init = function () {
-                element.Jcrop(options, function () {
-                    jcropApi = this;
-                    // Use the API to get the real image size
-                    var bounds = this.getBounds();
-                    imageWidth = bounds[0];
-                    imageHeight = bounds[1];
-
-                    if (attributes.selection && angular.isArray(scope.selection)) {
-                        if (scope.options && scope.options.animate) {
-                            jcropApi.animateTo(scope.selection);
-                        } else {
-                            jcropApi.setSelect(scope.selection);
-                        }
-                    }
-                    imageLoaded.resolve();
-                });
-            };
-
-            _init()
-
-
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -23989,50 +19869,6 @@ angular.module('SmartAdmin.Forms').directive('smartClockpicker', function () {
 	}
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartColorpicker', function () {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('smart-colorpicker data-smart-colorpicker');
-
-
-            var aOptions = _.pick(tAttributes, ['']);
-
-            var options = _.extend(aOptions, {});
-
-            tElement.colorpicker(options);
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -24092,84 +19928,7 @@ angular.module('SmartAdmin.Forms').directive('smartDatepicker', function () {
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartDuallistbox', function () {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('smart-duallistbox data-smart-duallistbox');
-
-
-            var aOptions = _.pick(tAttributes, ['nonSelectedFilter']);
-
-            var options = _.extend(aOptions, {
-                nonSelectedListLabel: 'Non-selected',
-                selectedListLabel: 'Selected',
-                preserveSelectionOnMove: 'moved',
-                moveOnSelect: false
-            });
-
-            tElement.bootstrapDualListbox(options);
-        }
-    }
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartIonslider', function (lazyScript) {
-    return {
-        restrict: 'A',
-        compile: function (element, attributes) {
-            element.removeAttr('smart-ionslider data-smart-ionslider');
-
-        	lazyScript.register('build/vendor.ui.js').then(function(){
-            	element.ionRangeSlider();
-        	});
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -24183,165 +19942,7 @@ angular.module('SmartAdmin.Forms').directive('smartKnob', function () {
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-"use strict";
-
-angular.module('SmartAdmin.Forms').directive('smartMaskedInput', function(lazyScript){
-    return {
-        restrict: 'A',
-        compile: function(tElement, tAttributes){
-            tElement.removeAttr('smart-masked-input data-smart-masked-input');
-
-        	lazyScript.register('build/vendor.ui.js').then(function(){
-
-	            var options = {};
-	            if(tAttributes.maskPlaceholder) options.placeholder =  tAttributes.maskPlaceholder;
-	            tElement.mask(tAttributes.smartMaskedInput, options);
-        	})	            
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartNouislider', function ($parse, lazyScript) {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            lazyScript.register('build/vendor.ui.js').then(function(){
-                tElement.removeAttr('smart-nouislider data-smart-nouislider');
-
-                tElement.addClass('noUiSlider');
-
-                var options = {
-                    range: {
-                        min: tAttributes.rangeMin ? parseInt(tAttributes.rangeMin) : 0,
-                        max: tAttributes.rangeMax ? parseInt(tAttributes.rangeMax) : 1000
-                    },
-                    start: $parse(tAttributes.start)()
-                };
-
-                if (tAttributes.step) options.step =  parseInt(tAttributes.step);
-
-                if(tAttributes.connect) options.connect = tAttributes.connect == 'true' ? true : tAttributes.connect;
-
-                tElement.noUiSlider(options);
-
-                if(tAttributes.update) tElement.on('slide', function(){
-                    $(tAttributes.update).text(JSON.stringify(tElement.val()));
-                });                
-            })
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict'
-
-angular.module('SmartAdmin.Forms').directive('smartSelect2', function (lazyScript) {
-    return {
-        restrict: 'A',
-        compile: function (element, attributes) {
-            element.hide().removeAttr('smart-select2 data-smart-select2');
-        	lazyScript.register('build/vendor.ui.js').then(function(){
-	            element.show().select2();
-        	})
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict'
-
-angular.module('SmartAdmin.Forms').directive('smartSpinner', function () {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-            tElement.removeAttr('smart-spinner');
-
-            var options = {};
-            if(tAttributes.smartSpinner == 'deicimal'){
-                options = {
-                    step: 0.01,
-                    numberFormat: "n"
-                };
-            }else if(tAttributes.smartSpinner == 'currency'){
-                options = {
-                    min: 5,
-                    max: 2500,
-                    step: 25,
-                    start: 1000,
-                    numberFormat: "C"
-                };
-            }
-
-            tElement.spinner(options);
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -24354,19 +19955,6 @@ angular.module('SmartAdmin.Forms').directive('smartTagsinput', function () {
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -24380,146 +19968,6 @@ angular.module('SmartAdmin.Forms').directive('smartTimepicker', function () {
     }
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartUislider', function ($parse, lazyScript) {
-    return {
-        restrict: 'A',
-        compile: function (tElement, tAttributes) {
-
-            tElement.removeAttr('smart-uislider data-smart-uislider');
-
-            lazyScript.register('build/vendor.ui.js').then(function(){
-			    tElement.bootstrapSlider();
-
-			    $(tElement.data('bootstrapSlider').sliderElem).prepend(tElement);      	
-            })
-
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-"use strict";
-
-angular.module('SmartAdmin.Forms').directive('smartXeditable', function($timeout, $log){
-
-	function link (scope, element, attrs, ngModel) {
-
-        var defaults = {
-            // display: function(value, srcData) {
-            //     ngModel.$setViewValue(value);
-            //     // scope.$apply();
-            // }
-        };
-
-        var inited = false;
-
-        var initXeditable = function() {
-
-            var options = scope.options || {};
-    		var initOptions = angular.extend(defaults, options);
-
-            // $log.log(initOptions);
-            element.editable('destroy');
-            element.editable(initOptions);
-        }
-
-        scope.$watch("options", function(newValue) {
-
-            if(!newValue) {
-                return false;
-            }
-
-            initXeditable();
-
-            // $log.log("Options changed...");
-
-        }, true);
-
-    }
-
-    return {
-    	restrict: 'A',
-    	require: "ngModel",
-        scope: {
-            options: "="
-        },
-    	link: link 
-
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
-
-'use strict';
-
-angular.module('SmartAdmin.Forms').directive('smartDropzone', function () {
-    return function (scope, element, attrs) {
-        var config, dropzone;
-
-        config = scope[attrs.smartDropzone];
-
-        // create a Dropzone for the element with the given options
-        dropzone = new Dropzone(element[0], config.options);
-
-        // bind the given event handlers
-        angular.forEach(config.eventHandlers, function (handler, event) {
-            dropzone.on(event, handler);
-        });
-    };
-});
-
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -24598,19 +20046,6 @@ angular.module('SmartAdmin.Forms').directive('smartValidateForm', function (tran
     }
 });
 
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 'use strict';
 
@@ -24647,19 +20082,7 @@ angular.module('SmartAdmin.Forms').directive('smartFueluxWizard', function () {
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
 
 'use strict';
 
@@ -24751,162 +20174,7 @@ angular.module('SmartAdmin.Forms').directive('smartWizard', function () {
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-'use strict';
-
-angular.module('SmartAdmin.Layout').directive('demoStates', function ($rootScope) {
-    return {
-        restrict: 'EA',
-        replace: true,
-        templateUrl: 'app/_common/layout/directives/demo/demo-states.tpl.html',
-        scope: true,
-        link: function (scope, element, attributes) {
-            element.parent().css({
-                position: 'relative'
-            });
-
-            element.on('click', '#demo-setting', function () {
-                element.toggleClass('activate')
-            })
-        },
-        controller: function ($scope) {
-            var $root = $('body');
-
-            $scope.$watch('fixedHeader', function (fixedHeader) {
-                localStorage.setItem('sm-fixed-header', fixedHeader);
-                $root.toggleClass('fixed-header', fixedHeader);
-                if (fixedHeader == false) {
-                    $scope.fixedRibbon = false;
-                    $scope.fixedNavigation = false;
-                }
-            });
-
-
-            $scope.$watch('fixedNavigation', function (fixedNavigation) {
-                localStorage.setItem('sm-fixed-navigation', fixedNavigation);
-                $root.toggleClass('fixed-navigation', fixedNavigation);
-                if (fixedNavigation) {
-                    $scope.insideContainer = false;
-                    $scope.fixedHeader = true;
-                } else {
-                    $scope.fixedRibbon = false;
-                }
-            });
-
-
-            $scope.$watch('fixedRibbon', function (fixedRibbon) {
-                localStorage.setItem('sm-fixed-ribbon', fixedRibbon);
-                $root.toggleClass('fixed-ribbon', fixedRibbon);
-                if (fixedRibbon) {
-                    $scope.fixedHeader = true;
-                    $scope.fixedNavigation = true;
-                    $scope.insideContainer = false;
-                }
-            });
-
-            $scope.$watch('fixedPageFooter', function (fixedPageFooter) {
-                localStorage.setItem('sm-fixed-page-footer', fixedPageFooter);
-                $root.toggleClass('fixed-page-footer', fixedPageFooter);
-            });
-
-            $scope.$watch('insideContainer', function (insideContainer) {
-                localStorage.setItem('sm-inside-container', insideContainer);
-                $root.toggleClass('container', insideContainer);
-                if (insideContainer) {
-                    $scope.fixedRibbon = false;
-                    $scope.fixedNavigation = false;
-                }
-            });
-
-            $scope.$watch('rtl', function (rtl) {
-                localStorage.setItem('sm-rtl', rtl);
-                $root.toggleClass('smart-rtl', rtl);
-            });
-
-            $scope.$watch('menuOnTop', function (menuOnTop) {
-                $rootScope.$broadcast('$smartLayoutMenuOnTop', menuOnTop);
-                localStorage.setItem('sm-menu-on-top', menuOnTop);
-                $root.toggleClass('menu-on-top', menuOnTop);
-
-                if(menuOnTop)$root.removeClass('minified');
-            });
-
-            $scope.$watch('colorblindFriendly', function (colorblindFriendly) {
-                localStorage.setItem('sm-colorblind-friendly', colorblindFriendly);
-                $root.toggleClass('colorblind-friendly', colorblindFriendly);
-            });
-
-
-            $scope.fixedHeader = true;
-            $scope.fixedNavigation = true;
-            $scope.fixedRibbon = true;
-            $scope.fixedPageFooter = localStorage.getItem('sm-fixed-page-footer') == 'true';
-            $scope.insideContainer = localStorage.getItem('sm-inside-container') == 'true';
-            $scope.rtl = localStorage.getItem('sm-rtl') == 'true';
-            $scope.menuOnTop = localStorage.getItem('sm-menu-on-top') == 'true' || $root.hasClass('menu-on-top');
-            $scope.colorblindFriendly = localStorage.getItem('sm-colorblind-friendly') == 'true';
-
-
-            $scope.skins = appConfig.skins;
-
-
-            $scope.smartSkin = localStorage.getItem('sm-skin') ? localStorage.getItem('sm-skin') : appConfig.smartSkin;
-
-            $scope.setSkin = function (skin) {
-                $scope.smartSkin = skin.name;
-                $root.removeClass(_.pluck($scope.skins, 'name').join(' '));
-                $root.addClass(skin.name);
-                localStorage.setItem('sm-skin', skin.name);
-                $("#logo img").attr('src', skin.logo);
-            };
-
-
-            if($scope.smartSkin != "smart-style-0"){
-                $scope.setSkin(_.find($scope.skins, {name: $scope.smartSkin}))
-            }
-
-
-            $scope.factoryReset = function () {
-                $.SmartMessageBox({
-                    title: "<i class='fa fa-refresh' style='color:green'></i> Clear Local Storage",
-                    content: "Would you like to RESET all your saved widgets and clear LocalStorage?1",
-                    buttons: '[No][Yes]'
-                }, function (ButtonPressed) {
-                    if (ButtonPressed == "Yes" && localStorage) {
-                        localStorage.clear();
-                        location.reload()
-                    }
-                });
-            }
-        }
-    }
-});
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 "use strict";
 
@@ -25009,100 +20277,7 @@ angular.module('SmartAdmin.Layout').directive('smartMenu', function ($state, $ro
         }
     }
 });
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
-(function(){
-    "use strict";
-
-    angular.module('SmartAdmin.Layout').directive('smartMenuItems', function ($http, $rootScope, $compile) {
-    return {
-        restrict: 'A',
-        compile: function (element, attrs) {
-            
-
-            function createItem(item, parent, level){
-                var li = $('<li />' ,{'ui-sref-active': "active"})
-                var a = $('<a />');
-                var i = $('<i />');
-
-                li.append(a);
-
-                if(item.sref)
-                    a.attr('ui-sref', item.sref);
-                if(item.href)
-                    a.attr('href', item.href);
-                if(item.icon){
-                    i.attr('class', 'fa fa-lg fa-fw fa-'+item.icon);
-                    a.append(i);
-                }
-                if(item.title){
-                    a.attr('title', item.title);
-                    if(level == 1){ 
-                        a.append(' <span class="menu-item-parent">' + item.title + '</span>');
-                    } else {
-                        a.append(' ' + item.title);
-
-                    }
-                }
-
-                if(item.items){
-                    var ul = $('<ul />');
-                    li.append(ul);
-                    li.attr('data-menu-collapse', '');
-                    _.forEach(item.items, function(child) {
-                        createItem(child, ul, level+1);
-                    })
-                } 
-
-                parent.append(li); 
-            }
-
-
-            $http.get(attrs.smartMenuItems).then(function(res){
-                var ul = $('<ul />', {
-                    'smart-menu': ''
-                })
-                _.forEach(res.data.items, function(item) {
-                    createItem(item, ul, 1);
-                })
-                
-                var $scope = $rootScope.$new();
-                var html = $('<div>').append(ul).html(); 
-                var linkingFunction = $compile(html);
-                
-                var _element = linkingFunction($scope);
-
-                element.replaceWith(_element);                
-            })
-        }
-    }
-});
-})();
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
 
 /**
  * Jarvis Widget Directive
@@ -25149,19 +20324,7 @@ angular.module('SmartAdmin.Layout').directive('jarvisWidget', function($rootScop
         }
     }
 });
- /*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+
 
 "use strict";
  

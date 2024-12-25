@@ -1,16 +1,17 @@
-/*
- * Copyright (c) 2022. PengYunNetWork
- *
- * This program is free software: you can use, redistribute, and/or modify it
- * under the terms of the GNU Affero General Public License, version 3 or later ("AGPL"),
- * as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- *  You should have received a copy of the GNU Affero General Public License along with
- *  this program. If not, see <http://www.gnu.org/licenses/>.
- */
+/**
+* Copyright (C) 2013-2024 Nanjing Pengyun Network Technology Co., Ltd.
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/ 
 
 package py.console.action;
 
@@ -26,8 +27,6 @@ import java.util.concurrent.TimeoutException;
 import net.sf.json.JSONArray;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.thrift.TException;
-import org.jdom.Element;
-import org.jdom.input.SAXBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import py.console.bean.Account;
@@ -911,75 +910,6 @@ public class CapacityAction extends ActionSupport {
       resultMessage.setMessage(ErrorCode2.ERROR_0019_SessionOut);
       dataMap.put("resultMessage", resultMessage);
       return Constants.ACTION_RETURN_STRING;
-    }
-    // 使用SAXBuilder解析器解析xml文件
-    SAXBuilder sb = new SAXBuilder();
-    org.jdom.Document doc = null;
-    try {
-      doc = sb.build(configFile);
-      Element root = doc.getRootElement();
-      // get new feature
-      List<Element> newFeaturesList = root.getChild("NewFeature").getChildren();
-      List<String> newFeaturesStringList = new ArrayList<>();
-      for (Element property : newFeaturesList) {
-        String propertyString = property.getAttributeValue("value");
-        newFeaturesStringList.add(propertyString);
-      }
-      // get new feature
-      List<Element> fixedIssuesList = root.getChild("FixedIssues").getChildren();
-      List<String> fixedIssuesStringList = new ArrayList<>();
-      for (Element property : fixedIssuesList) {
-        String propertyString = property.getAttributeValue("value");
-        fixedIssuesStringList.add(propertyString);
-      }
-      // get new feature
-      List<Element> knownIssuesList = root.getChild("KnownIssues").getChildren();
-      List<String> knownIssuesStringList = new ArrayList<>();
-      for (Element property : knownIssuesList) {
-        String propertyString = property.getAttributeValue("value");
-        knownIssuesStringList.add(propertyString);
-      }
-
-      // support csi
-      Element csiElement = root.getChild("SupportCsi");
-      if (csiElement != null) {
-        List<Element> supportCsiList = csiElement.getChildren();
-        for (Element property : supportCsiList) {
-          if (property.getAttributeValue("name").equals("csi")) {
-            String csiStatus = property.getAttributeValue("value");
-            dataMap.put("csi", csiStatus);
-          }
-        }
-      }
-
-      List<Element> supportsList = root.getChild("support").getChildren();
-      for (Element support : supportsList) {
-        if (support.getAttributeValue("name").equals("telephone")) {
-          String tel = support.getAttributeValue("value");
-          dataMap.put("tel", tel);
-        } else if (support.getAttributeValue("name").equals("email")) {
-          String email = support.getAttributeValue("value");
-          dataMap.put("email", email);
-        }
-      }
-      String corporation = root.getChild("copyright").getChild("property")
-          .getAttributeValue("value");
-      String name = root.getChildText("name");
-      String version = root.getChildText("branch");
-      String timeStamp = root.getChildText("timestamp");
-      dataMap.put("name", name);
-      dataMap.put("version", version);
-      dataMap.put("timeStamp", timeStamp);
-      dataMap.put("newFeaturesStringList", newFeaturesStringList);
-      dataMap.put("fixedIssuesStringList", fixedIssuesStringList);
-      dataMap.put("knownIssuesStringList", knownIssuesStringList);
-      dataMap.put("corporation", corporation);
-      logger.debug("dataMap is {}", dataMap);
-      resultMessage.setMessage(ErrorCode2.ERROR_0000_SUCCESS);
-    } catch (Exception e) {
-      e.printStackTrace();
-      logger.error("caught an exception ", e);
-      resultMessage.setMessage("读取配置文件失败");
     }
 
     dataMap.put("resultMessage", resultMessage);
